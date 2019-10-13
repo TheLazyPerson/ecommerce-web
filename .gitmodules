@@ -1,0 +1,3 @@
+[submodule "src/ecommerce-core"]
+	path = src/ecommerce-core
+	url = https://github.com/TheLazyPerson/ecommerce-core.git
