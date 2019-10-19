@@ -1,19 +1,29 @@
-import { bindActionCreators } from "redux";
+import React from "react";
 import { connect } from "react-redux";
-import { showMessage } from "../ecommerce-core/actions";
-import App from "../components/App";
+import { showMessage } from "../ecommerce-core/actions/index";
+import { Button } from "react-bootstrap";
 
-const mapStateToProps = state => {
-  let message = state.message;
-  return {
-    message
-  };
-};
+let Message = ({ message, stateObject, displayMessage }) => (
+  <div>
+    <Button onClick={displayMessage}>PRESS TO DISPATCH FIRST ACTION</Button>
+    <h2 style={{ margin: "30px" }}>{message}</h2>
+  </div>
+);
 
-// function mapStateToProps({ message }) {
-//   return {
-//     message
-//   };
-// }
+const mapStateToProps = state => ({
+  message: state.say,
+  stateObject: state
+});
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  displayMessage: () => {
+    dispatch(showMessage());
+  }
+});
+
+Message = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Message);
+
+export default Message;
