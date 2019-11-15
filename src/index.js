@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { configureStore, history } from './redux/store/configureStore.dev';
 import "./index.css";
-import App from "./components/App";
+import App from "./modules/routes";
 
 console.log('something :', configureStore);
 
