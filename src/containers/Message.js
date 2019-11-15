@@ -11,7 +11,7 @@ let Message = ({ message, stateObject, displayMessage }) => (
 );
 
 const mapStateToProps = state => ({
-  message: state.say,
+  message: state.message.say,
   stateObject: state
 });
 

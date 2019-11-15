@@ -1,17 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { ConnectedRouter } from 'connected-react-router';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import { configureStore, history } from './redux/store/configureStore.dev';
 import "./index.css";
 import App from "./components/App";
-import message from "./ecommerce-core/reducers";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-let store = createStore(message);
+console.log('something :', configureStore);
 
-ReactDOM.render(
+let store = configureStore();
+
+ReactDOM.render (
   <Provider store={store}>
-    <App />
+  
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>    
+    
   </Provider>,
   document.getElementById("root")
 );
