@@ -6,8 +6,8 @@ import rootReducer from '../reducer';
 import {apiMiddleware} from 'redux-api-middleware';
 
 //TODO create alias for ecommerce
-import apiAuthInjector from '../../ecommerce-core/middleware/authInjector';
-import apiErrorHandler from '../../ecommerce-core/middleware/apiError';
+import apiAuthInjector from 'Core/middleware/authInjector';
+import apiErrorHandler from 'Core/middleware/apiError';
 
 export const history = createBrowserHistory();
 export const configureStore = (initialState) => {

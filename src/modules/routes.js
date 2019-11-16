@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
 import HomePage from './homePage';
 import ProductDetailsPage from './productDetailsPage';
-import PageNotFound from './commonComponents/pageNotFound';
+import PageNotFound from 'CommonComponents/pageNotFound';
 
 const App = () => {
   return (
