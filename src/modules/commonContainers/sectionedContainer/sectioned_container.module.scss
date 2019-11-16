@@ -12,7 +12,13 @@
     width: 28%;
 
     .header_container {
+      height: 84px;
+      align-items: center;
+      justify-content: center;
 
+      .app_icon {
+        height: 17px;
+      }
     }
   }
 
