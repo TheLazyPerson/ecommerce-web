@@ -304,6 +304,7 @@ module.exports = function(webpackEnv) {
         Core: path.resolve(__dirname, '../src/ecommerce-core'),
         Modules: path.resolve(__dirname, '../src/modules'),
         CommonComponents: path.resolve(__dirname, '../src/modules/commonComponents'),
+        CommonContainers: path.resolve(__dirname, '../src/modules/commonContainers'),
         
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
