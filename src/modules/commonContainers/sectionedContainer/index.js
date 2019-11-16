@@ -8,6 +8,8 @@ import appIcon from 'Icons/app-icon-white.svg'
 export default class SectionedContainer extends Component {
 
   render() {
+    const { isAbsoluteContent, children } = this.props;
+
      return(
        <DivRow className={styles.page_container}>
          <DivColumn className={styles.left_container}>
@@ -19,8 +21,10 @@ export default class SectionedContainer extends Component {
           <DivColumn className={styles.right_container}>
             <SectionedHeader />
             {/* children/content */}
-            
+            { !isAbsoluteContent ? children : null }
+
           </DivColumn>
+          { isAbsoluteContent ? children : null }
        </DivRow>
      )
   }

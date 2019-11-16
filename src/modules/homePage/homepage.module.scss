@@ -1,3 +1,19 @@
-.somediv {
-  background: black; 
+.home_container {
+  position: absolute;
+  top: 84px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 20px;
+  display: flex;
+
+  .content_container {
+    flex: 1;
+    align-self: stretch;
+  }
+
+  .footer_container {
+    height: 40px;
+    margin: 16px 0px 16px 0px;
+  }
 }
