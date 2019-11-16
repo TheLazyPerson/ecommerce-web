@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './sectioned_header.module.scss';
 import DivRow from 'CommonComponents/divRow';
+import searchIcon from 'Icons/search-icon-black.svg';
 
 export default class SectionedHeader extends Component {
   
@@ -8,13 +9,11 @@ export default class SectionedHeader extends Component {
      return (
        <DivRow className={styles.header_container}>
          <div className={styles.search_container}>
-           <DivRow>
-           <form>
-             <input type="text" name="firstname" placeholder="search"/>
-           </form>
-            <div>
-              Icon
-            </div>
+           <DivRow className={styles.search_wrapper}>
+            <form style={{flex:1}}>
+              <input type="text" name="firstname" placeholder="search" className={styles.search_input}/>
+            </form>
+            <img src={searchIcon} className={styles.search_icon}/>
            </DivRow>
          </div>
 
