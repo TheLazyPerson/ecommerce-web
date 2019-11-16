@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './sectioned_header.module.scss';
 import DivRow from 'CommonComponents/divRow';
 import searchIcon from 'Icons/search-icon-black.svg';
+import hamburgerMenuIcon from 'Icons/hamburger-menu-icon-black.svg';
 
 export default class SectionedHeader extends Component {
   
@@ -20,7 +21,7 @@ export default class SectionedHeader extends Component {
          <DivRow>
            <div className={styles.item_container}>Bag</div>
            <div className={styles.item_container}>Profile pic</div>
-           <div className={styles.item_container}>hamburger menu</div>
+           <img src={hamburgerMenuIcon} className={styles.item_container} />
          </DivRow>
        </DivRow>
      );
