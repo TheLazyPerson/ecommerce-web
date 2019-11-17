@@ -1,3 +1,5 @@
+@import '~Styles/colors.module';
+
 .home_container {
   position: absolute;
   top: 84px;
@@ -42,5 +44,82 @@
   .footer_container {
     height: 40px;
     margin: 16px 0px 16px 0px;
+
+    .left_container {
+      width: 28%;
+      justify-content: center;
+      align-items: center;
+
+      .language_item_text {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.33;
+        color: white;
+      }
+
+      .not_selected {
+        opacity: 0.3;
+      }
+    }
+
+    .right_container {
+      flex: 1;
+      align-items: center;
+      padding: 0px 67px 0px 130px;
+
+      .arrow_text {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.33;
+        color: $primary-text-color;
+        display: flex;
+        align-items: center;
+
+        
+        .arrow_left {
+          margin-right: 9.5px;
+        }
+
+        .arrow_right {
+          margin-left: 9.5px;
+        }
+      }      
+
+      .arrow_text:first-child {
+        margin-right: 40px;
+      }
+
+
+      .pagination_count_container {      
+        margin-left: 67px;  
+        margin-top: -6px;
+
+        .pagination_current_count {
+          font-size: 32px;
+          line-height: 1.94;
+          color: $primary-text-color;
+        }
+
+        .pagination_total_count {
+          font-size: 18px;
+          line-height: 1.33;
+          color: $primary-text-color;  
+        }
+      }
+
+      .share_icon {
+        margin-left: auto;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+
+      .scroll_down_icon {
+        margin-left: 126px;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+    }
   }
 }
