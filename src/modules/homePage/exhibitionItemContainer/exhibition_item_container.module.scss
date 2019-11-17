@@ -10,11 +10,12 @@ $capsule-button-background-color: $color-gold;
   align-items: center;
 
   .exhibition_image {
-    height: 400px; /* Media query set images */
+    height: 450px; /* Media query set images */
   }
 
   .exhibition_details_container {
     align-items: flex-start;
+    margin-left: 127px;
 
     .exhibition_number_text {
       opacity: 0.5;
@@ -35,20 +36,29 @@ $capsule-button-background-color: $color-gold;
       width: 30px;
       height: 2px;
       background-color: $color-orangey-red;
+      margin: 20px 0px;
     }
   
     .capsule_items {
       opacity: 0.68;
       border-radius: 24px;
+      font-weight: bold;
       padding: 3px 10px 3px 10px;
       background-color: $capsule-background-color;
       color: $capsule-text-color;
+      margin-left: 16px;
+
     }
-  
+    
+    .capsule_items:first-child {
+      margin-left: 0px;
+    }
+
     .exhibition_description_text {
       font-size: 16px;
       line-height: 1.5;
       color: $primary-text-color;
+      margin: 16px 0px 12px 0px;
     }
   
     .view_exhibition_button {

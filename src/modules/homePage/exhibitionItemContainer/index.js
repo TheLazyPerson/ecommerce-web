@@ -17,9 +17,9 @@ export default class ExhibitionItemContainer extends Component {
           <div className={styles.exhibition_name_text}>The Craft Show</div>
           <div className={styles.small_divider}></div>
           <DivRow>
-            <div className={styles.capsule_items}>capsule1</div>
-            <div className={styles.capsule_items}>capsule2</div>
-            <div className={styles.capsule_items}>capsule2</div>
+            <div className={styles.capsule_items}>#watch</div>
+            <div className={styles.capsule_items}>#craft</div>
+            <div className={styles.capsule_items}>#crafted</div>
           </DivRow>
           <div className={styles.exhibition_description_text}>
             The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more.
