@@ -15,17 +15,7 @@
       margin-right: 61px;
       align-items: center;
       justify-content: center;
-    }
-
-    .exhibition_item_container {
-      flex: 1;
-      align-self: stretch;
-      align-items: center;
-
-      .exhibition_image {
-        height: 400px; /* Media query set images */
-      }
-    }
+    }    
   }
 
   .footer_container {

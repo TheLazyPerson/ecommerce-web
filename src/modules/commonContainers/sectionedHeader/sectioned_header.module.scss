@@ -1,5 +1,6 @@
-//$color-dessert-storm: #efebe7;
-$search-container-background: #efebe7;
+@import '~Styles/colors.module';
+
+$search-container-background: $color-dessert-storm;
 
 .header_container {
   align-self: stretch;
