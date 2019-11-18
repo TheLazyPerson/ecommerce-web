@@ -19,9 +19,9 @@ export default class SectionedContainer extends Component {
          </DivColumn>
 
           <DivColumn className={styles.right_container}>
-            <DivColumn className={styles.header_container}>
+            <DivRow className={styles.header_container}>
               <SectionedHeader />
-            </DivColumn>
+            </DivRow>
             {/* children/content */}
             { !isAbsoluteContent ? children : null }
 

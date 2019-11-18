@@ -4,3 +4,18 @@
   flex: 1;
   align-self: stretch;
 }
+
+.header_container {
+  height: 84px;
+  padding: 18px 60px;
+  align-self: stretch;
+
+  .header_icon_container {
+    width: 40%;
+    align-items: center;
+
+    .app_icon {
+      height: 17px;
+    }
+  }
+}
