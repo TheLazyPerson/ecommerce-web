@@ -1,12 +1,13 @@
 @import '~Styles/colors.module';
 
 $search-container-background: $color-dessert-storm;
+$bag-count-background: $color-pale;
 
 .header_container {
   align-self: stretch;
   align-items: center;
   height: 84px;
-  padding: 18px 130px 18px 91px;
+  padding: 18px 67px 18px 91px;
 
   .search_container {
     flex: 1;
@@ -33,8 +34,43 @@ $search-container-background: $color-dessert-storm;
   }
 
 
-  .item_container {
-    margin: 0px 15px 0px 15px;
-    min-width: 24px;
+  .header_item_container {
+    margin-left: 30px;
+  }
+
+  .header_item_container:first-child {
+    margin-left: 0px;
+  }
+
+  .header_icon {
+    height: 25px;
+  }
+
+  .hamburger_icon {
+    height: 19px;
+  }
+
+  .bag_count {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    margin-left: 10px;
+    color: $primary-text-color;
+    border-radius: 100px;
+    background: rgba($bag-count-background, 0.5);
+  }
+
+  .profile_pic {
+    border-radius: 100px;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  
+  .arrow_down_icon {
+    width: 10px;
+    height: 5.7px;
+    object-fit: contain;
+    margin-left: 10px;
   }
 }
