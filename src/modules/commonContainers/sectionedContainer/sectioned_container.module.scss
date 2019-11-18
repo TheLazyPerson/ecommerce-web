@@ -26,5 +26,10 @@
   .right_container {
     flex: 1;
     background: white;
+
+    .header_container {
+      height: 84px;
+      padding: 18px 67px 18px 91px;
+    }
   }
 }
