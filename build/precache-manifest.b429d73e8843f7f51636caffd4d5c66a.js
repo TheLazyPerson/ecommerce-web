@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bc1161a63a0421107fd3b311998ef659",
+    "revision": "a95eca5401a005d2b98335a4fe5a5dce",
     "url": "/index.html"
   },
   {
-    "revision": "9ae6a087f79735d403d1",
+    "revision": "2e843de2fda8b81394b0",
     "url": "/static/css/2.b0bb7f2c.chunk.css"
   },
   {
-    "revision": "d220965dc075da83f2af",
-    "url": "/static/css/main.2f0b93a5.chunk.css"
+    "revision": "80f6c67f10a783272c2c",
+    "url": "/static/css/main.e3d18eda.chunk.css"
   },
   {
-    "revision": "9ae6a087f79735d403d1",
-    "url": "/static/js/2.4ae95e82.chunk.js"
+    "revision": "2e843de2fda8b81394b0",
+    "url": "/static/js/2.7bd34807.chunk.js"
   },
   {
-    "revision": "d220965dc075da83f2af",
-    "url": "/static/js/main.eeb5dd3e.chunk.js"
+    "revision": "80f6c67f10a783272c2c",
+    "url": "/static/js/main.f8c4e185.chunk.js"
   },
   {
     "revision": "73de5f499f1f7ece7aa9",
@@ -28,6 +28,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/app-icon-white.8844958f.svg"
   },
   {
+    "revision": "63315da13d8fde49fa9723118976e8ba",
+    "url": "/static/media/arrow-down-icon-black.63315da1.svg"
+  },
+  {
     "revision": "792a5537dad44c53759a0aeb7275568c",
     "url": "/static/media/arrow-left-icon-black.792a5537.svg"
   },
@@ -36,16 +40,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/arrow-right-icon-black.97adcc4a.svg"
   },
   {
+    "revision": "50120180c0460e62991ac14a71e8394f",
+    "url": "/static/media/bookmark-icon-black.50120180.svg"
+  },
+  {
+    "revision": "c6014af60f3cddbb211ecc53a82fc9c3",
+    "url": "/static/media/cart-bag-icon-black.c6014af6.svg"
+  },
+  {
     "revision": "bcbb085c68ab1645292820112f9501f7",
     "url": "/static/media/exhibition-item-1.bcbb085c.jpg"
   },
   {
     "revision": "5b9b618b08cc7345878ca500314e06ec",
     "url": "/static/media/hamburger-menu-icon-black.5b9b618b.svg"
-  },
-  {
-    "revision": "d745a67458fb4ac928d0998c14f04379",
-    "url": "/static/media/scroll-down-icon-white.d745a674.svg"
   },
   {
     "revision": "85ce852e5bd0543303c416fa7eb66642",
