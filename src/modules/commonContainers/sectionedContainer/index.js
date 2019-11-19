@@ -10,7 +10,7 @@ export default class SectionedContainer extends Component {
   render() {
     const { isAbsoluteContent, children } = this.props;
 
-     return(
+     return (
        <DivRow className={styles.page_container}>
          <DivColumn className={styles.left_container}>
             <DivRow className={styles.header_container}>
@@ -19,7 +19,9 @@ export default class SectionedContainer extends Component {
          </DivColumn>
 
           <DivColumn className={styles.right_container}>
-            <SectionedHeader />
+            <DivRow className={styles.header_container}>
+              <SectionedHeader />
+            </DivRow>
             {/* children/content */}
             { !isAbsoluteContent ? children : null }
 

@@ -10,6 +10,7 @@ import socialTwitterIcon from 'Icons/social-twitter-icon-white.svg';
 import arrowLeftIcon from 'Icons/arrow-left-icon-black.svg';
 import arrowRightIcon from 'Icons/arrow-right-icon-black.svg';
 import shareIcon from 'Icons/share-icon-black.svg';
+import LanguageSelect from 'CommonComponents/languageSelect';
 
 export default class HomePage extends Component {
   render() {
@@ -27,9 +28,7 @@ export default class HomePage extends Component {
            
            <DivRow className={styles.footer_container}>
              <DivRow className={styles.left_container}>
-               <span className={styles.language_item_text}>En</span>&nbsp;&nbsp;
-               <span className={`${styles.language_item_text} ${styles.not_selected}`}>/</span>&nbsp;&nbsp;
-               <span className={`${styles.language_item_text} ${styles.not_selected}`}>Urdu</span>
+               <LanguageSelect />
              </DivRow>
 
              <DivRow className={styles.right_container}>
