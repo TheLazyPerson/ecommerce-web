@@ -11,7 +11,7 @@ export default class FullWidthContainer extends Component {
   render() {
     const { children } = this.props;
 
-     return(
+     return (
        <DivColumn className={styles.page_container}>
          <DivRow className={styles.header_container}>
            <DivRow className={styles.header_icon_container}>
