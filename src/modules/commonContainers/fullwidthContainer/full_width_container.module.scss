@@ -1,0 +1,30 @@
+@import '~Styles/colors.module';
+
+.page_container {
+  width: 100%;
+  height: 100%;
+  background: $primary-color;
+  
+  .content_container {
+    flex: 1;
+    align-self: stretch;
+    margin: 20px;
+    background: white;
+  }
+}
+
+.header_container {
+  height: 84px;
+  padding: 18px 60px;
+  align-self: stretch;
+
+  .header_icon_container {
+    width: 40%;
+    align-items: center;
+
+    .app_icon {
+      height: 17px;
+      margin-right: 32px;
+    }
+  }
+}
