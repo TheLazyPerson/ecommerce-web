@@ -20,7 +20,7 @@ export default class SignUpPage extends Component {
      return (
        <FullWidthContainer>
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
-          <div className={styles.signin_title_text}>SignIn</div>
+          <div className={styles.signin_title_text}>Sign Up</div>
           <form className={styles.form_container} onSubmit={this.onSubmit}>
            <DivRow className={styles.name_container}>
              <InputTextComponent placeholder="Firstname" className={styles.input_text} />
