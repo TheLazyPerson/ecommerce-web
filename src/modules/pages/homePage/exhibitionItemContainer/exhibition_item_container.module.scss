@@ -10,12 +10,13 @@ $capsule-button-background-color: $color-gold;
   align-items: center;
 
   .exhibition_image {
-    height: 450px; /* Media query set images */
+    height: 60vh; /* Media query set images */
   }
 
   .exhibition_details_container {
     align-items: flex-start;
-    margin-left: 127px;
+    margin-left: 100px;
+    max-width: 400px;
 
     .exhibition_number_text {
       opacity: 0.5;
@@ -58,7 +59,7 @@ $capsule-button-background-color: $color-gold;
       font-size: 16px;
       line-height: 1.5;
       color: $primary-text-color;
-      margin: 16px 0px 12px 0px;
+      margin: 16px 0px 30px 0px;
     }
   
     .view_exhibition_button {
@@ -68,7 +69,7 @@ $capsule-button-background-color: $color-gold;
       font-size: 18px;
       font-weight: 900;
       background-color: $capsule-button-background-color;    
-      padding: 16px 47px 16px 47px;
+      padding: 12px 47px;
     }
   }
 }
