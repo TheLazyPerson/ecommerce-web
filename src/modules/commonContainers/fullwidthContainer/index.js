@@ -4,7 +4,7 @@ import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './full_width_container.module.scss';
 import LanguageSelect from 'CommonComponents/languageSelect';
-import appIcon from 'Icons/app-icon-white.svg'
+import appIcon from 'Icons/app-icon-black.svg'
 
 export default class FullWidthContainer extends Component {
 

@@ -12,7 +12,7 @@ export default class LanguageSelect extends Component {
       <div className={`${blackColor ? styles.black : styles.white}`}>
         <span className={styles.language_item_text}>En</span>&nbsp;&nbsp;
         <span className={`${styles.language_item_text} ${styles.not_selected}`}>/</span>&nbsp;&nbsp;
-        <span className={`${styles.language_item_text} ${styles.not_selected}`}>Urdu</span>
+        <span className={`${styles.language_item_text} ${styles.not_selected}`}>العربي</span>
       </div>
      )
   }
