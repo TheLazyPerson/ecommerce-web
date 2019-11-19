@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import FullWidthContainer from 'CommonContainers/fullwidthContainer';
 import DivColumn from 'CommonComponents/divColumn';
-import styles from './signin_page.module.scss';
+import DivRow from 'CommonComponents/divRow';
+import styles from './signup_page.module.scss';
 import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
 
-export default class SignInPage extends Component {
+export default class SignUpPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,12 +22,15 @@ export default class SignInPage extends Component {
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
           <div className={styles.signin_title_text}>SignIn</div>
           <form className={styles.form_container} onSubmit={this.onSubmit}>
-           <InputTextComponent placeholder="Username" className={styles.input_text} />
+           <DivRow></DivRow>
+           <InputTextComponent placeholder="Firstname" className={styles.input_text} />
+           <InputTextComponent placeholder="LastName" className={styles.input_text} />
+           <InputTextComponent placeholder="Email" className={styles.input_text} />
            <InputTextComponent placeholder="Password" className={styles.input_text} />
-           <InputCheckbox text="Remember me"/>
+           <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />
+
            <input type='submit' value="Sign in" className={styles.input_submit}/>
           </form>
-          <a className={styles.hyper_link}>Forgot password</a>
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>New to Maerid?&nbsp;</span>
             <a className={styles.hyper_link}>Create an account</a>
