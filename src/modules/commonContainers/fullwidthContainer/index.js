@@ -13,15 +13,17 @@ export default class FullWidthContainer extends Component {
 
      return (
        <DivColumn className={styles.page_container}>
-         <DivRow className={styles.header_container}>
-           <DivRow className={styles.header_icon_container}>
-            <img src={appIcon}  className={styles.app_icon}/>
-            <LanguageSelect blackColor/>
-           </DivRow>
-           <SectionedHeader />
-         </DivRow>
+         <DivColumn className={styles.content_container}>
+          <DivRow className={styles.header_container}>
+            <DivRow className={styles.header_icon_container}>
+              <img src={appIcon}  className={styles.app_icon}/>
+              <LanguageSelect blackColor/>
+            </DivRow>
+            <SectionedHeader />
+          </DivRow>
 
-         { children }
+          { children }
+         </DivColumn>
        </DivColumn>
      )
   }
