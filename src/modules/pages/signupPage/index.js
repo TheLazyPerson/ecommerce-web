@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import FullWidthContainer from 'CommonContainers/fullwidthContainer';
 import DivColumn from 'CommonComponents/divColumn';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import DivRow from 'CommonComponents/divRow';
 import styles from './signup_page.module.scss';
 import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
+import { postSignupAction } from 'Core/modules/signup/actions';
 
-export default class SignUpPage extends Component {
+class SignUpPage extends Component {
   constructor(props) {
     super(props);
   }
@@ -14,6 +17,20 @@ export default class SignUpPage extends Component {
   onSubmit = (form) => {
     form.preventDefault();
     console.log('values', form);
+    
+    const { postSignupAction } = this.props;
+
+    postSignupAction({
+      "first_name": "Sample",
+      "last_name": "Lastname",
+      "email": "sample2456123456123@mail.com",
+      "password": "omkomawar123",
+      "password_confirmation": "omkomawar123"
+    }).then(value=>{
+      console.log('fError:', value);
+    }).catch(error=> {
+      console.log('fError: ',error)
+    });
   }
 
   render() {
@@ -41,3 +58,17 @@ export default class SignUpPage extends Component {
      )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    signupReducer: state.signupReducer
+  }
+}
+
+const mapDispathToProps = dispatch => {
+  return {
+    postSignupAction: bindActionCreators(postSignupAction, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(SignUpPage);
