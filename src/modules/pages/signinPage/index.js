@@ -20,8 +20,11 @@ export default class SignInPage extends Component {
            <InputCheckbox text="Remember me"/>
            <input type='submit' value="Sign in" className={styles.input_submit}/>
           </form>
-          <a>Forgot password</a>
-          <div> New to Maerid? <a>Create an account</a></div>
+          <a className={styles.hyper_link}>Forgot password</a>
+          <div className={styles.create_account_container}>
+            <span className={styles.new_description_text}>New to Maerid?&nbsp;</span>
+            <a className={styles.hyper_link}>Create an account</a>
+          </div>
         </DivColumn>
        </FullWidthContainer>
      )
