@@ -1,0 +1,14 @@
+@import "~Styles/colors.module";
+
+$checkbox-color: $color-very-light-blue;
+
+.input_checkbox {
+  border-radius: 5px;
+  border: solid 1px $checkbox-color;
+}
+
+.checkbox_text {
+  font-size: 18px;
+  color: $primary-text-color;
+  margin-left: 7px;
+}
