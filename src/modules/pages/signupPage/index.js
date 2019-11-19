@@ -30,11 +30,11 @@ export default class SignUpPage extends Component {
            <InputTextComponent placeholder="Password" className={styles.input_text} />
            <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />
 
-           <input type='submit' value="Sign in" className={styles.input_submit}/>
+           <input type='submit' value="Create" className={styles.input_submit}/>
           </form>
           <div className={styles.create_account_container}>
-            <span className={styles.new_description_text}>New to Maerid?&nbsp;</span>
-            <a className={styles.hyper_link}>Create an account</a>
+            <span className={styles.new_description_text}>Already have an account?&nbsp;</span>
+            <a className={styles.hyper_link}>Sign in</a>
           </div>
         </DivColumn>
        </FullWidthContainer>
