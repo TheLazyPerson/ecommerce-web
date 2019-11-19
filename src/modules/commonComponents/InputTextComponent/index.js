@@ -7,6 +7,7 @@ export default class InputTextComponent extends Component {
   }
   render() {
     const { placeholder, className } = this.props;
+    
     return (
      <input
       type="text"

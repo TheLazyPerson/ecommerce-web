@@ -22,9 +22,10 @@ export default class SignUpPage extends Component {
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
           <div className={styles.signin_title_text}>SignIn</div>
           <form className={styles.form_container} onSubmit={this.onSubmit}>
-           <DivRow></DivRow>
-           <InputTextComponent placeholder="Firstname" className={styles.input_text} />
-           <InputTextComponent placeholder="LastName" className={styles.input_text} />
+           <DivRow className={styles.name_container}>
+             <InputTextComponent placeholder="Firstname" className={styles.input_text} />
+             <InputTextComponent placeholder="LastName" className={styles.input_text} />
+           </DivRow>
            <InputTextComponent placeholder="Email" className={styles.input_text} />
            <InputTextComponent placeholder="Password" className={styles.input_text} />
            <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />

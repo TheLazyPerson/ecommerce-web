@@ -13,6 +13,22 @@ $submit-button-background: $color-gold;
     justify-content: center;
     align-items: center;
 
+    .name_container {
+      margin-bottom: 18px;
+      min-width: 393px;
+
+      .input_text {
+        flex: 1;
+        margin-bottom: unset;
+        min-width: unset;
+        width: 30px;
+      }
+      
+      .input_text:first-child {
+        margin-right: 17px;
+      }
+    }
+
     .input_text {
       margin-bottom: 18px;
       min-width: 393px;
