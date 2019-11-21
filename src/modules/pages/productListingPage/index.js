@@ -6,6 +6,7 @@ import styles from './product_listing_page.module.scss';
 import FilterCapsule from './filterCapsule';
 import DropdownCapsule from './dropdownCapsule';
 import ProductGridItem from './productGridItem';
+import SideBarFilter from './sideBarFilter';
 
 export default class ProductListingPage extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ export default class ProductListingPage extends Component {
   }
   render() {
      return (
-      <SectionedContainer>
+      <SectionedContainer
+       sideBarContainer={<SideBarFilter/>}
+      >
        <DivColumn className={styles.product_listing_container}>
 
         <DivRow className={styles.filter_view_container}>
