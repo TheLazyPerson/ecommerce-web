@@ -5,15 +5,17 @@ import ProductDetailsPage from './pages/productDetailsPage';
 import SignInPage from './pages/signinPage';
 import SignUpPage from './pages/signupPage';
 import PageNotFound from 'CommonComponents/pageNotFound';
+import ProductListingPage from './pages/productListingPage';
 
 const App = () => {
   return (
     <Switch>
-        <Route exact path="/" component={HomePage}/>
-        <Route exact path="/product-details/:slug?/:productId?" component={ProductDetailsPage} />
-        <Route exact path="/signin" component={SignInPage}/>
-        <Route exact path="/signup" component={SignUpPage} />
-        <Route component={PageNotFound} />
+      <Route exact path="/" component={HomePage}/>
+      <Route exact path="/product-details/:slug?/:productId?" component={ProductDetailsPage} />
+      <Route exact path="/signin" component={SignInPage}/>
+      <Route exact path="/signup" component={SignUpPage} />
+      <Route exact path="/product-listing" component={ProductListingPage} />
+      <Route component={PageNotFound} />
     </Switch>
   );
 }
