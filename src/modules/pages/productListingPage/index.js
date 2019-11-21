@@ -5,6 +5,7 @@ import DivRow from 'CommonComponents/divRow';
 import styles from './product_listing_page.module.scss';
 import FilterCapsule from './filterCapsule';
 import DropdownCapsule from './dropdownCapsule';
+import ProductGridItem from './productGridItem';
 
 export default class ProductListingPage extends Component {
   constructor(props) {
@@ -21,13 +22,12 @@ export default class ProductListingPage extends Component {
         </DivRow>
 
         <DivRow className={styles.product_list_container}>
-          <div className={styles.product}>Product 1</div>
-          <div className={styles.product}>Product 2</div>
-          <div className={styles.product}>Product 3</div>
-          <div className={styles.product}>Product 4</div>
-          <div className={styles.product}>Product 5</div>
-          <div className={styles.product}>Product 6</div>
-          <div className={styles.product}>Product 7</div>
+          <ProductGridItem />
+          <ProductGridItem />
+          <ProductGridItem />
+          <ProductGridItem />
+          <ProductGridItem />
+
         </DivRow>
 
        </DivColumn>

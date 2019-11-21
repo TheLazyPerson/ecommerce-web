@@ -4,6 +4,7 @@
   padding-top: 30px;
   flex: 1;
   align-items: stretch;
+  overflow: scroll;
 
   .filter_view_container {
     justify-content: space-between;
@@ -14,6 +15,7 @@
   .product_list_container {
     padding: 23px 22px 0px;
     flex-flow: wrap;
+    overflow: scroll;
 
     .product {
       width: 200px;
