@@ -2,13 +2,38 @@
   flex: 1;
   align-self: stretch;
   padding: 6px 60px;
+  overflow-y: scroll;
 
   .product_content_container {
     flex: 1;
     align-self: stretch;
+    overflow-y: scroll;
 
     .left_content_container {
-      flex: 1;  
+      flex: 1;
+      overflow-y: scroll;
+      justify-content: center;
+      padding-left: 10px;
+
+      .product_image {
+        width: calc(100% - 100px) ;
+      }
+
+      .product_image_list {
+        overflow-y: scroll;
+        align-self: stretch;
+        margin-top: 8px;
+
+        .small_product_image {
+          width: 125px;
+          height: 125px;
+          margin-left: 8.5px;
+        }
+
+        .small_product_image:first-child {
+          margin-left: 0px;          
+        }
+      }
     }
 
     .right_content_container {
