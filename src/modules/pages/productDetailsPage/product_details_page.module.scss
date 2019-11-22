@@ -1,0 +1,19 @@
+.product_details_container {
+  flex: 1;
+  align-self: stretch;
+  padding: 6px 60px;
+
+  .product_content_container {
+    flex: 1;
+    align-self: stretch;
+
+    .left_content_container {
+      flex: 1;  
+    }
+
+    .right_content_container {
+      flex: 1;
+    }
+
+  }
+}

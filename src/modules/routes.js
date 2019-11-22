@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
 import HomePage from './pages/homePage';
-import ProductDetailsPage from './pages/productDetailsPage';
 import SignInPage from './pages/signinPage';
 import SignUpPage from './pages/signupPage';
 import PageNotFound from 'CommonComponents/pageNotFound';
 import ProductListingPage from './pages/productListingPage';
+import ProductDetailsPage from './pages/productDetailsPage';
 
 const App = () => {
   return (
