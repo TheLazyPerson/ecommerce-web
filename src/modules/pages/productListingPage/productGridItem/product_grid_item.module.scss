@@ -1,0 +1,59 @@
+@import '~Styles/colors.module';
+
+.product_container {
+  width: 284px;
+  height: 299px;
+  margin: 5px;
+  align-items: center;
+
+  border-radius: 2px;
+  border: solid 1px rgba($color-very-light-blue, 0.5);
+  background-color: var(--white);
+
+  .product_title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0px 4px 0px;
+    color: $primary-text-color;
+  }
+
+  .product_description {
+    font-size: 12px;
+    font-weight: 300;
+    color: $primary-text-color;
+  }
+
+  .product_image {
+
+  }
+
+
+  .product_action_container {
+    height: 38px;
+    margin-top: auto;
+    align-self: stretch;
+
+    .action_text {
+      font-size: 10px;
+      line-height: 2.8;
+      color: $primary-text-color;
+    }
+
+    .heart_icon_container {
+      background: $color-very-light-blue;
+      flex: 1;
+    }
+
+    .view_product_container {
+      background: $color-very-light-blue;
+      flex: 2;
+      border: solid 1px rgba(212, 213, 217, 0.51);
+    }
+
+    .bag_container {
+      background: $color-gold;
+      flex: 2;
+    }
+  }
+
+}

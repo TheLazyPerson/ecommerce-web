@@ -1,0 +1,42 @@
+@import '~Styles/colors.module';
+
+.filter_top_heading_container {
+  justify-content: space-between;
+  padding: 0px 22px 8px 37px;
+  margin-top: 36px;
+
+  .filter_text {
+    opacity: 0.8;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .clear_text {
+    opacity: 0.8;
+    font-size: 12px;
+    font-weight: bold;
+    color: $color-orangey-red;
+  }
+}
+
+.filters_container {
+  padding: 23px 36px;
+  border-top: 0.5px solid rgba($color-very-light-blue, 0.5);
+
+  .filter_sub_header {
+    opacity: 0.7;
+    font-size: 16px;
+    color: white;
+  }
+
+  .checkbox_text {
+    opacity: 0.9;
+    font-size: 15px;
+    color: white;
+  }
+
+  .filters_list_container {
+    margin-top: 18px;
+  }
+}

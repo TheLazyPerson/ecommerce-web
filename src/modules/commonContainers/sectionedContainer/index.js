@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import SectionedHeader from 'CommonContainers/sectionedHeader';
 import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './sectioned_container.module.scss';
-import appIcon from 'Icons/app-icon-white.svg'
+import appIcon from 'Icons/app-icon-white.svg';
+import LanguageSelect from 'CommonComponents/languageSelect';
 
 export default class SectionedContainer extends Component {
 
   render() {
-    const { isAbsoluteContent, children } = this.props;
+    const { 
+      isAbsoluteContent,
+      sideBarContainer,
+      children
+    } = this.props;
 
      return (
        <DivRow className={styles.page_container}>
@@ -16,6 +21,23 @@ export default class SectionedContainer extends Component {
             <DivRow className={styles.header_container}>
               <img src={appIcon} className={styles.app_icon}/>
             </DivRow>
+            
+            { !isAbsoluteContent && (
+               <Fragment>
+                <DivColumn className={styles.side_content_container}>
+                  {sideBarContainer}
+                </DivColumn>
+                <DivRow
+                 verticalCenter
+                 horizontalCenter
+                 className={styles.side_footer_container}
+                >
+                  <LanguageSelect />
+                </DivRow>
+               </Fragment>
+              )
+            }
+
          </DivColumn>
 
           <DivColumn className={styles.right_container}>
@@ -23,12 +45,11 @@ export default class SectionedContainer extends Component {
               <SectionedHeader />
             </DivRow>
             {/* children/content */}
-            { !isAbsoluteContent ? children : null }
-
+            { !isAbsoluteContent && children }
           </DivColumn>
-          { isAbsoluteContent ? children : null }
+          
+          { isAbsoluteContent && children }
        </DivRow>
      )
   }
-
 }
