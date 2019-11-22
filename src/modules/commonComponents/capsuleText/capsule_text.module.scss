@@ -1,0 +1,14 @@
+@import '~Styles/colors.module';
+
+$capsule-background-color: $color-pale;
+$capsule-text-color: $color-gold;
+
+.capsule_items {
+  opacity: 0.68;
+  border-radius: 24px;
+  font-weight: bold;
+  padding: 3px 10px 3px 10px;
+  background-color: $capsule-background-color;
+  color: $capsule-text-color;
+  margin-left: 16px;
+}

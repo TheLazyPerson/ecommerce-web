@@ -3,6 +3,7 @@ import styles from './exhibition_item_container.module.scss';
 import DivColumn from 'CommonComponents/divColumn';
 import exhibitionItem1 from 'Images/exhibition-item-1.jpg';
 import DivRow from 'CommonComponents/divRow';
+import CapsuleText from 'CommonComponents/capsuleText';
 
 export default class ExhibitionItemContainer extends Component {
   constructor(props) {
@@ -17,9 +18,9 @@ export default class ExhibitionItemContainer extends Component {
           <div className={styles.exhibition_name_text}>The Craft Show</div>
           <div className={styles.small_divider}></div>
           <DivRow>
-            <div className={styles.capsule_items}>#watch</div>
-            <div className={styles.capsule_items}>#craft</div>
-            <div className={styles.capsule_items}>#crafted</div>
+            <CapsuleText noMargin text="#watch"/>
+            <CapsuleText text="#craft"/>
+            <CapsuleText text="#crafted"/>
           </DivRow>
           <div className={styles.exhibition_description_text}>
             The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more.

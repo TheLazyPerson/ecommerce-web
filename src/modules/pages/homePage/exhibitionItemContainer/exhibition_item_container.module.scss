@@ -1,7 +1,5 @@
 @import '~Styles/colors.module';
 
-$capsule-background-color: $color-pale;
-$capsule-text-color: $color-gold;
 $capsule-button-background-color: $color-gold;
 
 .exhibition_item_container {
@@ -39,22 +37,7 @@ $capsule-button-background-color: $color-gold;
       background-color: $color-orangey-red;
       margin: 20px 0px;
     }
-  
-    .capsule_items {
-      opacity: 0.68;
-      border-radius: 24px;
-      font-weight: bold;
-      padding: 3px 10px 3px 10px;
-      background-color: $capsule-background-color;
-      color: $capsule-text-color;
-      margin-left: 16px;
-
-    }
     
-    .capsule_items:first-child {
-      margin-left: 0px;
-    }
-
     .exhibition_description_text {
       font-size: 16px;
       line-height: 1.5;
