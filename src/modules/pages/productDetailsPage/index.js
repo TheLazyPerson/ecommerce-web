@@ -26,16 +26,16 @@ export default class ProductDetailsPage extends Component {
 
            <DivColumn className={styles.right_content_container}>
             <div className={styles.exhibition_title}>The craft show</div>
-            <div>White party show</div>
-            <div></div>
+            <div className={styles.product_name}>White party show</div>
+            <div className={styles.divider}></div>
             <DivRow>
               <CapsuleText noMargin text="#Marvel"/>
               <CapsuleText text="#Craft"/>
               <CapsuleText text="#crafted"/>
             </DivRow>
-            <div>$599</div>
-            <div>
-              description
+            <div className={styles.price_text}>$599</div>
+            <div className={styles.description_text}>
+              The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.
             </div>
 
             <div>

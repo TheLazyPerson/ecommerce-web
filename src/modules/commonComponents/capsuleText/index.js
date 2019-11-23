@@ -7,7 +7,7 @@ export default class CapsuleText extends Component {
     const capsuleStyle = noMargin ? {margin: 0} : {} ;
 
      return (
-     <div className={styles.capsule_items} style={capsuleStyle}>{text}</div>
+  <div className={styles.capsule_items} style={capsuleStyle}>{`#${text}`}</div>
      )
   }
 }

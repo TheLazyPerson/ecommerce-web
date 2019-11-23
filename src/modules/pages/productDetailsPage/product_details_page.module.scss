@@ -44,8 +44,32 @@
       }
 
       .product_name {
-
+        font-family: PlayfairDisplay;
+        font-size: 50px;
+        font-weight: 900;
+        line-height: 1.12;
+        color: $primary-text-color;
       }
+
+      .divider {
+        width: 30px;
+        height: 2px;
+        background-color: $color-orangey-red;
+      }
+
+      .price_text {
+        font-size: 32px;
+        font-weight: 900;
+        color: $primary-text-color;
+      }
+
+      .description_text {
+        font-size: 16px;
+        line-height: 1.5;
+        color: $primary-text-color;
+      }
+
+
     }
 
   }
