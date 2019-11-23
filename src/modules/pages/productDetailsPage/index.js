@@ -15,12 +15,13 @@ export default class ProductDetailsPage extends Component {
     return (
       <FullWidthContainer>
         <DivColumn className={styles.product_details_container}>
-         <DivRow verticalCenter>
-          <div className={styles.back_button}>{`< Home`}</div>
-         </DivRow>
+
          <DivRow className={styles.product_content_container}>
 
            <DivColumn className={styles.left_content_container}>
+           <DivRow verticalCenter>
+            <div className={styles.back_button}>{`< Home`}</div>
+          </DivRow>
             <img src={exhibitionImage3} className={styles.product_image} />
             <DivRow className={styles.product_image_list}>
               <img src={exhibitionImage1} className={styles.small_product_image} />
@@ -28,7 +29,7 @@ export default class ProductDetailsPage extends Component {
             </DivRow>
            </DivColumn>
 
-           <DivColumn className={styles.right_content_container}>
+           <DivColumn verticalCenter className={styles.right_content_container}>
             <ExhibitionDetailComponent
               title="Exibition 1"
               name="The Craft Show"

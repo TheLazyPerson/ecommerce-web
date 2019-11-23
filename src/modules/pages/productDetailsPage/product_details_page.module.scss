@@ -23,15 +23,16 @@
     .left_content_container {
       flex: 1;
       justify-content: center;
-      padding-left: 10px;
 
       .product_image {
         width: calc(100% - 150px);
+        margin-left: 10px;
       }
 
       .product_image_list {
         align-self: stretch;
         margin-top: 8px;
+        margin-left: 10px;
 
         .small_product_image {
           width: 125px;
