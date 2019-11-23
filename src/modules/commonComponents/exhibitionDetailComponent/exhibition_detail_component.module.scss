@@ -2,7 +2,6 @@
 
 .exhibition_details_container {
   align-items: flex-start;
-  margin-left: 100px;
   max-width: 400px;
 
   .exhibition_number_text {
@@ -28,7 +27,10 @@
   }
 
   .price_text {
-    
+    margin: 17px 0px 2px 0px;
+    font-size: 32px;
+    font-weight: 900;
+    color: $primary-text-color;
   }
   
   .exhibition_description_text {

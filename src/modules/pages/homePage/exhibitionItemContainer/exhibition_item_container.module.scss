@@ -10,6 +10,11 @@ $capsule-button-background-color: $color-gold;
   .exhibition_image {
     height: 60vh; /* Media query set images */
   }
+
+  .details_container {
+    margin-left: 100px;
+  }
+  
   .view_exhibition_button {
     border-radius: 28px;
     box-shadow: 0 18px 24px 0 rgba(0, 0, 0, 0.12);

@@ -15,10 +15,11 @@ export default class ExhibitionDetailComponent extends Component {
      price,
      description,
      children,
+     className
     } = this.props;
 
     return (
-      <DivColumn className={styles.exhibition_details_container}>
+      <DivColumn className={`${styles.exhibition_details_container} ${className}`}>
         <div className={styles.exhibition_number_text}>{title}</div>
         <div className={styles.exhibition_name_text}>{name}</div>
         <div className={styles.small_divider}></div>
@@ -33,7 +34,7 @@ export default class ExhibitionDetailComponent extends Component {
         {
           price ? (
             <div className={styles.price_text}>
-              {price}
+              {`$${price}`}
             </div>  
           ) : null
         }

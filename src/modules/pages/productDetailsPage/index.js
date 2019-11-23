@@ -6,7 +6,7 @@ import styles from './product_details_page.module.scss';
 import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
 import exhibitionImage2 from 'Images/exhibition-item-2.jpg';
 import exhibitionImage3 from 'Images/exhibition-item-3.png';
-import CapsuleText from 'CommonComponents/capsuleText';
+import ExhibitionDetailComponent from 'CommonComponents/exhibitionDetailComponent';
 
 export default class ProductDetailsPage extends Component {
   render() {
@@ -25,28 +25,23 @@ export default class ProductDetailsPage extends Component {
            </DivColumn>
 
            <DivColumn className={styles.right_content_container}>
-            <div className={styles.exhibition_title}>The craft show</div>
-            <div className={styles.product_name}>White party show</div>
-            <div className={styles.divider}></div>
-            <DivRow>
-              <CapsuleText noMargin text="#Marvel"/>
-              <CapsuleText text="#Craft"/>
-              <CapsuleText text="#crafted"/>
-            </DivRow>
-            <div className={styles.price_text}>$599</div>
-            <div className={styles.description_text}>
-              The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.
-            </div>
+            <ExhibitionDetailComponent
+              title="Exibition 1"
+              name="The Craft Show"
+              tags={["watches","craft","crafted"]}
+              price="599.99"
+              description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
+            >
+              <div>
+                quantity component
+              </div>
 
-            <div>
-              quantity component
-            </div>
+              <DivRow>
+                <div>Add to Bag</div>
+                <div>Heart wishlist</div>
+              </DivRow>
 
-            <DivRow>
-              <div>Add to Bag</div>
-              <div>Heart wishlist</div>
-            </DivRow>
-
+            </ExhibitionDetailComponent>
            </DivColumn>
 
          </DivRow>

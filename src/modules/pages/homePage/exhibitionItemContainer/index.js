@@ -16,7 +16,8 @@ export default class ExhibitionItemContainer extends Component {
           title="Exibition 1"
           name="The Craft Show"
           tags={["watches","craft","crafted"]}
-          description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."          
+          description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
+          className={styles.details_container}
         >
           <div className={styles.view_exhibition_button}>View Exibition</div>
         </ExhibitionDetailComponent>
