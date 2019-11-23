@@ -8,6 +8,7 @@ import exhibitionImage2 from 'Images/exhibition-item-2.jpg';
 import exhibitionImage3 from 'Images/exhibition-item-3.png';
 import ExhibitionDetailComponent from 'CommonComponents/exhibitionDetailComponent';
 import QuantityComponent from 'CommonComponents/quantityComponent';
+import heartFilledIcon from 'Icons/heart-filled-icon.svg';
 
 export default class ProductDetailsPage extends Component {
   render() {
@@ -35,9 +36,15 @@ export default class ProductDetailsPage extends Component {
             >
               <QuantityComponent />
 
-              <DivRow>
-                <div>Add to Bag</div>
-                <div>Heart wishlist</div>
+              <DivRow className={styles.action_button_container}>
+                <DivRow verticalCenter horizontalCenter className={styles.add_to_bag_button}>
+                  <img />
+                  <div className={styles.button_text}>Add to Bag</div>
+                </DivRow>
+                <DivRow verticalCenter horizontalCenter className={styles.wishlist_button}>
+                  <img src={heartFilledIcon} className={styles.button_icon} />
+                  <div className={styles.button_text}>Wishlist</div>
+                </DivRow>
               </DivRow>
 
             </ExhibitionDetailComponent>
