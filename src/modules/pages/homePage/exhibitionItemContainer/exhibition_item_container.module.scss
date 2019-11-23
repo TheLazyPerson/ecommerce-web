@@ -1,7 +1,5 @@
 @import '~Styles/colors.module';
 
-$capsule-background-color: $color-pale;
-$capsule-text-color: $color-gold;
 $capsule-button-background-color: $color-gold;
 
 .exhibition_item_container {
@@ -13,63 +11,17 @@ $capsule-button-background-color: $color-gold;
     height: 60vh; /* Media query set images */
   }
 
-  .exhibition_details_container {
-    align-items: flex-start;
+  .details_container {
     margin-left: 100px;
-    max-width: 400px;
-
-    .exhibition_number_text {
-      opacity: 0.5;
-      font-size: 18px;
-      font-weight: 300;
-      color: $primary-text-color;
-    }
+  }
   
-    .exhibition_name_text {
-      font-family: PlayfairDisplay;
-      font-size: 50px;
-      font-weight: 900;
-      line-height: 1.12;
-      color: $primary-text-color;
-    }
-  
-    .small_divider {
-      width: 30px;
-      height: 2px;
-      background-color: $color-orangey-red;
-      margin: 20px 0px;
-    }
-  
-    .capsule_items {
-      opacity: 0.68;
-      border-radius: 24px;
-      font-weight: bold;
-      padding: 3px 10px 3px 10px;
-      background-color: $capsule-background-color;
-      color: $capsule-text-color;
-      margin-left: 16px;
-
-    }
-    
-    .capsule_items:first-child {
-      margin-left: 0px;
-    }
-
-    .exhibition_description_text {
-      font-size: 16px;
-      line-height: 1.5;
-      color: $primary-text-color;
-      margin: 16px 0px 30px 0px;
-    }
-  
-    .view_exhibition_button {
-      border-radius: 28px;
-      box-shadow: 0 18px 24px 0 rgba(0, 0, 0, 0.12);
-      color: white;
-      font-size: 18px;
-      font-weight: 900;
-      background-color: $capsule-button-background-color;    
-      padding: 12px 47px;
-    }
+  .view_exhibition_button {
+    border-radius: 28px;
+    box-shadow: 0 18px 24px 0 rgba(0, 0, 0, 0.12);
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    background-color: $capsule-button-background-color;    
+    padding: 12px 47px;
   }
 }

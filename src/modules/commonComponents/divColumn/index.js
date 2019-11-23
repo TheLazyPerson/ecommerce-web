@@ -6,8 +6,8 @@ const DivColumn = ({className='', verticalCenter, horizontalCenter ,children}) =
     <div 
      className={`
       ${styles.flex_column} ${className}
-      ${verticalCenter ? styles.align_center : ''}
-      ${horizontalCenter ? styles.justify_center: ''}`}
+      ${verticalCenter ? styles.justify_center : ''}
+      ${horizontalCenter ? styles.align_center: ''}`}
     >
       {children}
     </div>

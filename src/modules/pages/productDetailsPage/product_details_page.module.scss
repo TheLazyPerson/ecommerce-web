@@ -1,0 +1,95 @@
+@import '~Styles/colors.module';
+
+.product_details_container {
+  flex: 1;
+  align-self: stretch;
+  padding: 6px 60px;
+
+  .back_button {
+    border-radius: 100px;
+    border: solid 1px #d8d8d8;
+
+    margin: 10px 0px;
+    padding: 6px 16px; 
+    font-size: 16px;
+    font-weight: 900;
+    color: $primary-text-color;
+  }
+
+  .product_content_container {
+    flex: 1;
+    align-self: stretch;
+
+    .left_content_container {
+      flex: 1;
+      justify-content: center;
+
+      .product_image {
+        width: calc(100% - 150px);
+        margin-left: 10px;
+      }
+
+      .product_image_list {
+        align-self: stretch;
+        margin-top: 8px;
+        margin-left: 10px;
+
+        .small_product_image {
+          width: 125px;
+          height: 125px;
+          margin-left: 8.5px;
+        }
+
+        .small_product_image:first-child {
+          margin-left: 0px;          
+        }
+      }
+    }
+
+    .right_content_container {
+      flex: 1;
+
+      .action_button_container {
+        margin-top: 30px;
+
+        .add_to_bag_button {
+          border-radius: 28px;
+          box-shadow: 0 18px 24px 0 rgba(black, 0.12);
+          background-color: $capsule-button-color;
+          padding: 10px 28px;
+  
+          .button_icon {
+            width: 16px;
+            height: 16px;
+          }
+  
+          .button_text {
+            margin-left: 10px;
+            color: white;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+  
+        .wishlist_button {
+          padding: 10px 28px;
+          margin-left: 20px;
+
+          .button_icon {
+            width: 16px;
+            height: 16px;
+          }
+  
+          .button_text {
+            margin-left: 10px;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: bold;
+            color: $color-dark-grey;
+          }        
+        }
+      }
+    }
+  }
+}

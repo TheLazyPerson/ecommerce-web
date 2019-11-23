@@ -1,0 +1,36 @@
+@import '~Styles/colors.module';
+
+
+.quantity_title {
+  font-size: 10px;
+  line-height: 2.4;
+  color: $color-battleship-grey;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.quantity_container {
+  border-radius: 5px;
+  border: solid 1px #f1f1f1;
+
+  .quantity_text {
+    font-size: 14px;
+    color: $primary-text-color;
+  }
+
+  .quantity_button {
+    margin: 13px 20px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.sub_info {
+  font-size: 10px;
+  line-height: 2.4;
+  color: $primary-text-color;
+
+  margin-top: 4px;
+}
