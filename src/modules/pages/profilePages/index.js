@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import SectionedContainer from 'CommonContainers/sectionedContainer';
 import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
+import map from 'lodash/map';
 import styles from './profile_overview.module.scss';
+import {profileListItem} from './profileConstants';
+
 
 export default class ProfileOverview extends Component {
   //TODO move the array value to a constant
-
-  state = {
-    profileValues: [
-
-    ]
-  }
 
   render() {
     return (
@@ -23,13 +20,20 @@ export default class ProfileOverview extends Component {
           </DivColumn>
 
           <DivRow className={styles.items_container}>
-            
-            <DivColumn verticalCenter horizontalCenter className={styles.grid_item}>
-              <img className={styles.item_image}/>
-              <div className={styles.item_title}>Orders</div>
-              <div className={styles.item_description}>Check your order status</div>
-            </DivColumn>
-
+            {
+              map(profileListItem, listItem => {
+                if (listItem.title != 'Overview') {
+                  return (
+                    <DivColumn verticalCenter horizontalCenter className={styles.grid_item}>
+                      <img className={styles.item_image} src={listItem.blackImage}/>
+                      <div className={styles.item_title}>{listItem.title}</div>
+                      <div className={styles.item_description}>{listItem.description}</div>
+                    </DivColumn>      
+                  )
+                }
+                return null;
+              })
+            }
           </DivRow>
         </DivColumn>
       </SectionedContainer>
