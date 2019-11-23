@@ -7,6 +7,7 @@ import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
 import exhibitionImage2 from 'Images/exhibition-item-2.jpg';
 import exhibitionImage3 from 'Images/exhibition-item-3.png';
 import ExhibitionDetailComponent from 'CommonComponents/exhibitionDetailComponent';
+import QuantityComponent from 'CommonComponents/quantityComponent';
 
 export default class ProductDetailsPage extends Component {
   render() {
@@ -32,9 +33,7 @@ export default class ProductDetailsPage extends Component {
               price="599.99"
               description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
             >
-              <div>
-                quantity component
-              </div>
+              <QuantityComponent />
 
               <DivRow>
                 <div>Add to Bag</div>
