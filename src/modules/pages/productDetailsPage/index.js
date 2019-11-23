@@ -15,7 +15,9 @@ export default class ProductDetailsPage extends Component {
     return (
       <FullWidthContainer>
         <DivColumn className={styles.product_details_container}>
-         <div>Back Button</div>
+         <DivRow verticalCenter>
+          <div className={styles.back_button}>{`< Home`}</div>
+         </DivRow>
          <DivRow className={styles.product_content_container}>
 
            <DivColumn className={styles.left_content_container}>

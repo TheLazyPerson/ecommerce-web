@@ -5,6 +5,17 @@
   align-self: stretch;
   padding: 6px 60px;
 
+  .back_button {
+    border-radius: 100px;
+    border: solid 1px #d8d8d8;
+
+    margin: 10px 0px;
+    padding: 6px 16px; 
+    font-size: 16px;
+    font-weight: 900;
+    color: $primary-text-color;
+  }
+
   .product_content_container {
     flex: 1;
     align-self: stretch;
@@ -15,7 +26,7 @@
       padding-left: 10px;
 
       .product_image {
-        width: calc(100% - 100px);
+        width: calc(100% - 150px);
       }
 
       .product_image_list {
@@ -38,7 +49,7 @@
       flex: 1;
 
       .action_button_container {
-        margin-top: 48px;
+        margin-top: 30px;
 
         .add_to_bag_button {
           border-radius: 28px;
@@ -63,7 +74,7 @@
         .wishlist_button {
           padding: 10px 28px;
           margin-left: 20px;
-          
+
           .button_icon {
             width: 16px;
             height: 16px;
