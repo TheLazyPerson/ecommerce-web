@@ -8,7 +8,7 @@ import map from 'lodash/map';
 export default class SideNav extends Component {
   render() {
      return (
-       <DivColumn className={styles.side_nav_container}>
+       <DivColumn verticalCenter className={styles.side_nav_container}>
         {
           map(profileListItem, listItem => {
             if(listItem.title !== 'Logout') {
