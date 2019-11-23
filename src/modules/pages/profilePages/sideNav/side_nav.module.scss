@@ -1,0 +1,54 @@
+@import '~Styles/colors.module';
+
+.side_nav_container {
+  flex: 1;
+  margin-top: 50px;
+  align-self: stretch;
+  overflow: scroll;
+
+  .nav_item:first-child {
+    border-top: 0.5px solid rgba($color-light-blue-grey, 0.5);
+  }
+
+  .nav_item {
+    border-bottom: 0.5px solid rgba($color-light-blue-grey, 0.5);
+    padding: 8px 14px 8px 20px;
+
+    .nav_image {
+      width: 32px;
+      height: 32px;
+      opacity: 0.8;
+      margin-right: 10px;
+    }
+
+    .is_selected {
+
+      .nav_item {
+        color: $primary-text-color;
+      }
+      
+      .nav_description {
+        color: $primary-text-color;
+      }
+    }
+
+    .nav_title {
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav_description {
+      font-size: 10px;
+      font-weight: 300;
+      color: white;
+    }
+
+    .nav_indicator {
+      font-size: 16px;
+      font-weight: 100;
+      color: white;
+      margin-left: auto;
+    }
+  }
+}
