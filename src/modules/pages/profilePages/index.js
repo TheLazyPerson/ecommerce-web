@@ -9,8 +9,6 @@ import SideNav from './sideNav';
 
 
 export default class ProfileOverview extends Component {
-  //TODO move the array value to a constant
-
   render() {
     return (
       <SectionedContainer

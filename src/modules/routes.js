@@ -8,6 +8,7 @@ import ProductListingPage from './pages/productListingPage';
 import ProductDetailsPage from './pages/productDetailsPage';
 import ProfileOverview from './pages/profilePages';
 import ProfileOrders from './pages/profilePages/profileOrders';
+import ProfileAddress from './pages/profilePages/profileAddress';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Route exact path="/product-listing" component={ProductListingPage} />
       <Route exact path="/profile" component={ProfileOverview} />
       <Route exact path="/profile/orders" component={ProfileOrders} />
+      <Route exact path="/profile/address" component={ProfileAddress} />
       <Route component={PageNotFound} />
     </Switch>
   );
