@@ -21,7 +21,7 @@ export default class ProfileHelpCenter extends Component {
 
         <DivColumn fillParent className={styles.help_center_container}>
           
-          <DivRow>
+          <DivRow className={styles.list_container}>
 
             <DivColumn verticalCenter horizontalCenter className={styles.item_container}>
               <img src={cartIcon} className={styles.item_icon} />
@@ -40,13 +40,17 @@ export default class ProfileHelpCenter extends Component {
             NEED MORE HELP FROM US
           </div>
 
-          <form>
-            <textarea placeholder="Brief about your concern?" className={styles.text_area}>
-            </textarea>
-            <DivRow>
-            <CapsuleButton>Get Callback</CapsuleButton>
-            </DivRow>
-          </form>
+          <DivColumn className={styles.form_container}>
+
+            <form>
+              <textarea placeholder="Brief about your concern?" className={styles.text_area}>
+              </textarea>
+              <DivRow>
+              <CapsuleButton>Get Callback</CapsuleButton>
+              </DivRow>
+            </form>
+
+          </DivColumn>
 
         </DivColumn>
 
