@@ -5,7 +5,7 @@ import DivRow from 'CommonComponents/divRow';
 import map from 'lodash/map';
 import styles from './profile_overview.module.scss';
 import {profileListItem} from './profileConstants';
-import SideNav from './sideNav';
+import SideNav from './components/sideNav';
 
 
 export default class ProfileOverview extends Component {
