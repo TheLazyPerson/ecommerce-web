@@ -16,11 +16,15 @@
     padding: 23px 22px 0px;
     flex-flow: wrap;
     overflow: scroll;
-
+    //-ms-overflow-style: none;
+    //overflow: -moz-scrollbars-none;
+    
     .product {
       width: 200px;
       height: 200px;
     }
   }
+
+  //.product_list_container::-webkit-scrollbar { width: 0 !important }
 
 }
