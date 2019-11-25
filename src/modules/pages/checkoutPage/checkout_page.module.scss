@@ -1,0 +1,46 @@
+@import '~Styles/colors.module';
+
+.flex_2 {
+  flex: 2;
+}
+
+.flex_1 {
+  flex: 1;
+}
+
+.checkout_container {
+  padding: 20px 60px;
+
+  .cart_list_container {
+    flex: 1;
+    padding-right: 50px;
+
+    .table_header {
+      padding: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 2;
+      color: $primary-text-color;
+      border-bottom: 1px solid #ededed;
+    }
+  }
+
+  .order_summary_container {
+    width: 360px;
+    align-self: stretch;
+
+    border-radius: 10px;
+    box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.08);
+    background-image: linear-gradient(210deg, #37445b 116%, $primary-text-color 20%);
+
+    .order_summary_title {
+      font-family: PlayfairDisplay;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.56;
+      color: white;
+      align-self: center;
+      margin: 15px 0px;
+    }
+  }
+}
