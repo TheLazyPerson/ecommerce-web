@@ -14,6 +14,7 @@ import ProfileDetails from './pages/profilePages/profileDetails';
 import ProfileHelpCenter from './pages/profilePages/profileHelpCenter';
 import WishlistPage from './pages/wishlistPage';
 import SearchPage from './pages/searchPage';
+import CheckoutPage from './pages/checkoutPage';
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
       <Route exact path="/profile/helpcenter" component={ProfileHelpCenter} />
       <Route exact path="/wishlist" component={WishlistPage} />
       <Route exact path="/search" component={SearchPage} />
+      <Route exact path="/checkout" component={CheckoutPage} />
       <Route component={PageNotFound} />
     </Switch>
   );

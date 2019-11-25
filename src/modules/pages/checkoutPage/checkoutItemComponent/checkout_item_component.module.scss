@@ -1,0 +1,36 @@
+@import '~Styles/colors.module';
+
+.flex_2 {
+  flex: 2;
+}
+
+.flex_1 {
+  flex: 1;
+}
+    .table_item {
+      padding: 20px 0px;
+
+      .product_column {
+        .product_image {
+          width: 58px;
+          margin-right: 20px;
+        }        
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: bold;
+        color: $primary-text-color;
+      }
+      .description {
+        font-family: Lato;
+        font-size: 12px;
+        opacity: 0.3;
+        color: $primary-text-color;
+      }
+
+      .product_price {
+        font-size: 14px;
+        color: $primary-text-color;
+      }
+    }

@@ -4,6 +4,7 @@ import DivColumn from 'CommonComponents/divColumn';
 import styles from './quantity_component.module.scss';
 import minusIcon from 'Icons/minus-icon.svg';
 import plusIcon from 'Icons/plus-icon.svg';
+import BareQuantityComponent from 'CommonComponents/bareQuantityComponent';
 
 export default class QuantityComponent extends Component {
   render() {
@@ -11,11 +12,7 @@ export default class QuantityComponent extends Component {
       <Fragment>
         <DivColumn>
           <div className={styles.quantity_title}>Quantity</div>
-          <DivRow verticalCenter className={styles.quantity_container}>
-            <img className={styles.quantity_button} src={minusIcon}/>
-            <div className={styles.quantity_text}>1</div>
-            <img className={styles.quantity_button} src={plusIcon}/>
-          </DivRow>
+          <BareQuantityComponent />
         </DivColumn>
         <div className={styles.sub_info}>Standerd delivery in 2-4 day’s</div>
       </Fragment>
