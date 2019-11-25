@@ -19,7 +19,11 @@ export default class SearchPage extends Component {
               EXHIBITIONS
             </div>
             
-            <DivRow>
+            <DivRow className={styles.section_list}>
+              <ExhibitionItemComponent />
+              <ExhibitionItemComponent />
+              <ExhibitionItemComponent />
+              <ExhibitionItemComponent />
               <ExhibitionItemComponent />
             </DivRow>
           </DivColumn>
@@ -29,7 +33,13 @@ export default class SearchPage extends Component {
               PRODUCTS
             </div>
 
-            <DivRow>
+            <DivRow className={styles.section_list}>
+              <ProductItemComponent />
+              <ProductItemComponent />
+              <ProductItemComponent />
+              <ProductItemComponent />
+              <ProductItemComponent />
+              <ProductItemComponent />
               <ProductItemComponent />
             </DivRow>
 

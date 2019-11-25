@@ -13,9 +13,14 @@
 
   .search_list_container {
     padding-top: 20px;
-    overflow: scroll;
+    // overflow: scroll;
+
+    .section:first-child {
+      margin-top: 0px;
+    }
 
     .section {
+      margin-top: 20px;
       align-self: stretch;
 
       .section_header {
@@ -24,6 +29,14 @@
         color: $primary-text-color;
         border-bottom: 0.5px solid #ededed;
       }
+
+      .section_list {
+        padding: 22px 60px;
+        flex-flow: wrap;
+      }
     }
+
+
+
   }
 }
