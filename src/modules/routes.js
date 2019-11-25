@@ -11,6 +11,7 @@ import ProfileOrders from './pages/profilePages/profileOrders';
 import ProfileAddress from './pages/profilePages/profileAddress';
 import ProfileSettings from './pages/profilePages/profileSettings';
 import ProfileDetails from './pages/profilePages/profileDetails';
+import ProfileHelpCenter from './pages/profilePages/profileHelpCenter';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
       <Route exact path="/profile/address" component={ProfileAddress} />
       <Route exact path="/profile/settings" component={ProfileSettings} />
       <Route exact path="/profile/details" component={ProfileDetails} />
+      <Route exact path="/profile/helpcenter" component={ProfileHelpCenter} />
       <Route component={PageNotFound} />
     </Switch>
   );
