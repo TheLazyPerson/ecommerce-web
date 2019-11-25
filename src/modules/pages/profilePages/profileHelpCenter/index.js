@@ -41,8 +41,7 @@ export default class ProfileHelpCenter extends Component {
           </div>
 
           <form>
-            <textarea>
-              
+            <textarea placeholder="Brief about your concern?" className={styles.text_area}>
             </textarea>
             <DivRow>
             <CapsuleButton>Get Callback</CapsuleButton>

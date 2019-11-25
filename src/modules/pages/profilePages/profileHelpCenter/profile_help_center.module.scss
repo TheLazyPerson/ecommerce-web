@@ -15,7 +15,7 @@
 
     .item_title {
       text-align: center;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       color: $primary-text-color;
       margin: 18px 0px 9px;
@@ -23,14 +23,27 @@
 
     .item_description {
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 300;
       color: $primary-text-color;
     }
   }
 
   .form_header {
-    
+    font-size: 12px;
+    color: $primary-text-color;
+    padding: 12px 46px;
+    border-top: 0.5px solid #ededed;
+    border-bottom: 0.5px solid #ededed;
+  }
+
+  .text_area {
+    width: 393px;
+    height: 180px;
+    resize: none;
+    border: none;
+    background: rgba($color-very-light-blue, 0.4);
+    padding: 14px 31px;
   }
 
 }
