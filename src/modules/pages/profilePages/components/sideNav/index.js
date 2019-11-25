@@ -22,7 +22,7 @@ export default class SideNav extends Component {
                   <div className={styles.nav_indicator}>></div>
                 </DivRow>
               )
-            }            
+            }
             return null;
           })
         }
