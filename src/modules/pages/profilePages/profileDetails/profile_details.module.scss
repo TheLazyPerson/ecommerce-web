@@ -1,7 +1,8 @@
 @import '~Styles/colors.module';
+
 .details_container {
-    overflow: scroll;
-    
+  overflow: scroll;
+
   .reset_password_button {
     margin-right: 16px;
   }
@@ -18,7 +19,7 @@
       opacity: 0.8;
       font-size: 18px;
       font-weight: 300;
-      color: $primary-text-color;    
+      color: $primary-text-color;
     }
 
     .value {
