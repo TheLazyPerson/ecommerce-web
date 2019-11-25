@@ -1,9 +1,10 @@
 @import '~Styles/colors.module';
 
 .search_container {
-  padding: 30px 60px 0px 60px;
+  // padding: 30px 60px 0px 60px;
 
   .page_header {
+    margin: 30px 60px 0px 60px;
     font-family: PlayfairDisplay;
     font-size: 36px;
     font-weight: 900;
@@ -11,8 +12,55 @@
   }
 
   .search_list_container {
-    flex-flow: wrap;
     padding-top: 20px;
-    justify-content: space-around;
+    overflow: scroll;
+
+    .section_header {
+      padding: 11px 60px;
+      font-size: 16px;
+      color: $primary-text-color;
+      border-bottom: 0.5px solid #ededed;
+    }
+  }
+
+  .exhibition_item_container {
+    width: 426px;
+    border: solid 0.5px rgba($primary-text-color, 0.1);
+    background-color: rgba($color-very-light-blue, 0.9);
+
+    .exhibition_image {
+      min-width: 164px;
+      width: 164px;
+      height: 164px;
+    }
+
+    .exhibition_details_container {
+      padding: 9px;
+
+      .exhibition_name {
+        font-family: PlayfairDisplay;
+        font-size: 18px;
+        font-weight: 900;
+        color: $primary-text-color;
+      }
+
+      .exhibition_details {
+        font-size: 10px;
+        margin: 6px 0px;
+        color: $primary-text-color;
+      }
+
+      .capsule_container {
+
+        .capsule {
+          font-size: 10px;
+        }
+      }
+
+      .view_exhibition_button {
+        margin-top: auto;
+        align-self: flex-end;
+      }
+    }
   }
 }

@@ -10,7 +10,7 @@ const DivRow = ({className='', verticalCenter, horizontalCenter , fillParent, ch
       ${horizontalCenter ? styles.justify_center: ''}`}
       style={fillParent ? {
         flex: 1,
-        alignItems: 'stretch'
+        alignSelf: 'stretch'
       }: {}}
     >
       {children}
