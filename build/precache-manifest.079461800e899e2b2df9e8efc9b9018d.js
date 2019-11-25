@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0feb618eb805fbd5db0287d131522373",
+    "revision": "0c820090896940e02d9fb1b4f8e549d4",
     "url": "/index.html"
   },
   {
-    "revision": "cab2b4f924c70dc2d202",
+    "revision": "20bc5b3b40709ad0f482",
     "url": "/static/css/2.b0bb7f2c.chunk.css"
   },
   {
-    "revision": "4924e31bc3d7b76f339a",
-    "url": "/static/css/main.720660fe.chunk.css"
+    "revision": "28516a2156cedda54691",
+    "url": "/static/css/main.6708fc70.chunk.css"
   },
   {
-    "revision": "cab2b4f924c70dc2d202",
-    "url": "/static/js/2.458456e8.chunk.js"
+    "revision": "20bc5b3b40709ad0f482",
+    "url": "/static/js/2.74f3194e.chunk.js"
   },
   {
-    "revision": "4924e31bc3d7b76f339a",
-    "url": "/static/js/main.3d9cd171.chunk.js"
+    "revision": "28516a2156cedda54691",
+    "url": "/static/js/main.0964e868.chunk.js"
   },
   {
     "revision": "73de5f499f1f7ece7aa9",
@@ -58,6 +58,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "aa7511063945857c98526df7210bd0c6",
     "url": "/static/media/cart-bag-icon-black.aa751106.svg"
+  },
+  {
+    "revision": "cc711b96bebdc8ac33a54f09a2a87a50",
+    "url": "/static/media/close-icon-black.cc711b96.svg"
   },
   {
     "revision": "bcbb085c68ab1645292820112f9501f7",
@@ -108,8 +112,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/orders-icon-white.1b966602.svg"
   },
   {
-    "revision": "363084b81b4993521a6f256a932a20cc",
-    "url": "/static/media/overview-icon-white.363084b8.svg"
+    "revision": "24eec01579e69f3aeb497c77da3b4e71",
+    "url": "/static/media/overview-icon-white.24eec015.svg"
   },
   {
     "revision": "352c810fcfa637aab3d0f57bc11198dc",
