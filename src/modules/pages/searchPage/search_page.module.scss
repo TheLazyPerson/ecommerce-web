@@ -15,11 +15,15 @@
     padding-top: 20px;
     overflow: scroll;
 
-    .section_header {
-      padding: 11px 60px;
-      font-size: 16px;
-      color: $primary-text-color;
-      border-bottom: 0.5px solid #ededed;
+    .section {
+      align-self: stretch;
+
+      .section_header {
+        padding: 11px 60px;
+        font-size: 16px;
+        color: $primary-text-color;
+        border-bottom: 0.5px solid #ededed;
+      }
     }
   }
 }
