@@ -15,8 +15,10 @@ export default class WishlistPage extends Component {
       <FullWidthContainer>
         <DivColumn fillParent className={styles.wishlist_container}>
          <div className={styles.page_header}>My Wishlist</div>
-         <DivRow>
+         <DivRow className={styles.wishlist_list_container}>
 
+          <WishlistItemComponent />
+          <WishlistItemComponent />
           <WishlistItemComponent />
 
          </DivRow>
