@@ -22,6 +22,9 @@
   .order_item_container {
     height: 205px;
     align-self: stretch;
+    border-right: solid 0.5px rgba($primary-text-color, 0.1);
+    border-bottom: solid 0.5px rgba($primary-text-color, 0.1);
+
 
     .order_image {
       width: 205px;

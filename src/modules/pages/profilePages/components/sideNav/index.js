@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {profileListItem} from './../profileConstants';
+import {profileListItem} from './../../profileConstants';
 import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
 import styles from './side_nav.module.scss';
@@ -22,7 +22,7 @@ export default class SideNav extends Component {
                   <div className={styles.nav_indicator}>></div>
                 </DivRow>
               )
-            }            
+            }
             return null;
           })
         }

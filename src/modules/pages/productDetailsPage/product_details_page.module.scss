@@ -4,6 +4,7 @@
   flex: 1;
   align-self: stretch;
   padding: 6px 60px;
+  overflow: scroll;
 
   .back_button {
     border-radius: 100px;
@@ -87,7 +88,7 @@
             font-size: 14px;
             font-weight: bold;
             color: $color-dark-grey;
-          }        
+          }
         }
       }
     }
