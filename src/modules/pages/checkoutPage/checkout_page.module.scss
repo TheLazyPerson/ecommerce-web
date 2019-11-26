@@ -10,6 +10,7 @@
 
 .checkout_container {
   padding: 20px 60px;
+  overflow: scroll;
 
   .cart_list_container {
     flex: 1;
@@ -22,6 +23,10 @@
       line-height: 2;
       color: $primary-text-color;
       border-bottom: 1px solid #ededed;
+    }
+
+    .table_content_container {
+      overflow: scroll;
     }
   }
 

@@ -20,10 +20,18 @@ export default class CheckoutPage extends Component {
               <div className={styles.flex_1}>Total Price</div>
             </DivRow>
 
-            <CheckoutItemComponent />
-            <CheckoutItemComponent />
-            <CheckoutItemComponent />
-            <CheckoutItemComponent />
+            <DivColumn fillParent className={styles.table_content_container}>
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+              <CheckoutItemComponent />
+
+            </DivColumn>
 
           </DivColumn>
           
