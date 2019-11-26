@@ -8,6 +8,13 @@
   flex: 1;
 }
 
+.coupon_header_text {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  margin: 24px 0px 10px;
+}
+
 .checkout_container {
   padding: 20px 60px;
   overflow: scroll;
@@ -34,6 +41,7 @@
     width: 360px;
     align-self: stretch;
     padding: 15px 30px 30px;
+    overflow: scroll;
 
     border-radius: 10px;
     box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.08);
@@ -80,17 +88,11 @@
       }
     }
 
-    .coupon_list_header {
-      font-size: 12px;
-      font-weight: bold;
-      color: white;
-      margin: 24px 0px 10px;
-    }
-
     .coupon_description_container {
       color: white;
       border: solid 1px white;
       width: 80%;
+      margin-bottom: 24px;
 
       .coupon_content_container {
         padding: 17px 9px 9px;

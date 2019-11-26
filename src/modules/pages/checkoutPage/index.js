@@ -45,7 +45,7 @@ export default class CheckoutPage extends Component {
             </DivRow>
             <HorizontalBorder />
 
-            <div className={styles.coupon_list_header}>Coupons</div>
+            <div className={styles.coupon_header_text}>Coupons</div>
             <DivColumn className={styles.coupon_description_container}>
               <DivColumn className={styles.coupon_content_container}>
                 <div className={styles.coupon_title}>40% OFF up to KD 29</div>
@@ -59,7 +59,35 @@ export default class CheckoutPage extends Component {
                 <div className={styles.coupon_apply}>APPLY</div>
               </DivRow>
             </DivColumn>
+            
+            <HorizontalBorder />
 
+            <DivColumn>
+              <div className={styles.coupon_header_text}>Price Details</div>
+              <DivRow>
+                <div>Bag Total</div>
+                <div>KD 299</div>
+              </DivRow>
+              <DivRow>
+                <div>Coupon Discount</div>
+                <div>Apply  Coupon</div>
+              </DivRow>
+              <DivRow>
+                <div>Order Total</div>
+                <div>KD 299</div>
+              </DivRow>
+              <DivRow>
+                <div>Delivery Charges</div>
+                <div>FREE</div>
+              </DivRow>
+              <HorizontalBorder />
+              <DivRow>
+                <div>Total</div>
+                <div>KD 299</div>
+              </DivRow>
+            </DivColumn>            
+
+            
           </DivColumn>
         </DivRow>
       </FullWidthContainer>
