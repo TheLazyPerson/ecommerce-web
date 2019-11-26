@@ -33,15 +33,16 @@
     }
 
     .table_content_container {
-      overflow: scroll;
+      // overflow: scroll;
     }
   }
+
 
   .order_summary_container {
     width: 360px;
     align-self: stretch;
     padding: 15px 30px 30px;
-    overflow: scroll;
+    // overflow: scroll;
 
     border-radius: 10px;
     box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.08);
@@ -125,6 +126,39 @@
             margin-left: auto;
           }
       }
+     }
     }
+
+    .price_details_container {
+      padding: 6px 0px;
+
+      .title {
+        font-size: 12px;
+        font-weight: 300;
+        color: white;
+        opacity: 0.8;
+      }
+
+      .value {
+        font-size: 12px;
+        font-weight: 300;
+        color: white;
+        opacity: 0.8;
+        margin-left: auto;
+      }
+  }
+
+  .price_divider {
+    margin-top: 12px;
+  }
+  
+  .capsule_button {
+    padding: 16px 0px;
+    align-self: stretch;
+    font-size: 18px;
+    font-weight: 900;
+    color: white;
+    text-transform: capitalize;
+    margin-top: 19px;
   }
 }
