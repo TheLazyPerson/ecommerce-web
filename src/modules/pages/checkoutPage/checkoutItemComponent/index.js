@@ -25,7 +25,7 @@ export default class CheckoutItemComponent extends Component {
         </DivColumn>
 
         <DivRow className={`${styles.flex_1}`}>
-          <BareQuantityComponent />
+          <BareQuantityComponent className={styles.quantity_container} />
         </DivRow>
 
         <DivRow verticalCenter className={`${styles.price_column} ${styles.flex_1}`}>
