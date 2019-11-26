@@ -3,8 +3,6 @@ import FullWidthContainer from 'CommonContainers/fullwidthContainer';
 import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './checkout_page.module.scss';
-import QuantityComponent from 'CommonComponents/quantityComponent';
-import BareQuantityComponent from 'CommonComponents/bareQuantityComponent';
 import CheckoutItemComponent from './checkoutItemComponent';
 
 export default class CheckoutPage extends Component {

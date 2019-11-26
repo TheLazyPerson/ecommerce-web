@@ -29,8 +29,17 @@
         color: $primary-text-color;
       }
 
-      .product_price {
-        font-size: 14px;
-        color: $primary-text-color;
+      .price_column {
+        justify-content: space-between;
+
+        .product_price {
+          font-size: 14px;
+          color: $primary-text-color;
+        }
+  
+        .close_icon {
+          width: 14px;
+          height: 14px;
+        }
       }
     }
