@@ -7,15 +7,17 @@ const navigatorHoc  = (WrappedComponent) => {
 
     navigateTo = (pageName, data=null) => {
       const {push} = this.props.history;
-
+      
       if (pageName == 'plp') {
         push('/product-listing');
       } else if (pageName == 'pdp') {
         push('/product-details/adidas-shoes/2314');
       } else if (pageName == 'checkout') {
         push('/checkout');
-      } else if('signin') {
+      } else if(pageName == 'signin') {
         push('/signin');
+      } else if(pageName == 'profile') {
+        push('/profile');
       } else {
         push('/');
       }

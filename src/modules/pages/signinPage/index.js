@@ -4,15 +4,18 @@ import DivColumn from 'CommonComponents/divColumn';
 import styles from './signin_page.module.scss';
 import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class SignInPage extends Component {
+class SignInPage extends Component {
   constructor(props) {
     super(props);
   }
 
   onSubmit = (form) => {
     form.preventDefault();
-    console.log('values', form);
+    
+    const { navigateTo } = this.props;
+    navigateTo('profile');
   }
 
   render() {
@@ -26,13 +29,15 @@ export default class SignInPage extends Component {
            <InputCheckbox text="Remember me"/>
            <input type='submit' value="Sign in" className={styles.input_submit}/>
           </form>
-          <a className={styles.hyper_link}>Forgot password</a>
+          <a className={styles.hyper_link}  href="/forgot-password">Forgot password</a>
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>New to Maerid?&nbsp;</span>
-            <a className={styles.hyper_link}>Create an account</a>
+            <a className={styles.hyper_link} href="/signup">Create an account</a>
           </div>
         </DivColumn>
        </FullWidthContainer>
      )
   }
 }
+
+export default navigatorHoc(SignInPage);
