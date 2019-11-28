@@ -25,7 +25,7 @@ class SignInPage extends Component {
           <div className={styles.signin_title_text}>SignIn</div>
           <form className={styles.form_container} onSubmit={this.onSubmit}>
            <InputTextComponent placeholder="Username" className={styles.input_text} />
-           <InputTextComponent placeholder="Password" className={styles.input_text} />
+           <InputTextComponent placeholder="Password" className={styles.input_text} type='password' />
            <InputCheckbox text="Remember me"/>
            <input type='submit' value="Sign in" className={styles.input_submit}/>
           </form>
