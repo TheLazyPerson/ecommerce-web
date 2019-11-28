@@ -14,6 +14,8 @@ const navigatorHoc  = (WrappedComponent) => {
         push('/product-details/adidas-shoes/2314');
       } else if (pageName == 'checkout') {
         push('/checkout');
+      } else if('signin') {
+        push('/signin');
       } else {
         push('/');
       }

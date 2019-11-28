@@ -6,8 +6,14 @@ import hamburgerMenuIcon from 'Icons/hamburger-menu-icon-black.svg';
 import bagIcon from 'Icons/cart-bag-icon-black.svg';
 import bookmarkIcon from 'Icons/bookmark-icon-black.svg';
 import arrowDownIcon from 'Icons/arrow-down-icon-black.svg';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class SectionedHeader extends Component {
+class SectionedHeader extends Component {
+  onClickProfile = () => {
+    const { navigateTo } = this.props;
+    navigateTo('login');
+  }
+
   render() {
      return (
        <DivRow className={styles.header_container}>
@@ -26,7 +32,7 @@ export default class SectionedHeader extends Component {
              <DivRow verticalCenter horizontalCenter className={styles.bag_count}>0</DivRow>
            </DivRow>
            <img className={`${styles.header_icon} ${styles.header_item_container}`} src={bookmarkIcon} />
-           <div className={`${styles.header_icon} ${styles.header_item_container}`}>
+           <div className={`${styles.header_icon} ${styles.header_item_container}`} onClick={this.onClickProfile}>
              <img className={styles.profile_pic} />
              <img src={arrowDownIcon} className={styles.arrow_down_icon} />
            </div>
@@ -36,3 +42,5 @@ export default class SectionedHeader extends Component {
     );
   }
 }
+
+export default navigatorHoc(SectionedHeader);
