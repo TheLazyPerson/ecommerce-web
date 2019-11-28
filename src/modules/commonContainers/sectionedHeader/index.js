@@ -11,7 +11,17 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 class SectionedHeader extends Component {
   onClickProfile = () => {
     const { navigateTo } = this.props;
-    navigateTo('login');
+    navigateTo('signin');
+  }
+
+  onClickWishlist = () => {
+    const { navigateTo } = this.props;
+    navigateTo('wishlist');
+  }
+
+  onClickBag = () => {
+    const { navigateTo } = this.props;
+    navigateTo('checkout');
   }
 
   render() {
@@ -27,11 +37,11 @@ class SectionedHeader extends Component {
          </div>
 
          <DivRow verticalCenter>
-           <DivRow className={styles.header_item_container} verticalCenter>
+           <DivRow className={styles.header_item_container} verticalCenter onClick={this.onClickBag}>
              <img src={bagIcon} className={styles.header_icon} />
              <DivRow verticalCenter horizontalCenter className={styles.bag_count}>0</DivRow>
            </DivRow>
-           <img className={`${styles.header_icon} ${styles.header_item_container}`} src={bookmarkIcon} />
+           <img className={`${styles.header_icon} ${styles.header_item_container}`} src={bookmarkIcon} onClick={this.onClickWishlist}/>
            <div className={`${styles.header_icon} ${styles.header_item_container}`} onClick={this.onClickProfile}>
              <img className={styles.profile_pic} />
              <img src={arrowDownIcon} className={styles.arrow_down_icon} />
