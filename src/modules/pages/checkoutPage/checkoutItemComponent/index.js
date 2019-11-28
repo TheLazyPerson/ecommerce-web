@@ -4,6 +4,7 @@ import DivColumn from 'CommonComponents/divColumn';
 import styles from './checkout_item_component.module.scss';
 import BareQuantityComponent from 'CommonComponents/bareQuantityComponent';
 import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
+import closeIcon from 'Icons/close-icon-black.svg';
 
 export default class CheckoutItemComponent extends Component {
   render() {
@@ -24,11 +25,12 @@ export default class CheckoutItemComponent extends Component {
         </DivColumn>
 
         <DivRow className={`${styles.flex_1}`}>
-          <BareQuantityComponent />
+          <BareQuantityComponent className={styles.quantity_container} />
         </DivRow>
 
-        <DivRow verticalCenter className={`${styles.flex_1}`}>
+        <DivRow verticalCenter className={`${styles.price_column} ${styles.flex_1}`}>
           <div className={styles.product_price}>$39.99</div>
+          <img src={closeIcon} />
         </DivRow>
 
       </DivRow>

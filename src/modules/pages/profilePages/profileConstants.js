@@ -18,47 +18,55 @@ export const profileListItem = [
   {
     whiteImage: overviewWhiteIcon,
     title: 'Overview',
-    description: 'See everyting at a glance'
+    slug: 'overview',
+    description: 'See everyting at a glance',
   },
   {
     blackImage: orderBlackIcon,
     whiteImage: orderWhiteIcon,
     title: 'Orders',
+    slug: 'orders',
     description: 'Check your order status'
   },
   {
     blackImage: helpCenterBlackIcon,
     whiteImage: helpCenterWhiteIcon,
     title: 'Help Center',
+    slug: 'help-center',
     description: 'Help regarding your recent purchases'
   },
   {
     blackImage: wishlistBlackIcon,
     whiteImage: wishlistWhiteIcon,
     title: 'Wishlist',
+    slug: 'wishlist',
     description: 'Your most loved styles'
   },
   {
     blackImage: addressBlackIcon,
     whiteImage: addressWhiteIcon,
     title: 'Address',
+    slug: 'address',
     description: 'Save addresses for hassle free checkout'
   },
   {
     blackImage: profileBlackIcon,
     whiteImage: profileWhiteIcon,
     title: 'Profile',
+    slug: 'profile',
     description: 'Change your personal details and password'
   },
   {
     blackImage: settingsBlackIcon,
     whiteImage: settingsWhiteIcon,
     title: 'Settings',
+    slug: 'settings',
     description: 'Manage notifications & other settings'
   },
   {
     blackImage: logoutBlackIcon,
     title: 'Logout',
+    slug: 'logout',
     description: 'Logout from the application'
   }
 ];
