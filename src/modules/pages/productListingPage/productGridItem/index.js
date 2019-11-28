@@ -30,9 +30,10 @@ class ProductGridItem extends Component {
           <DivRow
            verticalCenter
            horizontalCenter
-           className={styles.view_product_container}>
+           className={styles.view_product_container}
+           onClick={this.onClickViewProduct}>
             <img />
-            <div className={styles.action_text} onClick={this.onClickViewProduct}>
+            <div className={styles.action_text}>
              View Product
             </div>
           </DivRow>
