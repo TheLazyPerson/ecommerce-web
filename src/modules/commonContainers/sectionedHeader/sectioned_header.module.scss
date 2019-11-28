@@ -9,6 +9,32 @@ $bag-count-background: $color-pale;
 
   .search_container {
     flex: 1;
+    position: relative;
+
+    .search_result_container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      margin-top: 48px;
+      background: white;
+      color: $primary-text-color;
+      box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
+
+      .search_item {
+        padding: 6px 19px;
+
+        .title {
+          font-size: 14px;
+          font-weight: bold;
+        }
+  
+        .description {
+          font-size: 10px;
+          font-weight: 300;
+        }
+      }
+    }
 
     .search_wrapper {
       align-items: center;
