@@ -14,13 +14,16 @@ const navigatorHoc  = (WrappedComponent) => {
         push('/product-details/adidas-shoes/2314');
       } else if (pageName == 'checkout') {
         push('/checkout');
+      } else {
+        push('/');
       }
     }
 
-    render() {
+    render() {      
       return (
         <WrappedComponent 
           navigateTo={this.navigateTo}
+          {...this.props}
         />
       )
     }
