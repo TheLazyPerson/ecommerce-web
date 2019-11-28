@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "08a1e163245d91172b2c33347c7d0cc3",
+    "revision": "7a08f1dc02d8628680b5dedf774cd734",
     "url": "/index.html"
   },
   {
-    "revision": "86476c94e9e1844f26ab",
+    "revision": "6274bb6067ae60bb3cdf",
     "url": "/static/css/2.b0bb7f2c.chunk.css"
   },
   {
-    "revision": "aa404ab0db374809bede",
-    "url": "/static/css/main.97cb4e84.chunk.css"
+    "revision": "62ec8ea3cd803b9be8a7",
+    "url": "/static/css/main.69c36f84.chunk.css"
   },
   {
-    "revision": "86476c94e9e1844f26ab",
-    "url": "/static/js/2.4bac8d79.chunk.js"
+    "revision": "6274bb6067ae60bb3cdf",
+    "url": "/static/js/2.7a1c9560.chunk.js"
   },
   {
-    "revision": "aa404ab0db374809bede",
-    "url": "/static/js/main.ff98b37a.chunk.js"
+    "revision": "62ec8ea3cd803b9be8a7",
+    "url": "/static/js/main.0c07a1ad.chunk.js"
   },
   {
     "revision": "73de5f499f1f7ece7aa9",
@@ -60,6 +60,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/cart-bag-icon-black.c6014af6.svg"
   },
   {
+    "revision": "1bf44a0bac71e8c5c26f9bb53089619f",
+    "url": "/static/media/close-icon-black.1bf44a0b.svg"
+  },
+  {
+    "revision": "45dd8c65618df37915da5828fe041eb9",
+    "url": "/static/media/coupon-icon-white.45dd8c65.svg"
+  },
+  {
     "revision": "bcbb085c68ab1645292820112f9501f7",
     "url": "/static/media/exhibition-item-1.bcbb085c.jpg"
   },
@@ -70,6 +78,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "bb8f33a1a18aba36af1ea88de51235f8",
     "url": "/static/media/exhibition-item-3.bb8f33a1.png"
+  },
+  {
+    "revision": "79539bb5bc17e8b8177bbf68e50fafa1",
+    "url": "/static/media/faq-icon-black.79539bb5.svg"
   },
   {
     "revision": "5b9b618b08cc7345878ca500314e06ec",
@@ -105,7 +117,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "072d40b30922ac15cc2a423215c88f16",
-    "url": "/static/media/overview-icon-white.072d40b3.svg"
+    "url": "/static/media/overview-icon-black.072d40b3.svg"
+  },
+  {
+    "revision": "49d2799b44a5f82ad942f621a1dcad66",
+    "url": "/static/media/overview-icon-white.49d2799b.svg"
   },
   {
     "revision": "a57c0cf2badf5b4b6dfa2217b790957e",
