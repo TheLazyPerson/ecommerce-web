@@ -4,8 +4,22 @@ import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
 import styles from './side_nav.module.scss';
 import map from 'lodash/map';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class SideNav extends Component {
+class SideNav extends Component {
+  onClickNavItemClick = (slug) => {
+    const { navigateTo } = this.props;
+
+    if(slug == 'overview') {
+      navigateTo('profile');
+    } else if (slug == 'profile') {
+      navigateTo('profile-details');
+    } else {
+      navigateTo(slug);
+    }
+
+  }
+
   render() {
      return (
        <DivColumn verticalCenter className={styles.side_nav_container}>
@@ -13,7 +27,7 @@ export default class SideNav extends Component {
           map(profileListItem, listItem => {
             if(listItem.title !== 'Logout') {
               return (
-                <DivRow className={styles.nav_item}>
+                <DivRow className={styles.nav_item} onClick={() => this.onClickNavItemClick(listItem.slug)}>
                   <img className={styles.nav_image} src={listItem.whiteImage} />
                   <DivColumn>
                     <div className={styles.nav_title}>{listItem.title}</div>
@@ -30,3 +44,5 @@ export default class SideNav extends Component {
      )
   }
 }
+
+export default navigatorHoc(SideNav);
