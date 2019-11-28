@@ -27,7 +27,7 @@ export default class ForgotPasswordPage extends Component {
           </form>
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>Already have an Account?&nbsp;</span>
-            <a className={styles.hyper_link}>Sign in</a>
+            <a className={styles.hyper_link} href="/signin">Sign in</a>
           </div>
         </DivColumn>
        </FullWidthContainer>
