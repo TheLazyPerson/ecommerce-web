@@ -27,9 +27,12 @@ class ProductDetailsPage extends Component {
          <DivRow className={styles.product_content_container}>
 
            <DivColumn className={styles.left_content_container}>
-           <DivRow verticalCenter>
+           {/* 
+            <DivRow verticalCenter>
             <div className={styles.back_button}>{`< Home`}</div>
           </DivRow>
+            */}
+           
             <img src={exhibitionImage3} className={styles.product_image} />
             <DivRow className={styles.product_image_list}>
               <img src={exhibitionImage1} className={styles.small_product_image} />
