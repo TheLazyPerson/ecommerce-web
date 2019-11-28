@@ -7,6 +7,7 @@ import map from 'lodash/map';
 import navigatorHoc from 'Hoc/navigatorHoc';
 
 class SideNav extends Component {
+  
   onClickNavItemClick = (slug) => {
     const { navigateTo } = this.props;
 
@@ -17,7 +18,6 @@ class SideNav extends Component {
     } else {
       navigateTo(slug);
     }
-
   }
 
   render() {
