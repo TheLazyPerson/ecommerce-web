@@ -2,7 +2,7 @@
 
 .product_container {
   width: 284px;
-  height: 299px;
+ // height: 299px;
   margin: 5px;
   align-items: center;
 
@@ -24,7 +24,10 @@
   }
 
   .product_image {
-
+    width: 200px;
+    height: 200px;
+    margin: 14px 0px 14px;
+    
   }
 
 
