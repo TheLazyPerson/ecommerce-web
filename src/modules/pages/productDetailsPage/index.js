@@ -9,8 +9,16 @@ import exhibitionImage3 from 'Images/exhibition-item-3.png';
 import ExhibitionDetailComponent from 'CommonComponents/exhibitionDetailComponent';
 import QuantityComponent from 'CommonComponents/quantityComponent';
 import heartFilledIcon from 'Icons/heart-filled-icon.svg';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class ProductDetailsPage extends Component {
+class ProductDetailsPage extends Component {
+  onClickAddToBag = () => {
+    const { navigateTo } = this.props;
+
+    navigateTo('checkout')
+  }
+
+
   render() {
     return (
       <FullWidthContainer>
@@ -40,7 +48,7 @@ export default class ProductDetailsPage extends Component {
               <QuantityComponent />
 
               <DivRow className={styles.action_button_container}>
-                <DivRow verticalCenter horizontalCenter className={styles.add_to_bag_button}>
+                <DivRow verticalCenter horizontalCenter className={styles.add_to_bag_button} onClick={this.onClickAddToBag}>
                   <img />
                   <div className={styles.button_text}>Add to Bag</div>
                 </DivRow>
@@ -59,3 +67,5 @@ export default class ProductDetailsPage extends Component {
     );
   }
 }
+
+export default navigatorHoc(ProductDetailsPage);

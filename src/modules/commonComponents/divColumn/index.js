@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import styles from './div_column.module.scss';
 
-const DivColumn = ({className='', verticalCenter, horizontalCenter, fillParent, children}) => {
+const DivColumn = ({className='', verticalCenter, horizontalCenter, fillParent, children, ...rest}) => {
   return (
     <div
+     {...rest}
      className={`
       ${styles.flex_column} ${className}
       ${verticalCenter ? styles.justify_center : ''}
