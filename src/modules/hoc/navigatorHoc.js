@@ -10,6 +10,8 @@ const navigatorHoc  = (WrappedComponent) => {
 
       if (pageName == 'plp') {
         push('/product-listing');
+      }else if (pageName == 'pdp') {
+        push('/product-details/adidas-shoes/2314');
       }
     }
 

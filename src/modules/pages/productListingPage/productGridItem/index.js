@@ -4,8 +4,14 @@ import DivRow from 'CommonComponents/divRow';
 import styles from './product_grid_item.module.scss';
 import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
 import heartFilledIcon from 'Icons/heart-filled-icon.svg';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class ProductGridItem extends Component {
+class ProductGridItem extends Component {
+
+  onClickViewProduct = () => {
+    const { navigateTo } = this.props;
+    navigateTo('pdp');
+  }
 
   render() {
      return (
@@ -26,7 +32,7 @@ export default class ProductGridItem extends Component {
            horizontalCenter
            className={styles.view_product_container}>
             <img />
-            <div className={styles.action_text}>
+            <div className={styles.action_text} onClick={this.onClickViewProduct}>
              View Product
             </div>
           </DivRow>
@@ -51,3 +57,5 @@ export default class ProductGridItem extends Component {
      )
   }
 }
+
+export default navigatorHoc(ProductGridItem);

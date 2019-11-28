@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .product_container {
   width: 284px;
@@ -51,6 +52,8 @@
       background: $color-very-light-blue;
       flex: 2;
       border: solid 1px rgba(212, 213, 217, 0.51);
+
+      @include on_click_button;
     }
 
     .bag_container {
