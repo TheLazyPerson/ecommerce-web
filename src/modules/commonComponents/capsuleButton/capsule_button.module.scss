@@ -1,0 +1,11 @@
+@import '~Styles/colors.module';
+
+.capsule_button {
+  min-width: 143px;
+  font-size: 10px;
+  color: white;
+  padding: 8px 25px;
+  border-radius: 50px;
+  background: $capsule-button-color;
+  text-transform: uppercase;
+}

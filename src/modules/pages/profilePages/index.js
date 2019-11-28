@@ -5,10 +5,23 @@ import DivRow from 'CommonComponents/divRow';
 import map from 'lodash/map';
 import styles from './profile_overview.module.scss';
 import {profileListItem} from './profileConstants';
-import SideNav from './sideNav';
+import SideNav from './components/sideNav';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
+class ProfileOverview extends Component {
 
-export default class ProfileOverview extends Component {
+  onClickNavItemClick = (slug) => {
+    const { navigateTo } = this.props;
+
+    if(slug == 'overview') {
+      navigateTo('profile');
+    } else if (slug == 'profile') {
+      navigateTo('profile-details');
+    } else {
+      navigateTo(slug);
+    }
+  }
+
   render() {
     return (
       <SectionedContainer
@@ -25,7 +38,7 @@ export default class ProfileOverview extends Component {
               map(profileListItem, listItem => {
                 if (listItem.title != 'Overview') {
                   return (
-                    <DivColumn verticalCenter horizontalCenter className={styles.grid_item}>
+                    <DivColumn verticalCenter horizontalCenter className={styles.grid_item} onClick={()=>this.onClickNavItemClick(listItem.slug)}>
                       <img className={styles.item_image} src={listItem.blackImage}/>
                       <div className={styles.item_title}>{listItem.title}</div>
                       <div className={styles.item_description}>{listItem.description}</div>
@@ -41,3 +54,5 @@ export default class ProfileOverview extends Component {
     );
   }
 }
+
+export default navigatorHoc(ProfileOverview);

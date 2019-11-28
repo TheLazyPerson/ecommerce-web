@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SectionedContainer from 'CommonContainers/sectionedContainer';
 import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
-import SideNav from '../sideNav';
+import SideNav from '../components/sideNav';
 import styles from './profile_address.module.scss';
 
 export default class ProfileAddress extends Component {

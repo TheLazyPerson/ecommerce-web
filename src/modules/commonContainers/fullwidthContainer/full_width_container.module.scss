@@ -10,6 +10,7 @@
     align-self: stretch;
     margin: 14px;
     background: white;
+    overflow: scroll;
   }
 }
 
@@ -25,6 +26,7 @@
     .app_icon {
       height: 17px;
       margin-right: 32px;
+      cursor: pointer;
     }
   }
 }

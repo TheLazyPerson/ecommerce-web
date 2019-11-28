@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .side_nav_container {
   flex: 1;
@@ -12,23 +13,13 @@
   .nav_item {
     border-bottom: 0.5px solid rgba($color-light-blue-grey, 0.5);
     padding: 8px 14px 8px 20px;
+    @include on_click_button;
 
     .nav_image {
       width: 32px;
       height: 32px;
       opacity: 0.8;
       margin-right: 10px;
-    }
-
-    .is_selected {
-
-      .nav_item {
-        color: $primary-text-color;
-      }
-      
-      .nav_description {
-        color: $primary-text-color;
-      }
     }
 
     .nav_title {
@@ -48,6 +39,18 @@
       font-weight: 100;
       color: white;
       margin-left: auto;
+    }
+  }
+
+  .is_selected {
+    background: white;
+
+    .nav_title {
+      color: $primary-text-color;
+    }
+    
+    .nav_description {
+      color: $primary-text-color;
     }
   }
 }

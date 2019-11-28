@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 $capsule-button-background-color: $color-gold;
 
@@ -23,5 +24,7 @@ $capsule-button-background-color: $color-gold;
     font-weight: 900;
     background-color: $capsule-button-background-color;    
     padding: 12px 47px;
+
+    @include on_click_button;
   }
 }

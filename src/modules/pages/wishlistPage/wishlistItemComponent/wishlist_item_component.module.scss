@@ -1,0 +1,71 @@
+@import '~Styles/colors.module';
+
+.wishlist_item_container {
+  width: 314px;
+  min-height: 398px;
+  border-radius: 2px;
+  border: solid 1px rgba($color-light-blue-grey, 0.5);
+  margin: 10px;
+
+  .wishlist_details_container {
+    padding: 14px 29px;
+
+    .close_icon {
+      width: 15px;
+      height: 15px;
+      align-self: flex-end;
+    }
+
+    .name {
+      font-family: PlayfairDisplay;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      color: $primary-text-color;
+    }
+
+    .description {
+      font-size: 12px;
+      font-weight: 300;
+      text-align: center;
+      color: $primary-text-color;
+      margin: 4px 0px 14px;
+    }
+
+    .image {
+      width: 100%;
+    }
+  }
+
+  .additional_details_container {
+    border: solid 1px $color-light-blue-grey;
+    padding: 5px 29px 13px;
+
+    .title {
+      font-size: 8px;
+      font-weight: 300;
+      color: $primary-text-color;
+    }
+
+    .name {
+      font-family: PlayfairDisplay;
+      font-size: 16px;
+      font-weight: bold;
+      color: $primary-text-color;
+    }
+
+    .time {
+      font-size: 10px;
+      font-weight: 300;
+      color: $color-orangey-red;
+    }
+  }
+
+  .bag_button {
+    background-color: $color-very-light-blue;
+    padding: 10px 0px;
+    font-size: 12px;
+    text-align: center;
+    color: $color-gold;
+  }
+}

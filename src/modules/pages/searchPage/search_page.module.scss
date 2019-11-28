@@ -1,0 +1,42 @@
+@import '~Styles/colors.module';
+
+.search_container {
+  overflow: scroll;
+
+  .page_header {
+    margin: 30px 60px 0px 60px;
+    font-family: PlayfairDisplay;
+    font-size: 36px;
+    font-weight: 900;
+    color: $primary-text-color;
+  }
+
+  .search_list_container {
+    padding-top: 20px;
+    overflow: scroll;
+
+    .section:first-child {
+      margin-top: 0px;
+    }
+
+    .section {
+      margin-top: 20px;
+      align-self: stretch;
+
+      .section_header {
+        padding: 11px 60px;
+        font-size: 16px;
+        color: $primary-text-color;
+        border-bottom: 0.5px solid #ededed;
+      }
+
+      .section_list {
+        padding: 22px 60px;
+        flex-flow: wrap;
+      }
+    }
+
+
+
+  }
+}

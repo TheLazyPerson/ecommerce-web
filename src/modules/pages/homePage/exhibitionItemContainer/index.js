@@ -5,9 +5,16 @@ import exhibitionItem1 from 'Images/exhibition-item-1.jpg';
 import DivRow from 'CommonComponents/divRow';
 import CapsuleText from 'CommonComponents/capsuleText';
 import ExhibitionDetailComponent from 'CommonComponents/exhibitionDetailComponent';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class ExhibitionItemContainer extends Component {
+class ExhibitionItemContainer extends Component {
   
+  onClickViewExhibition = () => {
+    const {navigateTo} = this.props;
+
+    navigateTo('plp');
+  }
+
   render() {
      return(
       <DivRow className={styles.exhibition_item_container}>
@@ -19,9 +26,12 @@ export default class ExhibitionItemContainer extends Component {
           description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
           className={styles.details_container}
         >
-          <div className={styles.view_exhibition_button}>View Exibition</div>
+          <div className={styles.view_exhibition_button} onClick={this.onClickViewExhibition}>View Exibition</div>
         </ExhibitionDetailComponent>
       </DivRow>
      )
   }
 }
+
+
+export default navigatorHoc(ExhibitionItemContainer);

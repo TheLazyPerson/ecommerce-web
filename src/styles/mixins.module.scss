@@ -1,0 +1,9 @@
+@mixin on_click_button {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
