@@ -47,20 +47,6 @@ const navigatorHoc  = (WrappedComponent) => {
         default:
           push('/');
       }
-
-      // if (pageName == 'plp') {
-      //   push('/product-listing');
-      // } else if (pageName == 'pdp') {
-      //   push('/product-details/adidas-shoes/2314');
-      // } else if (pageName == 'checkout') {
-      //   push('/checkout');
-      // } else if(pageName == 'signin') {
-      //   push('/signin');
-      // } else if(pageName == 'profile') {
-      //   push('/profile');
-      // } else {
-      //   push('/');
-      // }
     }
 
     render() {      
