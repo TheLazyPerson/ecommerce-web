@@ -4,6 +4,7 @@ import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
 import SideNav from '../components/sideNav';
 import styles from './profile_orders.module.scss';
+import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
 
 export default class ProfileOrders extends Component {
   render() {
@@ -19,7 +20,7 @@ export default class ProfileOrders extends Component {
 
           </DivRow>
           <DivRow className={styles.order_item_container}>
-            <img className={styles.order_image}/>
+            <img className={styles.order_image} src={exhibitionImage1}/>
             <DivColumn className={styles.order_detail_container}>
               <div className={styles.order_exhibition}>Handcrafted Watches, Products</div>             
               <div className={styles.order_name}>Perfumes</div>
