@@ -4,8 +4,15 @@ import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
 import SideNav from '../components/sideNav';
 import styles from './profile_orders.module.scss';
+import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class ProfileOrders extends Component {
+class ProfileOrders extends Component {
+  onClickProductViewDetails = () => {
+    const { navigateTo } = this.props;
+    navigateTo('pdp');
+  }
+
   render() {
      return (
       <SectionedContainer
@@ -19,13 +26,13 @@ export default class ProfileOrders extends Component {
 
           </DivRow>
           <DivRow className={styles.order_item_container}>
-            <img className={styles.order_image}/>
+            <img className={styles.order_image} src={exhibitionImage1}/>
             <DivColumn className={styles.order_detail_container}>
               <div className={styles.order_exhibition}>Handcrafted Watches, Products</div>             
               <div className={styles.order_name}>Perfumes</div>
               <div className={styles.order_price}>KD 3.99</div>
               <div className={styles.order_state}>DELIVERED</div>
-                <div className={styles.view_order_button}>View details</div>
+              <div className={styles.view_order_button} onClick={this.onClickProductViewDetails}>View details</div>
             </DivColumn>
           </DivRow>
         </DivColumn>
@@ -33,3 +40,5 @@ export default class ProfileOrders extends Component {
      )
   }
 }
+
+export default navigatorHoc(ProfileOrders);

@@ -5,8 +5,14 @@ import DivColumn from 'CommonComponents/divColumn';
 import styles from './sectioned_container.module.scss';
 import appIcon from 'Icons/app-icon-white.svg';
 import LanguageSelect from 'CommonComponents/languageSelect';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
-export default class SectionedContainer extends Component {
+class SectionedContainer extends Component {
+
+  onClickAppIcon = () => {
+    const { navigateTo } = this.props;
+    navigateTo('');
+  }
 
   render() {
     const { 
@@ -19,7 +25,7 @@ export default class SectionedContainer extends Component {
        <DivRow className={styles.page_container}>
          <DivColumn className={styles.left_container}>
             <DivRow className={styles.header_container}>
-              <img src={appIcon} className={styles.app_icon}/>
+              <img src={appIcon} className={styles.app_icon} onClick={this.onClickAppIcon}/>
             </DivRow>
             
             { !isAbsoluteContent && (
@@ -53,3 +59,5 @@ export default class SectionedContainer extends Component {
      )
   }
 }
+
+export default navigatorHoc(SectionedContainer);

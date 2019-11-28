@@ -18,7 +18,7 @@ import CheckoutPage from './pages/checkoutPage';
 import ForgotPasswordPage from './pages/forgotPasswordPage';
 
 
-const App = () => {
+const App = ({}) => {
   return (
     <Switch>
       <Route exact path="/" component={HomePage}/>
