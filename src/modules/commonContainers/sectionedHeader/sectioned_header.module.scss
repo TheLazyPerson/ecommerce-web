@@ -11,6 +11,10 @@ $bag-count-background: $color-pale;
     flex: 1;
     position: relative;
 
+    .hide_search_bar {
+      display: none;
+    }
+
     .search_result_container {
       position: absolute;
       top: 0;
@@ -20,9 +24,23 @@ $bag-count-background: $color-pale;
       background: white;
       color: $primary-text-color;
       box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
+      z-index: 2;
 
       .search_item {
         padding: 6px 19px;
+        
+        &:hover {
+          cursor: pointer;
+          background: $primary-text-color;
+  
+          .title {
+            color: white;
+          }
+  
+          .description {
+            color: white;
+          }
+        }
 
         .title {
           font-size: 14px;
@@ -33,6 +51,10 @@ $bag-count-background: $color-pale;
           font-size: 10px;
           font-weight: 300;
         }
+      }
+
+      .divider {
+        background: #eeeeee;
       }
     }
 

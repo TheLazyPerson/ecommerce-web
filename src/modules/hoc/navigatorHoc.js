@@ -43,7 +43,10 @@ const navigatorHoc  = (WrappedComponent) => {
 
         case 'settings':
           return push('/profile/settings');
-          
+        
+        case 'search':
+          return push(`/search/${data.searchType.toLowerCase()}?query=${data.searchText}`);
+
         default:
           push('/');
       }

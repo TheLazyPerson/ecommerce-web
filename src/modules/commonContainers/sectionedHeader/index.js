@@ -10,8 +10,17 @@ import arrowDownIcon from 'Icons/arrow-down-icon-black.svg';
 import navigatorHoc from 'Hoc/navigatorHoc';
 import profileIconBlack from 'Icons/profile-icon-black.svg';
 import HorizontalBorder from 'CommonComponents/horizontalBorder';
+import { searchTypes } from 'Constants/searchConstants';
 
 class SectionedHeader extends Component {
+
+  clickedOnSearchItem = false;
+
+  state = {
+    searchText: '',
+    showSearchResult: false,
+  };
+
   onClickProfile = () => {
     const { navigateTo } = this.props;
     navigateTo('signin');
@@ -27,32 +36,94 @@ class SectionedHeader extends Component {
     navigateTo('checkout');
   }
 
+  /* --------------------------------------------------Search Input events------------------------------------------- */
+
+  onSearchItemSelected = (type) => {
+    this.clickedOnSearchItem = true;
+    this.navigateToSearchPage(type);
+  }
+
+  onSubmitSearch = () => {
+    this.navigateToSearchPage(searchTypes.ALL);
+  }
+
+  navigateToSearchPage = (searchType) => {
+    const { navigateTo } = this.props;
+    const { searchText } = this.state;
+
+    this.setState({
+      showSearchResult: false
+    });
+
+    navigateTo('search', {
+      searchType,
+      searchText,
+    });
+  }
+
+  onChangeSearchText = (event) => {
+    const text = event.target.value;
+
+    this.setState({
+      searchText: text,
+    });
+  }
+
+  showSearchBar = () => {
+    const { showSearchResult } = this.state;
+
+    if(!showSearchResult) {
+      this.setState({showSearchResult: true});
+    }
+  }
+
+  hideSearchBar = () => {
+    const { showSearchResult } = this.state;
+    setTimeout(()=>{
+      if (showSearchResult && !this.clickedOnSearchItem ) {
+        this.setState({
+          showSearchResult: false,
+        });
+      }
+    }, 300);    
+  }
+
   render() {
+    const { searchText, showSearchResult } = this.state;
+    
      return (
        <DivRow className={styles.header_container}>
          <div className={styles.search_container}>
-           <DivRow className={styles.search_wrapper}>
-            <form style={{flex:1}}>
-              <input type="text" name="firstname" placeholder="Search" className={styles.search_input}/>
+          <DivRow className={styles.search_wrapper}>
+            <form style={{flex:1}} onSubmit={this.onSubmitSearch}>
+              <input
+                type="text"
+                name="firstname"
+                placeholder="Search"
+                className={styles.search_input}
+                onChange={this.onChangeSearchText}
+                onFocus={this.showSearchBar}
+                onBlur={this.hideSearchBar}
+              />
             </form>
             <img src={searchIcon} className={styles.search_icon}/>
            </DivRow>
-           <DivColumn className={styles.search_result_container}>
+           <DivColumn className={`${styles.search_result_container} ${(searchText && showSearchResult) ? '' : styles.hide_search_bar }`}>
 
-              <DivRow className={styles.search_item}>
+              <DivRow className={styles.search_item} onClick={()=>this.onSearchItemSelected(searchTypes.EXHIBITIONS)}>
                 <DivColumn>
                   <div className={styles.title}>Search Exhibitions</div>
-                  <div className={styles.description}>sadkjasdjkfh</div>
+                  <div className={styles.description}>{searchText}</div>
                 </DivColumn>
                 <img /> {/*Icon*/}
               </DivRow>
               
-              <HorizontalBorder />
+              <HorizontalBorder className={styles.divider} />
 
-              <DivRow className={styles.search_item}>
+              <DivRow className={styles.search_item} onClick={()=>this.onSearchItemSelected(searchTypes.PRODUCTS)}>
                 <DivColumn>
                   <div className={styles.title}>Search Products</div>
-                  <div className={styles.description}>sadkjasdjkfh</div>
+                  <div className={styles.description}>{searchText}</div>
                 </DivColumn>
                 <img /> {/*Icon*/}
               </DivRow>

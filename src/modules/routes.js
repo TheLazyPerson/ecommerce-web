@@ -34,7 +34,7 @@ const App = ({}) => {
       <Route exact path="/profile/details" component={ProfileDetails} />
       <Route exact path="/profile/helpcenter" component={ProfileHelpCenter} />
       <Route exact path="/wishlist" component={WishlistPage} />
-      <Route exact path="/search" component={SearchPage} />
+      <Route exact path="/search/:searchType?" component={SearchPage} />
       <Route exact path="/checkout" component={CheckoutPage} />
       <Route component={PageNotFound} />
     </Switch>
