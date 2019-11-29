@@ -11,14 +11,13 @@ const topContainerHoc  = (WrappedComponent) => {
   class topContainer extends Component {
 
     componentWillReceiveProps(props) {
-      const { flashMessageReducer: {showMessage} } = this.props;
+      const { flashMessageReducer: {showMessage}, hideFlashMessage } = this.props;
        
       if (showMessage) {
-        // setTimeout(()=>{
-
-        // })
+        setTimeout(()=>{
+          hideFlashMessage();
+        }, 2000);
       }
-
     }
 
     render() {
@@ -36,10 +35,15 @@ const topContainerHoc  = (WrappedComponent) => {
                 <img src={circularLoader} className={styles.loader} />
               </DivColumn>  
             )
+          } 
+
+          {
+            showMessage && (
+              <DivRow className={styles.flash_message_container}>
+                {message}
+              </DivRow>  
+            )
           }
-          {/* <DivRow>
-            Flash message component
-          </DivRow> */}
         </DivColumn>
       );
     }
