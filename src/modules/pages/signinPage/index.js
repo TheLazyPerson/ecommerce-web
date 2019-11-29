@@ -5,6 +5,9 @@ import styles from './signin_page.module.scss';
 import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
 import navigatorHoc from 'Hoc/navigatorHoc';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { postSigninAction } from 'Core/modules/signin/actions/signinActions';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -13,9 +16,14 @@ class SignInPage extends Component {
 
   onSubmit = (form) => {
     form.preventDefault();
-    
-    const { navigateTo } = this.props;
-    navigateTo('profile');
+    const { postSigninAction } = this.props;
+
+    postSigninAction({
+      email: "buisness@gmail.com",
+      password: "123",
+    }).then((response) => {
+      console.log('something :', response);
+    });
   }
 
   render() {
@@ -40,4 +48,15 @@ class SignInPage extends Component {
   }
 }
 
-export default navigatorHoc(SignInPage);
+
+const mapStateToProps = state => {
+  return {}
+}
+
+const mapDispathToProps = dispatch => {
+  return {
+    postSigninAction: bindActionCreators (postSigninAction, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispathToProps)(navigatorHoc(SignInPage));
