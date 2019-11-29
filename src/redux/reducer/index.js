@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router'
+import loaderReducer from './loaderReducer';
 
 const appReducer = (history) => combineReducers({
 router: connectRouter(history),
+loaderReducer,
 })
 
 /* const rootReducer = ( state, action ) => {

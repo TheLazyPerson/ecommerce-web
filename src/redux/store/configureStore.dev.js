@@ -8,6 +8,7 @@ import {apiMiddleware} from 'redux-api-middleware';
 //TODO create alias for ecommerce
 import apiAuthInjector from 'Core/middleware/authInjector';
 import apiErrorHandler from 'Core/middleware/apiError';
+import loaderMiddleware from '../middleware/loaderMiddleware';
 
 export const history = createBrowserHistory();
 export const configureStore = (initialState) => {
@@ -23,6 +24,7 @@ export const configureStore = (initialState) => {
     apiAuthInjector,
     apiMiddleware,
     apiErrorHandler,
+    loaderMiddleware,
     createLogger(),
     )));
   const enhancer = composeEnhancers(...enhancers);
