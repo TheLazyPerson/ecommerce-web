@@ -16,7 +16,7 @@ import WishlistPage from './pages/wishlistPage';
 import SearchPage from './pages/searchPage';
 import CheckoutPage from './pages/checkoutPage';
 import ForgotPasswordPage from './pages/forgotPasswordPage';
-
+import topContainerHoc from 'Hoc/topContainerHoc';
 
 const App = ({}) => {
   return (
@@ -41,4 +41,4 @@ const App = ({}) => {
   );
 }
 
-export default App;
+export default topContainerHoc(App);

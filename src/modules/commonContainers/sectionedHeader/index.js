@@ -104,6 +104,7 @@ class SectionedHeader extends Component {
                 onChange={this.onChangeSearchText}
                 onFocus={this.showSearchBar}
                 onBlur={this.hideSearchBar}
+                autocomplete="autocomplete_off_hack_xfr4!k"
               />
             </form>
             <img src={searchIcon} className={styles.search_icon}/>
