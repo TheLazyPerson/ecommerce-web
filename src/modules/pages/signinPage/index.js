@@ -10,6 +10,12 @@ import { bindActionCreators } from 'redux';
 import { postSigninAction } from 'Core/modules/signin/actions/signinActions';
 
 class SignInPage extends Component {
+
+  state = {
+    userName: '',
+    password: '',
+  }
+  
   constructor(props) {
     super(props);
   }
@@ -17,23 +23,42 @@ class SignInPage extends Component {
   onSubmit = (form) => {
     form.preventDefault();
     const { postSigninAction } = this.props;
+    const { userName, password } = this.state;
 
-    postSigninAction({
-      email: "buisness@gmail.com",
-      password: "123",
-    }).then((response) => {
-      console.log('something :', response);
-    });
+    if (userName && password) {
+      postSigninAction({
+        email: userName, // "buisness@gmail.com",
+        password,
+      }).then((response) => {
+        // save to local storage.
+      });        
+    }
   }
 
   render() {
+    const { userName, password } = this.state;
+
      return (
        <FullWidthContainer>
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
           <div className={styles.signin_title_text}>SignIn</div>
           <form className={styles.form_container} onSubmit={this.onSubmit}>
-           <InputTextComponent placeholder="Username" className={styles.input_text} />
-           <InputTextComponent placeholder="Password" className={styles.input_text} type='password' />
+
+           <InputTextComponent
+             placeholder="Username"
+             className={styles.input_text}
+             value={userName}
+             onChange={event=>this.setState({userName: event.target.value})}
+            />
+
+           <InputTextComponent
+            placeholder="Password"
+            className={styles.input_text}
+            type='password'
+            value={password}
+            onChange={event=>this.setState({password: event.target.value})}
+            />
+           
            <InputCheckbox text="Remember me"/>
            <input type='submit' value="Sign in" className={styles.input_submit}/>
           </form>

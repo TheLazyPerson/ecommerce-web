@@ -10,10 +10,11 @@ import { hideFlashMessage } from 'Redux/actions/flashMessageActions';
 const topContainerHoc  = (WrappedComponent) => {
   class topContainer extends Component {
 
-    componentWillReceiveProps(props) {
-      const { flashMessageReducer: {showMessage}, hideFlashMessage } = this.props;
-       
+    componentWillReceiveProps(nextProps) {
+      const { flashMessageReducer: {showMessage}, hideFlashMessage } = nextProps;
+
       if (showMessage) {
+        
         setTimeout(()=>{
           hideFlashMessage();
         }, 2000);

@@ -9,6 +9,7 @@ import {apiMiddleware} from 'redux-api-middleware';
 import apiAuthInjector from 'Core/middleware/authInjector';
 import apiErrorHandler from 'Core/middleware/apiError';
 import loaderMiddleware from '../middleware/loaderMiddleware';
+import userErrorMiddleware from '../middleware/userErrorMiddleware';
 
 export const history = createBrowserHistory();
 export const configureStore = (initialState) => {
@@ -25,6 +26,7 @@ export const configureStore = (initialState) => {
     apiMiddleware,
     apiErrorHandler,
     loaderMiddleware,
+    userErrorMiddleware,
     createLogger(),
     )));
   const enhancer = composeEnhancers(...enhancers);

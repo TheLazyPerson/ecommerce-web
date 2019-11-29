@@ -6,13 +6,13 @@ export default class InputTextComponent extends Component {
         super(props);
   }
   render() {
-    const { placeholder, className, type } = this.props;
+    const { className, type } = this.props;
     
     return (
      <input
+      {...this.props}
       type={type ? type: 'text'}
       className={`${styles.input_text} ${className ? className : ''}`}
-      placeholder={placeholder}
      />
     )
   }
