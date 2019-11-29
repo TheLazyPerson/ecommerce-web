@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router'
 import loaderReducer from './loaderReducer';
+import flashMessageReducer from './flashMessageReducer';
 
 const appReducer = (history) => combineReducers({
 router: connectRouter(history),
 loaderReducer,
+flashMessageReducer,
 })
 
 /* const rootReducer = ( state, action ) => {
