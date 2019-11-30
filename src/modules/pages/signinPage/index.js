@@ -8,6 +8,7 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { postSigninAction } from 'Core/modules/signin/actions/signinActions';
+import {CookieService} from 'Utils/cookieService';
 
 class SignInPage extends Component {
 
@@ -30,7 +31,11 @@ class SignInPage extends Component {
         email: userName, // "buisness@gmail.com",
         password,
       }).then((response) => {
-        // save to local storage.
+        const { data, code } = response.payload;
+        debugger
+        if (code == 200 || code == 201) {
+          CookieService.set('userAuth', data);
+        }
       });        
     }
   }
