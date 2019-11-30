@@ -8,7 +8,6 @@ const navigatorHoc  = (WrappedComponent) => {
     navigateTo = (pageName, data=null) => {
       const {push} = this.props.history;
 
-
       switch(pageName) {
         case 'plp':
           push('/product-listing');

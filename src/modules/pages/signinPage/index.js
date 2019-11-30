@@ -8,7 +8,8 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { postSigninAction } from 'Core/modules/signin/actions/signinActions';
-import {CookieService} from 'Utils/cookieService';
+import { CookieService } from 'Utils/cookieService';
+import { USER_DATA_COOKIE } from 'Constants/cookieConstants';
 
 class SignInPage extends Component {
 
@@ -21,9 +22,23 @@ class SignInPage extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const { signInReducer: { userDetails }, navigateTo } = this.props;
+    if (userDetails) {
+      navigateTo('');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { signInReducer: { userDetails }, navigateTo } = nextProps;
+    if (userDetails) {
+      navigateTo('');
+    }
+  }
+
   onSubmit = (form) => {
     form.preventDefault();
-    const { postSigninAction } = this.props;
+    const { postSigninAction, navigateTo } = this.props;
     const { userName, password } = this.state;
 
     if (userName && password) {
@@ -33,9 +48,10 @@ class SignInPage extends Component {
       }).then((response) => {
         const { data, code } = response.payload;
         if (code == 200 || code == 201) {
-          CookieService.set('userAuth', data);
+          CookieService.set(USER_DATA_COOKIE, data);
+          navigateTo('');
         }
-      });        
+      });
     }
   }
 
@@ -79,7 +95,9 @@ class SignInPage extends Component {
 
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    signInReducer: state.signInReducer,
+  }
 }
 
 const mapDispathToProps = dispatch => {

@@ -6,16 +6,28 @@ import DivRow from 'CommonComponents/divRow';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideFlashMessage } from 'Redux/actions/flashMessageActions';
+import { setUserDataAction } from 'Core/modules/signin/actions/signinActions';
+import { CookieService } from 'Utils/cookieService';
+import { USER_DATA_COOKIE } from 'Constants/cookieConstants';
 
 const topContainerHoc  = (WrappedComponent) => {
   class topContainer extends Component {
 
+    componentDidMount() {
+      //Sets user data from cookie to reducer
+      const { setUserDataAction } = this.props;
+      const userData = CookieService.getJSON(USER_DATA_COOKIE);
+
+      if (userData) {        
+        setUserDataAction(userData);
+      }
+    }
+
     componentWillReceiveProps(nextProps) {
       const { flashMessageReducer: {showMessage}, hideFlashMessage } = nextProps;
 
-      if (showMessage) {
-        
-        setTimeout(()=>{
+      if (showMessage) {      
+        setTimeout(()=> {
           hideFlashMessage();
         }, 2000);
       }
@@ -59,6 +71,7 @@ const topContainerHoc  = (WrappedComponent) => {
   const mapDispathToProps = dispatch => {
     return {
       hideFlashMessage: bindActionCreators (hideFlashMessage, dispatch),
+      setUserDataAction: bindActionCreators(setUserDataAction, dispatch),
     };
   };
   

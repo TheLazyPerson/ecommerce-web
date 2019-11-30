@@ -16,7 +16,7 @@ let jsCookie = Cookies.withConverter({
 });
 
 export const CookieService = {
-  set(name, value, additional){
+  set(name, value, additional) {
     /*
     * @name: String, Its an cookie value
     * @value: String/Json, we can pass string value and json as well, json will automatically convert to Stringify
