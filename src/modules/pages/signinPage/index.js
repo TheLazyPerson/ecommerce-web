@@ -32,7 +32,6 @@ class SignInPage extends Component {
         password,
       }).then((response) => {
         const { data, code } = response.payload;
-        debugger
         if (code == 200 || code == 201) {
           CookieService.set('userAuth', data);
         }
