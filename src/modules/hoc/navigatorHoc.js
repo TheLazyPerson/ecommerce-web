@@ -8,7 +8,6 @@ const navigatorHoc  = (WrappedComponent) => {
     navigateTo = (pageName, data=null) => {
       const {push} = this.props.history;
 
-
       switch(pageName) {
         case 'plp':
           push('/product-listing');
@@ -43,7 +42,10 @@ const navigatorHoc  = (WrappedComponent) => {
 
         case 'settings':
           return push('/profile/settings');
-          
+        
+        case 'search':
+          return push(`/search/${data.searchType.toLowerCase()}?query=${data.searchText}`);
+
         default:
           push('/');
       }

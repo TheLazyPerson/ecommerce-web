@@ -310,6 +310,9 @@ module.exports = function(webpackEnv) {
         Images: path.resolve(__dirname, '../src/assets/images'),
         Icons: path.resolve(__dirname, '../src/assets/icons'),
         Hoc: path.resolve(__dirname, '../src/modules/hoc'),
+        Constants: path.resolve(__dirname, '../src/constants'),
+        Redux: path.resolve(__dirname, '../src/redux'),
+        Utils: path.resolve(__dirname, '../src/utils'),
         
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/

@@ -16,7 +16,7 @@ import WishlistPage from './pages/wishlistPage';
 import SearchPage from './pages/searchPage';
 import CheckoutPage from './pages/checkoutPage';
 import ForgotPasswordPage from './pages/forgotPasswordPage';
-
+import topContainerHoc from 'Hoc/topContainerHoc';
 
 const App = ({}) => {
   return (
@@ -34,11 +34,11 @@ const App = ({}) => {
       <Route exact path="/profile/details" component={ProfileDetails} />
       <Route exact path="/profile/helpcenter" component={ProfileHelpCenter} />
       <Route exact path="/wishlist" component={WishlistPage} />
-      <Route exact path="/search" component={SearchPage} />
+      <Route exact path="/search/:searchType?" component={SearchPage} />
       <Route exact path="/checkout" component={CheckoutPage} />
       <Route component={PageNotFound} />
     </Switch>
   );
 }
 
-export default App;
+export default topContainerHoc(App);

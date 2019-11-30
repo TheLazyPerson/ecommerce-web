@@ -78,7 +78,7 @@ class SideNav extends Component {
               
               return (
                 <DivRow 
-                  className={`${isSelected ? styles.is_selected: ''} ${styles.nav_item}`}
+                  className={`${styles.nav_item} ${isSelected ? styles.is_selected: ''}`}
                   onClick={() => this.onClickNavItemClick(listItem.slug)}
                 >
                   <img className={styles.nav_image} src={isSelected? listItem.blackImage: listItem.whiteImage} />

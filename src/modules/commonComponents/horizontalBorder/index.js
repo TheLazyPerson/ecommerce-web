@@ -6,7 +6,7 @@ export default class HorizontalBorder extends Component {
     const { className } = this.props;
 
      return(
-       <div className={`${styles.horizontal_border_div} ${className}`} />
+       <div className={`${styles.horizontal_border_div} ${className?className:''}`} />
      )
   }
 }
