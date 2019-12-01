@@ -9,22 +9,25 @@ import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
 import { Form, Field } from 'react-final-form';
 import { postSignupAction } from 'Core/modules/signup/actions';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
 class SignUpPage extends Component {
-  constructor(props) {
-    super(props);
+
+  componentWillReceiveProps(nextProps) {
+    const { signInReducer: { userDetails }, navigateTo } = nextProps;
+    if (userDetails) {
+      navigateTo('');
+    }
   }
 
   onSubmit = (form) => {
-    form.preventDefault();
-    console.log('values', form);
-    
+    form.preventDefault();    
     const { postSignupAction } = this.props;
 
     postSignupAction({
       "first_name": "Sample",
       "last_name": "Lastname",
-      "email": "sample24561234561273@mail.com",
+      "email": "sample24561234561273@gmail.com",
       "password": "omkomawar123",
       "password_confirmation": "omkomawar123"
     }).then(value=>{
@@ -33,6 +36,7 @@ class SignUpPage extends Component {
       console.log('fError: ',error)
     });
   }
+  
 
   /* 
   const MyForm = () => (
@@ -105,13 +109,14 @@ class SignUpPage extends Component {
           </div>
         </DivColumn>
        </FullWidthContainer>
-     )
+     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    signupReducer: state.signupReducer
+    signupReducer: state.signupReducer,
+    signInReducer: state.signInReducer,
   }
 }
 
@@ -121,4 +126,4 @@ const mapDispathToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(SignUpPage);
+export default connect(mapStateToProps, mapDispathToProps)(navigatorHoc(SignUpPage));

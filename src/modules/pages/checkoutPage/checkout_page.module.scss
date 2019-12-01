@@ -33,7 +33,7 @@
     }
 
     .table_content_container {
-      // overflow: scroll;
+      overflow: scroll;
     }
   }
 
@@ -41,7 +41,7 @@
   .order_summary_container {
     width: 360px;
     align-self: stretch;
-    padding: 15px 30px 30px;
+    padding: 15px 30px 15px;
     // overflow: scroll;
 
     border-radius: 10px;
@@ -55,7 +55,6 @@
       line-height: 1.56;
       color: white;
       align-self: center;
-      margin: 15px 0px;
     }
 
     .coupon_input {

@@ -8,7 +8,6 @@ const navigatorHoc  = (WrappedComponent) => {
     navigateTo = (pageName, data=null) => {
       const {push} = this.props.history;
 
-
       switch(pageName) {
         case 'plp':
           push('/product-listing');
@@ -43,24 +42,13 @@ const navigatorHoc  = (WrappedComponent) => {
 
         case 'settings':
           return push('/profile/settings');
-          
+        
+        case 'search':
+          return push(`/search/${data.searchType.toLowerCase()}?query=${data.searchText}`);
+
         default:
           push('/');
       }
-
-      // if (pageName == 'plp') {
-      //   push('/product-listing');
-      // } else if (pageName == 'pdp') {
-      //   push('/product-details/adidas-shoes/2314');
-      // } else if (pageName == 'checkout') {
-      //   push('/checkout');
-      // } else if(pageName == 'signin') {
-      //   push('/signin');
-      // } else if(pageName == 'profile') {
-      //   push('/profile');
-      // } else {
-      //   push('/');
-      // }
     }
 
     render() {      

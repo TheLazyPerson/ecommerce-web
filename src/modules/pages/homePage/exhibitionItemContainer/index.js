@@ -16,10 +16,10 @@ class ExhibitionItemContainer extends Component {
   }
 
   render() {
-     return(
-      <DivRow className={styles.exhibition_item_container}>
-        <img src={exhibitionItem1} className={styles.exhibition_image}/>
-        <ExhibitionDetailComponent 
+     return (
+      <DivRow className={styles.exhibition_item_container} class="swiper-slide">
+        <img src={exhibitionItem1} className={styles.exhibition_image} />
+        <ExhibitionDetailComponent
           title="Exibition 1"
           name="The Craft Show"
           tags={["watches","craft","crafted"]}
@@ -32,6 +32,5 @@ class ExhibitionItemContainer extends Component {
      )
   }
 }
-
 
 export default navigatorHoc(ExhibitionItemContainer);

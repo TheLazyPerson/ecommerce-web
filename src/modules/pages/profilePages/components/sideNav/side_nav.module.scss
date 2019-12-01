@@ -22,17 +22,6 @@
       margin-right: 10px;
     }
 
-    .is_selected {
-
-      .nav_item {
-        color: $primary-text-color;
-      }
-      
-      .nav_description {
-        color: $primary-text-color;
-      }
-    }
-
     .nav_title {
       font-size: 12px;
       font-weight: bold;
@@ -50,6 +39,18 @@
       font-weight: 100;
       color: white;
       margin-left: auto;
+    }
+  }
+
+  .is_selected {
+    background: white;
+
+    .nav_title {
+      color: $primary-text-color;
+    }
+    
+    .nav_description {
+      color: $primary-text-color;
     }
   }
 }

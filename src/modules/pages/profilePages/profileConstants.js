@@ -5,6 +5,7 @@ import addressBlackIcon from 'Icons/address-icon-black.svg';
 import profileBlackIcon from 'Icons/profile-icon-black.svg';
 import settingsBlackIcon from 'Icons/settings-icon-black.svg';
 import logoutBlackIcon from 'Icons/logout-icon-black.svg';
+import overviewBlackIcon from 'Icons/overview-icon-black.svg';
 
 import orderWhiteIcon from 'Icons/orders-icon-white.svg';
 import helpCenterWhiteIcon from 'Icons/help-center-icon-white.svg';
@@ -17,6 +18,7 @@ import overviewWhiteIcon from 'Icons/overview-icon-white.svg';
 export const profileListItem = [
   {
     whiteImage: overviewWhiteIcon,
+    blackImage: overviewBlackIcon,
     title: 'Overview',
     slug: 'overview',
     description: 'See everyting at a glance',
