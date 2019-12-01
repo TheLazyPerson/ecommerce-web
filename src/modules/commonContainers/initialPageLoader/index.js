@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import infiniteLoader from "Icons/circular-loader.gif";
+import DivColumn from 'CommonComponents/divColumn';
+import DivRow from 'CommonComponents/divRow';
+import { isTypeSuccess } from 'Core/utils/validationHelper';
+import styles from './initial_page_loader.module.scss';
 
 class InitialPageLoader extends Component {
   state = {

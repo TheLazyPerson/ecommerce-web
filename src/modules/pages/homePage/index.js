@@ -15,17 +15,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import 'swiper/css/swiper.css';
 import { getExhibitionListAction } from 'Core/modules/homepage/homePageActions';
+import InitialPageLoader from 'CommonContainers/initialPageLoader';
 import map from 'lodash/map';
 
 class HomePage extends Component {
 
   state = {
     currentSlide: 0,
-  }
-
-  componentDidMount() {
-    const { getExhibitionListAction } = this.props;
-    getExhibitionListAction();
   }
 
   render() {
@@ -36,7 +32,7 @@ class HomePage extends Component {
      }
     }    
     const { currentSlide } = this.state;
-    const { homePageReducer : {exhibitionList} } = this.props;
+    const { homePageReducer : {exhibitionList}, getExhibitionListAction } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
     const isLeftButtonClickable = currentSlide != 0;
@@ -54,19 +50,24 @@ class HomePage extends Component {
              <div style={{
                 flex: 1,
                 alignSelf: 'stretch',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                display: 'flex'
               }}>
-                <Swiper {...params} getSwiper={swiper=> { this.swiper=swiper}}>
-                  {
-                    map(exhibitionList, (exhibition, index) => {
-                      return (
-                        <div className={styles.swiper_item} key={index}>
-                          <ExhibitionItemContainer />
-                        </div>
-                      )
-                    })
-                  }
-                </Swiper>
+                <InitialPageLoader 
+                  initialPageApi={getExhibitionListAction}
+                >
+                  <Swiper {...params} getSwiper={swiper=> { this.swiper=swiper}}>
+                    {
+                      map(exhibitionList, (exhibition, index) => {
+                        return (
+                          <div className={styles.swiper_item} key={index}>
+                            <ExhibitionItemContainer />
+                          </div>
+                        )
+                      })
+                    }
+                  </Swiper>
+                </InitialPageLoader>
              </div>             
            </DivRow>
            
