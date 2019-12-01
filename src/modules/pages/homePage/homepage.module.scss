@@ -56,6 +56,10 @@
       align-items: center;
       padding: 0px 67px 0px 130px;
 
+      .non_clickable {
+        opacity: 0.23;
+      }
+
       .arrow_text {
         font-size: 18px;
         font-weight: 500;
@@ -63,10 +67,11 @@
         color: $primary-text-color;
         display: flex;
         align-items: center;
-
+        cursor: pointer;
         
         .arrow_left {
           margin-right: 9.5px;
+          transform: scaleX(-1);
         }
 
         .arrow_right {
