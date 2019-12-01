@@ -11,9 +11,16 @@ import arrowLeftIcon from 'Icons/arrow-left-icon-black.svg';
 import arrowRightIcon from 'Icons/arrow-right-icon-black.svg';
 import shareIcon from 'Icons/share-icon-black.svg';
 import LanguageSelect from 'CommonComponents/languageSelect';
+import Swiper from 'react-id-swiper';
+import 'swiper/css/swiper.css';
 
 export default class HomePage extends Component {
+
   render() {
+    const params = {
+      containerClass: 'custom_container'
+    }
+
      return (
        <SectionedContainer isAbsoluteContent>
          <DivColumn className={styles.home_container}>
@@ -23,7 +30,22 @@ export default class HomePage extends Component {
                 <div className={styles.social_item_container}><img src={socialTwitterIcon} className={styles.social_image}/></div>
                 <div className={styles.social_item_container}><img src={socialInstagramIcon} className={styles.social_image}/></div>
              </DivColumn>
-             <ExhibitionItemContainer />
+             <div style={{
+                flex: 1,
+                alignSelf: 'stretch',
+                overflow: 'hidden'
+              }}>
+                <Swiper {...params}>
+                  <div className={styles.swiper_item}>
+                    <ExhibitionItemContainer />
+                  </div>
+                  <div className={styles.swiper_item}>
+                    <ExhibitionItemContainer />
+                  </div>
+                </Swiper>
+             </div>
+             
+             {/* <ExhibitionItemContainer /> */}
            </DivRow>
            
            <DivRow className={styles.footer_container}>
@@ -33,8 +55,8 @@ export default class HomePage extends Component {
 
              <DivRow className={styles.right_container}>
               <DivRow>
-                <div className={styles.arrow_text}> <img src={arrowLeftIcon} className={styles.arrow_left}/> Prev </div>
-                <div className={styles.arrow_text}> Next <img src={arrowRightIcon} className={styles.arrow_right}/></div>
+                <div className={styles.arrow_text} className="prev-button"> <img src={arrowLeftIcon} className={styles.arrow_left}/> Prev </div>
+                <div className={styles.arrow_text} className="next-button"> Next <img src={arrowRightIcon} className={styles.arrow_right}/></div>
               </DivRow>
               <div className={styles.pagination_count_container}>
                 <span className={styles.pagination_current_count}>01</span>
