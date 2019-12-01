@@ -18,7 +18,10 @@ export default class HomePage extends Component {
 
   render() {
     const params = {
-      containerClass: 'custom_container'
+      containerClass: 'custom_container',
+      on: {
+        'slideChange': () => this.setState({currentSlide: this.swiper.realIndex})
+     }
     }
 
      return (
@@ -35,7 +38,7 @@ export default class HomePage extends Component {
                 alignSelf: 'stretch',
                 overflow: 'hidden'
               }}>
-                <Swiper {...params}>
+                <Swiper {...params} getSwiper={swiper=> { this.swiper=swiper}}>
                   <div className={styles.swiper_item}>
                     <ExhibitionItemContainer />
                   </div>
@@ -55,8 +58,8 @@ export default class HomePage extends Component {
 
              <DivRow className={styles.right_container}>
               <DivRow>
-                <div className={styles.arrow_text} className="prev-button"> <img src={arrowLeftIcon} className={styles.arrow_left}/> Prev </div>
-                <div className={styles.arrow_text} className="next-button"> Next <img src={arrowRightIcon} className={styles.arrow_right}/></div>
+                <div className={styles.arrow_text} className="prev-button" onClick={()=>this.swiper.slidePrev()}> <img src={arrowLeftIcon} className={styles.arrow_left}/> Prev </div>
+                <div className={styles.arrow_text} className="next-button" onClick={()=>this.swiper.slideNext()}> Next <img src={arrowRightIcon} className={styles.arrow_right}/></div>
               </DivRow>
               <div className={styles.pagination_count_container}>
                 <span className={styles.pagination_current_count}>01</span>
