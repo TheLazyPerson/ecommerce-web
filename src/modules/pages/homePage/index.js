@@ -11,13 +11,21 @@ import arrowRightIcon from 'Icons/arrow-right-icon-black.svg';
 import shareIcon from 'Icons/share-icon-black.svg';
 import LanguageSelect from 'CommonComponents/languageSelect';
 import Swiper from 'react-id-swiper';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import 'swiper/css/swiper.css';
+import { getExhibitionListAction } from 'Core/modules/homepage/homePageActions';
+import map from 'lodash/map';
 
-export default class HomePage extends Component {
+class HomePage extends Component {
 
   state = {
     currentSlide: 0,
-    totalSlide: 2,
+  }
+
+  componentDidMount() {
+    const { getExhibitionListAction } = this.props;
+    getExhibitionListAction();
   }
 
   render() {
@@ -27,7 +35,10 @@ export default class HomePage extends Component {
         'slideChange': () => this.setState({currentSlide: this.swiper.realIndex})
      }
     }    
-    const { currentSlide, totalSlide } = this.state;
+    const { currentSlide } = this.state;
+    const { homePageReducer : {exhibitionList} } = this.props;
+    const totalSlide = exhibitionList ? exhibitionList.length : 0;
+
     const isLeftButtonClickable = currentSlide != 0;
     const isRightButtonClickable = currentSlide != totalSlide;
 
@@ -46,18 +57,17 @@ export default class HomePage extends Component {
                 overflow: 'hidden'
               }}>
                 <Swiper {...params} getSwiper={swiper=> { this.swiper=swiper}}>
-                  <div className={styles.swiper_item}>
-                    <ExhibitionItemContainer />
-                  </div>
-                  <div className={styles.swiper_item}>
-                    <ExhibitionItemContainer />
-                  </div>
-                  <div className={styles.swiper_item}>
-                    <ExhibitionItemContainer />
-                  </div>
+                  {
+                    map(exhibitionList, (exhibition, index) => {
+                      return (
+                        <div className={styles.swiper_item} key={index}>
+                          <ExhibitionItemContainer />
+                        </div>
+                      )
+                    })
+                  }
                 </Swiper>
-             </div>
-             
+             </div>             
            </DivRow>
            
            <DivRow className={styles.footer_container}>
@@ -82,7 +92,7 @@ export default class HomePage extends Component {
               </DivRow>
               <div className={styles.pagination_count_container}>
                 <span className={styles.pagination_current_count}>{currentSlide+1}</span>
-                <span className={styles.pagination_total_count}>/05</span>
+                <span className={styles.pagination_total_count}>/{totalSlide}</span>
               </div>
               <img src={shareIcon} className={styles.share_icon} />
              </DivRow>
@@ -93,3 +103,18 @@ export default class HomePage extends Component {
      )
   }
 }
+
+
+const mapStateToProps = state => {
+  return {
+    homePageReducer: state.homePageReducer
+  }
+}
+
+const mapDispathToProps = dispatch => {
+  return {
+    getExhibitionListAction: bindActionCreators (getExhibitionListAction, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispathToProps)(HomePage);
