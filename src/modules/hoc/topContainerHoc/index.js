@@ -13,6 +13,10 @@ import { USER_DATA_COOKIE } from 'Constants/cookieConstants';
 const topContainerHoc  = (WrappedComponent) => {
   class topContainer extends Component {
 
+    state = {
+      isChildReady: false,
+    }
+
     componentDidMount() {
       //Sets user data from cookie to reducer
       const { setUserDataAction } = this.props;
@@ -20,6 +24,9 @@ const topContainerHoc  = (WrappedComponent) => {
 
       if (userData) {        
         setUserDataAction(userData);
+        this.setState({
+          isChildReady: true
+        });
       }
     }
 
@@ -35,13 +42,18 @@ const topContainerHoc  = (WrappedComponent) => {
 
     render() {
       const { showLoader, flashMessageReducer } = this.props;
+      const { isChildReady } = this.state;
       const { message, showMessage, messageType } = flashMessageReducer;
 
       return (
         <DivColumn className={styles.top_container}>
-          <WrappedComponent
-            {...this.props}
-          />
+          {
+            isChildReady && (
+              <WrappedComponent
+                {...this.props}
+              />  
+            )
+          }
           {
             showLoader && (
               <DivColumn className={styles.loader_container} verticalCenter horizontalCenter>
