@@ -27,6 +27,10 @@ const topContainerHoc  = (WrappedComponent) => {
         this.setState({
           isChildReady: true
         });
+      } else {
+        this.setState({
+          isChildReady: true
+        });
       }
     }
 

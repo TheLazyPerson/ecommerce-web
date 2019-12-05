@@ -24,7 +24,7 @@ class SectionedHeader extends Component {
 
   onClickProfile = () => {
     const { navigateTo } = this.props;
-    navigateTo('signin');
+    navigateTo('profile');
   }
 
   onClickWishlist = () => {
