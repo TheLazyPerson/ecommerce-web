@@ -142,7 +142,11 @@ class SectionedHeader extends Component {
            <img className={`${styles.header_icon} ${styles.header_item_container}`} src={bookmarkIcon} onClick={this.onClickWishlist}/>
            {
              isUserSignedIn ? (
-              <div className={`${styles.header_icon} ${styles.header_item_container}`} onClick={this.onClickProfile}>
+              <div
+                style={{height:'unset'}}
+                className={`${styles.header_icon} ${styles.header_item_container}`}
+                onClick={this.onClickProfile}
+              >
                 <img className={styles.profile_pic} src={profileIconBlack} />
                 <img src={arrowDownIcon} className={styles.arrow_down_icon} />
               </div>
