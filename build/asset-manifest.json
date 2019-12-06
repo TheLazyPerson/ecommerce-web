@@ -1,24 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.d5e91796.chunk.css",
-    "main.js": "/static/js/main.d1ec3afc.chunk.js",
-    "main.js.map": "/static/js/main.d1ec3afc.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.afa85a71.js",
-    "runtime-main.js.map": "/static/js/runtime-main.afa85a71.js.map",
-    "static/css/2.b0bb7f2c.chunk.css": "/static/css/2.b0bb7f2c.chunk.css",
-    "static/js/2.4fb59f4c.chunk.js": "/static/js/2.4fb59f4c.chunk.js",
-    "static/js/2.4fb59f4c.chunk.js.map": "/static/js/2.4fb59f4c.chunk.js.map",
+    "main.css": "/static/css/main.a18c3e80.chunk.css",
+    "main.js": "/static/js/main.f5f70336.chunk.js",
+    "main.js.map": "/static/js/main.f5f70336.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e35f0234.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e35f0234.js.map",
+    "static/css/2.676b45a0.chunk.css": "/static/css/2.676b45a0.chunk.css",
+    "static/js/2.8ea518e5.chunk.js": "/static/js/2.8ea518e5.chunk.js",
+    "static/js/2.8ea518e5.chunk.js.map": "/static/js/2.8ea518e5.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.a5523ca889cdf0824d9132e41a02fbeb.js": "/precache-manifest.a5523ca889cdf0824d9132e41a02fbeb.js",
+    "precache-manifest.1fe5480f6082e2810d0a2fced42f7749.js": "/precache-manifest.1fe5480f6082e2810d0a2fced42f7749.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.b0bb7f2c.chunk.css.map": "/static/css/2.b0bb7f2c.chunk.css.map",
-    "static/css/main.d5e91796.chunk.css.map": "/static/css/main.d5e91796.chunk.css.map",
+    "static/css/2.676b45a0.chunk.css.map": "/static/css/2.676b45a0.chunk.css.map",
+    "static/css/main.a18c3e80.chunk.css.map": "/static/css/main.a18c3e80.chunk.css.map",
     "static/media/address-icon-black.svg": "/static/media/address-icon-black.e89c5982.svg",
     "static/media/address-icon-white.svg": "/static/media/address-icon-white.76bc8314.svg",
     "static/media/app-icon-black.svg": "/static/media/app-icon-black.1b76da6d.svg",
     "static/media/app-icon-white.svg": "/static/media/app-icon-white.8844958f.svg",
     "static/media/arrow-down-icon-black.svg": "/static/media/arrow-down-icon-black.63315da1.svg",
-    "static/media/arrow-left-icon-black.svg": "/static/media/arrow-left-icon-black.792a5537.svg",
     "static/media/arrow-right-icon-black.svg": "/static/media/arrow-right-icon-black.97adcc4a.svg",
     "static/media/bookmark-icon-black.svg": "/static/media/bookmark-icon-black.50120180.svg",
     "static/media/cart-bag-icon-black.svg": "/static/media/cart-bag-icon-black.c6014af6.svg",
@@ -53,10 +52,10 @@
     "static/media/wishlist-icon-white.svg": "/static/media/wishlist-icon-white.74bd6525.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.afa85a71.js",
-    "static/css/2.b0bb7f2c.chunk.css",
-    "static/js/2.4fb59f4c.chunk.js",
-    "static/css/main.d5e91796.chunk.css",
-    "static/js/main.d1ec3afc.chunk.js"
+    "static/js/runtime-main.e35f0234.js",
+    "static/css/2.676b45a0.chunk.css",
+    "static/js/2.8ea518e5.chunk.js",
+    "static/css/main.a18c3e80.chunk.css",
+    "static/js/main.f5f70336.chunk.js"
   ]
 }
