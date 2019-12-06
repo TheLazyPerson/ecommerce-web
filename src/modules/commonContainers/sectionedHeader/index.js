@@ -97,7 +97,7 @@ class SectionedHeader extends Component {
        <DivRow className={styles.header_container}>
          <div className={styles.search_container}>
           <DivRow className={styles.search_wrapper}>
-            <form style={{flex:1}} onSubmit={this.onSubmitSearch}>
+            <form className={styles.search_form} onSubmit={this.onSubmitSearch}>
               <input
                 type="text"
                 name="firstname"
