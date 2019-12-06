@@ -38,14 +38,14 @@ export default class CheckoutPage extends Component {
           
           <DivColumn>
             <DivColumn className={styles.order_summary_container}>
-              <div className={styles.order_summary_title}>Order Summary</div>
+              {/* <div className={styles.order_summary_title}>Order Summary</div>
               <HorizontalBorder />
               <DivRow verticalCenter className={styles.coupon_input}>
                 <img src={couponIcon} className={styles.icon} />
                 <input type="text" placeholder="Apply Coupon" className={styles.input} />
                 <div className={styles.apply_button}>APPLY</div>
               </DivRow>
-              <HorizontalBorder />
+              <HorizontalBorder /> */}
 
               <div className={styles.coupon_header_text}>Coupons</div>
               <DivColumn className={styles.coupon_description_container}>
