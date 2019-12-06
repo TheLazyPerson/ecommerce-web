@@ -67,9 +67,19 @@ $bag-count-background: $color-pale;
       border-radius: 24px;
       background-color: $search-container-background;
 
-      .search_input {
-        border: 0;
-        background: transparent;
+      .search_form {
+        display: flex;
+        flex: 1;
+        
+        .search_input {
+          border: 0;
+          flex: 1;
+          background: transparent;
+  
+          &:focus {
+            outline: none;
+          }
+        }
       }
 
       .search_icon {
