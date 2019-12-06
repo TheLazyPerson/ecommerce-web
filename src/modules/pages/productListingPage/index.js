@@ -30,7 +30,6 @@ export default class ProductListingPage extends Component {
           <ProductGridItem />
           <ProductGridItem />
           <ProductGridItem />
-
         </DivRow>
 
        </DivColumn>
