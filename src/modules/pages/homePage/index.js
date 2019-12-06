@@ -7,14 +7,38 @@ import ExhibitionItemContainer from './exhibitionItemContainer';
 import socialFacebookIcon from 'Icons/social-facebook-icon-white.svg';
 import socialInstagramIcon from 'Icons/social-instagram-icon-white.svg';
 import socialTwitterIcon from 'Icons/social-twitter-icon-white.svg';
-import arrowLeftIcon from 'Icons/arrow-left-icon-black.svg';
 import arrowRightIcon from 'Icons/arrow-right-icon-black.svg';
 import shareIcon from 'Icons/share-icon-black.svg';
 import LanguageSelect from 'CommonComponents/languageSelect';
+import Swiper from 'react-id-swiper';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import 'swiper/css/swiper.css';
+import { getExhibitionListAction } from 'Core/modules/homepage/homePageActions';
+import InitialPageLoader from 'CommonContainers/initialPageLoader';
+import map from 'lodash/map';
 
-export default class HomePage extends Component {
+class HomePage extends Component {
+
+  state = {
+    currentSlide: 0,
+  }
+
   render() {
-     return (
+    const params = {
+      containerClass: 'custom_container',
+      on: {
+        'slideChange': () => this.setState({currentSlide: this.swiper.realIndex})
+     }
+    }    
+    const { currentSlide } = this.state;
+    const { homePageReducer : {exhibitionList}, getExhibitionListAction } = this.props;
+    const totalSlide = exhibitionList ? exhibitionList.length : 0;
+
+    const isLeftButtonClickable = currentSlide != 0;
+    const isRightButtonClickable = currentSlide != totalSlide;
+
+    return (
        <SectionedContainer isAbsoluteContent>
          <DivColumn className={styles.home_container}>
            <DivRow className={styles.content_container}>
@@ -23,7 +47,28 @@ export default class HomePage extends Component {
                 <div className={styles.social_item_container}><img src={socialTwitterIcon} className={styles.social_image}/></div>
                 <div className={styles.social_item_container}><img src={socialInstagramIcon} className={styles.social_image}/></div>
              </DivColumn>
-             <ExhibitionItemContainer />
+             <div style={{
+                flex: 1,
+                alignSelf: 'stretch',
+                overflow: 'hidden',
+                display: 'flex'
+              }}>
+                <InitialPageLoader 
+                  initialPageApi={getExhibitionListAction}
+                >
+                  <Swiper {...params} getSwiper={swiper=> { this.swiper=swiper}}>
+                    {
+                      map(exhibitionList, (exhibition, index) => {
+                        return (
+                          <div className={styles.swiper_item} key={index}>
+                            <ExhibitionItemContainer />
+                          </div>
+                        )
+                      })
+                    }
+                  </Swiper>
+                </InitialPageLoader>
+             </div>             
            </DivRow>
            
            <DivRow className={styles.footer_container}>
@@ -33,12 +78,22 @@ export default class HomePage extends Component {
 
              <DivRow className={styles.right_container}>
               <DivRow>
-                <div className={styles.arrow_text}> <img src={arrowLeftIcon} className={styles.arrow_left}/> Prev </div>
-                <div className={styles.arrow_text}> Next <img src={arrowRightIcon} className={styles.arrow_right}/></div>
+                <div
+                 className={`${!isLeftButtonClickable? styles.non_clickable : ''} ${styles.arrow_text}`}
+                 onClick={()=>this.swiper.slidePrev()}>
+                  <img src={arrowRightIcon} className={styles.arrow_left}/>
+                  Prev
+                </div>
+
+                <div
+                 className={`${!isRightButtonClickable? styles.non_clickable : ''} ${styles.arrow_text}`}
+                 onClick={()=>this.swiper.slideNext()}>
+                    Next <img src={arrowRightIcon} className={styles.arrow_right}/>
+                </div>
               </DivRow>
               <div className={styles.pagination_count_container}>
-                <span className={styles.pagination_current_count}>01</span>
-                <span className={styles.pagination_total_count}>/05</span>
+                <span className={styles.pagination_current_count}>{currentSlide+1}</span>
+                <span className={styles.pagination_total_count}>/{totalSlide}</span>
               </div>
               <img src={shareIcon} className={styles.share_icon} />
              </DivRow>
@@ -49,3 +104,18 @@ export default class HomePage extends Component {
      )
   }
 }
+
+
+const mapStateToProps = state => {
+  return {
+    homePageReducer: state.homePageReducer
+  }
+}
+
+const mapDispathToProps = dispatch => {
+  return {
+    getExhibitionListAction: bindActionCreators (getExhibitionListAction, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispathToProps)(HomePage);

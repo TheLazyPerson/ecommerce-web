@@ -11,6 +11,7 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 import profileIconBlack from 'Icons/profile-icon-black.svg';
 import HorizontalBorder from 'CommonComponents/horizontalBorder';
 import { searchTypes } from 'Constants/searchConstants';
+import { connect } from 'react-redux';
 
 class SectionedHeader extends Component {
 
@@ -23,7 +24,7 @@ class SectionedHeader extends Component {
 
   onClickProfile = () => {
     const { navigateTo } = this.props;
-    navigateTo('signin');
+    navigateTo('profile');
   }
 
   onClickWishlist = () => {
@@ -90,6 +91,7 @@ class SectionedHeader extends Component {
 
   render() {
     const { searchText, showSearchResult } = this.state;
+    const { isUserSignedIn } = this.props;
     
      return (
        <DivRow className={styles.header_container}>
@@ -104,7 +106,7 @@ class SectionedHeader extends Component {
                 onChange={this.onChangeSearchText}
                 onFocus={this.showSearchBar}
                 onBlur={this.hideSearchBar}
-                autoComplete="autocomplete_off_hack_xfr4!k"
+                autoComplete="off"
               />
             </form>
             <img src={searchIcon} className={styles.search_icon}/>
@@ -138,10 +140,16 @@ class SectionedHeader extends Component {
              <DivRow verticalCenter horizontalCenter className={styles.bag_count}>0</DivRow>
            </DivRow>
            <img className={`${styles.header_icon} ${styles.header_item_container}`} src={bookmarkIcon} onClick={this.onClickWishlist}/>
-           <div className={`${styles.header_icon} ${styles.header_item_container}`} onClick={this.onClickProfile}>
-             <img className={styles.profile_pic} src={profileIconBlack} />
-             <img src={arrowDownIcon} className={styles.arrow_down_icon} />
-           </div>
+           {
+             isUserSignedIn ? (
+              <div className={`${styles.header_icon} ${styles.header_item_container}`} onClick={this.onClickProfile}>
+                <img className={styles.profile_pic} src={profileIconBlack} />
+                <img src={arrowDownIcon} className={styles.arrow_down_icon} />
+              </div>
+             ): (
+              <a className={`${styles.sigin_link} ${styles.header_item_container}`} href='/signin'>Signin</a>
+             )
+           }
            <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} />
          </DivRow>
        </DivRow>
@@ -149,4 +157,11 @@ class SectionedHeader extends Component {
   }
 }
 
-export default navigatorHoc(SectionedHeader);
+const mapStateToProps = state => {
+
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn
+  }
+}
+
+export default connect(mapStateToProps, null)(navigatorHoc(SectionedHeader));

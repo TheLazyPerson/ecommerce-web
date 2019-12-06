@@ -7,16 +7,26 @@ import styles from './profile_overview.module.scss';
 import {profileListItem} from './profileConstants';
 import SideNav from './components/sideNav';
 import navigatorHoc from 'Hoc/navigatorHoc';
+import { logoutAction } from 'Core/modules/signin/actions/signinActions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { CookieService } from 'Utils/cookieService';
+import { USER_DATA_COOKIE } from 'Constants/cookieConstants';
 
 class ProfileOverview extends Component {
 
   onClickNavItemClick = (slug) => {
-    const { navigateTo } = this.props;
+    const { navigateTo, logoutAction } = this.props;
 
     if(slug == 'overview') {
       navigateTo('profile');
     } else if (slug == 'profile') {
       navigateTo('profile-details');
+    } else if (slug == 'logout') {
+      logoutAction().then(() => {
+        CookieService.delete(USER_DATA_COOKIE);
+        navigateTo(''); // ToHomePage
+      });
     } else {
       navigateTo(slug);
     }
@@ -55,4 +65,10 @@ class ProfileOverview extends Component {
   }
 }
 
-export default navigatorHoc(ProfileOverview);
+const mapDispathToProps = dispatch => {
+  return {
+    logoutAction: bindActionCreators(logoutAction, dispatch)
+  }
+}
+
+export default connect(null, mapDispathToProps)(navigatorHoc(ProfileOverview));

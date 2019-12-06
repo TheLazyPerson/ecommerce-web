@@ -4,8 +4,8 @@
 $capsule-button-background-color: $color-gold;
 
 .exhibition_item_container {
-  flex: 1;
-  align-self: stretch;
+  width: 100%;
+  height: 100%;
   align-items: center;
 
   .exhibition_image {
