@@ -17,8 +17,10 @@ import SearchPage from "./pages/searchPage";
 import CheckoutPage from "./pages/checkoutPage";
 import ForgotPasswordPage from "./pages/forgotPasswordPage";
 import topContainerHoc from "Hoc/topContainerHoc";
+import ProtectedRoute from 'CommonContainers/protectedRoute';
+import { connect } from "react-redux";
 
-const App = () => {
+const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
@@ -27,22 +29,28 @@ const App = () => {
         path="/product-details/:slug?/:productId?"
         component={ProductDetailsPage}
       />
-      <Route exact path="/signin" component={SignInPage} />
-      <Route exact path="/signup" component={SignUpPage} />
-      <Route exact path="/forgot-password" component={ForgotPasswordPage} />
+      <ProtectedRoute exact path="/signin" component={SignInPage} validator={()=>!isUserSignedIn} />
+      <ProtectedRoute exact path="/signup" component={SignUpPage} validator={()=>!isUserSignedIn} />
+      <ProtectedRoute exact path="/forgot-password" component={ForgotPasswordPage} validator={()=>!isUserSignedIn} />
       <Route exact path="/product-listing" component={ProductListingPage} />
-      <Route exact path="/profile" component={ProfileOverview} />
-      <Route exact path="/profile/orders" component={ProfileOrders} />
-      <Route exact path="/profile/address" component={ProfileAddress} />
-      <Route exact path="/profile/settings" component={ProfileSettings} />
-      <Route exact path="/profile/details" component={ProfileDetails} />
-      <Route exact path="/profile/helpcenter" component={ProfileHelpCenter} />
-      <Route exact path="/wishlist" component={WishlistPage} />
+      <ProtectedRoute exact path="/profile" component={ProfileOverview} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/profile/orders" component={ProfileOrders} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/profile/address" component={ProfileAddress} redirectTo='signin' validator={()=>isUserSignedIn}/>
+      <ProtectedRoute exact path="/profile/settings" component={ProfileSettings} redirectTo='signin' validator={()=>isUserSignedIn}/>
+      <ProtectedRoute exact path="/profile/details" component={ProfileDetails} redirectTo='signin' validator={()=>isUserSignedIn}/>
+      <ProtectedRoute exact path="/profile/helpcenter" component={ProfileHelpCenter} redirectTo='signin' validator={()=>isUserSignedIn}/>
+      <ProtectedRoute exact path="/wishlist" component={WishlistPage} />
       <Route exact path="/search/:searchType?" component={SearchPage} />
-      <Route exact path="/checkout" component={CheckoutPage} />
+      <ProtectedRoute exact path="/checkout" component={CheckoutPage} />
       <Route component={PageNotFound} />
     </Switch>
   );
 };
 
-export default topContainerHoc(App);
+const mapStateToProps = state => {
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn,
+  };
+};
+
+export default connect(mapStateToProps, null)(topContainerHoc(App));
