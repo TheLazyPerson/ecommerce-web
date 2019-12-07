@@ -27,9 +27,9 @@ class SignUpPage extends Component {
     postSignupAction({
       "first_name": "Sample",
       "last_name": "Lastname",
-      "email": "sample24561234561273@gmail.com",
-      "password": "omkomawar123",
-      "password_confirmation": "omkomawar123"
+      "email": "sample@gmail.com",
+      "password": "123",
+      "password_confirmation": "123"
     }).then(value=>{
       console.log('fError:', value);
     }).catch(error=> {

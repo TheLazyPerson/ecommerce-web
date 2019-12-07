@@ -11,6 +11,7 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 import profileIconBlack from 'Icons/profile-icon-black.svg';
 import HorizontalBorder from 'CommonComponents/horizontalBorder';
 import { searchTypes } from 'Constants/searchConstants';
+import { connect } from 'react-redux';
 
 class SectionedHeader extends Component {
 
@@ -23,7 +24,7 @@ class SectionedHeader extends Component {
 
   onClickProfile = () => {
     const { navigateTo } = this.props;
-    navigateTo('signin');
+    navigateTo('profile');
   }
 
   onClickWishlist = () => {
@@ -85,17 +86,18 @@ class SectionedHeader extends Component {
           showSearchResult: false,
         });
       }
-    }, 300);    
+    }, 300);
   }
 
   render() {
     const { searchText, showSearchResult } = this.state;
+    const { isUserSignedIn } = this.props;
     
      return (
        <DivRow className={styles.header_container}>
          <div className={styles.search_container}>
-          <DivRow className={styles.search_wrapper}>
-            <form style={{flex:1}} onSubmit={this.onSubmitSearch}>
+         <DivRow className={`${styles.search_wrapper} ${(searchText && showSearchResult) ? styles.search_wrapper_expanded : ''}`}>
+            <form className={styles.search_form} onSubmit={this.onSubmitSearch}>
               <input
                 type="text"
                 name="firstname"
@@ -104,13 +106,14 @@ class SectionedHeader extends Component {
                 onChange={this.onChangeSearchText}
                 onFocus={this.showSearchBar}
                 onBlur={this.hideSearchBar}
-                autoComplete="autocomplete_off_hack_xfr4!k"
+                autoComplete="off"
               />
             </form>
             <img src={searchIcon} className={styles.search_icon}/>
            </DivRow>
-           <DivColumn className={`${styles.search_result_container} ${(searchText && showSearchResult) ? '' : styles.hide_search_bar }`}>
 
+           <DivColumn className={`${styles.search_result_container} ${(searchText && showSearchResult) ? '' : styles.hide_search_bar }`}>
+              <div className={styles.filling_gap}></div>
               <DivRow className={styles.search_item} onClick={()=>this.onSearchItemSelected(searchTypes.EXHIBITIONS)}>
                 <DivColumn>
                   <div className={styles.title}>Search Exhibitions</div>
@@ -130,6 +133,7 @@ class SectionedHeader extends Component {
               </DivRow>
 
            </DivColumn>
+
          </div>
 
          <DivRow verticalCenter>
@@ -138,10 +142,20 @@ class SectionedHeader extends Component {
              <DivRow verticalCenter horizontalCenter className={styles.bag_count}>0</DivRow>
            </DivRow>
            <img className={`${styles.header_icon} ${styles.header_item_container}`} src={bookmarkIcon} onClick={this.onClickWishlist}/>
-           <div className={`${styles.header_icon} ${styles.header_item_container}`} onClick={this.onClickProfile}>
-             <img className={styles.profile_pic} src={profileIconBlack} />
-             <img src={arrowDownIcon} className={styles.arrow_down_icon} />
-           </div>
+           {
+             isUserSignedIn ? (
+              <div
+                style={{height:'unset'}}
+                className={`${styles.header_icon} ${styles.header_item_container}`}
+                onClick={this.onClickProfile}
+              >
+                <img className={styles.profile_pic} src={profileIconBlack} />
+                <img src={arrowDownIcon} className={styles.arrow_down_icon} />
+              </div>
+             ): (
+              <a className={`${styles.sigin_link} ${styles.header_item_container}`} href='/signin'>Signin</a>
+             )
+           }
            <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} />
          </DivRow>
        </DivRow>
@@ -149,4 +163,11 @@ class SectionedHeader extends Component {
   }
 }
 
-export default navigatorHoc(SectionedHeader);
+const mapStateToProps = state => {
+
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn
+  }
+}
+
+export default connect(mapStateToProps, null)(navigatorHoc(SectionedHeader));

@@ -6,48 +6,56 @@ const navigatorHoc  = (WrappedComponent) => {
   class navigator extends Component {
 
     navigateTo = (pageName, data=null) => {
-      const {push} = this.props.history;
+      const { push } = this.props.history;
+      this.navigateScreen(push, pageName, data);
+    }
+
+    replaceTo = (pageName, data=null) => {
+      const { replace } = this.props.history;
+      this.navigateScreen(replace, pageName, data);      
+    }
+
+    navigateScreen = (navigationFunction, pageName, data) => {
 
       switch(pageName) {
         case 'plp':
-          push('/product-listing');
-          return;
+          return navigationFunction('/product-listing');
+
         case 'pdp':
-          push('/product-details/adidas-shoes/2314');
-          return;
+          return navigationFunction('/product-details/adidas-shoes/2314');
+          
         case 'checkout':
-          push('/checkout');
-          return;
+          return navigationFunction('/checkout');        
+
         case 'signin':
-          push('/signin');
-          return;
+          return navigationFunction('/signin');
+          
         case 'profile':
-          push('/profile');
-          return;
+          return navigationFunction('/profile');          
 
         case 'orders':
-          return push('/profile/orders');
+          return navigationFunction('/profile/orders');
           
         case 'help-center':
-          return push('/profile/helpcenter');
+          return navigationFunction('/profile/helpcenter');
 
         case 'wishlist':
-          return push('/wishlist');
+          return navigationFunction('/wishlist');
         
         case 'address':
-          return push('/profile/address');
+          return navigationFunction('/profile/address');
 
         case 'profile-details':
-          return push('/profile/details');
+          return navigationFunction('/profile/details');
 
         case 'settings':
-          return push('/profile/settings');
+          return navigationFunction('/profile/settings');
         
         case 'search':
-          return push(`/search/${data.searchType.toLowerCase()}?query=${data.searchText}`);
+          return navigationFunction(`/search/${data.searchType.toLowerCase()}?query=${data.searchText}`);
 
         default:
-          push('/');
+          return navigationFunction('/');
       }
     }
 
@@ -55,6 +63,7 @@ const navigatorHoc  = (WrappedComponent) => {
       return (
         <WrappedComponent 
           navigateTo={this.navigateTo}
+          replaceTo={this.replaceTo}
           {...this.props}
         />
       )
