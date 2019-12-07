@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 $capsule-button-background-color: $color-gold;
 
@@ -15,14 +15,14 @@ $capsule-button-background-color: $color-gold;
   .details_container {
     margin-left: 100px;
   }
-  
+
   .view_exhibition_button {
     border-radius: 28px;
     box-shadow: 0 18px 24px 0 rgba(0, 0, 0, 0.12);
     color: white;
     font-size: 18px;
     font-weight: 900;
-    background-color: $capsule-button-background-color;    
+    background-color: $capsule-button-background-color;
     padding: 12px 47px;
 
     @include on_click_button;

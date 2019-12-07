@@ -1,29 +1,33 @@
-import React from 'react';
-import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
-import HomePage from './pages/homePage';
-import SignInPage from './pages/signinPage';
-import SignUpPage from './pages/signupPage';
-import PageNotFound from 'CommonComponents/pageNotFound';
-import ProductListingPage from './pages/productListingPage';
-import ProductDetailsPage from './pages/productDetailsPage';
-import ProfileOverview from './pages/profilePages';
-import ProfileOrders from './pages/profilePages/profileOrders';
-import ProfileAddress from './pages/profilePages/profileAddress';
-import ProfileSettings from './pages/profilePages/profileSettings';
-import ProfileDetails from './pages/profilePages/profileDetails';
-import ProfileHelpCenter from './pages/profilePages/profileHelpCenter';
-import WishlistPage from './pages/wishlistPage';
-import SearchPage from './pages/searchPage';
-import CheckoutPage from './pages/checkoutPage';
-import ForgotPasswordPage from './pages/forgotPasswordPage';
-import topContainerHoc from 'Hoc/topContainerHoc';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import HomePage from "./pages/homePage";
+import SignInPage from "./pages/signinPage";
+import SignUpPage from "./pages/signupPage";
+import PageNotFound from "CommonComponents/pageNotFound";
+import ProductListingPage from "./pages/productListingPage";
+import ProductDetailsPage from "./pages/productDetailsPage";
+import ProfileOverview from "./pages/profilePages";
+import ProfileOrders from "./pages/profilePages/profileOrders";
+import ProfileAddress from "./pages/profilePages/profileAddress";
+import ProfileSettings from "./pages/profilePages/profileSettings";
+import ProfileDetails from "./pages/profilePages/profileDetails";
+import ProfileHelpCenter from "./pages/profilePages/profileHelpCenter";
+import WishlistPage from "./pages/wishlistPage";
+import SearchPage from "./pages/searchPage";
+import CheckoutPage from "./pages/checkoutPage";
+import ForgotPasswordPage from "./pages/forgotPasswordPage";
+import topContainerHoc from "Hoc/topContainerHoc";
 
-const App = ({}) => {
+const App = () => {
   return (
     <Switch>
-      <Route exact path="/" component={HomePage}/>
-      <Route exact path="/product-details/:slug?/:productId?" component={ProductDetailsPage} />
-      <Route exact path="/signin" component={SignInPage}/>
+      <Route exact path="/" component={HomePage} />
+      <Route
+        exact
+        path="/product-details/:slug?/:productId?"
+        component={ProductDetailsPage}
+      />
+      <Route exact path="/signin" component={SignInPage} />
       <Route exact path="/signup" component={SignUpPage} />
       <Route exact path="/forgot-password" component={ForgotPasswordPage} />
       <Route exact path="/product-listing" component={ProductListingPage} />
@@ -39,6 +43,6 @@ const App = ({}) => {
       <Route component={PageNotFound} />
     </Switch>
   );
-}
+};
 
 export default topContainerHoc(App);

@@ -1,18 +1,18 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import { createBrowserHistory } from 'history';
-import { createLogger } from 'redux-logger';
-import rootReducer from '../reducer';
-import {apiMiddleware} from 'redux-api-middleware';
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import { createBrowserHistory } from "history";
+import { createLogger } from "redux-logger";
+import rootReducer from "../reducer";
+import { apiMiddleware } from "redux-api-middleware";
 
 //TODO create alias for ecommerce
-import apiAuthInjector from 'Core/middleware/authInjector';
-import apiErrorHandler from 'Core/middleware/apiError';
-import loaderMiddleware from '../middleware/loaderMiddleware';
-import userErrorMiddleware from '../middleware/userErrorMiddleware';
+import apiAuthInjector from "Core/middleware/authInjector";
+import apiErrorHandler from "Core/middleware/apiError";
+import loaderMiddleware from "../middleware/loaderMiddleware";
+import userErrorMiddleware from "../middleware/userErrorMiddleware";
 
 export const history = createBrowserHistory();
-export const configureStore = (initialState) => {
+export const configureStore = initialState => {
   // Redux Configurations
   const enhancers = [];
 
@@ -20,23 +20,30 @@ export const configureStore = (initialState) => {
   const composeEnhancers = compose;
 
   // Apply Middleware & Compose Enhancers
-  enhancers.push(compose(applyMiddleware(
-    thunk,
-    apiAuthInjector,
-    apiMiddleware,
-    apiErrorHandler,
-    loaderMiddleware,
-    userErrorMiddleware,
-    createLogger(),
-    )));
+  enhancers.push(
+    compose(
+      applyMiddleware(
+        thunk,
+        apiAuthInjector,
+        apiMiddleware,
+        apiErrorHandler,
+        loaderMiddleware,
+        userErrorMiddleware,
+        createLogger()
+      ),
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+  );
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
   const store = createStore(rootReducer(history), initialState, enhancer);
 
   if (module.hot) {
-    module.hot.accept('../reducer', () =>
-      store.replaceReducer(require('../reducer')));
+    module.hot.accept("../reducer", () =>
+      store.replaceReducer(require("../reducer"))
+    );
   }
 
   return store;
