@@ -35,11 +35,11 @@ const App = ({ isUserSignedIn }) => {
       <Route exact path="/product-listing" component={ProductListingPage} />
       <ProtectedRoute exact path="/profile" component={ProfileOverview} redirectTo='signin' validator={()=>isUserSignedIn} />
       <ProtectedRoute exact path="/profile/orders" component={ProfileOrders} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/address" component={ProfileAddress} redirectTo='signin' validator={()=>isUserSignedIn}/>
-      <ProtectedRoute exact path="/profile/settings" component={ProfileSettings} redirectTo='signin' validator={()=>isUserSignedIn}/>
-      <ProtectedRoute exact path="/profile/details" component={ProfileDetails} redirectTo='signin' validator={()=>isUserSignedIn}/>
-      <ProtectedRoute exact path="/profile/helpcenter" component={ProfileHelpCenter} redirectTo='signin' validator={()=>isUserSignedIn}/>
-      <ProtectedRoute exact path="/wishlist" component={WishlistPage} />
+      <ProtectedRoute exact path="/profile/address" component={ProfileAddress} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/profile/settings" component={ProfileSettings} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/profile/details" component={ProfileDetails} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/profile/helpcenter" component={ProfileHelpCenter} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/wishlist" component={WishlistPage} redirectTo='signin' validator={()=>isUserSignedIn} />
       <Route exact path="/search/:searchType?" component={SearchPage} />
       <ProtectedRoute exact path="/checkout" component={CheckoutPage} />
       <Route component={PageNotFound} />
