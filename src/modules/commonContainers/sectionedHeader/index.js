@@ -156,7 +156,7 @@ class SectionedHeader extends Component {
               <a className={`${styles.sigin_link} ${styles.header_item_container}`} href='/signin'>Signin</a>
              )
            }
-           <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} />
+           {/* <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} /> */}
          </DivRow>
        </DivRow>
     );
