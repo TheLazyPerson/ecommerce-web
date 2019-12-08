@@ -57,6 +57,9 @@ const navigatorHoc = WrappedComponent => {
         case "change-password":
           return navigationFunction("/profile/details/change-password");
 
+        case 'edit-profile':
+          return navigationFunction("/profile/details/edit-profile");
+
         case "search":
           return navigationFunction(
             `/search/${data.searchType.toLowerCase()}?query=${data.searchText}`
