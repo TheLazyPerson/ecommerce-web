@@ -10,6 +10,7 @@ import CapsuleButton from 'CommonComponents/capsuleButton';
 import SecondaryCapsuleButton from 'CommonComponents/secondaryCapsuleButton';
 import InputTextComponent from 'CommonComponents/InputTextComponent';
 import navigatorHoc from 'Hoc/navigatorHoc';
+
 class ChangePassword extends Component {
 
   onSubmit = (form) => {

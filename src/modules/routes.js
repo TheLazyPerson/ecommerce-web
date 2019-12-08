@@ -17,10 +17,12 @@ import SearchPage from "./pages/searchPage";
 import CheckoutPage from "./pages/checkoutPage";
 import ForgotPasswordPage from "./pages/forgotPasswordPage";
 import TermsAndConditionPage from "./pages/termsAndConditionPage";
+import ChangePassword from "./pages/profilePages/profileDetails/changePassword";
+import EditProfile from './pages/profilePages/profileDetails/editProfile';
+
 import topContainerHoc from "Hoc/topContainerHoc";
 import ProtectedRoute from "CommonContainers/protectedRoute";
 import { connect } from "react-redux";
-import ChangePassword from "./pages/profilePages/profileDetails/changePassword";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -92,6 +94,14 @@ const App = ({ isUserSignedIn }) => {
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />
+      <ProtectedRoute
+        exact
+        path="/profile/details/edit-profile"
+        component={EditProfile}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+
       <ProtectedRoute
         exact
         path="/profile/helpcenter"
