@@ -12,7 +12,7 @@ export default class TermsAndConditionPage extends Component {
 
   renderDescription = (description) => {
     return map(description, descriptionItem => {
-      if (descriptionItem.type == 'normal') {
+      if (descriptionItem.type == 'text') {
         return (
           <div>{description.value}</div>
         )
@@ -37,7 +37,7 @@ export default class TermsAndConditionPage extends Component {
                 case 'last-updated':
                   return (
                     <div>{item.value}</div>
-                  )
+                  );
                 case 'q-n-a':
                   return (
                     <DivColumn fillSelfHorizontal>
@@ -45,7 +45,7 @@ export default class TermsAndConditionPage extends Component {
 
                       <div>{this.renderDescription(item.value.description)}</div>
                     </DivColumn>
-                  )
+                  );
               }
 
             })
