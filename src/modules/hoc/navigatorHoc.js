@@ -25,7 +25,9 @@ const navigatorHoc = WrappedComponent => {
           return navigationFunction(`/product-listing/?id=${data.id}`);
 
         case "pdp":
-          return navigationFunction("/product-details/adidas-shoes/2314");
+          return navigationFunction(
+            `/product-details/?exhibitionid=${data.exhibitionId}&productid=${data.productId}`
+          );
 
         case "checkout":
           return navigationFunction("/checkout");
@@ -57,7 +59,7 @@ const navigatorHoc = WrappedComponent => {
         case "change-password":
           return navigationFunction("/profile/details/change-password");
 
-        case 'edit-profile':
+        case "edit-profile":
           return navigationFunction("/profile/details/edit-profile");
 
         case "search":
