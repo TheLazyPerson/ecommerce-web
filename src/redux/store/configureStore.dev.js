@@ -20,21 +20,37 @@ export const configureStore = initialState => {
   const composeEnhancers = compose;
 
   // Apply Middleware & Compose Enhancers
-  enhancers.push(
-    compose(
-      applyMiddleware(
-        thunk,
-        apiAuthInjector,
-        apiMiddleware,
-        apiErrorHandler,
-        loaderMiddleware,
-        userErrorMiddleware,
-        createLogger()
-      ),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  );
+  if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+    enhancers.push(
+      compose(
+        applyMiddleware(
+          thunk,
+          apiAuthInjector,
+          apiMiddleware,
+          apiErrorHandler,
+          loaderMiddleware,
+          userErrorMiddleware,
+          createLogger()
+        ),
+        window.__REDUX_DEVTOOLS_EXTENSION__() 
+      )
+    );  
+  } else {
+    enhancers.push(
+      compose(
+        applyMiddleware(
+          thunk,
+          apiAuthInjector,
+          apiMiddleware,
+          apiErrorHandler,
+          loaderMiddleware,
+          userErrorMiddleware,
+          createLogger()
+        )
+      )
+    );  
+  }
+
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
