@@ -32,15 +32,17 @@ class ProductListingPage extends Component {
             <FilterCapsule />
             <DropdownCapsule />
           </DivRow>
-          <DivRow className={styles.product_list_container}>
-            <InitialPageLoader
-              initialPageApi={() => getProductListAction(parsed.id)}
-            >
+          <InitialPageLoader
+            initialPageApi={() => getProductListAction(parsed.id)}
+          >
+            <DivRow className={styles.product_list_container}>
+
               {map(productList, (product, index) => {
                 return <ProductGridItem product={product} key={index} />;
               })}
-            </InitialPageLoader>
-          </DivRow>
+            </DivRow>
+
+          </InitialPageLoader>
         </DivColumn>
       </SectionedContainer>
     );
