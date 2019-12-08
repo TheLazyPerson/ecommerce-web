@@ -5,6 +5,7 @@ import flashMessageReducer from "./flashMessageReducer";
 import signInReducer from "Core/modules/signin/reducer/signinReducer";
 import homePageReducer from "Core/modules/homepage/homePageReducer";
 import addressReducer from "Core/modules/address/addressReducer";
+import profileDetailsReducer from "Core/modules//profiledetails/profileDetailsReducer";
 
 const appReducer = history =>
   combineReducers({
@@ -13,7 +14,8 @@ const appReducer = history =>
     flashMessageReducer,
     signInReducer,
     homePageReducer,
-    addressReducer
+    addressReducer,
+    profileDetailsReducer
   });
 
 /* const rootReducer = ( state, action ) => {
