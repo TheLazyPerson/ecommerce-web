@@ -27,6 +27,10 @@ class ChangePassword extends Component {
     pop();
   }
 
+  onClickCancel= () => {
+
+  }
+
   render() {
 
      return (
@@ -35,13 +39,14 @@ class ChangePassword extends Component {
       >
         <NavHeader title="Change password" onBackClick={this.onBackPress} />
           <form className={styles.form_container} onSubmit={this.onSubmit}>
-            <DivColumn>
-            <InputTextComponent placeholder="Old Password" className={styles.input_text} />
-            <InputTextComponent placeholder="New Password" className={styles.input_text} />
-            <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />
+              <InputTextComponent placeholder="Old Password" className={styles.input_text} />
+              <InputTextComponent placeholder="New Password" className={styles.input_text} />
+              <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />
 
-            <CapsuleButton onClick={this.handleSubmitAction}>Confirm</CapsuleButton>
-            </DivColumn>
+              <DivRow className={styles.form_button_container}>
+                <SecondaryCapsuleButton onClick={this.onClickCancel}>Cancel</SecondaryCapsuleButton>
+                <CapsuleButton onClick={this.handleSubmitAction}>Confirm</CapsuleButton>
+              </DivRow>
           </form>
       </SectionedContainer>
      )
