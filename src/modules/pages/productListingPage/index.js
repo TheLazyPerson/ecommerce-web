@@ -32,7 +32,7 @@ class ProductListingPage extends Component {
             <FilterCapsule />
             <DropdownCapsule />
           </DivRow>
-          <DivRow className={styles.product_list_container}>
+          <DivRow fillParent className={styles.product_list_container}>
 
           <InitialPageLoader
             initialPageApi={() => getProductListAction(parsed.id)}

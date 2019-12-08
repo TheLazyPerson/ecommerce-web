@@ -4,6 +4,7 @@ import infiniteLoader from "Icons/circular-loader.gif";
 import DivColumn from "CommonComponents/divColumn";
 import { isTypeSuccess } from "Core/utils/validationHelper";
 import styles from "./initial_page_loader.module.scss";
+import CapsuleButton from 'CommonComponents/capsuleButton';
 
 class InitialPageLoader extends Component {
   state = {
@@ -30,9 +31,8 @@ class InitialPageLoader extends Component {
     initialPageApi()
       .then(data => {
         console.log("initialPageLoader success", data);
-
-        if (isTypeSuccess(data.type)) this.setState({ loading: false });
-        else this.setState({ loading: false, isError: true });
+       if (isTypeSuccess(data.type)) this.setState({ loading: false });
+       else this.setState({ loading: false, isError: true });
       })
       .catch(error => {
         console.log("initialPageLoader Error:", error);
@@ -60,10 +60,11 @@ class InitialPageLoader extends Component {
       >
         {isComponentReady &&
           (isError ? (
-            <DivColumn fillParent>
+            <DivColumn fillParent verticalCenter horizontalCenter>
               <div>{headingErrorMessage}</div>
               <div>{errorMessage}</div>
-              <div>Retry Button</div>
+              <br />
+              <CapsuleButton onClick={this.makePageApiCall}>Retry</CapsuleButton>
             </DivColumn>
           ) : loading ? (
             customLoader ? (
@@ -85,7 +86,7 @@ class InitialPageLoader extends Component {
 
 InitialPageLoader.defaultProps = {
   showEmptyScreen: false,
-  headingErrorMessage: "Can’t Load MA3RATH",
+  headingErrorMessage: "Can’t Load Maerid",
   errorMessage: "Something went wrong from our end. Please try again.",
   emptyMessage: "Looks like its empty",
   callApiOnMount: true
