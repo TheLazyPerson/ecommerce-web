@@ -15,6 +15,12 @@ const navigatorHoc  = (WrappedComponent) => {
       this.navigateScreen(replace, pageName, data);      
     }
 
+    pop = () => {
+      const { goBack } = this.props.history;
+
+      goBack();
+    }
+
     navigateScreen = (navigationFunction, pageName, data) => {
 
       switch(pageName) {
@@ -48,6 +54,9 @@ const navigatorHoc  = (WrappedComponent) => {
         case 'profile-details':
           return navigationFunction('/profile/details');
 
+        case 'change-password':
+          return navigationFunction('/profile/details/change-password');
+
         case 'settings':
           return navigationFunction('/profile/settings');
         
@@ -64,6 +73,7 @@ const navigatorHoc  = (WrappedComponent) => {
         <WrappedComponent 
           navigateTo={this.navigateTo}
           replaceTo={this.replaceTo}
+          pop={this.pop}
           {...this.props}
         />
       )

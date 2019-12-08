@@ -11,5 +11,12 @@
     font-size: 12px;
     color: $primary-text-color;
     text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .back_icon {
+    margin-right: 13px;
+    height: 10px;
+    transform: scaleX(-1);
   }
 }
