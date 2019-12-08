@@ -16,6 +16,7 @@ import WishlistPage from "./pages/wishlistPage";
 import SearchPage from "./pages/searchPage";
 import CheckoutPage from "./pages/checkoutPage";
 import ForgotPasswordPage from "./pages/forgotPasswordPage";
+import TermsAndConditionPage from './pages/termsAndConditionPage';
 import topContainerHoc from "Hoc/topContainerHoc";
 import ProtectedRoute from 'CommonContainers/protectedRoute';
 import { connect } from "react-redux";
@@ -42,6 +43,7 @@ const App = ({ isUserSignedIn }) => {
       <ProtectedRoute exact path="/wishlist" component={WishlistPage} redirectTo='signin' validator={()=>isUserSignedIn} />
       <Route exact path="/search/:searchType?" component={SearchPage} />
       <ProtectedRoute exact path="/checkout" component={CheckoutPage} />
+      <Route exact path="/terms-and-condition" component={TermsAndConditionPage} />
       <Route component={PageNotFound} />
     </Switch>
   );
