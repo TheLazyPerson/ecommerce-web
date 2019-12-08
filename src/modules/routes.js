@@ -20,6 +20,7 @@ import TermsAndConditionPage from './pages/termsAndConditionPage';
 import topContainerHoc from "Hoc/topContainerHoc";
 import ProtectedRoute from 'CommonContainers/protectedRoute';
 import { connect } from "react-redux";
+import ChangePassword from "./pages/profilePages/profileDetails/changePassword";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -39,10 +40,11 @@ const App = ({ isUserSignedIn }) => {
       <ProtectedRoute exact path="/profile/address" component={ProfileAddress} redirectTo='signin' validator={()=>isUserSignedIn} />
       <ProtectedRoute exact path="/profile/settings" component={ProfileSettings} redirectTo='signin' validator={()=>isUserSignedIn} />
       <ProtectedRoute exact path="/profile/details" component={ProfileDetails} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute exact path="/profile/details/change-password" component={ChangePassword} redirectTo='signin' validator={()=>isUserSignedIn} />
       <ProtectedRoute exact path="/profile/helpcenter" component={ProfileHelpCenter} redirectTo='signin' validator={()=>isUserSignedIn} />
       <ProtectedRoute exact path="/wishlist" component={WishlistPage} redirectTo='signin' validator={()=>isUserSignedIn} />
       <Route exact path="/search/:searchType?" component={SearchPage} />
-      <ProtectedRoute exact path="/checkout" component={CheckoutPage} />
+      <ProtectedRoute exact path="/checkout" component={CheckoutPage} validator={()=>isUserSignedIn}/>
       <Route exact path="/terms-and-condition" component={TermsAndConditionPage} />
       <Route component={PageNotFound} />
     </Switch>
