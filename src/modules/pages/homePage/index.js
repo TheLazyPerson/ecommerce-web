@@ -86,7 +86,7 @@ class HomePage extends Component {
                   {map(exhibitionList, (exhibition, index) => {
                     return (
                       <div className={styles.swiper_item} key={index}>
-                        <ExhibitionItemContainer />
+                        <ExhibitionItemContainer exhibition={exhibition} />
                       </div>
                     );
                   })}

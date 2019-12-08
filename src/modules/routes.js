@@ -16,9 +16,9 @@ import WishlistPage from "./pages/wishlistPage";
 import SearchPage from "./pages/searchPage";
 import CheckoutPage from "./pages/checkoutPage";
 import ForgotPasswordPage from "./pages/forgotPasswordPage";
-import TermsAndConditionPage from './pages/termsAndConditionPage';
+import TermsAndConditionPage from "./pages/termsAndConditionPage";
 import topContainerHoc from "Hoc/topContainerHoc";
-import ProtectedRoute from 'CommonContainers/protectedRoute';
+import ProtectedRoute from "CommonContainers/protectedRoute";
 import { connect } from "react-redux";
 import ChangePassword from "./pages/profilePages/profileDetails/changePassword";
 
@@ -31,21 +31,93 @@ const App = ({ isUserSignedIn }) => {
         path="/product-details/:slug?/:productId?"
         component={ProductDetailsPage}
       />
-      <ProtectedRoute exact path="/signin" component={SignInPage} validator={()=>!isUserSignedIn} />
-      <ProtectedRoute exact path="/signup" component={SignUpPage} validator={()=>!isUserSignedIn} />
-      <ProtectedRoute exact path="/forgot-password" component={ForgotPasswordPage} validator={()=>!isUserSignedIn} />
+      <ProtectedRoute
+        exact
+        path="/signin"
+        component={SignInPage}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/signup"
+        component={SignUpPage}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/forgot-password"
+        component={ForgotPasswordPage}
+        validator={() => !isUserSignedIn}
+      />
       <Route exact path="/product-listing" component={ProductListingPage} />
-      <ProtectedRoute exact path="/profile" component={ProfileOverview} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/orders" component={ProfileOrders} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/address" component={ProfileAddress} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/settings" component={ProfileSettings} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/details" component={ProfileDetails} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/details/change-password" component={ChangePassword} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/profile/helpcenter" component={ProfileHelpCenter} redirectTo='signin' validator={()=>isUserSignedIn} />
-      <ProtectedRoute exact path="/wishlist" component={WishlistPage} redirectTo='signin' validator={()=>isUserSignedIn} />
+      <ProtectedRoute
+        exact
+        path="/profile"
+        component={ProfileOverview}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/orders"
+        component={ProfileOrders}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/address"
+        component={ProfileAddress}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/settings"
+        component={ProfileSettings}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/details"
+        component={ProfileDetails}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/details/change-password"
+        component={ChangePassword}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/helpcenter"
+        component={ProfileHelpCenter}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/wishlist"
+        component={WishlistPage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
       <Route exact path="/search/:searchType?" component={SearchPage} />
-      <ProtectedRoute exact path="/checkout" component={CheckoutPage} validator={()=>isUserSignedIn}/>
-      <Route exact path="/terms-and-condition" component={TermsAndConditionPage} />
+      <ProtectedRoute
+        exact
+        path="/checkout"
+        component={CheckoutPage}
+        validator={() => isUserSignedIn}
+      />
+      <Route
+        exact
+        path="/terms-and-condition"
+        component={TermsAndConditionPage}
+      />
       <Route component={PageNotFound} />
     </Switch>
   );
@@ -53,7 +125,7 @@ const App = ({ isUserSignedIn }) => {
 
 const mapStateToProps = state => {
   return {
-    isUserSignedIn: state.signInReducer.isUserSignedIn,
+    isUserSignedIn: state.signInReducer.isUserSignedIn
   };
 };
 

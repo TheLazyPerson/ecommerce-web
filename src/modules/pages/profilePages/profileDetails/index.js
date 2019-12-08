@@ -12,8 +12,14 @@ import { getProfileDetailsAction } from "Core/modules/profiledetails/profileDeta
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import navigatorHoc from "Hoc/navigatorHoc";
 
 class ProfileDetails extends Component {
+  navigateToChangePass = () => {
+    const { navigateTo } = this.props;
+    navigateTo("change-password");
+  };
+
   render() {
     const {
       profileDetailsReducer: { userDetails },
@@ -25,7 +31,10 @@ class ProfileDetails extends Component {
         <DivColumn className={styles.details_container}>
           <NavHeader title="profile details">
             <DivRow>
-              <SecondaryCapsuleButton className={styles.reset_password_button}>
+              <SecondaryCapsuleButton
+                className={styles.reset_password_button}
+                onClick={this.navigateToChangePass}
+              >
                 Change Password
               </SecondaryCapsuleButton>
               <CapsuleButton>Edit Profile</CapsuleButton>
@@ -33,7 +42,6 @@ class ProfileDetails extends Component {
           </NavHeader>
 
           <InitialPageLoader initialPageApi={getProfileDetailsAction}>
-            {/* {user !== undefined && ( */}
             <DivColumn fillParent>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>First Name</div>
@@ -68,7 +76,6 @@ class ProfileDetails extends Component {
                 </div>
               </DivColumn>
             </DivColumn>
-            {/* )} */}
           </InitialPageLoader>
         </DivColumn>
       </SectionedContainer>
@@ -91,4 +98,7 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(ProfileDetails);
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(ProfileDetails));

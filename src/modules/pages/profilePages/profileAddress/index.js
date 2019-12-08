@@ -12,8 +12,12 @@ import map from "lodash/map";
 import CapsuleButton from "CommonComponents/capsuleButton";
 
 class ProfileAddress extends Component {
-  handleClick = () => {
-    console.log("CLICKED");
+  handleEdit = () => {
+    console.log("Edit");
+  };
+
+  handleRemove = () => {
+    console.log("Remove");
   };
   render() {
     const {
@@ -60,8 +64,18 @@ class ProfileAddress extends Component {
                       </div>
                     </DivColumn>
                     <DivRow className={styles.action_container}>
-                      <div className={styles.action_button}>Edit</div>
-                      <div className={styles.action_button}>Remove</div>
+                      <div
+                        className={styles.action_button}
+                        onClick={this.handleEdit}
+                      >
+                        Edit
+                      </div>
+                      <div
+                        className={styles.action_button}
+                        onClick={this.handleRemove}
+                      >
+                        Remove
+                      </div>
                     </DivRow>
                   </DivColumn>
                 );
@@ -93,8 +107,18 @@ class ProfileAddress extends Component {
                         </div>
                       </DivColumn>
                       <DivRow className={styles.action_container}>
-                        <div className={styles.action_button}>Edit</div>
-                        <div className={styles.action_button}>Remove</div>
+                        <div
+                          className={styles.action_button}
+                          onClick={this.handleEdit}
+                        >
+                          Edit
+                        </div>
+                        <div
+                          className={styles.action_button}
+                          onClick={this.handleRemove}
+                        >
+                          Remove
+                        </div>
                       </DivRow>
                     </DivColumn>
                   );
