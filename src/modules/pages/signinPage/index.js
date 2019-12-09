@@ -17,26 +17,6 @@ class SignInPage extends Component {
     password: ""
   };
 
-  componentDidMount() {
-    const {
-      signInReducer: { userDetails },
-      navigateTo
-    } = this.props;
-    if (userDetails) {
-      navigateTo("");
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      signInReducer: { userDetails },
-      navigateTo
-    } = nextProps;
-    if (userDetails) {
-      navigateTo("");
-    }
-  }
-
   onSubmit = form => {
     form.preventDefault();
     const { postSigninAction, navigateTo } = this.props;

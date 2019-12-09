@@ -1,4 +1,17 @@
-import { reducerStates } from 'Constants/flashMessageConstants';
+import { reducerStates, flashMessageTypes } from 'Constants/flashMessageConstants';
+
+
+export function showSuccessFlashMessage(message) {
+  return dispatch => {
+    dispatch({
+      type: reducerStates.SHOW_FLASH_MESSAGE,
+      payload: {
+        messageType: flashMessageTypes.SUCCESS,
+        message
+      }
+    })
+  }
+}
 
 export function hideFlashMessage() {
   return dispatch => {
