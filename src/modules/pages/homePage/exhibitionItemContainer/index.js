@@ -6,13 +6,15 @@ import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponen
 import navigatorHoc from "Hoc/navigatorHoc";
 
 class ExhibitionItemContainer extends Component {
-  onClickViewExhibition = () => {
+  onClickViewExhibition = id => {
     const { navigateTo } = this.props;
-
-    navigateTo("plp");
+    navigateTo("plp", {
+      id
+    });
   };
 
   render() {
+    const exhibition = this.props.exhibition;
     return (
       <DivRow className={styles.exhibition_item_container} class="swiper-slide">
         <img
@@ -29,7 +31,7 @@ class ExhibitionItemContainer extends Component {
         >
           <div
             className={styles.view_exhibition_button}
-            onClick={this.onClickViewExhibition}
+            onClick={() => this.onClickViewExhibition(exhibition.id)}
           >
             View Exibition
           </div>

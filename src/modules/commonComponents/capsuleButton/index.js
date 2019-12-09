@@ -4,11 +4,16 @@ import styles from './capsule_button.module.scss';
 
 export default class CapsuleButton extends Component {
   render() {
-    const { children, className } = this.props;
+    const { children, className, ...rest } = this.props;
 
      return (
-      <DivRow verticalCenter horizontalCenter className={`${styles.capsule_button} ${className}`}>
-        <div>{children}</div>
+      <DivRow 
+       {...rest}
+       verticalCenter
+       horizontalCenter
+       className={`${styles.capsule_button} ${className}`}
+      >
+       <div>{children}</div>
       </DivRow>
      )
   }
