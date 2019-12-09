@@ -21,7 +21,7 @@ class SignUpPage extends Component {
   }
 
   onSubmit = (form) => {
-    form.preventDefault();    
+    form.preventDefault();
     const { postSignupAction } = this.props;
 
     postSignupAction({
@@ -30,13 +30,13 @@ class SignUpPage extends Component {
       "email": "sample@gmail.com",
       "password": "123",
       "password_confirmation": "123"
-    }).then(value=>{
+    }).then(value => {
       console.log('fError:', value);
-    }).catch(error=> {
-      console.log('fError: ',error)
+    }).catch(error => {
+      console.log('fError: ', error)
     });
   }
-  
+
 
   /* 
   const MyForm = () => (
@@ -88,28 +88,94 @@ class SignUpPage extends Component {
   */
 
   render() {
-     return (
-       <FullWidthContainer>
+    return (
+      <FullWidthContainer>
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
           <div className={styles.signin_title_text}>Sign Up</div>
-          <form className={styles.form_container} onSubmit={this.onSubmit}>
-           <DivRow className={styles.name_container}>
-             <InputTextComponent placeholder="Firstname" className={styles.input_text} />
-             <InputTextComponent placeholder="LastName" className={styles.input_text} />
-           </DivRow>
-           <InputTextComponent placeholder="Email" className={styles.input_text} />
-           <InputTextComponent placeholder="Password" className={styles.input_text} />
-           <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />
+          <Form
+            onSubmit={this.onSubmit}
+            validate={(values) => { }}
+            render={({ handleSubmit, form, submitting, pristine, values }) => (
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <DivRow className={styles.name_container}>
+                  <Field name="firstName">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent 
+                          meta={meta} 
+                          {...input}
+                          placeholder="Firstname"
+                          className={styles.input_text}
+                        />
+                      )
+                    }
+                  </Field>
+                  <Field name="lastName">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         {...input}
+                         placeholder="Lastname"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                  </Field>
+                </DivRow>
+                <Field name="email">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         {...input}
+                         placeholder="Email"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                </Field>
 
-           <input type='submit' value="Create" className={styles.input_submit}/>
-          </form>
+                
+                <Field name="password">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         type="password"
+                         {...input}
+                         placeholder="Password"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                </Field>
+
+                <Field name="confirmPassword">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         type="password"
+                         {...input}
+                         placeholder="Confirm Password"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                </Field>
+                <input type='submit' value="Create" className={styles.input_submit} />
+              </form>
+            )}
+          />
+
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>Already have an account?&nbsp;</span>
             <a className={styles.hyper_link} href="/signin">Sign in</a>
           </div>
         </DivColumn>
-       </FullWidthContainer>
-     );
+      </FullWidthContainer>
+    );
   }
 }
 
