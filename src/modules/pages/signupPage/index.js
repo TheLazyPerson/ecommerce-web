@@ -30,8 +30,10 @@ class SignUpPage extends Component {
       "password": form.password,
       "password_confirmation": form.confirmPassword
     }).then(value => {
-      navigateTo('signin');
-      showSuccessFlashMessage('Signed up successfuly');
+      if (value.code == 200 ||value.code == 201) {
+        navigateTo('signin');
+        showSuccessFlashMessage('Signed up successfuly');  
+      }
     });
   }
 
