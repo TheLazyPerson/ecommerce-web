@@ -9,6 +9,7 @@ import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
 import { Form, Field } from 'react-final-form';
 import { postSignupAction } from 'Core/modules/signup/actions';
+import { showSuccessFlashMessage } from 'Redux/actions/flashMessageActions'
 import navigatorHoc from 'Hoc/navigatorHoc';
 import {
   nameValidator,
@@ -19,15 +20,8 @@ import {
 
 class SignUpPage extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    const { signInReducer: { userDetails }, navigateTo } = nextProps;
-    if (userDetails) {
-      navigateTo('');
-    }
-  }
-
   onSubmit = (form) => {
-    const { postSignupAction } = this.props;
+    const { postSignupAction, navigateTo, showSuccessFlashMessage } = this.props;
 
     postSignupAction({
       "first_name": form.firstName,
@@ -35,6 +29,9 @@ class SignUpPage extends Component {
       "email": form.email,
       "password": form.password,
       "password_confirmation": form.confirmPassword
+    }).then(value => {
+      navigateTo('signin');
+      showSuccessFlashMessage('Signed up successfuly');
     });
   }
 
@@ -133,7 +130,12 @@ class SignUpPage extends Component {
                       )
                     }
                 </Field>
-                <input type='submit' value="Create" className={styles.input_submit} />
+                <input 
+                  type='submit'
+                  value="Create"
+                  className={styles.input_submit}
+                  disabled={submitting}
+                />
               </form>
             )}
           />
@@ -157,7 +159,8 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = dispatch => {
   return {
-    postSignupAction: bindActionCreators(postSignupAction, dispatch)
+    postSignupAction: bindActionCreators(postSignupAction, dispatch),
+    showSuccessFlashMessage: bindActionCreators(showSuccessFlashMessage, dispatch),
   }
 }
 
