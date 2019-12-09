@@ -23,6 +23,7 @@ import EditProfile from "./pages/profilePages/profileDetails/editProfile";
 import topContainerHoc from "Hoc/topContainerHoc";
 import ProtectedRoute from "CommonContainers/protectedRoute";
 import { connect } from "react-redux";
+import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -123,6 +124,11 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/terms-and-condition"
         component={TermsAndConditionPage}
+      />
+      <Route
+        exact
+        path="/shipping-and-returns"
+        component={ShippingAndReturnsPage}
       />
       <Route component={PageNotFound} />
     </Switch>

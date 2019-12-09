@@ -14,9 +14,15 @@ export default class StaticDataPageContainer extends Component {
           <div className={styles.description_text}>{descriptionItem.value}</div>
         )
       } else if (descriptionItem.type == 'points') {
-        return map(descriptionItem.value, (descriptionPoint, index) => {
-          return <div>{`${index+1}. ${descriptionPoint}`}</div>
-        })
+        return (
+          <DivColumn fillSelfHorizontal className={styles.points_container}>
+            {
+               map(descriptionItem.value, (descriptionPoint, index) => {
+                 return <div className={styles.points_text}>{`${index+1}. ${descriptionPoint}`}</div>
+               })
+            }
+          </DivColumn>
+        )
       }
     })
   }
