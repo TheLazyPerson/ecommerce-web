@@ -1,5 +1,35 @@
 .page_container {
-
   padding: 80px 44px 0px 70px;
+  overflow: scroll;
+
+  .sub_title {
+    font-size: 14px;
+    font-weight: 300;
+    color: #000000; // black
+    margin-bottom: 5px;
+  }
+
+  .qna_container {
+    margin-bottom: 45px;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 17px;
+    }
+
+    .description_text {
+      font-size: 16px;
+      line-height: 1.63;
+      color: #000000;
+      margin-top: 21px;
+    }
+
+    .description_text:first-child{
+      margin-top: 0px;      
+    }
+
+  }
 
 }

@@ -4,6 +4,7 @@ import DivColumn from 'CommonComponents/divColumn';
 import StaticPageHeader from 'CommonComponents/staticPageHeader';
 import styles from './terms_and_condition.module.scss';
 import map from 'lodash/map';
+import { termsAndCondition } from 'Constants/termsAndConditionConstants';
 
 export default class TermsAndConditionPage extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export default class TermsAndConditionPage extends Component {
     return map(description, descriptionItem => {
       if (descriptionItem.type == 'text') {
         return (
-          <div>{description.value}</div>
+          <div className={styles.description_text}>{descriptionItem.value}</div>
         )
       } else if (descriptionItem.type == 'points') {
         return map(descriptionItem.value, (descriptionPoint, index) => {
@@ -31,7 +32,7 @@ export default class TermsAndConditionPage extends Component {
        >
         <DivColumn fillParent className={styles.page_container}>
           {
-            map([], item => {
+            map(termsAndCondition, item => {
 
               switch(item.type) {
                 case 'last-updated':
@@ -40,10 +41,10 @@ export default class TermsAndConditionPage extends Component {
                   );
                 case 'q-n-a':
                   return (
-                    <DivColumn fillSelfHorizontal>
-                      <div>{item.value.title}</div>
+                    <DivColumn fillSelfHorizontal className={styles.qna_container}>
+                      <div className={styles.title}>{item.value.title}</div>
 
-                      <div>{this.renderDescription(item.value.description)}</div>
+                      {this.renderDescription(item.value.description)}
                     </DivColumn>
                   );
               }
