@@ -25,6 +25,7 @@ import ProtectedRoute from "CommonContainers/protectedRoute";
 import { connect } from "react-redux";
 import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
 import PrivacyPolicyPage from "./pages/privacyPolicyPage";
+import FAQPage from "./pages/FAQPage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -135,6 +136,11 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/privacy-policy"
         component={PrivacyPolicyPage}
+      />
+      <Route
+        exact
+        path="/faq"
+        component={FAQPage}
       />
       
       <Route component={PageNotFound} />
