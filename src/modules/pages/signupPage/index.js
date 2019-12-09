@@ -10,6 +10,12 @@ import InputCheckbox from 'CommonComponents/InputCheckbox';
 import { Form, Field } from 'react-final-form';
 import { postSignupAction } from 'Core/modules/signup/actions';
 import navigatorHoc from 'Hoc/navigatorHoc';
+import {
+  nameValidator,
+  emailValidator,
+  passwordValidator,
+  isEmptyValidator
+} from 'Utils/validators';
 
 class SignUpPage extends Component {
 
@@ -21,71 +27,34 @@ class SignUpPage extends Component {
   }
 
   onSubmit = (form) => {
-    form.preventDefault();
     const { postSignupAction } = this.props;
 
     postSignupAction({
-      "first_name": "Sample",
-      "last_name": "Lastname",
-      "email": "sample@gmail.com",
-      "password": "123",
-      "password_confirmation": "123"
-    }).then(value => {
-      console.log('fError:', value);
-    }).catch(error => {
-      console.log('fError: ', error)
+      "first_name": form.firstName,
+      "last_name": form.lastName,
+      "email": form.email,
+      "password": form.password,
+      "password_confirmation": form.confirmPassword
     });
   }
 
+  validate = (values) => {
+    const errors = {};
+    const validators = {
+      firstName: nameValidator(values.firstName),
+      lastName:  nameValidator(values.lastName),
+      email:  emailValidator(values.email),
+      password: isEmptyValidator(values.password),
+      confirmPassword: passwordValidator(values.password, values.confirmPassword)
+    }
 
-  /* 
-  const MyForm = () => (
-  <Form
-    onSubmit={onSubmit}
-    validate={validate}
-    render={({ handleSubmit }) => (
-      <form onSubmit={handleSubmit}>
-        <h2>Simple Default Input</h2>
-        <div>
-          <label>First Name</label>
-          <Field name="firstName" component="input" placeholder="First Name" />
-        </div>
+    Object.keys(validators).forEach(key=>{
+      if (!validators[key].result)
+        errors[key] = validators[key].error;
+   });
 
-        <h2>An Arbitrary Reusable Input Component</h2>
-        <div>
-          <label>Interests</label>
-          <Field name="interests" component={InterestPicker} />
-        </div>
-
-        <h2>Render Function</h2>
-        <Field
-          name="bio"
-          render={({ input, meta }) => (
-            <div>
-              <label>Bio</label>
-              <textarea {...input} />
-              {meta.touched && meta.error && <span>{meta.error}</span>}
-            </div>
-          )}
-        />
-
-        <h2>Render Function as Children</h2>
-        <Field name="phone">
-          {({ input, meta }) => (
-            <div>
-              <label>Phone</label>
-              <input type="text" {...input} placeholder="Phone" />
-              {meta.touched && meta.error && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
-
-        <button type="submit">Submit</button>
-      </form>
-    )}
-  />
-)
-  */
+    return errors;
+  }
 
   render() {
     return (
@@ -94,7 +63,7 @@ class SignUpPage extends Component {
           <div className={styles.signin_title_text}>Sign Up</div>
           <Form
             onSubmit={this.onSubmit}
-            validate={(values) => { }}
+            validate={this.validate}
             render={({ handleSubmit, form, submitting, pristine, values }) => (
               <form className={styles.form_container} onSubmit={handleSubmit}>
                 <DivRow className={styles.name_container}>
