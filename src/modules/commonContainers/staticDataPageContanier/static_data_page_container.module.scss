@@ -5,7 +5,7 @@
   .sub_title {
     font-size: 14px;
     font-weight: 300;
-    color: #000000; // black
+    color: black;
     margin-bottom: 5px;
   }
 
@@ -15,7 +15,7 @@
     .title {
       font-size: 24px;
       font-weight: bold;
-      color: #000000;
+      color: black;
       margin-bottom: 17px;
     }
 
@@ -23,7 +23,7 @@
     .description_text {
       font-size: 16px;
       line-height: 1.63;
-      color: #000000;
+      color: black;
       margin-top: 21px;
     }
 
@@ -38,14 +38,14 @@
 
       .points_text {
           font-size: 16px;
-          color: #000000;
+          color: black;
           margin-top: 5px;
       }
 
       .points_text:first-child {
         margin-top: 0px;
       }
-      
+
     }
   }
 }

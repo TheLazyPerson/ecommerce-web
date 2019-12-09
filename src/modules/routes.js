@@ -24,6 +24,7 @@ import topContainerHoc from "Hoc/topContainerHoc";
 import ProtectedRoute from "CommonContainers/protectedRoute";
 import { connect } from "react-redux";
 import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
+import PrivacyPolicyPage from "./pages/privacyPolicyPage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -130,6 +131,12 @@ const App = ({ isUserSignedIn }) => {
         path="/shipping-and-returns"
         component={ShippingAndReturnsPage}
       />
+      <Route
+        exact
+        path="/privacy-policy"
+        component={PrivacyPolicyPage}
+      />
+      
       <Route component={PageNotFound} />
     </Switch>
   );

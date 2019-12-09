@@ -45,7 +45,7 @@ export default class StaticDataPageContainer extends Component {
               switch(item.type) {
                 case 'last-updated':
                   return (
-                    <div>{item.value}</div>
+                    <div className={styles.sub_title}>{item.value}</div>
                   );
                 case 'q-n-a':
                   return (
