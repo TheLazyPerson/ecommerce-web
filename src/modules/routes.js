@@ -18,7 +18,7 @@ import CheckoutPage from "./pages/checkoutPage";
 import ForgotPasswordPage from "./pages/forgotPasswordPage";
 import TermsAndConditionPage from "./pages/termsAndConditionPage";
 import ChangePassword from "./pages/profilePages/profileDetails/changePassword";
-import EditProfile from './pages/profilePages/profileDetails/editProfile';
+import EditProfile from "./pages/profilePages/profileDetails/editProfile";
 
 import topContainerHoc from "Hoc/topContainerHoc";
 import ProtectedRoute from "CommonContainers/protectedRoute";
@@ -28,11 +28,7 @@ const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route
-        exact
-        path="/product-details/:slug?/:productId?"
-        component={ProductDetailsPage}
-      />
+      <Route exact path="/product-details" component={ProductDetailsPage} />
       <ProtectedRoute
         exact
         path="/signin"

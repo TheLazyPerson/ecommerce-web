@@ -8,17 +8,12 @@ import DropdownCapsule from "./dropdownCapsule";
 import ProductGridItem from "./productGridItem";
 import SideBarFilter from "./sideBarFilter";
 import queryString from "query-string";
-import { getExhibitionListAction } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductListAction } from "Core/modules/productlist/productListActions";
 class ProductListingPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const parsed = queryString.parse(this.props.location.search);
     const {
@@ -33,17 +28,15 @@ class ProductListingPage extends Component {
             <DropdownCapsule />
           </DivRow>
           <DivRow fillParent className={styles.product_list_container}>
-
-          <InitialPageLoader
-            initialPageApi={() => getProductListAction(parsed.id)}
-          >
-            <DivRow fillParent className={styles.product_list}>
-              {map(productList, (product, index) => {
+            <InitialPageLoader
+              initialPageApi={() => getProductListAction(parsed.id)}
+            >
+              <DivRow fillParent className={styles.product_list}>
+                {map(productList, (product, index) => {
                   return <ProductGridItem product={product} key={index} />;
                 })}
-            </DivRow>
-
-          </InitialPageLoader>
+              </DivRow>
+            </InitialPageLoader>
           </DivRow>
         </DivColumn>
       </SectionedContainer>

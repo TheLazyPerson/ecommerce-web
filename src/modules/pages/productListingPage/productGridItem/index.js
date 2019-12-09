@@ -7,13 +7,16 @@ import heartFilledIcon from "Icons/heart-filled-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
 
 class ProductGridItem extends Component {
-  onClickViewProduct = () => {
+  onClickViewProduct = (exhibitionId, productId) => {
     const { navigateTo } = this.props;
-    navigateTo("pdp");
+    navigateTo("pdp", {
+      exhibitionId,
+      productId
+    });
   };
 
   render() {
-    const { product } = this.props;
+    const { exhibitionId, product } = this.props;
     return (
       <DivColumn className={styles.product_container}>
         <div className={styles.product_title}>{product.name}</div>
@@ -34,7 +37,7 @@ class ProductGridItem extends Component {
             verticalCenter
             horizontalCenter
             className={styles.view_product_container}
-            onClick={this.onClickViewProduct}
+            onClick={() => this.onClickViewProduct(exhibitionId, product.id)}
           >
             <div className={styles.action_text}>View Product</div>
           </DivRow>
