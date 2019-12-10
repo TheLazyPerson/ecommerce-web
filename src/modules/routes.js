@@ -27,6 +27,7 @@ import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
 import PrivacyPolicyPage from "./pages/privacyPolicyPage";
 import FAQPage from "./pages/FAQPage";
 import AddAddress from "./pages/profilePages/profileAddress/addAddress";
+import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -63,6 +64,13 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/profile/orders"
         component={ProfileOrders}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/orders/details"
+        component={orderDetails}
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />

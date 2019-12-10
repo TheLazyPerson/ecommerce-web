@@ -10,7 +10,7 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 class ProfileOrders extends Component {
   onClickProductViewDetails = () => {
     const { navigateTo } = this.props;
-    navigateTo('pdp');
+    navigateTo('order-details');
   }
 
   render() {

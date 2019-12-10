@@ -41,6 +41,9 @@ const navigatorHoc = WrappedComponent => {
         case "orders":
           return navigationFunction("/profile/orders");
 
+        case "order-details":
+          return navigationFunction("/profile/orders/details");
+
         case "help-center":
           return navigationFunction("/profile/helpcenter");
 
