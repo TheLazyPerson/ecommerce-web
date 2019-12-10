@@ -5,7 +5,6 @@ import DivRow from "CommonComponents/divRow";
 import SideNav from "../../components/sideNav";
 import styles from "./add_address.module.scss";
 import NavHeader from "../../components/navHeader";
-import map from "lodash/map";
 import { Form, Field } from "react-final-form";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import SecondaryCapsuleButton from "CommonComponents/secondaryCapsuleButton";
@@ -18,12 +17,12 @@ import {
   nameValidator,
   isEmptyValidator
 } from "Utils/validators";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import { createAddressAction } from "Core/modules/address/addressActions";
 
 class AddAddress extends Component {
-  onSubmit = form => {
-    // TODO make Api call here
-  };
-
   validate = values => {
     const errors = {};
     const validators = {
@@ -41,6 +40,32 @@ class AddAddress extends Component {
     });
 
     return errors;
+  };
+
+  onSubmit = form => {
+    const {
+      createAddressAction,
+      navigateTo,
+      showSuccessFlashMessage
+    } = this.props;
+
+    createAddressAction({
+      address1: form.street,
+      address2: form.address,
+      postcode: form.pincode,
+      city: form.city,
+      state: "Pune",
+      country: " India",
+      phone_number: form.mobileNumber,
+      country_code: "+965",
+      default_address: 1,
+      name: form.firstName
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+        navigateTo("address");
+        showSuccessFlashMessage("Create New Address");
+      }
+    });
   };
 
   onBackPress = () => {
@@ -168,4 +193,23 @@ class AddAddress extends Component {
   }
 }
 
-export default navigatorHoc(AddAddress);
+const mapStateToProps = state => {
+  return {
+    addressReducer: state.addressReducer
+  };
+};
+
+const mapDispathToProps = dispatch => {
+  return {
+    createAddressAction: bindActionCreators(createAddressAction, dispatch),
+    showSuccessFlashMessage: bindActionCreators(
+      showSuccessFlashMessage,
+      dispatch
+    )
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(AddAddress));
