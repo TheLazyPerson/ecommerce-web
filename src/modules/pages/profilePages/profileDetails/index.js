@@ -20,6 +20,11 @@ class ProfileDetails extends Component {
     navigateTo("change-password");
   };
 
+  navigateToEditProfile = () => {
+    const { navigateTo } = this.props;
+    navigateTo("edit-profile");    
+  }
+
   render() {
     const {
       profileDetailsReducer: { userDetails },
@@ -37,7 +42,11 @@ class ProfileDetails extends Component {
               >
                 Change Password
               </SecondaryCapsuleButton>
-              <CapsuleButton>Edit Profile</CapsuleButton>
+              <CapsuleButton
+               onClick={this.navigateToEditProfile}
+              >
+                Edit Profile
+              </CapsuleButton>
             </DivRow>
           </NavHeader>
 
