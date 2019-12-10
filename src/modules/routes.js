@@ -26,6 +26,7 @@ import { connect } from "react-redux";
 import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
 import PrivacyPolicyPage from "./pages/privacyPolicyPage";
 import FAQPage from "./pages/FAQPage";
+import AddAddress from "./pages/profilePages/profileAddress/addAddress";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -69,6 +70,13 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/profile/address"
         component={ProfileAddress}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/address/add"
+        component={AddAddress}
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />

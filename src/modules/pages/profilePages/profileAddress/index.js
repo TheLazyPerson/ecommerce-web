@@ -10,8 +10,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import map from "lodash/map";
 import CapsuleButton from "CommonComponents/capsuleButton";
+import navigatorHoc from 'Hoc/navigatorHoc';
 
 class ProfileAddress extends Component {
+
+  onClickNewAddress = () => {
+    const { navigateTo } = this.props;
+    navigateTo("add-address");
+  }
+
   handleEdit = () => {
     console.log("Edit");
   };
@@ -40,7 +47,10 @@ class ProfileAddress extends Component {
             <DivColumn className={styles.section_container}>
               <DivRow className={styles.header_container}>
                 <div className={styles.header_title}>DEFAULT ADDRESS</div>
-                <CapsuleButton className={styles.capsule_button}>
+                <CapsuleButton 
+                 className={styles.capsule_button}
+                 onClick={this.onClickNewAddress}
+                >
                   + ADD NEW ADDRESS
                 </CapsuleButton>
               </DivRow>
@@ -144,4 +154,4 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(ProfileAddress);
+export default connect(mapStateToProps, mapDispathToProps)(navigatorHoc(ProfileAddress));

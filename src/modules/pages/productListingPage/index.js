@@ -13,6 +13,7 @@ import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductListAction } from "Core/modules/productlist/productListActions";
+
 class ProductListingPage extends Component {
   render() {
     const parsed = queryString.parse(this.props.location.search);
@@ -33,7 +34,13 @@ class ProductListingPage extends Component {
             >
               <DivRow fillParent className={styles.product_list}>
                 {map(productList, (product, index) => {
-                  return <ProductGridItem product={product} key={index} />;
+                  return (
+                    <ProductGridItem
+                      exhibitionId={parsed.id}
+                      product={product}
+                      key={index}
+                    />
+                  );
                 })}
               </DivRow>
             </InitialPageLoader>

@@ -7,14 +7,12 @@ export default class CapsuleButton extends Component {
     const { children, className, ...rest } = this.props;
 
      return (
-      <DivRow 
+      <button
        {...rest}
-       verticalCenter
-       horizontalCenter
        className={`${styles.capsule_button} ${className}`}
       >
        <div>{children}</div>
-      </DivRow>
+      </button>
      )
   }
 }
