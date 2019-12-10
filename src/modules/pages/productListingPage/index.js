@@ -33,7 +33,13 @@ class ProductListingPage extends Component {
             >
               <DivRow fillParent className={styles.product_list}>
                 {map(productList, (product, index) => {
-                  return <ProductGridItem product={product} key={index} />;
+                  return (
+                    <ProductGridItem
+                      exhibitionId={parsed.id}
+                      product={product}
+                      key={index}
+                    />
+                  );
                 })}
               </DivRow>
             </InitialPageLoader>
