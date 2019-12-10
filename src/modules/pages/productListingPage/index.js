@@ -13,6 +13,7 @@ import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductListAction } from "Core/modules/productlist/productListActions";
+
 class ProductListingPage extends Component {
   render() {
     const parsed = queryString.parse(this.props.location.search);
