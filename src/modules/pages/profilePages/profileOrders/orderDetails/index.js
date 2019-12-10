@@ -69,6 +69,34 @@ class OrderDetails extends Component {
               </DivColumn>
 
               <DivColumn className={styles.right_container}> {/*right container*/}
+                <div className={styles.top_header_text}>ITEMS IN THIS ORDER</div>
+
+                <DivRow className={styles.product_item_container}>
+                  <img className={styles.product_image} />
+                  <DivColumn className={styles.product_content_container}>
+                    <div className={styles.product_name}>Handcrafted Watches, Products</div>
+                    <div className={styles.product_type}>Category</div>
+                    <div className={styles.product_price}>KD <b>3.99</b></div>
+                  </DivColumn>
+                </DivRow>
+
+                <DivRow className={styles.product_item_container}>
+                  <img className={styles.product_image} />
+                  <DivColumn className={styles.product_content_container}>
+                    <div className={styles.product_name}>Handcrafted Watches, Products</div>
+                    <div className={styles.product_type}>Category</div>
+                    <div className={styles.product_price}>KD <b>3.99</b></div>
+                  </DivColumn>
+                </DivRow>
+
+                <DivColumn className={styles.exhibition_container}>
+                  <div className={styles.exhibition_title}>EXHIBITION</div>
+                  <DivRow verticalCenter>
+                    <img className={styles.exhibition_image} />
+                    <div className={styles.exhibition_name}>The Craft Show</div>
+                  </DivRow>
+                </DivColumn>
+
               </DivColumn>
             </DivRow>
           </DivColumn>
