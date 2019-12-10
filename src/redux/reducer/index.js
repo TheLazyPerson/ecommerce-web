@@ -8,6 +8,7 @@ import addressReducer from "Core/modules/address/addressReducer";
 import profileDetailsReducer from "Core/modules/profiledetails/profileDetailsReducer";
 import productListReducer from "Core/modules/productlist/productListReducer";
 import productDetailReducer from "Core/modules/productdetail/productDetailReducer";
+import changePasswordReducer from "Core/modules/changepassword/changePasswordReducer";
 
 const appReducer = history =>
   combineReducers({
@@ -19,7 +20,8 @@ const appReducer = history =>
     addressReducer,
     profileDetailsReducer,
     productListReducer,
-    productDetailReducer
+    productDetailReducer,
+    changePasswordReducer
   });
 
 /* const rootReducer = ( state, action ) => {

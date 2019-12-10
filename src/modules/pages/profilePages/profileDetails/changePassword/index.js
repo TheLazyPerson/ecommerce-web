@@ -10,6 +10,10 @@ import InputTextComponent from "CommonComponents/InputTextComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { passwordValidator, isEmptyValidator } from "Utils/validators";
 import { Form, Field } from "react-final-form";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { changePasswordAction } from "Core/modules/changepassword/changePasswordActions";
+import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 
 class ChangePassword extends Component {
   validate = values => {
@@ -31,7 +35,22 @@ class ChangePassword extends Component {
   };
 
   onSubmit = form => {
-    // TODO make Api call here
+    const {
+      changePasswordAction,
+      navigateTo,
+      showSuccessFlashMessage
+    } = this.props;
+
+    changePasswordAction({
+      old_password: form.oldPassword,
+      new_password: form.newPassword,
+      new_password_confirmation: form.confirmPassword
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+        navigateTo("profile");
+        showSuccessFlashMessage("Password Changed successfuly");
+      }
+    });
   };
 
   onBackPress = () => {
@@ -98,5 +117,23 @@ class ChangePassword extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    changePasswordReducer: state.changePasswordReducer
+  };
+};
 
-export default navigatorHoc(ChangePassword);
+const mapDispathToProps = dispatch => {
+  return {
+    changePasswordAction: bindActionCreators(changePasswordAction, dispatch),
+    showSuccessFlashMessage: bindActionCreators(
+      showSuccessFlashMessage,
+      dispatch
+    )
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(ChangePassword));
