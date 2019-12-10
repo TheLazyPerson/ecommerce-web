@@ -53,3 +53,17 @@ export const isEmptyValidator = (value) => {
   return {result: true};
 }
 
+export const isPhoneNumber = (value) => {
+  let error='';
+  const numberRegex = /^\d+$/;
+
+  if (!value)
+    error = 'Required';
+  else if (value.length != 10 || !numberRegex.test(value))
+    error = 'Please enter a valid phone number';
+
+  return error ? {
+    result: false,
+    error,
+  } : {result: true}
+}

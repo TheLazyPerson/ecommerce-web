@@ -7,8 +7,12 @@
   color: white;
   padding: 8px 25px;
   border-radius: 50px;
+  text-align: center;
   background: $capsule-button-color;
-  text-transform: uppercase;
 
+  text-transform: uppercase;
+  border: none;
+  text-decoration: none;
+  
   @include on_click_button;
 }
