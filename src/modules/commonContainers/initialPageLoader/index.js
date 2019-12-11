@@ -60,9 +60,9 @@ class InitialPageLoader extends Component {
       >
         {isComponentReady &&
           (isError ? (
-            <DivColumn fillParent verticalCenter horizontalCenter>
-              <div>{headingErrorMessage}</div>
-              <div>{errorMessage}</div>
+            <DivColumn fillParent verticalCenter horizontalCenter className={styles.error_container}>
+              <div className={styles.error_title_text}>{headingErrorMessage}</div>
+              <div className={styles.error_message_text}>{errorMessage}</div>
               <br />
               <CapsuleButton onClick={this.makePageApiCall}>Retry</CapsuleButton>
             </DivColumn>
@@ -86,8 +86,8 @@ class InitialPageLoader extends Component {
 
 InitialPageLoader.defaultProps = {
   showEmptyScreen: false,
-  headingErrorMessage: "Can’t Load Maerid",
-  errorMessage: "Something went wrong from our end. Please try again.",
+  headingErrorMessage: "Whoops! Something Went Wrong.",
+  errorMessage: "There was a problem with your action.",
   emptyMessage: "Looks like its empty",
   callApiOnMount: true
 };

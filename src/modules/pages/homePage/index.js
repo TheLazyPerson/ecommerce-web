@@ -39,7 +39,7 @@ class HomePage extends Component {
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
     const isLeftButtonClickable = currentSlide !== 0;
-    const isRightButtonClickable = currentSlide !== totalSlide;
+    const isRightButtonClickable = (currentSlide + 1) !== totalSlide;
 
     return (
       <SectionedContainer isAbsoluteContent>

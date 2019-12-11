@@ -15,19 +15,48 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductDetailAction } from "Core/modules/productdetail/productDetailActions";
+import Swiper from "react-id-swiper";
+import map from 'lodash/map';
+import "swiper/css/swiper.css";
 
 class ProductDetailsPage extends Component {
+  state = {
+    imageList: [
+      exhibitionImage1,
+      exhibitionImage2,
+      exhibitionImage3
+    ],
+    selectedImage: 2,
+  }
+
   onClickAddToBag = () => {
     const { navigateTo } = this.props;
     navigateTo("checkout");
   };
 
+  onClickImageItem = (index) => {
+    this.setState({
+      selectedImage: index
+    });
+  }
+
   render() {
     const parsed = queryString.parse(this.props.location.search);
+    const { imageList, selectedImage } = this.state;
     const {
       productDetailReducer: { productDetail },
       getProductDetailAction
     } = this.props;
+
+    const params = {
+      slidesPerView: 5,
+      freeMode: true,
+      containerClass: "custom_container",
+      on: {
+        slideChange: () => { }
+      }
+    };
+
     return (
       <FullWidthContainer>
         <InitialPageLoader
@@ -39,22 +68,33 @@ class ProductDetailsPage extends Component {
             <DivRow className={styles.product_content_container}>
               <DivColumn className={styles.left_content_container}>
                 {/* 
-            <DivRow verticalCenter>
-            <div className={styles.back_button}>{`< Home`}</div>
-          </DivRow>
-            */}
+                  <DivRow verticalCenter>
+                    <div className={styles.back_button}>{`< Home`}</div>
+                  </DivRow>
+                */}
 
-                <img src={exhibitionImage3} className={styles.product_image} />
+                <img src={imageList[selectedImage]} className={styles.product_image} />
                 <DivRow className={styles.product_image_list}>
-                  <img
-                    src={exhibitionImage1}
-                    className={styles.small_product_image}
-                  />
-                  <img
-                    src={exhibitionImage2}
-                    className={styles.small_product_image}
-                  />
+                  <Swiper
+                    {...params}
+                    getSwiper={swiper => {
+                      this.swiper = swiper;
+                    }}
+                  >
+                    {
+                      map(imageList, (image, index) => (
+                        <div>
+                          <img
+                            src={image}
+                            className={`${styles.small_product_image} ${index == selectedImage? styles.is_image_selected: ''}`}
+                            onClick={()=>this.onClickImageItem(index)}
+                          />
+                        </div>
+                      ))
+                    }
+                  </Swiper>
                 </DivRow>
+
               </DivColumn>
 
               <DivColumn
