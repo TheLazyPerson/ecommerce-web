@@ -136,6 +136,7 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/checkout"
         component={CheckoutPage}
+        redirectTo="signin"
         validator={() => isUserSignedIn}
       />
       <Route
