@@ -75,8 +75,7 @@ const topContainerHoc  = (WrappedComponent) => {
             ${styles[`flash_message_type_${messageType}`]}`}
           >
             {message}
-          </DivRow>
-          }
+          </DivRow>          
         </DivColumn>
       );
     }
