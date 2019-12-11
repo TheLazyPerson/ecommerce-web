@@ -14,7 +14,7 @@ const parseNewLine = object => {
 
 const TermsAndConditionPage = ({title, subTitle}) => {
   return (
-    <DivColumn  fillParent horizontalCenter verticalCenter>
+    <DivColumn fillSelfHorizontal horizontalCenter verticalCenter className={styles.header_container}>
       <div className={styles.sub_title}> {subTitle} </div>
       <div className={styles.title}>{parseNewLine(title)}</div>
     </DivColumn>

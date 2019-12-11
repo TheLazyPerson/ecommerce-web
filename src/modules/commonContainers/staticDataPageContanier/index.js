@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SectionedContainer from "CommonContainers/sectionedContainer";
+import FullWidthContainer from "CommonContainers/fullwidthContainer";
 import DivColumn from 'CommonComponents/divColumn';
 import StaticPageHeader from 'CommonComponents/staticPageHeader';
 import styles from './static_data_page_container.module.scss';
@@ -35,10 +35,9 @@ export default class StaticDataPageContainer extends Component {
     } = this.props;
 
      return (
-       <SectionedContainer 
-        sideBarContainer={<StaticPageHeader subTitle={subTitle} title={title} />}
-       >
+       <FullWidthContainer>         
         <DivColumn fillParent className={styles.page_container}>
+        <StaticPageHeader subTitle={subTitle} title={title} />
           {
             map(staticDataArray, item => {
 
@@ -61,7 +60,7 @@ export default class StaticDataPageContainer extends Component {
             })
           }
         </DivColumn>
-       </SectionedContainer>
+       </FullWidthContainer>
      )
   }
 }
