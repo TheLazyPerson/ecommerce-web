@@ -10,6 +10,7 @@ export default function loaderReducer(state = initialState, {type, payload}) {
 switch (type) {
   case reducerStates.SHOW_FLASH_MESSAGE:
     return {
+      ...state,
       showMessage: true,
       messageType: payload.messageType ? payload.messageType : flashMessageTypes.INFO,
       message: payload.message,
@@ -17,6 +18,7 @@ switch (type) {
 
   case "SHOW_API_ERROR_MESSAGE" :
     return {
+      ...state,
       showMessage: true,
       messageType: flashMessageTypes.ERROR,
       message: payload.message,
@@ -24,9 +26,8 @@ switch (type) {
 
   case reducerStates.HIDE_FLASH_MESSAGE:
     return {
+      ...state,
       showMessage: false,
-      messageType: '',
-      message: ''
     }
 
   default:      
