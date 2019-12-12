@@ -33,7 +33,7 @@ class ProfileHelpCenter extends Component {
     const { sendFeedbackAction, showSuccessFlashMessage } = this.props;
 
     sendFeedbackAction({
-      feedback: form.feedback
+      issue_summary: form.feedback
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         showSuccessFlashMessage("Feedback sent successfuly");
