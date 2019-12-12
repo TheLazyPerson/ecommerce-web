@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .wishlist_item_container {
   width: 314px;
@@ -14,6 +15,8 @@
       width: 15px;
       height: 15px;
       align-self: flex-end;
+
+      @include on_click_button;
     }
 
     .name {
@@ -68,4 +71,8 @@
     text-align: center;
     color: $color-gold;
   }
+}
+
+.is_disabled {
+  opacity: 0.5;
 }
