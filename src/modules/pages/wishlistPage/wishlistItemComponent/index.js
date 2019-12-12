@@ -3,17 +3,19 @@ import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './wishlist_item_component.module.scss';
 import closeIcon from 'Icons/close-icon-black.svg';
-import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
+// import exhibitionImage1 from 'Images/exhibition-item-1.jpg';
 
 export default class WishlistItemComponent extends Component {
   render() {
+    const { wishlistItem: { product } } = this.props;
+
     return (
       <DivColumn className={styles.wishlist_item_container}>
         <DivColumn className={styles.wishlist_details_container}>
           <img src={closeIcon} className={styles.close_icon} />
-          <div className={styles.name}>Adidas Red shoes</div>
-          <div className={styles.description}>Elegant. Timeless. The quitessensial symbol of love</div>
-          <img src={exhibitionImage1} className={styles.image} />
+          <div className={styles.name}>{product.name}</div>
+          <div className={styles.description}>{product.short_description}</div>
+          <img src={product.base_image.path} className={styles.image} />
         </DivColumn>
 
         <DivColumn className={styles.additional_details_container}>

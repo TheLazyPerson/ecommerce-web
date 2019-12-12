@@ -9,10 +9,12 @@ import profileDetailsReducer from "Core/modules/profiledetails/profileDetailsRed
 import productListReducer from "Core/modules/productlist/productListReducer";
 import productDetailReducer from "Core/modules/productdetail/productDetailReducer";
 import changePasswordReducer from "Core/modules/changepassword/changePasswordReducer";
+import wishlistReducer from 'Core/modules/wishlist/wishlistReducer';
 
 const appReducer = history =>
   combineReducers({
     router: connectRouter(history),
+    wishlistReducer,
     loaderReducer,
     flashMessageReducer,
     signInReducer,
