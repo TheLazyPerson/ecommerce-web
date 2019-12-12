@@ -46,6 +46,8 @@
     .heart_icon_container {
       background: $color-very-light-blue;
       flex: 1;
+      
+      @include on_click_button;
     }
 
     .view_product_container {
@@ -62,4 +64,8 @@
     }
   }
 
+}
+
+.is_disabled {
+  opacity: 0.5;
 }
