@@ -2,19 +2,18 @@ import React, { Component } from "react";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./product_grid_item.module.scss";
-import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
-import { addToWishlistAction } from 'Core/modules/wishlist/wishlistActions';
-import { showSuccessFlashMessage } from 'Redux/actions/flashMessageActions';
+import { addToWishlistAction } from "Core/modules/wishlist/wishlistActions";
+import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { addToBagAction } from "Core/modules/bag/bagActions";
 
 class ProductGridItem extends Component {
-
   state = {
-    isWishlistLoading: false,
-  }
+    isWishlistLoading: false
+  };
 
   onClickViewProduct = (exhibitionId, productId) => {
     const { navigateTo } = this.props;
@@ -25,25 +24,42 @@ class ProductGridItem extends Component {
   };
 
   onClickWishlist = () => {
-    const { 
+    const {
       product,
       addToWishlistAction,
-      showSuccessFlashMessage,
+      showSuccessFlashMessage
     } = this.props;
 
     this.setState({ isWishlistLoading: true });
     addToWishlistAction({
       product_id: product.id,
       exhibition_id: 1
-    }).then(({payload}) => {
-        if(payload.code == 200 || payload.code == 201) {
-          showSuccessFlashMessage('Product added to wishlist')
+    })
+      .then(({ payload }) => {
+        if (payload.code == 200 || payload.code == 201) {
+          showSuccessFlashMessage("Product added to wishlist");
         }
-      this.setState({ isWishlistLoading: false });
-    }).catch(error => {
-      this.setState({ isWishlistLoading: false });
+        this.setState({ isWishlistLoading: false });
+      })
+      .catch(error => {
+        this.setState({ isWishlistLoading: false });
+      });
+  };
+
+  onClickAddToBag = (exhibitionId, productId, quantity, is_configurable) => {
+    const { addToBagAction, showSuccessFlashMessage } = this.props;
+
+    addToBagAction({
+      exhibition_id: exhibitionId,
+      product_id: productId,
+      quantity: quantity,
+      is_configurable: is_configurable
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+        showSuccessFlashMessage("Added to Bag");
+      }
     });
-  }
+  };
 
   render() {
     const { exhibitionId, product } = this.props;
@@ -58,10 +74,12 @@ class ProductGridItem extends Component {
         <img className={styles.product_image} src={product.base_image.path} />
         <DivRow className={styles.product_action_container}>
           <DivRow
-           verticalCenter
-           horizontalCenter
-           className={`${styles.heart_icon_container} ${isWishlistLoading ? styles.is_disabled : ''}`}
-           onClick={!isWishlistLoading ? this.onClickWishlist: null}
+            verticalCenter
+            horizontalCenter
+            className={`${styles.heart_icon_container} ${
+              isWishlistLoading ? styles.is_disabled : ""
+            }`}
+            onClick={!isWishlistLoading ? this.onClickWishlist : null}
           >
             <img src={heartFilledIcon} />
           </DivRow>
@@ -85,6 +103,9 @@ class ProductGridItem extends Component {
               style={{
                 color: "white"
               }}
+              onClick={() =>
+                this.onClickAddToBag(exhibitionId, product.id, 1, false)
+              }
             >
               Add to Bag | {product.formatted_price}
             </div>
@@ -99,11 +120,12 @@ class ProductGridItem extends Component {
 const mapDispathToProps = dispatch => {
   return {
     addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
-    showSuccessFlashMessage: bindActionCreators(showSuccessFlashMessage, dispatch),
+    showSuccessFlashMessage: bindActionCreators(
+      showSuccessFlashMessage,
+      dispatch
+    ),
+    addToBagAction: bindActionCreators(addToBagAction, dispatch)
   };
 };
 
-export default connect (
-  null,
-  mapDispathToProps
-)(navigatorHoc(ProductGridItem));
+export default connect(null, mapDispathToProps)(navigatorHoc(ProductGridItem));
