@@ -27,6 +27,7 @@ import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
 import PrivacyPolicyPage from "./pages/privacyPolicyPage";
 import FAQPage from "./pages/FAQPage";
 import AddAddress from "./pages/profilePages/profileAddress/addAddress";
+import EditAddress from "./pages/profilePages/profileAddress/editAddress";
 import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 
 const App = ({ isUserSignedIn }) => {
@@ -85,6 +86,13 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/profile/address/add"
         component={AddAddress}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/address/edit"
+        component={EditAddress}
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />
@@ -149,17 +157,9 @@ const App = ({ isUserSignedIn }) => {
         path="/shipping-and-returns"
         component={ShippingAndReturnsPage}
       />
-      <Route
-        exact
-        path="/privacy-policy"
-        component={PrivacyPolicyPage}
-      />
-      <Route
-        exact
-        path="/faq"
-        component={FAQPage}
-      />
-      
+      <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
+      <Route exact path="/faq" component={FAQPage} />
+
       <Route component={PageNotFound} />
     </Switch>
   );

@@ -3,7 +3,7 @@ import SectionedContainer from "CommonContainers/sectionedContainer";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import SideNav from "../../components/sideNav";
-import styles from "./add_address.module.scss";
+import styles from "./edit_address.module.scss";
 import NavHeader from "../../components/navHeader";
 import { Form, Field } from "react-final-form";
 import CapsuleButton from "CommonComponents/capsuleButton";
@@ -12,6 +12,8 @@ import InputTextComponent from "CommonComponents/InputTextComponent";
 import InputCheckbox from "CommonComponents/InputCheckbox";
 import navigatorHoc from "Hoc/navigatorHoc";
 import HorizontalBorder from "CommonComponents/horizontalBorder";
+import queryString from "query-string";
+import find from "lodash/find";
 import {
   isPhoneNumber,
   nameValidator,
@@ -20,9 +22,9 @@ import {
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { createAddressAction } from "Core/modules/address/addressActions";
+import { editAddressAction } from "Core/modules/address/addressActions";
 
-class AddAddress extends Component {
+class EditAddress extends Component {
   validate = values => {
     const errors = {};
     const validators = {
@@ -47,12 +49,12 @@ class AddAddress extends Component {
 
   onSubmit = form => {
     const {
-      createAddressAction,
+      editAddressAction,
       navigateTo,
       showSuccessFlashMessage
     } = this.props;
 
-    createAddressAction({
+    editAddressAction({
       first_name: form.firstName,
       last_name: form.firstName,
       phone_number: form.mobileNumber,
@@ -67,7 +69,7 @@ class AddAddress extends Component {
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         navigateTo("address");
-        showSuccessFlashMessage("Address Added");
+        showSuccessFlashMessage("Address Updated");
       }
     });
   };
@@ -82,6 +84,15 @@ class AddAddress extends Component {
   };
 
   render() {
+    const parsed = queryString.parse(this.props.location.search);
+    const {
+      addressReducer: { addressList }
+    } = this.props;
+
+    const address = find(addressList, o => {
+      return o.id == parsed.id;
+    });
+
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <NavHeader title="Add Address" onBackClick={this.onBackPress} />
@@ -89,6 +100,18 @@ class AddAddress extends Component {
           <Form
             onSubmit={this.onSubmit}
             validate={this.validate}
+            initialValues={{
+              firstName: address.first_name ? address.first_name : "",
+              lastName: address.last_name ? address.last_name : "",
+              mobileNumber: address.phone ? address.phone : "",
+              address1: address.address1 ? address.address1 : "",
+              address2: address.address2 ? address.address2 : "",
+              city: address.city ? address.city : "",
+              state: address.state ? address.state : "",
+              country: address.country ? address.country : "",
+              country_code: address.country_code ? address.country_code : "",
+              pincode: address.postcode ? address.postcode : ""
+            }}
             render={({ handleSubmit, form, submitting, pristine, values }) => (
               <form className={styles.form_container} onSubmit={handleSubmit}>
                 <DivColumn className={styles.text_input_container}>
@@ -158,7 +181,6 @@ class AddAddress extends Component {
                       />
                     )}
                   </Field>
-
                   <Field name="state">
                     {({ input, meta }) => (
                       <InputTextComponent
@@ -169,7 +191,6 @@ class AddAddress extends Component {
                       />
                     )}
                   </Field>
-
                   <Field name="country">
                     {({ input, meta }) => (
                       <InputTextComponent
@@ -238,7 +259,7 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = dispatch => {
   return {
-    createAddressAction: bindActionCreators(createAddressAction, dispatch),
+    editAddressAction: bindActionCreators(editAddressAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
@@ -249,4 +270,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(AddAddress));
+)(navigatorHoc(EditAddress));

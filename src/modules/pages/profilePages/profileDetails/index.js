@@ -22,8 +22,8 @@ class ProfileDetails extends Component {
 
   navigateToEditProfile = () => {
     const { navigateTo } = this.props;
-    navigateTo("edit-profile");    
-  }
+    navigateTo("edit-profile");
+  };
 
   render() {
     const {
@@ -42,9 +42,7 @@ class ProfileDetails extends Component {
               >
                 Change Password
               </SecondaryCapsuleButton>
-              <CapsuleButton
-               onClick={this.navigateToEditProfile}
-              >
+              <CapsuleButton onClick={this.navigateToEditProfile}>
                 Edit Profile
               </CapsuleButton>
             </DivRow>
@@ -54,15 +52,25 @@ class ProfileDetails extends Component {
             <DivColumn fillParent>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>First Name</div>
-                <div className={styles.value}>{userDetails.first_name}</div>
+                <div className={styles.value}>
+                  {userDetails.first_name
+                    ? userDetails.first_name
+                    : "Not Available"}
+                </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>Last Name</div>
-                <div className={styles.value}>{userDetails.last_name}</div>
+                <div className={styles.value}>
+                  {userDetails.last_name
+                    ? userDetails.last_name
+                    : "Not Available"}
+                </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>Email</div>
-                <div className={styles.value}>{userDetails.email}</div>
+                <div className={styles.value}>
+                  {userDetails.email ? userDetails.email : "Not Available"}
+                </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>Phone Number</div>

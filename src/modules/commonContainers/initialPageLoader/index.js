@@ -54,8 +54,6 @@ class InitialPageLoader extends Component {
     return (
       <DivColumn
         fillParent
-        verticalCenter
-        horizontalCenter
         className={`${className}`}
       >
         {isComponentReady &&
@@ -70,11 +68,13 @@ class InitialPageLoader extends Component {
             customLoader ? (
               customLoader
             ) : (
-              <img
-                src={infiniteLoader}
-                className={styles.loader}
-                alt="Loading ..."
-              />
+              <DivColumn fillParent verticalCenter horizontalCenter>
+                <img
+                  src={infiniteLoader}
+                  className={styles.loader}
+                  alt="Loading ..."
+                />
+              </DivColumn>
             )
           ) : (
             children
