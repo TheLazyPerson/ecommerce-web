@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d4ee07d0ec4f876e9b46be947c96d802",
+    "revision": "d55306fe98422af823e9d714068afca4",
     "url": "/index.html"
   },
   {
-    "revision": "3095d79c53018f71596a",
+    "revision": "17efe20f987543bdf4d0",
     "url": "/static/css/2.676b45a0.chunk.css"
   },
   {
-    "revision": "da03c118249cc0e4b50a",
-    "url": "/static/css/main.41f7ac5a.chunk.css"
+    "revision": "1e20f8e629fbcebc79d6",
+    "url": "/static/css/main.623de9e9.chunk.css"
   },
   {
-    "revision": "3095d79c53018f71596a",
-    "url": "/static/js/2.2c26e7b2.chunk.js"
+    "revision": "17efe20f987543bdf4d0",
+    "url": "/static/js/2.1ebed870.chunk.js"
   },
   {
-    "revision": "da03c118249cc0e4b50a",
-    "url": "/static/js/main.adf8050c.chunk.js"
+    "revision": "1e20f8e629fbcebc79d6",
+    "url": "/static/js/main.95da0370.chunk.js"
   },
   {
     "revision": "75bbd0767c10846482fc",
@@ -56,6 +56,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/cart-bag-icon-black.c6014af6.svg"
   },
   {
+    "revision": "e34039f6c326a070e278fe8d2920fb83",
+    "url": "/static/media/cart-bag-icon-white.e34039f6.svg"
+  },
+  {
     "revision": "5fe0e55f8e19bc4cc3201876dce7b224",
     "url": "/static/media/circular-loader.5fe0e55f.gif"
   },
@@ -72,20 +76,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/exhibition-item-1.bcbb085c.jpg"
   },
   {
-    "revision": "837df9a24e69ea489d700671e41ff1f1",
-    "url": "/static/media/exhibition-item-2.837df9a2.jpg"
-  },
-  {
-    "revision": "bb8f33a1a18aba36af1ea88de51235f8",
-    "url": "/static/media/exhibition-item-3.bb8f33a1.png"
-  },
-  {
     "revision": "79539bb5bc17e8b8177bbf68e50fafa1",
     "url": "/static/media/faq-icon-black.79539bb5.svg"
   },
   {
     "revision": "5b9b618b08cc7345878ca500314e06ec",
     "url": "/static/media/hamburger-menu-icon-black.5b9b618b.svg"
+  },
+  {
+    "revision": "df1cafee97a40ba393d8453e8fc55887",
+    "url": "/static/media/heart-empty-icon.df1cafee.svg"
   },
   {
     "revision": "25d5c7dd33faa6ed09055ae30e1599c4",
