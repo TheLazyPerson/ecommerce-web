@@ -136,7 +136,6 @@ class ProductDetailsPage extends Component {
                 className={styles.right_content_container}
               >
                 <ExhibitionDetailComponent
-                  title="Exibition 1"
                   name={productDetail.name}
                   tags={["watches", "craft", "crafted"]}
                   price={productDetail.formatted_price}
