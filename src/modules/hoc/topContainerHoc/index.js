@@ -21,7 +21,8 @@ const topContainerHoc  = (WrappedComponent) => {
       //Sets user data from cookie to reducer
       const { setUserDataAction } = this.props;
       const userData = CookieService.getJSON(USER_DATA_COOKIE);
-
+      //TODO call backdetails api here
+      
       if (userData) {        
         setUserDataAction(userData);
         this.setState({
