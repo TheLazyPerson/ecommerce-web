@@ -86,6 +86,7 @@
         .wishlist_button {
           padding: 10px 28px;
           margin-left: 20px;
+          @include on_click_button;
 
           .button_icon {
             width: 16px;
@@ -103,4 +104,8 @@
       }
     }
   }
+}
+
+.is_disabled {
+  opacity: 0.5;
 }

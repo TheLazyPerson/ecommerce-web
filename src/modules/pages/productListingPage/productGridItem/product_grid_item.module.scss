@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .product_container {
   width: 284px;
@@ -28,9 +28,7 @@
     width: 200px;
     height: 200px;
     margin: 14px 0px 14px;
-    
   }
-
 
   .product_action_container {
     height: 38px;
@@ -46,6 +44,8 @@
     .heart_icon_container {
       background: $color-very-light-blue;
       flex: 1;
+
+      @include on_click_button;
     }
 
     .view_product_container {
@@ -59,7 +59,12 @@
     .bag_container {
       background: $color-gold;
       flex: 2;
+
+      @include on_click_button;
     }
   }
+}
 
+.is_disabled {
+  opacity: 0.5;
 }

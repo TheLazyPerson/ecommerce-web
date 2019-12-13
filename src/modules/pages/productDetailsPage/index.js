@@ -15,34 +15,68 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductDetailAction } from "Core/modules/productdetail/productDetailActions";
+import { addToWishlistAction } from "Core/modules/wishlist/wishlistActions";
+import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import { addToBagAction } from "Core/modules/bag/bagActions";
 import Swiper from "react-id-swiper";
-import map from 'lodash/map';
+import map from "lodash/map";
 import "swiper/css/swiper.css";
 
 class ProductDetailsPage extends Component {
   state = {
-    imageList: [
-      exhibitionImage1,
-      exhibitionImage2,
-      exhibitionImage3
-    ],
+    imageList: [exhibitionImage1, exhibitionImage2, exhibitionImage3],
     selectedImage: 2,
-  }
-
-  onClickAddToBag = () => {
-    const { navigateTo } = this.props;
-    navigateTo("checkout");
+    isWishlistLoading: false,
+    quantity: 1
   };
 
-  onClickImageItem = (index) => {
+  onClickAddToWishList = () => {
+    const {
+      addToWishlistAction,
+      showSuccessFlashMessage,
+      productDetailReducer: { productDetail }
+    } = this.props;
+
+    this.setState({ isWishlistLoading: true });
+    addToWishlistAction({
+      product_id: productDetail.id,
+      exhibition_id: 1
+    })
+      .then(({ payload }) => {
+        if (payload.code == 200 || payload.code == 201) {
+          showSuccessFlashMessage("Product added to wishlist");
+        }
+        this.setState({ isWishlistLoading: false });
+      })
+      .catch(error => {
+        this.setState({ isWishlistLoading: false });
+      });
+  };
+
+  onClickAddToBag = (exhibitionId, productId, quantity, is_configurable) => {
+    const { addToBagAction, showSuccessFlashMessage } = this.props;
+
+    addToBagAction({
+      exhibition_id: exhibitionId,
+      product_id: productId,
+      quantity: quantity,
+      is_configurable: is_configurable
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+        showSuccessFlashMessage("Added to Bag");
+      }
+    });
+  };
+
+  onClickImageItem = index => {
     this.setState({
       selectedImage: index
     });
-  }
+  };
 
   render() {
     const parsed = queryString.parse(this.props.location.search);
-    const { imageList, selectedImage } = this.state;
+    const { imageList, selectedImage, isWishlistLoading } = this.state;
     const {
       productDetailReducer: { productDetail },
       getProductDetailAction
@@ -53,7 +87,7 @@ class ProductDetailsPage extends Component {
       freeMode: true,
       containerClass: "custom_container",
       on: {
-        slideChange: () => { }
+        slideChange: () => {}
       }
     };
 
@@ -73,7 +107,10 @@ class ProductDetailsPage extends Component {
                   </DivRow>
                 */}
 
-                <img src={imageList[selectedImage]} className={styles.product_image} />
+                <img
+                  src={imageList[selectedImage]}
+                  className={styles.product_image}
+                />
                 <DivRow className={styles.product_image_list}>
                   <Swiper
                     {...params}
@@ -81,20 +118,21 @@ class ProductDetailsPage extends Component {
                       this.swiper = swiper;
                     }}
                   >
-                    {
-                      map(imageList, (image, index) => (
-                        <div>
-                          <img
-                            src={image}
-                            className={`${styles.small_product_image} ${index == selectedImage? styles.is_image_selected: ''}`}
-                            onClick={()=>this.onClickImageItem(index)}
-                          />
-                        </div>
-                      ))
-                    }
+                    {map(imageList, (image, index) => (
+                      <div>
+                        <img
+                          src={image}
+                          className={`${styles.small_product_image} ${
+                            index == selectedImage
+                              ? styles.is_image_selected
+                              : ""
+                          }`}
+                          onClick={() => this.onClickImageItem(index)}
+                        />
+                      </div>
+                    ))}
                   </Swiper>
                 </DivRow>
-
               </DivColumn>
 
               <DivColumn
@@ -115,7 +153,14 @@ class ProductDetailsPage extends Component {
                       verticalCenter
                       horizontalCenter
                       className={styles.add_to_bag_button}
-                      onClick={this.onClickAddToBag}
+                      onClick={() =>
+                        this.onClickAddToBag(
+                          parsed.exhibitionid,
+                          parsed.productid,
+                          this.state.quantity,
+                          false
+                        )
+                      }
                     >
                       <img />
                       <div className={styles.button_text}>Add to Bag</div>
@@ -123,7 +168,12 @@ class ProductDetailsPage extends Component {
                     <DivRow
                       verticalCenter
                       horizontalCenter
-                      className={styles.wishlist_button}
+                      className={`${styles.wishlist_button} ${
+                        isWishlistLoading ? styles.is_disabled : ""
+                      }`}
+                      onClick={
+                        !isWishlistLoading ? this.onClickAddToWishList : null
+                      }
                     >
                       <img
                         src={heartFilledIcon}
@@ -144,13 +194,23 @@ class ProductDetailsPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    productDetailReducer: state.productDetailReducer
+    productDetailReducer: state.productDetailReducer,
+    bagReducer: state.bagReducer
   };
 };
 
 const mapDispathToProps = dispatch => {
   return {
-    getProductDetailAction: bindActionCreators(getProductDetailAction, dispatch)
+    getProductDetailAction: bindActionCreators(
+      getProductDetailAction,
+      dispatch
+    ),
+    showSuccessFlashMessage: bindActionCreators(
+      showSuccessFlashMessage,
+      dispatch
+    ),
+    addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
+    addToBagAction: bindActionCreators(addToBagAction, dispatch)
   };
 };
 
