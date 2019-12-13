@@ -9,107 +9,146 @@ import InputTextComponent from 'CommonComponents/InputTextComponent';
 import InputCheckbox from 'CommonComponents/InputCheckbox';
 import { Form, Field } from 'react-final-form';
 import { postSignupAction } from 'Core/modules/signup/actions';
+import { showSuccessFlashMessage } from 'Redux/actions/flashMessageActions'
 import navigatorHoc from 'Hoc/navigatorHoc';
+import {
+  nameValidator,
+  emailValidator,
+  passwordValidator,
+  isEmptyValidator
+} from 'Utils/validators';
 
 class SignUpPage extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    const { signInReducer: { userDetails }, navigateTo } = nextProps;
-    if (userDetails) {
-      navigateTo('');
-    }
-  }
-
   onSubmit = (form) => {
-    form.preventDefault();    
-    const { postSignupAction } = this.props;
+    const { postSignupAction, navigateTo, showSuccessFlashMessage } = this.props;
 
     postSignupAction({
-      "first_name": "Sample",
-      "last_name": "Lastname",
-      "email": "sample24561234561273@gmail.com",
-      "password": "omkomawar123",
-      "password_confirmation": "omkomawar123"
-    }).then(value=>{
-      console.log('fError:', value);
-    }).catch(error=> {
-      console.log('fError: ',error)
+      "first_name": form.firstName,
+      "last_name": form.lastName,
+      "email": form.email,
+      "password": form.password,
+      "password_confirmation": form.confirmPassword
+    }).then(({payload}) => {
+      if (payload.code == 200 ||payload.code == 201) {
+        navigateTo('signin');
+        showSuccessFlashMessage('Signed up successfuly');  
+      }
     });
   }
-  
 
-  /* 
-  const MyForm = () => (
-  <Form
-    onSubmit={onSubmit}
-    validate={validate}
-    render={({ handleSubmit }) => (
-      <form onSubmit={handleSubmit}>
-        <h2>Simple Default Input</h2>
-        <div>
-          <label>First Name</label>
-          <Field name="firstName" component="input" placeholder="First Name" />
-        </div>
+  validate = (values) => {
+    const errors = {};
+    const validators = {
+      firstName: nameValidator(values.firstName),
+      lastName:  nameValidator(values.lastName),
+      email:  emailValidator(values.email),
+      password: isEmptyValidator(values.password),
+      confirmPassword: passwordValidator(values.password, values.confirmPassword)
+    }
 
-        <h2>An Arbitrary Reusable Input Component</h2>
-        <div>
-          <label>Interests</label>
-          <Field name="interests" component={InterestPicker} />
-        </div>
+    Object.keys(validators).forEach(key=>{
+      if (!validators[key].result)
+        errors[key] = validators[key].error;
+   });
 
-        <h2>Render Function</h2>
-        <Field
-          name="bio"
-          render={({ input, meta }) => (
-            <div>
-              <label>Bio</label>
-              <textarea {...input} />
-              {meta.touched && meta.error && <span>{meta.error}</span>}
-            </div>
-          )}
-        />
-
-        <h2>Render Function as Children</h2>
-        <Field name="phone">
-          {({ input, meta }) => (
-            <div>
-              <label>Phone</label>
-              <input type="text" {...input} placeholder="Phone" />
-              {meta.touched && meta.error && <span>{meta.error}</span>}
-            </div>
-          )}
-        </Field>
-
-        <button type="submit">Submit</button>
-      </form>
-    )}
-  />
-)
-  */
+    return errors;
+  }
 
   render() {
-     return (
-       <FullWidthContainer>
+    return (
+      <FullWidthContainer>
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
           <div className={styles.signin_title_text}>Sign Up</div>
-          <form className={styles.form_container} onSubmit={this.onSubmit}>
-           <DivRow className={styles.name_container}>
-             <InputTextComponent placeholder="Firstname" className={styles.input_text} />
-             <InputTextComponent placeholder="LastName" className={styles.input_text} />
-           </DivRow>
-           <InputTextComponent placeholder="Email" className={styles.input_text} />
-           <InputTextComponent placeholder="Password" className={styles.input_text} />
-           <InputTextComponent placeholder="Confirm Password" className={styles.input_text} />
+          <Form
+            onSubmit={this.onSubmit}
+            validate={this.validate}
+            render={({ handleSubmit, form, submitting, pristine, values }) => (
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <DivRow className={styles.name_container}>
+                  <Field name="firstName">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent 
+                          meta={meta} 
+                          {...input}
+                          placeholder="Firstname"
+                          className={styles.input_text}
+                        />
+                      )
+                    }
+                  </Field>
+                  <Field name="lastName">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         {...input}
+                         placeholder="Lastname"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                  </Field>
+                </DivRow>
+                <Field name="email">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         {...input}
+                         placeholder="Email"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                </Field>
 
-           <input type='submit' value="Create" className={styles.input_submit}/>
-          </form>
+                
+                <Field name="password">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         type="password"
+                         {...input}
+                         placeholder="Password"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                </Field>
+
+                <Field name="confirmPassword">
+                    {
+                      ({ input, meta }) => (
+                        <InputTextComponent
+                         meta={meta}
+                         type="password"
+                         {...input}
+                         placeholder="Confirm Password"
+                         className={styles.input_text}
+                        />
+                      )
+                    }
+                </Field>
+                <input 
+                  type='submit'
+                  value="Create"
+                  className={styles.input_submit}
+                  disabled={submitting}
+                />
+              </form>
+            )}
+          />
+
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>Already have an account?&nbsp;</span>
             <a className={styles.hyper_link} href="/signin">Sign in</a>
           </div>
         </DivColumn>
-       </FullWidthContainer>
-     );
+      </FullWidthContainer>
+    );
   }
 }
 
@@ -122,7 +161,8 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = dispatch => {
   return {
-    postSignupAction: bindActionCreators(postSignupAction, dispatch)
+    postSignupAction: bindActionCreators(postSignupAction, dispatch),
+    showSuccessFlashMessage: bindActionCreators(showSuccessFlashMessage, dispatch),
   }
 }
 

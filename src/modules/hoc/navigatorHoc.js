@@ -1,67 +1,96 @@
-
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { withRouter } from "react-router";
 
-const navigatorHoc  = (WrappedComponent) => {
+const navigatorHoc = WrappedComponent => {
   class navigator extends Component {
+    navigateTo = (pageName, data = null) => {
+      const { push } = this.props.history;
+      this.navigateScreen(push, pageName, data);
+    };
 
-    navigateTo = (pageName, data=null) => {
-      const {push} = this.props.history;
+    replaceTo = (pageName, data = null) => {
+      const { replace } = this.props.history;
+      this.navigateScreen(replace, pageName, data);
+    };
 
-      switch(pageName) {
-        case 'plp':
-          push('/product-listing');
-          return;
-        case 'pdp':
-          push('/product-details/adidas-shoes/2314');
-          return;
-        case 'checkout':
-          push('/checkout');
-          return;
-        case 'signin':
-          push('/signin');
-          return;
-        case 'profile':
-          push('/profile');
-          return;
+    pop = () => {
+      const { goBack } = this.props.history;
 
-        case 'orders':
-          return push('/profile/orders');
-          
-        case 'help-center':
-          return push('/profile/helpcenter');
+      goBack();
+    };
 
-        case 'wishlist':
-          return push('/wishlist');
+    navigateScreen = (navigationFunction, pageName, data) => {
+      switch (pageName) {
+        case "plp":
+          return navigationFunction(`/product-listing/?id=${data.id}`);
+
+        case "pdp":
+          return navigationFunction(
+            `/product-details/?exhibitionid=${data.exhibitionId}&productid=${data.productId}`
+          );
+
+        case "checkout":
+          return navigationFunction("/checkout");
+
+        case "signin":
+          return navigationFunction("/signin");
+
+        case "profile":
+          return navigationFunction("/profile");
+
+        case "orders":
+          return navigationFunction("/profile/orders");
+
+        case "order-details":
+          return navigationFunction("/profile/orders/details");
+
+        case "help-center":
+          return navigationFunction("/profile/helpcenter");
+
+        case "wishlist":
+          return navigationFunction("/wishlist");
+
+        case "address":
+          return navigationFunction("/profile/address");
         
-        case 'address':
-          return push('/profile/address');
+        case "add-address":
+          return navigationFunction("/profile/address/add");
 
-        case 'profile-details':
-          return push('/profile/details');
+        case "profile-details":
+          return navigationFunction("/profile/details");
 
-        case 'settings':
-          return push('/profile/settings');
-        
-        case 'search':
-          return push(`/search/${data.searchType.toLowerCase()}?query=${data.searchText}`);
+        case "settings":
+          return navigationFunction("/profile/settings");
+
+        case "change-password":
+          return navigationFunction("/profile/details/change-password");
+
+        case "edit-profile":
+          return navigationFunction("/profile/details/edit-profile");
+
+        case "search":
+          return navigationFunction(
+            `/search/${data.searchType.toLowerCase()}?query=${data.searchText}`
+          );
 
         default:
-          push('/');
+          return navigationFunction("/");
       }
-    }
+    };
 
-    render() {      
+    render() {
       return (
-        <WrappedComponent 
+        <WrappedComponent
           navigateTo={this.navigateTo}
+          replaceTo={this.replaceTo}
+          pop={this.pop}
           {...this.props}
         />
-      )
+      );
     }
   }
-    
+
   return withRouter(navigator);
 };
 
-export default navigatorHoc
+export default navigatorHoc;

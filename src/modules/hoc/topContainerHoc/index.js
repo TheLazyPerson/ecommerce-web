@@ -65,14 +65,17 @@ const topContainerHoc  = (WrappedComponent) => {
               </DivColumn>  
             )
           } 
-
-          {
-            showMessage && (
-              <DivRow className={styles.flash_message_container}>
-                {message}
-              </DivRow>  
-            )
-          }
+          
+          <DivRow
+            horizontalCenter
+            verticalCenter
+            className={`
+            ${styles.flash_message_container}
+            ${!showMessage ? styles.flash_message_hidden: ''}
+            ${styles[`flash_message_type_${messageType}`]}`}
+          >
+            {message}
+          </DivRow>          
         </DivColumn>
       );
     }

@@ -21,14 +21,16 @@ $bag-count-background: $color-pale;
       left: 0;
       width: 300px;
       margin-top: 48px;
-      background: white;
+      background-color: $search-container-background;
+      border-radius: 0px 0px 24px 24px;
       color: $primary-text-color;
       box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
-      z-index: 2;
+      z-index: 5;
 
       .search_item {
         padding: 6px 19px;
         
+
         &:hover {
           cursor: pointer;
           background: $primary-text-color;
@@ -63,9 +65,10 @@ $bag-count-background: $color-pale;
       width: 300px;
       height: 48px;
       padding: 0px 30px 0px 30px;
-      opacity: 0.3;
       border-radius: 24px;
       background-color: $search-container-background;
+      opacity: 0.3;
+      z-index: 0;
 
       .search_form {
         display: flex;
@@ -75,6 +78,7 @@ $bag-count-background: $color-pale;
           border: 0;
           flex: 1;
           background: transparent;
+          color: $primary-text-color;
   
           &:focus {
             outline: none;
@@ -86,6 +90,11 @@ $bag-count-background: $color-pale;
         width: 17px;
         height: 17px;
       }
+    }
+
+    .search_wrapper_expanded {
+      opacity: 1;
+      border-radius: 24px 24px 0px 0px;
     }
   }
 

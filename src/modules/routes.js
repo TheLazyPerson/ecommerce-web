@@ -1,44 +1,174 @@
-import React from 'react';
-import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
-import HomePage from './pages/homePage';
-import SignInPage from './pages/signinPage';
-import SignUpPage from './pages/signupPage';
-import PageNotFound from 'CommonComponents/pageNotFound';
-import ProductListingPage from './pages/productListingPage';
-import ProductDetailsPage from './pages/productDetailsPage';
-import ProfileOverview from './pages/profilePages';
-import ProfileOrders from './pages/profilePages/profileOrders';
-import ProfileAddress from './pages/profilePages/profileAddress';
-import ProfileSettings from './pages/profilePages/profileSettings';
-import ProfileDetails from './pages/profilePages/profileDetails';
-import ProfileHelpCenter from './pages/profilePages/profileHelpCenter';
-import WishlistPage from './pages/wishlistPage';
-import SearchPage from './pages/searchPage';
-import CheckoutPage from './pages/checkoutPage';
-import ForgotPasswordPage from './pages/forgotPasswordPage';
-import topContainerHoc from 'Hoc/topContainerHoc';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import HomePage from "./pages/homePage";
+import SignInPage from "./pages/signinPage";
+import SignUpPage from "./pages/signupPage";
+import PageNotFound from "CommonComponents/pageNotFound";
+import ProductListingPage from "./pages/productListingPage";
+import ProductDetailsPage from "./pages/productDetailsPage";
+import ProfileOverview from "./pages/profilePages";
+import ProfileOrders from "./pages/profilePages/profileOrders";
+import ProfileAddress from "./pages/profilePages/profileAddress";
+import ProfileSettings from "./pages/profilePages/profileSettings";
+import ProfileDetails from "./pages/profilePages/profileDetails";
+import ProfileHelpCenter from "./pages/profilePages/profileHelpCenter";
+import WishlistPage from "./pages/wishlistPage";
+import SearchPage from "./pages/searchPage";
+import CheckoutPage from "./pages/checkoutPage";
+import ForgotPasswordPage from "./pages/forgotPasswordPage";
+import TermsAndConditionPage from "./pages/termsAndConditionPage";
+import ChangePassword from "./pages/profilePages/profileDetails/changePassword";
+import EditProfile from "./pages/profilePages/profileDetails/editProfile";
 
-const App = ({}) => {
+import topContainerHoc from "Hoc/topContainerHoc";
+import ProtectedRoute from "CommonContainers/protectedRoute";
+import { connect } from "react-redux";
+import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
+import PrivacyPolicyPage from "./pages/privacyPolicyPage";
+import FAQPage from "./pages/FAQPage";
+import AddAddress from "./pages/profilePages/profileAddress/addAddress";
+import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
+
+const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
-      <Route exact path="/" component={HomePage}/>
-      <Route exact path="/product-details/:slug?/:productId?" component={ProductDetailsPage} />
-      <Route exact path="/signin" component={SignInPage}/>
-      <Route exact path="/signup" component={SignUpPage} />
-      <Route exact path="/forgot-password" component={ForgotPasswordPage} />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/product-details" component={ProductDetailsPage} />
+      <ProtectedRoute
+        exact
+        path="/signin"
+        component={SignInPage}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/signup"
+        component={SignUpPage}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/forgot-password"
+        component={ForgotPasswordPage}
+        validator={() => !isUserSignedIn}
+      />
       <Route exact path="/product-listing" component={ProductListingPage} />
-      <Route exact path="/profile" component={ProfileOverview} />
-      <Route exact path="/profile/orders" component={ProfileOrders} />
-      <Route exact path="/profile/address" component={ProfileAddress} />
-      <Route exact path="/profile/settings" component={ProfileSettings} />
-      <Route exact path="/profile/details" component={ProfileDetails} />
-      <Route exact path="/profile/helpcenter" component={ProfileHelpCenter} />
-      <Route exact path="/wishlist" component={WishlistPage} />
+      <ProtectedRoute
+        exact
+        path="/profile"
+        component={ProfileOverview}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/orders"
+        component={ProfileOrders}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/orders/details"
+        component={orderDetails}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/address"
+        component={ProfileAddress}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/address/add"
+        component={AddAddress}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/settings"
+        component={ProfileSettings}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/details"
+        component={ProfileDetails}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/details/change-password"
+        component={ChangePassword}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/details/edit-profile"
+        component={EditProfile}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+
+      <ProtectedRoute
+        exact
+        path="/profile/helpcenter"
+        component={ProfileHelpCenter}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/wishlist"
+        component={WishlistPage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
       <Route exact path="/search/:searchType?" component={SearchPage} />
-      <Route exact path="/checkout" component={CheckoutPage} />
+      <ProtectedRoute
+        exact
+        path="/checkout"
+        component={CheckoutPage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <Route
+        exact
+        path="/terms-and-condition"
+        component={TermsAndConditionPage}
+      />
+      <Route
+        exact
+        path="/shipping-and-returns"
+        component={ShippingAndReturnsPage}
+      />
+      <Route
+        exact
+        path="/privacy-policy"
+        component={PrivacyPolicyPage}
+      />
+      <Route
+        exact
+        path="/faq"
+        component={FAQPage}
+      />
+      
       <Route component={PageNotFound} />
     </Switch>
   );
-}
+};
 
-export default topContainerHoc(App);
+const mapStateToProps = state => {
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn
+  };
+};
+
+export default connect(mapStateToProps, null)(topContainerHoc(App));

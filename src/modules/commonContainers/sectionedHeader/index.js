@@ -86,7 +86,7 @@ class SectionedHeader extends Component {
           showSearchResult: false,
         });
       }
-    }, 300);    
+    }, 300);
   }
 
   render() {
@@ -96,7 +96,7 @@ class SectionedHeader extends Component {
      return (
        <DivRow className={styles.header_container}>
          <div className={styles.search_container}>
-          <DivRow className={styles.search_wrapper}>
+         <DivRow className={`${styles.search_wrapper} ${(searchText && showSearchResult) ? styles.search_wrapper_expanded : ''}`}>
             <form className={styles.search_form} onSubmit={this.onSubmitSearch}>
               <input
                 type="text"
@@ -111,8 +111,9 @@ class SectionedHeader extends Component {
             </form>
             <img src={searchIcon} className={styles.search_icon}/>
            </DivRow>
-           <DivColumn className={`${styles.search_result_container} ${(searchText && showSearchResult) ? '' : styles.hide_search_bar }`}>
 
+           <DivColumn className={`${styles.search_result_container} ${(searchText && showSearchResult) ? '' : styles.hide_search_bar }`}>
+              <div className={styles.filling_gap}></div>
               <DivRow className={styles.search_item} onClick={()=>this.onSearchItemSelected(searchTypes.EXHIBITIONS)}>
                 <DivColumn>
                   <div className={styles.title}>Search Exhibitions</div>
@@ -132,6 +133,7 @@ class SectionedHeader extends Component {
               </DivRow>
 
            </DivColumn>
+
          </div>
 
          <DivRow verticalCenter>
@@ -154,7 +156,7 @@ class SectionedHeader extends Component {
               <a className={`${styles.sigin_link} ${styles.header_item_container}`} href='/signin'>Signin</a>
              )
            }
-           <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} />
+           {/* <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} /> */}
          </DivRow>
        </DivRow>
     );

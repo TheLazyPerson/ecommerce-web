@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
 import styles from './nav_header.module.scss';
+import arrowLeftIcon from 'Icons/arrow-right-icon-black.svg';
 
 export default class NavHeader extends Component {
   render() {
-    const { title, children } = this.props;
+    const { 
+      title,
+      children,
+      onBackClick,
+    } = this.props;
 
      return (
       <DivRow className={styles.header_container}>
-        <div className={styles.header_title}>
+       
+        <DivRow onClick={onBackClick ? onBackClick : null} horizontalCenter verticalCenter className={styles.header_title}>
+          {
+            onBackClick ? <img src={arrowLeftIcon} className={styles.back_icon}/>: null
+          }
+          
           {title}
-        </div>
+        </DivRow>
         {
           children ? children : null
         }

@@ -1,6 +1,7 @@
 export const flashMessageTypes = {
   ERROR: 'ERROR',
   INFO: 'INFO',
+  SUCCESS: 'SUCCESS',
   WARNING: 'WARNING'
 };
 

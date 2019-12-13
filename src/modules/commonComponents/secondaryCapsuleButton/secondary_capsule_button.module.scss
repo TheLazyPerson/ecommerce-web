@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .capsule_button {
   min-width: 143px;
@@ -8,4 +9,6 @@
   border-radius: 50px;
   border: solid 1px rgba($color-orangey-red, 0.8);
   text-transform: uppercase;
+
+  @include on_click_button;
 }
