@@ -22,7 +22,7 @@ class WishlistPage extends Component {
       <FullWidthContainer>
         <DivColumn fillParent className={styles.wishlist_container}>
          <div className={styles.page_header}>My Wishlist</div>
-         <InitialPageLoader initialPageApi={getWishlistAction}>
+         <InitialPageLoader isEmpty={(!wishlist || wishlist.length==0)} initialPageApi={getWishlistAction}>
            <DivRow className={styles.wishlist_list_container}>
             {
               map(wishlist, wishlistItem => (

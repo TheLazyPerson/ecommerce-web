@@ -31,8 +31,8 @@ class InitialPageLoader extends Component {
     initialPageApi()
       .then(data => {
         console.log("initialPageLoader success", data);
-       if (isTypeSuccess(data.type)) this.setState({ loading: false });
-       else this.setState({ loading: false, isError: true });
+        if (isTypeSuccess(data.type)) this.setState({ loading: false });
+        else this.setState({ loading: false, isError: true });
       })
       .catch(error => {
         console.log("initialPageLoader Error:", error);
@@ -40,13 +40,38 @@ class InitialPageLoader extends Component {
       });
   };
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  loaderScreen = () => {
+    return (
+      <DivColumn fillParent verticalCenter horizontalCenter>
+        <img
+          src={infiniteLoader}
+          className={styles.loader}
+          alt="Loading ..."
+        />
+      </DivColumn>
+    )
+  }
+
+  emptyScreen = () => {
+    return (
+      <DivColumn fillParent verticalCenter horizontalCenter className={styles.error_container}>
+        <div className={styles.error_title_text}>No Result</div>
+        <div className={styles.error_message_text}>Looks like its Empty</div>
+      </DivColumn>
+    )
+  }
+
   render() {
     const {
       children,
       className,
       errorMessage,
       customLoader,
-      headingErrorMessage
+      headingErrorMessage,
+      customEmptyScreen,
+      isEmpty
     } = this.props;
 
     const { loading, isError, isComponentReady } = this.state;
@@ -64,21 +89,10 @@ class InitialPageLoader extends Component {
               <br />
               <CapsuleButton onClick={this.makePageApiCall}>Retry</CapsuleButton>
             </DivColumn>
-          ) : loading ? (
-            customLoader ? (
-              customLoader
-            ) : (
-              <DivColumn fillParent verticalCenter horizontalCenter>
-                <img
-                  src={infiniteLoader}
-                  className={styles.loader}
-                  alt="Loading ..."
-                />
-              </DivColumn>
-            )
-          ) : (
-            children
-          ))}
+          ) : loading ? customLoader ? customLoader : this.loaderScreen()
+              : isEmpty ? customEmptyScreen ? customEmptyScreen : this.emptyScreen()
+                : children
+          )}
       </DivColumn>
     );
   }
@@ -89,7 +103,10 @@ InitialPageLoader.defaultProps = {
   headingErrorMessage: "Whoops! Something Went Wrong.",
   errorMessage: "There was a problem with your action.",
   emptyMessage: "Looks like its empty",
-  callApiOnMount: true
+  callApiOnMount: true,
+
+  customEmptyScreen: null,
+  isEmpty: false,
 };
 
 InitialPageLoader.propTypes = {
