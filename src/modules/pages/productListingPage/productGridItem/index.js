@@ -3,9 +3,9 @@ import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./product_grid_item.module.scss";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
-import hearEmptyIcon from 'Icons/heart-empty-icon.svg';
+import heartEmptyIcon from 'Icons/heart-empty-icon.svg';
 import navigatorHoc from "Hoc/navigatorHoc";
-import { addToWishlistAction } from "Core/modules/wishlist/wishlistActions";
+import { addToWishlistAction, removeFromWishlistAction} from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -25,27 +25,44 @@ class ProductGridItem extends Component {
   };
 
   onClickWishlist = () => {
-    const {
+    const { isWishlistLoading } = this.state;
+    const { 
       product,
       addToWishlistAction,
-      showSuccessFlashMessage
+      removeFromWishlistAction
+    } = this.props;
+
+    if(!isWishlistLoading) {
+
+      if (product.is_wishlisted)
+        this.wishlistAction(removeFromWishlistAction, "Product removed from Wishlist");
+      else 
+        this.wishlistAction(addToWishlistAction, "Product added to Wishlist");
+    }
+  };
+
+  wishlistAction = (action, successMessage) => {
+    const {
+      product,      
+      showSuccessFlashMessage,
+      exhibitionId
     } = this.props;
 
     this.setState({ isWishlistLoading: true });
-    addToWishlistAction({
+    action({
       product_id: product.id,
-      exhibition_id: 1
+      exhibition_id: exhibitionId,
     })
       .then(({ payload }) => {
         if (payload.code == 200 || payload.code == 201) {
-          showSuccessFlashMessage("Product added to wishlist");
+          showSuccessFlashMessage(successMessage);
         }
         this.setState({ isWishlistLoading: false });
       })
       .catch(error => {
         this.setState({ isWishlistLoading: false });
       });
-  };
+  }
 
   onClickAddToBag = (exhibitionId, productId, quantity, is_configurable) => {
     const { addToBagAction, showSuccessFlashMessage } = this.props;
@@ -80,9 +97,9 @@ class ProductGridItem extends Component {
             className={`${styles.heart_icon_container} ${
               isWishlistLoading ? styles.is_disabled : ""
             }`}
-            onClick={!isWishlistLoading ? this.onClickWishlist : null}
+            onClick={this.onClickWishlist}
           >
-            <img src={product.is_wishlisted ? heartFilledIcon : hearEmptyIcon} />
+            <img src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon} />
           </DivRow>
 
           <DivRow
@@ -121,6 +138,7 @@ class ProductGridItem extends Component {
 const mapDispathToProps = dispatch => {
   return {
     addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
+    removeFromWishlistAction: bindActionCreators(removeFromWishlistAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
