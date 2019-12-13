@@ -6,6 +6,7 @@ import styles from './full_width_container.module.scss';
 import LanguageSelect from 'CommonComponents/languageSelect';
 import appIcon from 'Icons/app-icon-black.svg'
 import navigatorHoc from 'Hoc/navigatorHoc';
+import PageFooter from 'CommonComponents/pageFooter';
 
 class FullWidthContainer extends Component {
 
@@ -32,7 +33,7 @@ class FullWidthContainer extends Component {
             <DivColumn fillParent className={styles.content}>
               { children }
             </DivColumn>
-            <div style={{background: 'green'}}>Footer</div>
+            <PageFooter />
           </DivColumn>
 
          </DivColumn>
