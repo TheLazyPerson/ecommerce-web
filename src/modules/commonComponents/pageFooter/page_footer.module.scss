@@ -1,0 +1,31 @@
+@import '~Styles/colors.module';
+
+.footer_container {
+  margin-top: 40px;
+  padding: 30px 0px 40px;
+  color: white;
+  background: $primary-text-color;
+
+  .footer_content {
+    margin: auto;
+    max-width: 1080px;
+    min-width: 980px;
+  }
+
+  .footer_link_container {
+    width: 200px;
+    padding-right: 20px;
+
+    .link_header {
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+
+    .link {
+      color: white;
+      margin-bottom: 5px;
+      font-size: 15px;
+      font-weight: 300;
+    }
+  }
+}

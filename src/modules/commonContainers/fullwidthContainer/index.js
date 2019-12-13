@@ -6,6 +6,7 @@ import styles from './full_width_container.module.scss';
 import LanguageSelect from 'CommonComponents/languageSelect';
 import appIcon from 'Icons/app-icon-black.svg'
 import navigatorHoc from 'Hoc/navigatorHoc';
+import PageFooter from 'CommonComponents/pageFooter';
 
 class FullWidthContainer extends Component {
 
@@ -18,8 +19,8 @@ class FullWidthContainer extends Component {
     const { children } = this.props;
 
      return (
-       <DivColumn className={styles.page_container}>
-         <DivColumn className={styles.content_container}>
+       <DivColumn fillParent className={styles.page_container}>
+         <DivColumn fillParent className={styles.content_container}>
           <DivRow className={styles.header_container}>
             <DivRow className={styles.header_icon_container}>
               <img src={appIcon}  className={styles.app_icon} onClick={this.onClickAppIcon} />
@@ -28,7 +29,13 @@ class FullWidthContainer extends Component {
             <SectionedHeader />
           </DivRow>
 
-          { children }
+          <DivColumn fillParent className={styles.inner_content_container}>
+            <DivColumn fillParent className={styles.content}>
+              { children }
+            </DivColumn>
+            <PageFooter />
+          </DivColumn>
+
          </DivColumn>
        </DivColumn>
      )

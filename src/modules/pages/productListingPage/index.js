@@ -21,6 +21,7 @@ class ProductListingPage extends Component {
       productListReducer: { productList },
       getProductListAction
     } = this.props;
+
     return (
       <SectionedContainer sideBarContainer={<SideBarFilter />}>
         <DivColumn className={styles.product_listing_container}>
