@@ -18,6 +18,7 @@ import { addToBagAction } from "Core/modules/bag/bagActions";
 import Swiper from "react-id-swiper";
 import map from "lodash/map";
 import "swiper/css/swiper.css";
+import bagWhiteIcon from 'Icons/cart-bag-icon-white.svg';
 
 class ProductDetailsPage extends Component {
   state = {
@@ -157,8 +158,11 @@ class ProductDetailsPage extends Component {
                         )
                       }
                     >
-                      <img />
-                      <div className={styles.button_text}>Add to Bag</div>
+                      <img 
+                       src={bagWhiteIcon}
+                       className={styles.button_icon}
+                      />
+                      <div className={styles.button_text}>Add to Bag</div> 
                     </DivRow>
                     <DivRow
                       verticalCenter
