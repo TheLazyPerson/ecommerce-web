@@ -10,6 +10,7 @@ import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addToBagAction } from "Core/modules/bag/bagActions";
+import longRightArrow from 'Icons/long-right-arrow-white.svg';
 
 class ProductGridItem extends Component {
   state = {
@@ -24,7 +25,9 @@ class ProductGridItem extends Component {
     });
   };
 
-  onClickWishlist = () => {
+  onClickWishlist = (e) => {
+    e.stopPropagation();
+
     const { isWishlistLoading } = this.state;
     const { 
       product,
@@ -84,7 +87,7 @@ class ProductGridItem extends Component {
     const { isWishlistLoading } = this.state;
 
     return (
-      <DivColumn className={styles.product_container}>
+      <DivColumn className={styles.product_container} onClick={() => this.onClickViewProduct(exhibitionId, product.id)}>
         <div className={styles.product_title}>{product.name}</div>
         <div className={styles.product_description}>
           {product.short_description}
@@ -99,16 +102,10 @@ class ProductGridItem extends Component {
             }`}
             onClick={this.onClickWishlist}
           >
-            <img src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon} />
-          </DivRow>
-
-          <DivRow
-            verticalCenter
-            horizontalCenter
-            className={styles.view_product_container}
-            onClick={() => this.onClickViewProduct(exhibitionId, product.id)}
-          >
-            <div className={styles.action_text}>View Product</div>
+            <img 
+              src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon} 
+              className={styles.wishlist_icon}
+            />
           </DivRow>
 
           <DivRow
@@ -121,13 +118,14 @@ class ProductGridItem extends Component {
               style={{
                 color: "white"
               }}
-              onClick={() =>
+              onClick={(e) =>{
+                e.stopPropagation()
                 this.onClickAddToBag(exhibitionId, product.id, 1, false)
-              }
+              }}
             >
               Add to Bag | {product.formatted_price}
             </div>
-            <img />
+            <img src={longRightArrow}/>
           </DivRow>
         </DivRow>
       </DivColumn>

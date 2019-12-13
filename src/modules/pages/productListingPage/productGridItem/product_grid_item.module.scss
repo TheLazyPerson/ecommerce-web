@@ -7,6 +7,8 @@
   margin: 5px;
   align-items: center;
 
+  @include on_click_button;
+
   border-radius: 2px;
   border: solid 1px rgba($color-very-light-blue, 0.5);
   background-color: var(--white);
@@ -36,29 +38,34 @@
     align-self: stretch;
 
     .action_text {
-      font-size: 10px;
+      font-size: 12px;
       line-height: 2.8;
       color: $primary-text-color;
+      margin-right: 10px;
     }
 
     .heart_icon_container {
       background: $color-very-light-blue;
-      flex: 1;
+      width: 90px;  
 
       @include on_click_button;
+
+      .wishlist_icon {
+        width: 23px;
+      }
     }
 
-    .view_product_container {
+    /* .view_product_container {
       background: $color-very-light-blue;
       flex: 2;
       border: solid 1px rgba(212, 213, 217, 0.51);
 
       @include on_click_button;
-    }
+    } */
 
     .bag_container {
       background: $color-gold;
-      flex: 2;
+      flex: 1;
 
       @include on_click_button;
     }
