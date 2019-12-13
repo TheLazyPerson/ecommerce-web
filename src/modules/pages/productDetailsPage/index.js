@@ -136,7 +136,6 @@ class ProductDetailsPage extends Component {
               </DivColumn>
 
               <DivColumn
-                verticalCenter
                 className={styles.right_content_container}
               >
                 <ExhibitionDetailComponent
