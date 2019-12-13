@@ -119,7 +119,7 @@ class ProductDetailsPage extends Component {
                     }}
                   >
                     {map(imageList, (image, index) => (
-                      <div>
+                      <div className={styles.image_container}>
                         <img
                           src={image}
                           className={`${styles.small_product_image} ${
