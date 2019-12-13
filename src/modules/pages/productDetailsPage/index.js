@@ -3,9 +3,6 @@ import FullWidthContainer from "CommonContainers/fullwidthContainer";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./product_details_page.module.scss";
-import exhibitionImage1 from "Images/exhibition-item-1.jpg";
-import exhibitionImage2 from "Images/exhibition-item-2.jpg";
-import exhibitionImage3 from "Images/exhibition-item-3.png";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
 import QuantityComponent from "CommonComponents/quantityComponent";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
@@ -24,8 +21,7 @@ import "swiper/css/swiper.css";
 
 class ProductDetailsPage extends Component {
   state = {
-    imageList: [exhibitionImage1, exhibitionImage2, exhibitionImage3],
-    selectedImage: 2,
+    selectedImage: 0,
     isWishlistLoading: false,
     quantity: 1
   };
@@ -108,20 +104,22 @@ class ProductDetailsPage extends Component {
                 */}
 
                 <img
-                  src={imageList[selectedImage]}
+                  src={productDetail.images ? productDetail.images[selectedImage].path : null}
                   className={styles.product_image}
                 />
                 <DivRow className={styles.product_image_list}>
-                  <Swiper
-                    {...params}
-                    getSwiper={swiper => {
-                      this.swiper = swiper;
-                    }}
+                  {/* <Swiper
+                   {...params}
+                   getSwiper={swiper => {
+                    this.swiper = swiper;
+                   }}
                   >
-                    {map(imageList, (image, index) => (
+                    
+                  </Swiper> */}
+                  {map(productDetail.images, (image, index) => (
                       <div className={styles.image_container}>
                         <img
-                          src={image}
+                          src={image.path}
                           className={`${styles.small_product_image} ${
                             index == selectedImage
                               ? styles.is_image_selected
@@ -131,7 +129,6 @@ class ProductDetailsPage extends Component {
                         />
                       </div>
                     ))}
-                  </Swiper>
                 </DivRow>
               </DivColumn>
 

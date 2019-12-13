@@ -5,6 +5,7 @@
   flex: 1;
   align-self: stretch;
   padding: 6px 60px;
+  overflow-x: scroll;
   // overflow: scroll;
 
   .back_button {
@@ -21,21 +22,28 @@
   .product_content_container {
     flex: 1;
     align-self: stretch;
+    overflow-x: scroll;
 
     .left_content_container {
       flex: 1;
+      overflow-x: scroll;
 
       .product_image {
-        width: 430px; // calc(100% - 180px);
-        height: 430px; // calc(100% - 180px);
+        align-self: stretch;
+        // width: 460px; // calc(100% - 180px);
+        height: 460px; // calc(100% - 180px);
         margin-left: 10px;
+        object-fit: cover;
       }
 
       .product_image_list {
         align-self: stretch;
         margin-top: 8px;
         margin-left: 10px;
-        overflow: hidden;
+        overflow-x: scroll;
+
+        -ms-overflow-style: unset;
+        ::-webkit-scrollbar { width: 20px !important }
 
         .is_image_selected {
           border: 4px solid $color-gold;
@@ -61,6 +69,7 @@
 
     .right_content_container {
       flex: 1;
+      padding-left: 50px;
 
       .action_button_container {
         margin-top: 30px;
@@ -80,7 +89,6 @@
           .button_text {
             margin-left: 10px;
             color: white;
-            font-family: Montserrat;
             font-size: 14px;
             font-weight: bold;
           }
@@ -98,7 +106,6 @@
   
           .button_text {
             margin-left: 10px;
-            font-family: Montserrat;
             font-size: 14px;
             font-weight: bold;
             color: $color-dark-grey;
