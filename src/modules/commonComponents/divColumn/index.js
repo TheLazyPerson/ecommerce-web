@@ -7,7 +7,8 @@ const DivColumn = ({
   horizontalCenter,
   fillParent,
   fillSelfHorizontal,
-  children, ...rest}) => {
+  children, 
+  ...rest}) => {
   
   return (
     <div
@@ -16,11 +17,8 @@ const DivColumn = ({
       ${styles.flex_column} ${className}
       ${verticalCenter ? styles.justify_center : ''}
       ${horizontalCenter ? styles.align_center: ''}
-      ${fillSelfHorizontal ? styles.align_self_stretch: ''}`}
-      style={fillParent ? {
-        flex: 1,
-        alignSelf: 'stretch'
-      }: {}}
+      ${fillSelfHorizontal ? styles.align_self_stretch: ''}
+      ${fillParent ? styles.fill_parent :''}`}
     >
       {children}
     </div>

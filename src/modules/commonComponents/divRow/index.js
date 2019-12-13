@@ -8,11 +8,9 @@ const DivRow = ({className='', verticalCenter, horizontalCenter , fillParent, ch
      className={`
       ${styles.flex_row} ${className}
       ${verticalCenter ? styles.align_center : ''}
-      ${horizontalCenter ? styles.justify_center: ''}`}
-      style={fillParent ? {
-        flex: 1,
-        alignSelf: 'stretch'
-      }: {}}
+      ${horizontalCenter ? styles.justify_center: ''}
+      ${fillParent ? styles.fill_parent : ''}`}
+
     >
       {children}
     </div>

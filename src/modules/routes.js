@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
+import NewHomePage from './pages/newHomePage';
 import SignInPage from "./pages/signinPage";
 import SignUpPage from "./pages/signupPage";
 import PageNotFound from "CommonComponents/pageNotFound";
@@ -33,7 +34,7 @@ import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <Route exact path="/" component={NewHomePage} />
       <Route exact path="/product-details" component={ProductDetailsPage} />
       <ProtectedRoute
         exact

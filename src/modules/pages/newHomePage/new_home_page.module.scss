@@ -1,0 +1,40 @@
+.page_container {
+  position: relative;
+
+  .header_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 84px;
+    padding: 18px 60px;
+
+    .header_icon_container {
+      width: 40%;
+      align-items: center;
+  
+      .app_icon {
+        height: 17px;
+        margin-right: 32px;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+  .hero_section_container {
+    min-height: 100%;
+    position: relative;
+
+    .hero_main_content {
+      background: green;
+      flex: 1;
+      align-self: stretch;
+    }
+
+    .hero_bottom_content {
+      background: blue;
+      height: 120px;
+    }
+  }
+}
