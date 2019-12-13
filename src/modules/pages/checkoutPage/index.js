@@ -12,6 +12,7 @@ import { bindActionCreators } from "redux";
 import { getBagListAction } from "Core/modules/bag/bagActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
+import size from 'lodash/size';
 
 class CheckoutPage extends Component {
   render() {
@@ -21,7 +22,7 @@ class CheckoutPage extends Component {
     } = this.props;
     return (
       <FullWidthContainer>
-        <InitialPageLoader initialPageApi={getBagListAction}>
+        <InitialPageLoader isEmpty={!size(bagData.items)} initialPageApi={getBagListAction}>
           <DivRow fillParent className={styles.checkout_container}>
             <DivColumn className={styles.cart_list_container}>
               <DivRow className={styles.table_header}>
