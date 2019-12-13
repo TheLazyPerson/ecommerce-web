@@ -3,6 +3,7 @@ import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./product_grid_item.module.scss";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
+import hearEmptyIcon from 'Icons/heart-empty-icon.svg';
 import navigatorHoc from "Hoc/navigatorHoc";
 import { addToWishlistAction } from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
@@ -81,7 +82,7 @@ class ProductGridItem extends Component {
             }`}
             onClick={!isWishlistLoading ? this.onClickWishlist : null}
           >
-            <img src={heartFilledIcon} />
+            <img src={product.is_wishlisted ? heartFilledIcon : hearEmptyIcon} />
           </DivRow>
 
           <DivRow

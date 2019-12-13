@@ -3,22 +3,25 @@ import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './wishlist_item_component.module.scss';
 import closeIcon from 'Icons/close-icon-black.svg';
-import { removeFromWishlist } from 'Core/modules/wishlist/wishlistActions';
+import { removeFromWishlistAction } from 'Core/modules/wishlist/wishlistActions';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from 'Redux/actions/flashMessageActions';
 
 class WishlistItemComponent extends Component {
 
-  state={
+  state = {
     isRemoving: false
   }
 
   onClickRemove = () => {
-    const { wishlistItem, removeFromWishlist, showSuccessFlashMessage } = this.props;
+    const { wishlistItem, removeFromWishlistAction, showSuccessFlashMessage } = this.props;
     
     this.setState({ isRemoving: true });
-    removeFromWishlist(wishlistItem.id).then(({payload}) => {
+    removeFromWishlistAction({
+      product_id: wishlistItem.product.id,
+      exhibition_id: wishlistItem.exhibition.id
+    }).then(({payload}) => {
       if(payload.code == 200 || payload.code == 201) {
         showSuccessFlashMessage('Product removed from wishlist')
       }
@@ -63,7 +66,7 @@ class WishlistItemComponent extends Component {
 
 const mapDispathToProps = dispatch => {
   return {
-    removeFromWishlist: bindActionCreators(removeFromWishlist, dispatch),
+    removeFromWishlistAction: bindActionCreators(removeFromWishlistAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(showSuccessFlashMessage, dispatch),
   };
 };
