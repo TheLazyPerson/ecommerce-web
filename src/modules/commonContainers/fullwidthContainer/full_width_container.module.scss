@@ -1,18 +1,21 @@
 @import '~Styles/colors.module';
 
 .page_container {
-  width: 100%;
-  height: 100%;
-  background: $primary-color;
+  // width: 100%;
+  // height: 100%;
+  // background: $primary-color;
   
   .content_container {
-    flex: 1;
-    align-self: stretch;
     // margin: 14px;
     background: white;
-    overflow: scroll;
+    // overflow: scroll;
   }
 }
+
+.inner_content_container {
+  overflow-y: scroll;
+}
+
 
 .header_container {
   height: 84px;
@@ -29,4 +32,8 @@
       cursor: pointer;
     }
   }
+}
+
+.content {
+  min-height: 100%
 }

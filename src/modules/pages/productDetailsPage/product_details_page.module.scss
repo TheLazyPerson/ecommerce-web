@@ -5,7 +5,7 @@
   flex: 1;
   align-self: stretch;
   padding: 6px 60px;
-  overflow: scroll;
+  // overflow: scroll;
 
   .back_button {
     border-radius: 100px;
@@ -27,8 +27,8 @@
       justify-content: center;
 
       .product_image {
-        width: 500px;// calc(100% - 180px);
-        height: 500px; // calc(100% - 180px);
+        width: 430px; // calc(100% - 180px);
+        height: 430px; // calc(100% - 180px);
         margin-left: 10px;
       }
 

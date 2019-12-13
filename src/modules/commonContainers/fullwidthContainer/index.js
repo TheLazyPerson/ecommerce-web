@@ -18,8 +18,8 @@ class FullWidthContainer extends Component {
     const { children } = this.props;
 
      return (
-       <DivColumn className={styles.page_container}>
-         <DivColumn className={styles.content_container}>
+       <DivColumn fillParent className={styles.page_container}>
+         <DivColumn fillParent className={styles.content_container}>
           <DivRow className={styles.header_container}>
             <DivRow className={styles.header_icon_container}>
               <img src={appIcon}  className={styles.app_icon} onClick={this.onClickAppIcon} />
@@ -28,7 +28,13 @@ class FullWidthContainer extends Component {
             <SectionedHeader />
           </DivRow>
 
-          { children }
+          <DivColumn fillParent className={styles.inner_content_container}>
+            <DivColumn fillParent className={styles.content}>
+              { children }
+            </DivColumn>
+            <div style={{background: 'green'}}>Footer</div>
+          </DivColumn>
+
          </DivColumn>
        </DivColumn>
      )
