@@ -29,6 +29,35 @@
     min-height: 100%;
     position: relative;
 
+    .top_gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 98px;
+      background-image: linear-gradient(to bottom, #141414, rgba(20, 20, 20, 0));
+    }
+    
+    .overlay_gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($primary-text-color, 0.1);
+    }
+    
+    .bottom_gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      height: 210px;
+      background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0), #141414);
+    }
+
     .hero_main_content {
       position: relative;
       justify-content: center;

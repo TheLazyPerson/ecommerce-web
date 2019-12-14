@@ -50,7 +50,12 @@ class NewHomePage extends Component {
          fillSelfHorizontal
          className={styles.hero_section_container}
         >
+          <div className={styles.top_gradient}></div>
+          <div className={styles.overlay_gradient}></div>
+          <div className={styles.bottom_gradient}></div>
+
           <DivRow fillParent verticalCenter className={styles.hero_main_content}>
+
             <DivColumn className={styles.social_container}>
               <div className={styles.social_item_container}>
                 <img
