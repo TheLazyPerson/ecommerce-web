@@ -27,13 +27,23 @@
     position: relative;
 
     .hero_main_content {
-      background: green;
-      flex: 1;
-      align-self: stretch;
+      position: relative;
+      justify-content: center;
+      
+      .social_container {
+        position: absolute;
+        left: 0;
+      }
+
+      .details_container {
+      }
     }
 
     .hero_bottom_content {
-      background: blue;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
       height: 120px;
     }
   }

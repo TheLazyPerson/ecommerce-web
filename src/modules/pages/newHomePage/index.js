@@ -21,6 +21,7 @@ import appIcon from 'Icons/app-icon-black.svg';
 import navigatorHoc from 'Hoc/navigatorHoc';
 import exhibitionImage from 'Images/exhibition-item-3.png';
 import PageFooter from 'CommonComponents/pageFooter';
+import ExhibitionDetailComponent from 'CommonComponents/exhibitionDetailComponent';
 
 class NewHomePage extends Component {
   state = {
@@ -33,9 +34,14 @@ class NewHomePage extends Component {
   }
 
   render() {
-    return (
-      <DivColumn fillParent className={styles.page_container}>    
+    const currentSlide = 0;
+    const totalSlide = 0; // exhibitionList ? exhibitionList.length : 0;
 
+    const isLeftButtonClickable = currentSlide !== 0;
+    const isRightButtonClickable = (currentSlide + 1) !== totalSlide;
+
+    return (
+      <DivColumn fillParent className={styles.page_container}>
         <DivColumn
          style={{
            backgroundImage: `url("${exhibitionImage}")`,
@@ -44,13 +50,88 @@ class NewHomePage extends Component {
          fillSelfHorizontal
          className={styles.hero_section_container}
         >
-          <DivRow className={styles.hero_main_content}>
+          <DivRow fillParent verticalCenter className={styles.hero_main_content}>
+            <DivColumn className={styles.social_container}>
+              <div className={styles.social_item_container}>
+                <img
+                  src={socialFacebookIcon}
+                  className={styles.social_image}
+                  alt="Facebook"
+                />
+                </div>
+              <div className={styles.social_item_container}>
+                <img
+                  src={socialTwitterIcon}
+                  className={styles.social_image}
+                  alt="Twitter"
+                />
+              </div>
+              <div className={styles.social_item_container}>
+                <img
+                  src={socialInstagramIcon}
+                  className={styles.social_image}
+                  alt="Instagram"
+                />
+              </div>
+            </DivColumn>
+
+            <ExhibitionDetailComponent
+              title="Exibition 1"
+              name="The Craft Show"
+              tags={["watches", "craft", "crafted"]}
+              description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
+              className={styles.details_container}
+              setCenter
+            >
+            <div className={styles.view_exhibition_button}>
+              View Exibition
+            </div>
+            </ExhibitionDetailComponent>
+          </DivRow>
+
+          <DivRow verticalCenter horizontalCenter className={styles.hero_bottom_content}>
+
+              <DivRow>
+                <div
+                  className={`${
+                    !isLeftButtonClickable ? styles.non_clickable : ""
+                  } ${styles.arrow_text}`}
+                  onClick={() => this.swiper.slidePrev()}
+                >
+                  <img
+                    src={arrowRightIcon}
+                    className={styles.arrow_left}
+                    alt="Arrow"
+                  />
+                  Prev
+                </div>
+
+                <div
+                  className={`${
+                    !isRightButtonClickable ? styles.non_clickable : ""
+                  } ${styles.arrow_text}`}
+                  onClick={() => this.swiper.slideNext()}
+                >
+                  Next{" "}
+                  <img
+                    src={arrowRightIcon}
+                    className={styles.arrow_right}
+                    alt="Arrow"
+                  />
+                </div>
+              </DivRow>
+              <div className={styles.pagination_count_container}>
+                <span className={styles.pagination_current_count}>
+                  {currentSlide + 1}
+                </span>
+                <span className={styles.pagination_total_count}>
+                  /{totalSlide}
+                </span>
+              </div>
+              <img src={shareIcon} className={styles.share_icon} alt="Share" />
 
           </DivRow>
 
-          <DivRow className={styles.hero_bottom_content}>
-
-          </DivRow>
         </DivColumn>
         <PageFooter />
           
