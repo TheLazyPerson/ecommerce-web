@@ -69,6 +69,7 @@
 
       .details_container {
         color: white;
+        max-width: 600px;
 
         .view_exhibition_button {
           width: 208px;
@@ -182,7 +183,7 @@
 
 
 .swiper_container {
-  height: 315;
+  min-height: 315px;
   flex: 1;
   overflow: hidden;
 }
