@@ -9,9 +9,17 @@ import { getWishlistAction } from 'Core/modules/wishlist/wishlistActions';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import map from 'lodash/map';
-import size from 'lodash/size'
+import size from 'lodash/size';
+import EmptyScreenComponent from 'CommonComponents/emptyScreenComponent';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
 class WishlistPage extends Component {
+
+  navigateToHome = () => {
+    const { navigateTo } = this.props;
+    navigateTo('');
+  }
+
   render() {
     const { getWishlistAction, wishlistReducer: { wishlist } } = this.props;
 
@@ -19,7 +27,19 @@ class WishlistPage extends Component {
       <FullWidthContainer>
         <DivColumn fillParent className={styles.wishlist_container}>
          <div className={styles.page_header}>My Wishlist</div>
-         <InitialPageLoader isEmpty={!size(wishlist)} initialPageApi={getWishlistAction}>
+         <InitialPageLoader 
+          isEmpty={!size(wishlist)}
+          initialPageApi={getWishlistAction}
+          customEmptyScreen={
+          <EmptyScreenComponent 
+            description="Oh Snap! You have no product in your wishlist."
+            buttonTitle="START SHOPPING"
+            buttonOnClick={this.navigateToHome}
+            className={styles.empty_screen_container}
+          />
+        }
+        >
+           
            <DivRow className={styles.wishlist_list_container}>
             {
               map(wishlist, wishlistItem => (
@@ -50,4 +70,4 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(WishlistPage);
+export default connect(mapStateToProps, mapDispathToProps)(navigatorHoc(WishlistPage));
