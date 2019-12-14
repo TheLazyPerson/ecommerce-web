@@ -33,6 +33,13 @@ class NewHomePage extends Component {
     navigateTo("");
   };
 
+  onClickExhibitionItem = id => {
+    const { navigateTo } = this.props;
+    navigateTo("plp", {
+      id
+    });
+  };
+
   render() {
     const params = {
       containerClass: "custom_container",
@@ -96,8 +103,7 @@ class NewHomePage extends Component {
                     />
                   </div>
                 </DivColumn>
-
-                {/* <div >
+                <div className={styles.swiper_container}>
                   <Swiper
                     {...params}
                     getSwiper={swiper => {
@@ -108,10 +114,9 @@ class NewHomePage extends Component {
                       return (
                         <div className={styles.swiper_item} key={index}>
                           <ExhibitionDetailComponent
-                            title="Exibition 1"
-                            name="The Craft Show"
+                            name={exhibition.title}
                             tags={["watches", "craft", "crafted"]}
-                            description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
+                            description={exhibition.description}
                             className={styles.details_container}
                             setCenter
                           >
@@ -119,46 +124,9 @@ class NewHomePage extends Component {
                               verticalCenter
                               horizontalCenter
                               className={styles.view_exhibition_button}
-                            >
-                              Explore
-                            </DivRow>
-                          </ExhibitionDetailComponent>
-                        </div>
-                      );
-                    })}
-                  </Swiper>
-                </div> */}
-                <div
-                  style={{
-                    height: 315,
-                    flex:1,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    overflow: 'hidden'
-                  }}
-                >
-                  <Swiper
-                    {...params}
-                    getSwiper={swiper => {
-                      this.swiper = swiper;
-                    }}
-                  >
-                    {map(exhibitionList, (exhibition, index) => {
-                      return (
-                        <div className={styles.swiper_item} key={index}>
-                          <ExhibitionDetailComponent
-                            title="Exibition 1"
-                            name="The Craft Show"
-                            tags={["watches", "craft", "crafted"]}
-                            description="The Craft Show will display products like Handcrafted Watches, Products, Farsis, Palazzos,  Culottes and Products.With love, and much more."
-                            className={styles.details_container}
-                            setCenter
-                          >
-                            <DivRow
-                              verticalCenter
-                              horizontalCenter
-                              className={styles.view_exhibition_button}
+                              onClick={() =>
+                                this.onClickExhibitionItem(exhibition.id)
+                              }
                             >
                               Explore
                             </DivRow>
