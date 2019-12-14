@@ -34,7 +34,8 @@ import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
-      <Route exact path="/" component={NewHomePage} />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/new-home-page" component={NewHomePage} />
       <Route exact path="/product-details" component={ProductDetailsPage} />
       <ProtectedRoute
         exact
