@@ -3,14 +3,17 @@ import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./product_grid_item.module.scss";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
-import heartEmptyIcon from 'Icons/heart-empty-icon.svg';
+import heartEmptyIcon from "Icons/heart-empty-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
-import { addToWishlistAction, removeFromWishlistAction} from "Core/modules/wishlist/wishlistActions";
+import {
+  addToWishlistAction,
+  removeFromWishlistAction
+} from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addToBagAction } from "Core/modules/bag/bagActions";
-import longRightArrow from 'Icons/long-right-arrow-white.svg';
+import longRightArrow from "Icons/long-right-arrow-white.svg";
 
 class ProductGridItem extends Component {
   state = {
@@ -25,61 +28,78 @@ class ProductGridItem extends Component {
     });
   };
 
-  onClickWishlist = (e) => {
+  onClickWishlist = e => {
     e.stopPropagation();
 
     const { isWishlistLoading } = this.state;
-    const { 
+    const {
       product,
       addToWishlistAction,
       removeFromWishlistAction
     } = this.props;
 
-    if(!isWishlistLoading) {
-
+    if (!isWishlistLoading) {
       if (product.is_wishlisted)
-        this.wishlistAction(removeFromWishlistAction, "Product removed from Wishlist");
-      else 
+        this.wishlistAction(
+          removeFromWishlistAction,
+          "Product removed from Wishlist"
+        );
+      else
         this.wishlistAction(addToWishlistAction, "Product added to Wishlist");
     }
   };
 
   wishlistAction = (action, successMessage) => {
     const {
-      product,      
+      product,
       showSuccessFlashMessage,
-      exhibitionId
+      exhibitionId,
+      isUserSignedIn,
+      navigateTo
     } = this.props;
 
-    this.setState({ isWishlistLoading: true });
-    action({
-      product_id: product.id,
-      exhibition_id: exhibitionId,
-    })
-      .then(({ payload }) => {
-        if (payload.code == 200 || payload.code == 201) {
-          showSuccessFlashMessage(successMessage);
-        }
-        this.setState({ isWishlistLoading: false });
+    if (isUserSignedIn) {
+      this.setState({ isWishlistLoading: true });
+      action({
+        product_id: product.id,
+        exhibition_id: exhibitionId
       })
-      .catch(error => {
-        this.setState({ isWishlistLoading: false });
-      });
-  }
+        .then(({ payload }) => {
+          if (payload.code == 200 || payload.code == 201) {
+            showSuccessFlashMessage(successMessage);
+          }
+          this.setState({ isWishlistLoading: false });
+        })
+        .catch(error => {
+          this.setState({ isWishlistLoading: false });
+        });
+    } else {
+      navigateTo("signin");
+    }
+  };
 
   onClickAddToBag = (exhibitionId, productId, quantity, is_configurable) => {
-    const { addToBagAction, showSuccessFlashMessage } = this.props;
+    const {
+      addToBagAction,
+      showSuccessFlashMessage,
+      isUserSignedIn,
+      navigateTo
+    } = this.props;
 
-    addToBagAction({
-      exhibition_id: exhibitionId,
-      product_id: productId,
-      quantity: quantity,
-      is_configurable: is_configurable
-    }).then(({ payload }) => {
-      if (payload.code === 200 || payload.code === 201) {
-        showSuccessFlashMessage("Added to Bag");
-      }
-    });
+    if (isUserSignedIn) {
+      addToBagAction({
+        exhibition_id: exhibitionId,
+        product_id: productId,
+        quantity: quantity,
+        is_configurable: is_configurable
+      }).then(({ payload }) => {
+        if (payload.code === 200 || payload.code === 201) {
+          showSuccessFlashMessage("Added to Bag");
+        }
+      });
+    } else {
+      navigateTo("signin");
+    }
   };
 
   render() {
@@ -87,7 +107,10 @@ class ProductGridItem extends Component {
     const { isWishlistLoading } = this.state;
 
     return (
-      <DivColumn className={styles.product_container} onClick={() => this.onClickViewProduct(exhibitionId, product.id)}>
+      <DivColumn
+        className={styles.product_container}
+        onClick={() => this.onClickViewProduct(exhibitionId, product.id)}
+      >
         <div className={styles.product_title}>{product.name}</div>
         <div className={styles.product_description}>
           {product.short_description}
@@ -102,8 +125,8 @@ class ProductGridItem extends Component {
             }`}
             onClick={this.onClickWishlist}
           >
-            <img 
-              src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon} 
+            <img
+              src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon}
               className={styles.wishlist_icon}
             />
           </DivRow>
@@ -118,14 +141,14 @@ class ProductGridItem extends Component {
               style={{
                 color: "white"
               }}
-              onClick={(e) =>{
-                e.stopPropagation()
-                this.onClickAddToBag(exhibitionId, product.id, 1, false)
+              onClick={e => {
+                e.stopPropagation();
+                this.onClickAddToBag(exhibitionId, product.id, 1, false);
               }}
             >
               Add to Bag | {product.formatted_price}
             </div>
-            <img src={longRightArrow}/>
+            <img src={longRightArrow} />
           </DivRow>
         </DivRow>
       </DivColumn>
@@ -133,10 +156,19 @@ class ProductGridItem extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn
+  };
+};
+
 const mapDispathToProps = dispatch => {
   return {
     addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
-    removeFromWishlistAction: bindActionCreators(removeFromWishlistAction, dispatch),
+    removeFromWishlistAction: bindActionCreators(
+      removeFromWishlistAction,
+      dispatch
+    ),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
@@ -145,4 +177,7 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispathToProps)(navigatorHoc(ProductGridItem));
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(ProductGridItem));
