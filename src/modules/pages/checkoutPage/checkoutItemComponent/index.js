@@ -84,7 +84,10 @@ class CheckoutItemComponent extends Component {
             )
           }
         >
-          <img src={exhibitionImage1} className={styles.product_image} />
+          <img
+            src={checkoutItem.product.base_image.path}
+            className={styles.product_image}
+          />
           <DivColumn>
             <div className={styles.title}>{checkoutItem.product.name}</div>
             <div className={styles.description}>
