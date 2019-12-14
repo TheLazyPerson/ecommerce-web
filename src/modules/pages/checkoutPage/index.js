@@ -12,7 +12,7 @@ import { bindActionCreators } from "redux";
 import { getBagListAction } from "Core/modules/bag/bagActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
-import size from 'lodash/size';
+import size from "lodash/size";
 
 class CheckoutPage extends Component {
   render() {
@@ -22,12 +22,16 @@ class CheckoutPage extends Component {
     } = this.props;
     return (
       <FullWidthContainer>
-        <InitialPageLoader isEmpty={!size(bagData.items)} initialPageApi={getBagListAction}>
+        <InitialPageLoader
+          isEmpty={!size(bagData.items)}
+          initialPageApi={getBagListAction}
+        >
           <DivRow fillParent className={styles.checkout_container}>
             <DivColumn className={styles.cart_list_container}>
               <DivRow className={styles.table_header}>
                 <div className={styles.flex_2}>Product</div>
                 <div className={styles.flex_1}>Exhibition</div>
+                <div className={styles.flex_1}>Product Price</div>
                 <div className={styles.flex_1}>Quantity</div>
                 <div className={styles.flex_1}>Total Price</div>
               </DivRow>
@@ -73,7 +77,9 @@ class CheckoutPage extends Component {
                   <div className={styles.coupon_header_text}>Price Details</div>
                   <DivRow className={styles.price_details_container}>
                     <div className={styles.title}>Bag Total</div>
-                    <div className={styles.value}>KD 299</div>
+                    <div className={styles.value}>
+                      {bagData.formated_grand_total}
+                    </div>
                   </DivRow>
                   <DivRow className={styles.price_details_container}>
                     <div className={styles.title}>Coupon Discount</div>
@@ -81,18 +87,22 @@ class CheckoutPage extends Component {
                   </DivRow>
                   <DivRow className={styles.price_details_container}>
                     <div className={styles.title}>Order Total</div>
-                    <div className={styles.value}>KD 299</div>
+                    <div className={styles.value}>
+                      {bagData.formated_sub_total}
+                    </div>
                   </DivRow>
-                  <DivRow className={styles.price_details_container}>
+                  {/* <DivRow className={styles.price_details_container}>
                     <div className={styles.title}>Delivery Charges</div>
                     <div className={styles.value}>FREE</div>
-                  </DivRow>
+                  </DivRow> */}
 
                   <HorizontalBorder className={styles.price_divider} />
 
                   <DivRow className={styles.price_details_container}>
                     <div className={styles.title}>Total</div>
-                    <div className={styles.value}>KD 299</div>
+                    <div className={styles.value}>
+                      {bagData.formated_sub_total}
+                    </div>
                   </DivRow>
                 </DivColumn>
 

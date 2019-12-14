@@ -15,7 +15,7 @@ export default class QuantityComponent extends Component {
         className={`${styles.quantity_container} ${className}`}
       >
         <img className={styles.quantity_button} src={minusIcon} />
-        <div className={styles.quantity_text}>{quantity}</div>
+        <div className={styles.quantity_text}>{quantity ? quantity : "1"}</div>
         <img className={styles.quantity_button} src={plusIcon} />
       </DivRow>
     );

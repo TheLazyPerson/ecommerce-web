@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
-import NewHomePage from './pages/newHomePage';
+import NewHomePage from "./pages/newHomePage";
 import SignInPage from "./pages/signinPage";
 import SignUpPage from "./pages/signupPage";
 import PageNotFound from "CommonComponents/pageNotFound";
