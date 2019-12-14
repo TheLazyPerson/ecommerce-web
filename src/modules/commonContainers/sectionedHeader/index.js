@@ -3,9 +3,12 @@ import styles from "./sectioned_header.module.scss";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import searchIcon from "Icons/search-icon-black.svg";
+import searchIconWhite from 'Icons/search-icon-white.svg';
 import hamburgerMenuIcon from "Icons/hamburger-menu-icon-black.svg";
 import bagIcon from "Icons/cart-bag-icon-black.svg";
+import bagIconWhite from 'Icons/cart-bag-icon-white.svg';
 import bookmarkIcon from "Icons/bookmark-icon-black.svg";
+import bookmarkIconWhite from 'Icons/bookmark-icon-white.svg';
 import arrowDownIcon from "Icons/arrow-down-icon-black.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
 import profileIconBlack from "Icons/profile-icon-black.svg";
@@ -90,8 +93,8 @@ class SectionedHeader extends Component {
 
   render() {
     const { searchText, showSearchResult } = this.state;
-    const { isUserSignedIn, bagCount } = this.props;
-    console.log("BAG ", bagCount);
+    const { isUserSignedIn, bagCount, whiteColor } = this.props;
+
     return (
       <DivRow className={styles.header_container}>
         <div className={styles.search_container}>
@@ -107,14 +110,14 @@ class SectionedHeader extends Component {
                 type="text"
                 name="firstname"
                 placeholder="Search"
-                className={styles.search_input}
+                className={`${styles.search_input} ${!(showSearchResult && searchText) && whiteColor ? styles.is_white: ''}`}
                 onChange={this.onChangeSearchText}
                 onFocus={this.showSearchBar}
                 onBlur={this.hideSearchBar}
                 autoComplete="off"
               />
             </form>
-            <img src={searchIcon} className={styles.search_icon} />
+            <img src={!(showSearchResult && searchText) && whiteColor ? searchIconWhite : searchIcon} className={styles.search_icon} />
           </DivRow>
 
           <DivColumn
@@ -155,7 +158,7 @@ class SectionedHeader extends Component {
             verticalCenter
             onClick={this.onClickBag}
           >
-            <img src={bagIcon} className={styles.header_icon} />
+            <img src={whiteColor ? bagIconWhite : bagIcon} className={styles.header_icon} />
             <DivRow
               verticalCenter
               horizontalCenter
@@ -166,7 +169,7 @@ class SectionedHeader extends Component {
           </DivRow>
           <img
             className={`${styles.header_icon} ${styles.header_item_container}`}
-            src={bookmarkIcon}
+            src={whiteColor ? bookmarkIconWhite : bookmarkIcon}
             onClick={this.onClickWishlist}
           />
           {isUserSignedIn ? (
@@ -180,7 +183,7 @@ class SectionedHeader extends Component {
             </div>
           ) : (
             <a
-              className={`${styles.sigin_link} ${styles.header_item_container}`}
+              className={`${styles.sigin_link} ${styles.header_item_container} ${whiteColor? styles.is_white : ''}`}
               href="/signin"
             >
               Signin

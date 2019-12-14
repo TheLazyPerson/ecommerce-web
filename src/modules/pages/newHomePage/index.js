@@ -17,7 +17,7 @@ import { getExhibitionListAction } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import SectionedHeader from 'CommonContainers/sectionedHeader';
-import appIcon from 'Icons/app-icon-black.svg';
+import appIcon from 'Icons/app-icon-white.svg';
 import navigatorHoc from 'Hoc/navigatorHoc';
 import exhibitionImage from 'Images/exhibition-item-3.png';
 import PageFooter from 'CommonComponents/pageFooter';
@@ -141,9 +141,9 @@ class NewHomePage extends Component {
         <DivRow className={styles.header_container}>
           <DivRow className={styles.header_icon_container}>
             <img src={appIcon}  className={styles.app_icon} onClick={this.onClickAppIcon} />
-            <LanguageSelect blackColor/>
+            <LanguageSelect whiteColor/>
           </DivRow>
-          <SectionedHeader />
+          <SectionedHeader whiteColor />
         </DivRow>
 
       </DivColumn>
