@@ -26,7 +26,7 @@
 
 
   .hero_section_container {
-    min-height: 100%;
+    min-height: 100vh;
     position: relative;
 
     .top_gradient {
@@ -201,4 +201,20 @@
     flex: 1;
     align-self: stretch;
   }
+}
+
+.custom_masonary {
+  align-self: stretch;
+}
+
+.type1 {
+  width: 503px;
+  height: 273px;
+  margin: 10px;
+}
+
+.type2 {
+  width: 310px;
+  height: 434px;
+  margin: 10px;
 }
