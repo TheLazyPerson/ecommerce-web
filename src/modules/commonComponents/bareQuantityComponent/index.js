@@ -6,41 +6,8 @@ import minusIcon from "Icons/minus-icon.svg";
 import plusIcon from "Icons/plus-icon.svg";
 
 export default class QuantityComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 1
-    };
-  }
-  IncrementItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity < 9) {
-        return {
-          quantity: prevState.quantity + 1
-        };
-      } else {
-        return null;
-      }
-    });
-    this.props.updateQuantity(this.state.quantity);
-  };
-  DecreaseItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity > 1) {
-        return {
-          quantity: prevState.quantity - 1
-        };
-      } else {
-        return null;
-      }
-    });
-
-    this.props.updateQuantity(this.state.quantity);
-  };
-
   render() {
-    const { className, quantity } = this.props;
-
+    const { className } = this.props;
     return (
       <DivRow
         verticalCenter
@@ -50,16 +17,14 @@ export default class QuantityComponent extends Component {
           alt={"remove"}
           className={styles.quantity_button}
           src={minusIcon}
-          onClick={this.DecreaseItem}
+          onClick={this.props.decreaseItem}
         />
-        <div className={styles.quantity_text}>
-          {quantity ? quantity : this.state.quantity}
-        </div>
+        <div className={styles.quantity_text}>{this.props.quantity}</div>
         <img
           alt={"add"}
           className={styles.quantity_button}
           src={plusIcon}
-          onClick={this.IncrementItem}
+          onClick={this.props.incrementItem}
         />
       </DivRow>
     );
