@@ -14,14 +14,13 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import size from "lodash/size";
 import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
-import navigatorHoc from 'Hoc/navigatorHoc';
+import navigatorHoc from "Hoc/navigatorHoc";
 
 class CheckoutPage extends Component {
-
   navigateToWishlist = () => {
     const { navigateTo } = this.props;
-    navigateTo('wishlist');
-  }
+    navigateTo("wishlist");
+  };
 
   render() {
     const {
@@ -35,9 +34,11 @@ class CheckoutPage extends Component {
             <DivRow className={styles.table_header}>
               <div className={styles.flex_2}>Product</div>
               <div className={styles.flex_1}>Exhibition</div>
+              <div className={styles.flex_1}>Product Price</div>
               <div className={styles.flex_1}>Quantity</div>
               <div className={styles.flex_1}>Total Price</div>
             </DivRow>
+
             <InitialPageLoader
               isEmpty={!size(bagData.items)}
               initialPageApi={getBagListAction}
@@ -91,7 +92,9 @@ class CheckoutPage extends Component {
                 <div className={styles.coupon_header_text}>Price Details</div>
                 <DivRow className={styles.price_details_container}>
                   <div className={styles.title}>Bag Total</div>
-                  <div className={styles.value}>KD 299</div>
+                  <div className={styles.value}>
+                    {bagData.formated_grand_total}
+                  </div>
                 </DivRow>
                 <DivRow className={styles.price_details_container}>
                   <div className={styles.title}>Coupon Discount</div>
@@ -99,18 +102,22 @@ class CheckoutPage extends Component {
                 </DivRow>
                 <DivRow className={styles.price_details_container}>
                   <div className={styles.title}>Order Total</div>
-                  <div className={styles.value}>KD 299</div>
+                  <div className={styles.value}>
+                    {bagData.formated_sub_total}
+                  </div>
                 </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Delivery Charges</div>
-                  <div className={styles.value}>FREE</div>
-                </DivRow>
+                {/* <DivRow className={styles.price_details_container}>
+                    <div className={styles.title}>Delivery Charges</div>
+                    <div className={styles.value}>FREE</div>
+                  </DivRow> */}
 
                 <HorizontalBorder className={styles.price_divider} />
 
                 <DivRow className={styles.price_details_container}>
                   <div className={styles.title}>Total</div>
-                  <div className={styles.value}>KD 299</div>
+                  <div className={styles.value}>
+                    {bagData.formated_sub_total}
+                  </div>
                 </DivRow>
               </DivColumn>
 
@@ -128,14 +135,14 @@ class CheckoutPage extends Component {
 const mapStateToProps = state => {
   return {
     bagReducer: state.bagReducer
-  }
-}
+  };
+};
 
 const mapDispathToProps = dispatch => {
   return {
     getBagListAction: bindActionCreators(getBagListAction, dispatch)
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
