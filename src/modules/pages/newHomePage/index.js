@@ -68,9 +68,9 @@ class NewHomePage extends Component {
               </div>
               <div className={styles.social_item_container}>
                 <img
-                  src={socialInstagramIcon}
-                  className={styles.social_image}
-                  alt="Instagram"
+                 src={socialInstagramIcon}
+                 className={styles.social_image}
+                 alt="Instagram"
                 />
               </div>
             </DivColumn>
@@ -83,9 +83,9 @@ class NewHomePage extends Component {
               className={styles.details_container}
               setCenter
             >
-            <div className={styles.view_exhibition_button}>
-              View Exibition
-            </div>
+            <DivRow verticalCenter horizontalCenter className={styles.view_exhibition_button}>
+              Explore
+            </DivRow>
             </ExhibitionDetailComponent>
           </DivRow>
 
