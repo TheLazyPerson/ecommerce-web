@@ -22,6 +22,11 @@ class CheckoutPage extends Component {
     navigateTo("wishlist");
   };
 
+  navigateToPlaceOrder = () => {
+    const { navigateTo } = this.props;
+    navigateTo("place-order");
+  };
+
   render() {
     const {
       bagReducer: { bagData },
@@ -121,7 +126,10 @@ class CheckoutPage extends Component {
                 </DivRow>
               </DivColumn>
 
-              <CapsuleButton className={styles.capsule_button}>
+              <CapsuleButton
+                className={styles.capsule_button}
+                onClick={this.navigateToPlaceOrder}
+              >
                 Place Order
               </CapsuleButton>
             </DivColumn>
