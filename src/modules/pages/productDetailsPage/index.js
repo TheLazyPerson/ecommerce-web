@@ -4,7 +4,7 @@ import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./product_details_page.module.scss";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
-import BareQuantityComponent from "CommonComponents/bareQuantityComponent";
+import QuantityComponent from "CommonComponents/quantityComponent";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
 import heartEmptyIcon from "Icons/heart-empty-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
@@ -186,7 +186,7 @@ class ProductDetailsPage extends Component {
                   price={productDetail.formatted_price}
                   description={productDetail.short_description}
                 >
-                  <BareQuantityComponent
+                  <QuantityComponent
                     quantity={this.state.quantity}
                     updateQuantity={this.updateQuantity}
                   />
