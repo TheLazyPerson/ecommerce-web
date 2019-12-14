@@ -4,7 +4,7 @@ import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./product_details_page.module.scss";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
-import QuantityComponent from "CommonComponents/quantityComponent";
+import BareQuantityComponent from "CommonComponents/bareQuantityComponent";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
 import heartEmptyIcon from "Icons/heart-empty-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
@@ -109,6 +109,12 @@ class ProductDetailsPage extends Component {
     });
   };
 
+  updateQuantity = count => {
+    this.setState({
+      quantity: count
+    });
+  };
+
   render() {
     const parsed = queryString.parse(this.props.location.search);
     const { imageList, selectedImage, isWishlistLoading } = this.state;
@@ -180,7 +186,10 @@ class ProductDetailsPage extends Component {
                   price={productDetail.formatted_price}
                   description={productDetail.short_description}
                 >
-                  <QuantityComponent />
+                  <BareQuantityComponent
+                    quantity={this.state.quantity}
+                    updateQuantity={this.updateQuantity}
+                  />
 
                   <DivRow className={styles.action_button_container}>
                     <DivRow
