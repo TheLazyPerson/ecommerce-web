@@ -49,3 +49,32 @@
     }
   }
 }
+
+
+.social_container {
+  margin-left: 9%;
+  margin-right: 61px;
+  align-items: center;
+  justify-content: center;
+
+  .social_item_container {
+    background: rgba(white,0.1);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .social_image {
+      width: 20px;
+      height: 20px;
+    }
+
+  }
+
+  .social_item_container:first-child {
+    margin-top: 0px;
+  }
+}   
