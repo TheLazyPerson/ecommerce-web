@@ -19,7 +19,6 @@ import {
 } from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { addToBagAction } from "Core/modules/bag/bagActions";
-import Swiper from "react-id-swiper";
 import map from "lodash/map";
 import "swiper/css/swiper.css";
 import bagWhiteIcon from "Icons/cart-bag-icon-white.svg";
@@ -109,6 +108,37 @@ class ProductDetailsPage extends Component {
     });
   };
 
+  incrementItem = () => {
+    this.setState(prevState => {
+      if (prevState.quantity < 9) {
+        return {
+          quantity: prevState.quantity + 1
+        };
+      } else {
+        return null;
+      }
+    });
+  };
+  decreaseItem = () => {
+    this.setState(prevState => {
+      if (prevState.quantity > 1) {
+        return {
+          quantity: prevState.quantity - 1
+        };
+      } else {
+        return null;
+      }
+    });
+  };
+
+  updateQuantity = count => {
+    console.log("BEFORE STATE", this.state.quantity);
+    this.setState({
+      quantity: count
+    });
+    console.log("AFTER STATE", this.state.quantity);
+  };
+
   render() {
     const parsed = queryString.parse(this.props.location.search);
     const { imageList, selectedImage, isWishlistLoading } = this.state;
@@ -180,7 +210,11 @@ class ProductDetailsPage extends Component {
                   price={productDetail.formatted_price}
                   description={productDetail.short_description}
                 >
-                  <QuantityComponent />
+                  <QuantityComponent
+                    quantity={this.state.quantity}
+                    incrementItem={this.incrementItem}
+                    decreaseItem={this.decreaseItem}
+                  />
 
                   <DivRow className={styles.action_button_container}>
                     <DivRow

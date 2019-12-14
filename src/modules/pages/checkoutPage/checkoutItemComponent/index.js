@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { removeFromBagAction } from "Core/modules/bag/bagActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import navigatorHoc from "Hoc/navigatorHoc";
 
 class CheckoutItemComponent extends Component {
   handleRemove = id => {
@@ -19,35 +20,63 @@ class CheckoutItemComponent extends Component {
       }
     });
   };
+
+  onClickViewProduct = (exhibitionId, productId) => {
+    const { navigateTo } = this.props;
+    navigateTo("pdp", {
+      exhibitionId,
+      productId
+    });
+  };
+
   render() {
     const { checkoutItem } = this.props;
+    console.log(checkoutItem);
     return (
       <DivRow className={styles.table_item}>
-        <DivRow className={`${styles.product_column} ${styles.flex_2}`}>
+        <DivRow
+          className={`${styles.product_column} ${styles.flex_2}`}
+          onClick={() =>
+            this.onClickViewProduct(
+              checkoutItem.exhibition.id,
+              checkoutItem.product.id
+            )
+          }
+        >
           <img src={exhibitionImage1} className={styles.product_image} />
           <DivColumn>
-            <div className={styles.title}>Product 1</div>
-            <div className={styles.description}>Light gray</div>
+            <div className={styles.title}>{checkoutItem.product.name}</div>
+            <div className={styles.description}>
+              {checkoutItem.product.short_description}
+            </div>
           </DivColumn>
         </DivRow>
 
         <DivColumn className={`${styles.exhibition_column} ${styles.flex_1}`}>
-          <div className={styles.title}>{checkoutItem.name}</div>
-          <div className={styles.description}>Expires in: 2 days</div>
+          <div className={styles.title}>{checkoutItem.exhibition.title}</div>
+          {/* <div className={styles.description}>Expires in: 2 days</div> */}
         </DivColumn>
 
+        <DivRow
+          verticalCenter
+          className={`${styles.price_column} ${styles.flex_1}`}
+        >
+          <div className={styles.product_price}>
+            {checkoutItem.formated_price}
+          </div>
+        </DivRow>
+
         <DivRow className={`${styles.flex_1}`}>
-          <BareQuantityComponent
-            className={styles.quantity_container}
-            quantity={checkoutItem.quantity}
-          />
+          <BareQuantityComponent quantity={checkoutItem.quantity} />
         </DivRow>
 
         <DivRow
           verticalCenter
           className={`${styles.price_column} ${styles.flex_1}`}
         >
-          <div className={styles.product_price}>{checkoutItem.total}</div>
+          <div className={styles.product_price}>
+            {checkoutItem.formated_total}
+          </div>
           <img
             src={closeIcon}
             onClick={() => this.handleRemove(checkoutItem.id)}
@@ -77,4 +106,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(CheckoutItemComponent);
+)(navigatorHoc(CheckoutItemComponent));
