@@ -13,8 +13,15 @@ import { getBagListAction } from "Core/modules/bag/bagActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import size from "lodash/size";
+import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
+import navigatorHoc from "Hoc/navigatorHoc";
 
 class CheckoutPage extends Component {
+  navigateToWishlist = () => {
+    const { navigateTo } = this.props;
+    navigateTo("wishlist");
+  };
+
   render() {
     const {
       bagReducer: { bagData },
@@ -22,30 +29,40 @@ class CheckoutPage extends Component {
     } = this.props;
     return (
       <FullWidthContainer>
-        <InitialPageLoader
-          isEmpty={!size(bagData.items)}
-          initialPageApi={getBagListAction}
-        >
-          <DivRow fillParent className={styles.checkout_container}>
-            <DivColumn className={styles.cart_list_container}>
-              <DivRow className={styles.table_header}>
-                <div className={styles.flex_2}>Product</div>
-                <div className={styles.flex_1}>Exhibition</div>
-                <div className={styles.flex_1}>Price</div>
-                <div className={styles.flex_1}>Quantity</div>
-                <div className={styles.flex_1}>Total Price</div>
-              </DivRow>
+        <DivRow fillParent className={styles.checkout_container}>
+          <DivColumn className={styles.cart_list_container}>
+            <DivRow className={styles.table_header}>
+              <div className={styles.flex_2}>Product</div>
+              <div className={styles.flex_1}>Exhibition</div>
+              <div className={styles.flex_1}>Price</div>
+              <div className={styles.flex_1}>Quantity</div>
+              <div className={styles.flex_1}>Total Price</div>
+            </DivRow>
 
+            <InitialPageLoader
+              isEmpty={!size(bagData.items)}
+              initialPageApi={getBagListAction}
+              customEmptyScreen={
+                <EmptyScreenComponent
+                  title="Hey, it feels so light!"
+                  description="There is nothing in your bag. Let’s add some items."
+                  buttonTitle="ADD ITEMS FROM WISHLIST"
+                  className={styles.empty_page_container}
+                  buttonOnClick={this.navigateToWishlist}
+                />
+              }
+            >
               <DivColumn fillParent className={styles.table_content_container}>
                 {map(bagData.items, (item, index) => {
                   return <CheckoutItemComponent checkoutItem={item} />;
                 })}
               </DivColumn>
-            </DivColumn>
+            </InitialPageLoader>
+          </DivColumn>
 
-            <DivColumn>
-              <DivColumn className={styles.order_summary_container}>
-                {/* <div className={styles.order_summary_title}>Order Summary</div>
+          <DivColumn>
+            <DivColumn className={styles.order_summary_container}>
+              {/* <div className={styles.order_summary_title}>Order Summary</div>
               <HorizontalBorder />
               <DivRow verticalCenter className={styles.coupon_input}>
                 <img src={couponIcon} className={styles.icon} />
@@ -54,65 +71,62 @@ class CheckoutPage extends Component {
               </DivRow>
               <HorizontalBorder /> */}
 
-                <div className={styles.coupon_header_text}>Coupons</div>
-                <DivColumn className={styles.coupon_description_container}>
-                  <DivColumn className={styles.coupon_content_container}>
-                    <div className={styles.coupon_title}>
-                      40% OFF up to KD 29
-                    </div>
-                    <div className={styles.coupon_description}>
-                      On order of KD 400 and above. Valid once per user.
-                    </div>
-                  </DivColumn>
-                  <HorizontalBorder />
-                  <DivRow className={styles.coupon_container}>
-                    <div className={styles.coupon}>FREEITEM29</div>
-                    <div className={styles.coupon_apply}>APPLY</div>
-                  </DivRow>
+              <div className={styles.coupon_header_text}>Coupons</div>
+              <DivColumn className={styles.coupon_description_container}>
+                <DivColumn className={styles.coupon_content_container}>
+                  <div className={styles.coupon_title}>40% OFF up to KD 29</div>
+                  <div className={styles.coupon_description}>
+                    On order of KD 400 and above. Valid once per user.
+                  </div>
                 </DivColumn>
-
                 <HorizontalBorder />
+                <DivRow className={styles.coupon_container}>
+                  <div className={styles.coupon}>FREEITEM29</div>
+                  <div className={styles.coupon_apply}>APPLY</div>
+                </DivRow>
+              </DivColumn>
 
-                <DivColumn>
-                  <div className={styles.coupon_header_text}>Price Details</div>
-                  <DivRow className={styles.price_details_container}>
-                    <div className={styles.title}>Bag Total</div>
-                    <div className={styles.value}>
-                      {bagData.formated_grand_total}
-                    </div>
-                  </DivRow>
-                  <DivRow className={styles.price_details_container}>
-                    <div className={styles.title}>Coupon Discount</div>
-                    <div className={styles.value}>Apply Coupon</div>
-                  </DivRow>
-                  <DivRow className={styles.price_details_container}>
-                    <div className={styles.title}>Order Total</div>
-                    <div className={styles.value}>
-                      {bagData.formated_sub_total}
-                    </div>
-                  </DivRow>
-                  {/* <DivRow className={styles.price_details_container}>
+              <HorizontalBorder />
+
+              <DivColumn>
+                <div className={styles.coupon_header_text}>Price Details</div>
+                <DivRow className={styles.price_details_container}>
+                  <div className={styles.title}>Bag Total</div>
+                  <div className={styles.value}>
+                    {bagData.formated_grand_total}
+                  </div>
+                </DivRow>
+                <DivRow className={styles.price_details_container}>
+                  <div className={styles.title}>Coupon Discount</div>
+                  <div className={styles.value}>Apply Coupon</div>
+                </DivRow>
+                <DivRow className={styles.price_details_container}>
+                  <div className={styles.title}>Order Total</div>
+                  <div className={styles.value}>
+                    {bagData.formated_sub_total}
+                  </div>
+                </DivRow>
+                {/* <DivRow className={styles.price_details_container}>
                     <div className={styles.title}>Delivery Charges</div>
                     <div className={styles.value}>FREE</div>
                   </DivRow> */}
 
-                  <HorizontalBorder className={styles.price_divider} />
+                <HorizontalBorder className={styles.price_divider} />
 
-                  <DivRow className={styles.price_details_container}>
-                    <div className={styles.title}>Total</div>
-                    <div className={styles.value}>
-                      {bagData.formated_sub_total}
-                    </div>
-                  </DivRow>
-                </DivColumn>
-
-                <CapsuleButton className={styles.capsule_button}>
-                  Place Order
-                </CapsuleButton>
+                <DivRow className={styles.price_details_container}>
+                  <div className={styles.title}>Total</div>
+                  <div className={styles.value}>
+                    {bagData.formated_sub_total}
+                  </div>
+                </DivRow>
               </DivColumn>
+
+              <CapsuleButton className={styles.capsule_button}>
+                Place Order
+              </CapsuleButton>
             </DivColumn>
-          </DivRow>
-        </InitialPageLoader>
+          </DivColumn>
+        </DivRow>
       </FullWidthContainer>
     );
   }
@@ -130,4 +144,7 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(CheckoutPage);
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(CheckoutPage));
