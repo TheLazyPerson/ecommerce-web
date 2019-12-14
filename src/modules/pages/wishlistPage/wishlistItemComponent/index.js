@@ -32,7 +32,7 @@ class WishlistItemComponent extends Component {
   }
 
   render() {
-    const { wishlistItem: { product } } = this.props;
+    const { wishlistItem: { product, exhibition } } = this.props;
     const { isRemoving } = this.state;
 
     return (
@@ -50,7 +50,7 @@ class WishlistItemComponent extends Component {
 
         <DivColumn className={styles.additional_details_container}>
           <div className={styles.title}>EXHIBITION</div>
-          <div className={styles.name}>The Craft Show</div>
+          <div className={styles.name}>{exhibition.title}</div>
           <div className={styles.time}>Expires in:  40 Mins</div>
         </DivColumn>
 
