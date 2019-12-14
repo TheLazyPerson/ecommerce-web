@@ -6,7 +6,7 @@ import DivRow from "CommonComponents/divRow";
 import socialFacebookIcon from "Icons/social-facebook-icon-white.svg";
 import socialInstagramIcon from "Icons/social-instagram-icon-white.svg";
 import socialTwitterIcon from "Icons/social-twitter-icon-white.svg";
-import arrowRightIcon from "Icons/arrow-right-icon-black.svg";
+import arrowRightIcon from "Icons/arrow-right-icon-white.svg";
 import shareIcon from "Icons/share-icon-black.svg";
 import LanguageSelect from "CommonComponents/languageSelect";
 import Swiper from "react-id-swiper";
@@ -34,8 +34,8 @@ class NewHomePage extends Component {
   }
 
   render() {
-    const currentSlide = 0;
-    const totalSlide = 0; // exhibitionList ? exhibitionList.length : 0;
+    const currentSlide = 3;
+    const totalSlide = 5; // exhibitionList ? exhibitionList.length : 0;
 
     const isLeftButtonClickable = currentSlide !== 0;
     const isRightButtonClickable = (currentSlide + 1) !== totalSlide;
@@ -91,7 +91,7 @@ class NewHomePage extends Component {
 
           <DivRow verticalCenter horizontalCenter className={styles.hero_bottom_content}>
 
-              <DivRow>
+              <DivRow fillParent verticalCenter horizontalCenter>
                 <div
                   className={`${
                     !isLeftButtonClickable ? styles.non_clickable : ""
@@ -119,15 +119,16 @@ class NewHomePage extends Component {
                     alt="Arrow"
                   />
                 </div>
+                <div className={styles.pagination_count_container}>
+                  <span className={styles.pagination_current_count}>
+                    {currentSlide + 1}
+                  </span>
+                  <span className={styles.pagination_total_count}>
+                    /{totalSlide}
+                  </span>
+                </div>
               </DivRow>
-              <div className={styles.pagination_count_container}>
-                <span className={styles.pagination_current_count}>
-                  {currentSlide + 1}
-                </span>
-                <span className={styles.pagination_total_count}>
-                  /{totalSlide}
-                </span>
-              </div>
+
               <img src={shareIcon} className={styles.share_icon} alt="Share" />
 
           </DivRow>

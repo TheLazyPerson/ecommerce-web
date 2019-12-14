@@ -95,3 +95,73 @@
     margin-top: 0px;
   }
 }   
+
+
+
+
+  .non_clickable {
+    opacity: 0.23;
+  }
+
+  .arrow_text {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.33;
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+    .arrow_left {
+      margin-right: 9.5px;
+      transform: scaleX(-1);
+    }
+
+    .arrow_right {
+      margin-left: 9.5px;
+    }
+  }      
+
+  .arrow_text:first-child {
+    margin-right: 40px;
+  }
+
+
+  .pagination_count_container {      
+    margin-left: 67px;  
+    margin-top: -6px;
+
+    .pagination_current_count {
+      font-size: 32px;
+      line-height: 1.94;
+      color: white;
+    }
+
+    .pagination_total_count {
+      font-size: 18px;
+      line-height: 1.33;
+      color: white;  
+    }
+  }
+
+  .share_icon {
+    margin-right: 50px;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+
+
+
+  
+.swiper_item {
+  height: 100%;
+  width: 100%;
+}
+
+:global {
+  .custom_container {
+    width: 100%;
+    height: 100%;
+  }
+}
