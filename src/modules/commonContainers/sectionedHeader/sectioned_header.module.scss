@@ -25,7 +25,7 @@ $bag-count-background: $color-pale;
       border-radius: 0px 0px 24px 24px;
       color: $primary-text-color;
       box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
-      z-index: 0;
+      z-index: 5;
 
       .search_item {
         padding: 6px 19px;
@@ -66,8 +66,7 @@ $bag-count-background: $color-pale;
       height: 48px;
       padding: 0px 30px 0px 30px;
       border-radius: 24px;
-      background-color: $search-container-background;
-      opacity: 0.3;
+      background-color: rgba($search-container-background, 0.3);      
       z-index: 0;
 
       .search_form {
@@ -84,6 +83,13 @@ $bag-count-background: $color-pale;
             outline: none;
           }
         }
+
+        .is_white {
+          color: white;
+        }
+        .is_white::placeholder {
+          color: white;
+        }
       }
 
       .search_icon {
@@ -93,7 +99,7 @@ $bag-count-background: $color-pale;
     }
 
     .search_wrapper_expanded {
-      opacity: 1;
+      background-color: $search-container-background;      
       border-radius: 24px 24px 0px 0px;
     }
   }
@@ -114,6 +120,10 @@ $bag-count-background: $color-pale;
 
   .sigin_link {
     color: $primary-text-color;
+  }
+
+  .is_white {
+    color: white;
   }
 
   .hamburger_icon {

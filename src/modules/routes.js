@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
+import NewHomePage from './pages/newHomePage';
 import SignInPage from "./pages/signinPage";
 import SignUpPage from "./pages/signupPage";
 import PageNotFound from "CommonComponents/pageNotFound";
@@ -27,12 +28,14 @@ import ShippingAndReturnsPage from "./pages/shippingAndReturnsPage";
 import PrivacyPolicyPage from "./pages/privacyPolicyPage";
 import FAQPage from "./pages/FAQPage";
 import AddAddress from "./pages/profilePages/profileAddress/addAddress";
+import EditAddress from "./pages/profilePages/profileAddress/editAddress";
 import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 
 const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/new-home-page" component={NewHomePage} />
       <Route exact path="/product-details" component={ProductDetailsPage} />
       <ProtectedRoute
         exact
@@ -85,6 +88,13 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/profile/address/add"
         component={AddAddress}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/profile/address/edit"
+        component={EditAddress}
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />
@@ -149,17 +159,9 @@ const App = ({ isUserSignedIn }) => {
         path="/shipping-and-returns"
         component={ShippingAndReturnsPage}
       />
-      <Route
-        exact
-        path="/privacy-policy"
-        component={PrivacyPolicyPage}
-      />
-      <Route
-        exact
-        path="/faq"
-        component={FAQPage}
-      />
-      
+      <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
+      <Route exact path="/faq" component={FAQPage} />
+
       <Route component={PageNotFound} />
     </Switch>
   );

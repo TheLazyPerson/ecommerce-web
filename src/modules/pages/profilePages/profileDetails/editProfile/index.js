@@ -9,6 +9,13 @@ import CapsuleButton from "CommonComponents/capsuleButton";
 import SecondaryCapsuleButton from "CommonComponents/secondaryCapsuleButton";
 import InputTextComponent from "CommonComponents/InputTextComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
+import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import {
+  getProfileDetailsAction,
+  editProfileDetailsAction
+} from "Core/modules/profiledetails/profileDetailsActions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import {
   isPhoneNumber,
   nameValidator,
@@ -23,8 +30,35 @@ class EditProfile extends Component {
   };
 
   onSubmit = form => {
-    // TODO make Api call here
+    const {
+      editProfileDetailsAction,
+      navigateTo,
+      showSuccessFlashMessage
+    } = this.props;
+
+    editProfileDetailsAction({
+      first_name: form.firstName,
+      last_name: form.lastName,
+      gender: form.gender,
+      phone: form.phone,
+      email: form.email,
+      birthday: form.birthday
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+        navigateTo("profile");
+        showSuccessFlashMessage("Profile Updated");
+      }
+    });
   };
+
+  componentDidMount() {
+    // TODO: To add to check if reducer data is not available.
+    // this.props.getProfileDetailsAction().then(({ payload }) => {
+    //   if (payload.code === 200 || payload.code === 201) {
+    //     // code here
+    //   }
+    // });
+  }
 
   validate = values => {
     const errors = {};
@@ -49,12 +83,24 @@ class EditProfile extends Component {
   };
 
   render() {
+    const {
+      profileDetailsReducer: { userDetails }
+    } = this.props;
+
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <NavHeader title="Profile details" onBackClick={this.onBackPress} />
         <Form
           onSubmit={this.onSubmit}
           validate={this.validate}
+          initialValues={{
+            firstName: userDetails.first_name ? userDetails.first_name : "",
+            lastName: userDetails.last_name ? userDetails.last_name : "",
+            gender: userDetails.gender ? userDetails.gender : "",
+            mobileNumber: userDetails.phone ? userDetails.phone : "",
+            email: userDetails.email ? userDetails.email : "",
+            birthday: userDetails.birthday ? userDetails.birthday : ""
+          }}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form className={styles.form_container} onSubmit={handleSubmit}>
               <Field name="firstName">
@@ -134,4 +180,30 @@ class EditProfile extends Component {
   }
 }
 
-export default navigatorHoc(EditProfile);
+const mapStateToProps = state => {
+  return {
+    profileDetailsReducer: state.profileDetailsReducer
+  };
+};
+
+const mapDispathToProps = dispatch => {
+  return {
+    getProfileDetailsAction: bindActionCreators(
+      getProfileDetailsAction,
+      dispatch
+    ),
+    editProfileDetailsAction: bindActionCreators(
+      editProfileDetailsAction,
+      dispatch
+    ),
+    showSuccessFlashMessage: bindActionCreators(
+      showSuccessFlashMessage,
+      dispatch
+    )
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(EditProfile));

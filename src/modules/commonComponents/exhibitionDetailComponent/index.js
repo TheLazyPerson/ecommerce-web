@@ -8,21 +8,24 @@ import styles from "./exhibition_detail_component.module.scss";
 export default class ExhibitionDetailComponent extends Component {
   render() {
     const {
-      title,
       name,
       tags,
       price,
       description,
       children,
-      className
+      className,
+      setCenter,
     } = this.props;
 
     return (
       <DivColumn
         className={`${styles.exhibition_details_container} ${className}`}
+        style={setCenter? {alignItems: 'center'} : null}
       >
-        <div className={styles.exhibition_number_text}>{title}</div>
-        <div className={styles.exhibition_name_text}>{name}</div>
+        <div
+          className={styles.exhibition_name_text}
+          style={setCenter?{textAlign: 'center'}: null}
+        >{name}</div>
         <div className={styles.small_divider}></div>
         <DivRow>
           {map(tags, (tag, index) =>
@@ -34,7 +37,10 @@ export default class ExhibitionDetailComponent extends Component {
           )}
         </DivRow>
         {price ? <div className={styles.price_text}>{`${price}`}</div> : null}
-        <div className={styles.exhibition_description_text}>{description}</div>
+        <div
+          className={styles.exhibition_description_text}
+          style={setCenter?{textAlign: 'center'}: null}
+        >{description}</div>
         {children ? children : null}
       </DivColumn>
     );
