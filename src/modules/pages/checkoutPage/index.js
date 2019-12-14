@@ -31,7 +31,7 @@ class CheckoutPage extends Component {
               <DivRow className={styles.table_header}>
                 <div className={styles.flex_2}>Product</div>
                 <div className={styles.flex_1}>Exhibition</div>
-                <div className={styles.flex_1}>Product Price</div>
+                <div className={styles.flex_1}>Price</div>
                 <div className={styles.flex_1}>Quantity</div>
                 <div className={styles.flex_1}>Total Price</div>
               </DivRow>

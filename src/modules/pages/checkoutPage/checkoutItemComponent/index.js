@@ -7,11 +7,19 @@ import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import closeIcon from "Icons/close-icon-black.svg";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { removeFromBagAction } from "Core/modules/bag/bagActions";
+import {
+  removeFromBagAction,
+  editQuantityAction
+} from "Core/modules/bag/bagActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import navigatorHoc from "Hoc/navigatorHoc";
+import minusIcon from "Icons/minus-icon.svg";
+import plusIcon from "Icons/plus-icon.svg";
 
 class CheckoutItemComponent extends Component {
+  state = {
+    quantity: this.props.checkoutItem.quantity
+  };
   handleRemove = id => {
     const { removeFromBagAction, showSuccessFlashMessage } = this.props;
     removeFromBagAction(id).then(({ payload }) => {
@@ -29,9 +37,42 @@ class CheckoutItemComponent extends Component {
     });
   };
 
+  incrementItem = async () => {
+    await this.setState(prevState => {
+      return {
+        quantity: prevState.quantity + 1
+      };
+    });
+    this.onEditQuanity();
+  };
+
+  decreaseItem = async () => {
+    await this.setState(prevState => {
+      if (prevState.quantity > 1) {
+        return {
+          quantity: prevState.quantity - 1
+        };
+      } else {
+        return null;
+      }
+    });
+    this.onEditQuanity();
+  };
+  onEditQuanity = () => {
+    const { editQuantityAction, checkoutItem } = this.props;
+    const id = checkoutItem.id;
+    editQuantityAction({
+      quantity: {
+        [id]: this.state.quantity
+      }
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+      }
+    });
+  };
+
   render() {
     const { checkoutItem } = this.props;
-    console.log(checkoutItem);
     return (
       <DivRow className={styles.table_item}>
         <DivRow
@@ -67,7 +108,21 @@ class CheckoutItemComponent extends Component {
         </DivRow>
 
         <DivRow className={`${styles.flex_1}`}>
-          <BareQuantityComponent quantity={checkoutItem.quantity} />
+          <DivRow verticalCenter className={`${styles.quantity_container}`}>
+            <img
+              alt={"remove"}
+              className={styles.quantity_button}
+              src={minusIcon}
+              onClick={this.decreaseItem}
+            />
+            <div className={styles.quantity_text}>{this.state.quantity}</div>
+            <img
+              alt={"add"}
+              className={styles.quantity_button}
+              src={plusIcon}
+              onClick={this.incrementItem}
+            />
+          </DivRow>
         </DivRow>
 
         <DivRow
@@ -99,7 +154,8 @@ const mapDispathToProps = dispatch => {
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
+    editQuantityAction: bindActionCreators(editQuantityAction, dispatch)
   };
 };
 
