@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.c6b00ceb.chunk.css",
-    "main.js": "/static/js/main.b64ffb3c.chunk.js",
-    "main.js.map": "/static/js/main.b64ffb3c.chunk.js.map",
+    "main.css": "/static/css/main.91fccf99.chunk.css",
+    "main.js": "/static/js/main.b3b769c7.chunk.js",
+    "main.js.map": "/static/js/main.b3b769c7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.afa85a71.js",
     "runtime-main.js.map": "/static/js/runtime-main.afa85a71.js.map",
     "static/css/2.0003a0f4.chunk.css": "/static/css/2.0003a0f4.chunk.css",
-    "static/js/2.71269213.chunk.js": "/static/js/2.71269213.chunk.js",
-    "static/js/2.71269213.chunk.js.map": "/static/js/2.71269213.chunk.js.map",
+    "static/js/2.497fcd68.chunk.js": "/static/js/2.497fcd68.chunk.js",
+    "static/js/2.497fcd68.chunk.js.map": "/static/js/2.497fcd68.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.2de4b19e168c6ef6252f57cfb064802e.js": "/precache-manifest.2de4b19e168c6ef6252f57cfb064802e.js",
+    "precache-manifest.45b131686dddef50a80b52767b92c572.js": "/precache-manifest.45b131686dddef50a80b52767b92c572.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.0003a0f4.chunk.css.map": "/static/css/2.0003a0f4.chunk.css.map",
-    "static/css/main.c6b00ceb.chunk.css.map": "/static/css/main.c6b00ceb.chunk.css.map",
+    "static/css/main.91fccf99.chunk.css.map": "/static/css/main.91fccf99.chunk.css.map",
     "static/media/address-icon-black.svg": "/static/media/address-icon-black.f972603b.svg",
     "static/media/address-icon-white.svg": "/static/media/address-icon-white.45f87d3b.svg",
     "static/media/app-icon-black.svg": "/static/media/app-icon-black.5ee75af4.svg",
@@ -21,6 +21,7 @@
     "static/media/arrow-down-icon-black.svg": "/static/media/arrow-down-icon-black.465cc04a.svg",
     "static/media/arrow-right-icon-black.svg": "/static/media/arrow-right-icon-black.48963871.svg",
     "static/media/arrow-right-icon-white.svg": "/static/media/arrow-right-icon-white.d44b3deb.svg",
+    "static/media/arrow-right-point-icon-black.svg": "/static/media/arrow-right-point-icon-black.f56d760c.svg",
     "static/media/bookmark-icon-black.svg": "/static/media/bookmark-icon-black.269ffff9.svg",
     "static/media/bookmark-icon-white.svg": "/static/media/bookmark-icon-white.317d47d8.svg",
     "static/media/cart-bag-icon-black.svg": "/static/media/cart-bag-icon-black.aa751106.svg",
@@ -61,8 +62,8 @@
   "entrypoints": [
     "static/js/runtime-main.afa85a71.js",
     "static/css/2.0003a0f4.chunk.css",
-    "static/js/2.71269213.chunk.js",
-    "static/css/main.c6b00ceb.chunk.css",
-    "static/js/main.b64ffb3c.chunk.js"
+    "static/js/2.497fcd68.chunk.js",
+    "static/css/main.91fccf99.chunk.css",
+    "static/js/main.b3b769c7.chunk.js"
   ]
 }
