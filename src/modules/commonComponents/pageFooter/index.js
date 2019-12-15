@@ -26,7 +26,7 @@ export default class PageFooter extends Component {
           <a className={styles.link} href="/shipping-and-returns">Shipping and Returns</a>
         </DivColumn>
         <DivColumn className={styles.footer_link_container}>
-          <b className={styles.link_header}>EXPERIENCE MAERID APP ON MOBILE</b>
+          <b className={styles.link_header}>EXPERIENCE MA3RATH APP ON MOBILE</b>
           <DivRow verticalCenter>
            <img className={styles.badge_icon} src={playStoreImage} />
            <img className={styles.apple_badge} src={appStoreImage} />

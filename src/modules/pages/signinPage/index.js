@@ -79,7 +79,7 @@ class SignInPage extends Component {
           </a> */}
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>
-              New to Maerid?&nbsp;
+              New to MA3RATH?&nbsp;
             </span>
             <a className={styles.hyper_link} href="/signup">
               Create an account
