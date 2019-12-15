@@ -28,6 +28,8 @@
   .hero_section_container {
     min-height: 100vh;
     position: relative;
+    background-position: center;
+    background-size: cover;
 
     .top_gradient {
       position: absolute;
@@ -45,7 +47,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba($primary-text-color, 0.1);
+      background: rgba($primary-text-color, 0.3);
     }
     
     .bottom_gradient {

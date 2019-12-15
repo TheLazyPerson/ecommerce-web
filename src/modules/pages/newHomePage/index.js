@@ -27,6 +27,7 @@ import exhibitionImage from "Images/exhibition-item-3.png";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
 import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
+import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 
 class NewHomePage extends Component {
   state = {
@@ -71,8 +72,7 @@ class NewHomePage extends Component {
         <DivColumn
           style={{
             backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
-            backgroundPosition: "center",
-            backgroundSize: 'cover'
+
           }}
           fillSelfHorizontal
           className={styles.hero_section_container}
@@ -213,7 +213,9 @@ class NewHomePage extends Component {
           KEEP AN EYE ON THESE EXHIBITIONS
         </DivRow>
         
-
+        <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
+          <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
+        </InitialPageLoader>
 
         <PageFooter />
         
