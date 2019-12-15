@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .product_container {
   border-radius: 2px;
@@ -9,6 +10,7 @@
 
   .product_details_container {
     padding: 6px 21px;
+    margin-bottom: auto;
 
     .product_name {
       font-family: PlayfairDisplay;
@@ -16,14 +18,25 @@
       text-align: center;
       font-weight: bold;
       color: $primary-text-color;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
   
     .product_description {
       font-size: 12px;
       font-weight: 300;
+      height: 35px;
       text-align: center; 
       color: $primary-text-color;
       margin: 6px 0px;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   
     .product_image {
@@ -78,6 +91,8 @@
         text-align:center;
         font-size: 8px;
         color: $primary-text-color;
+
+        @include on_click_button;
       }
 
       .primary {

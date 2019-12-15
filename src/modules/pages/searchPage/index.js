@@ -80,7 +80,9 @@ class SearchPage extends Component {
                   <div className={styles.section_header}>PRODUCTS</div>
                   <DivRow className={styles.section_list}>
                     {map(productList, product => (
-                      <ProductItemComponent />
+                      <ProductItemComponent 
+                        product={product}
+                      />
                     ))}
                   </DivRow>
                 </DivColumn>
