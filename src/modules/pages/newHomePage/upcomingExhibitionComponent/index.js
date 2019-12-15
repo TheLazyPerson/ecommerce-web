@@ -6,6 +6,7 @@ import DivRow from "CommonComponents/divRow";
 import exhibitionImage from "Images/exhibition-item-3.png";
 import styles from "./upcoming_exhibition_component.module.scss";
 import map from "lodash/map";
+import arrowRight from 'Icons/arrow-right-point-icon-black.svg';
 
 class UpcomingExhibitionComponent extends Component {
   render() {
@@ -30,8 +31,8 @@ class UpcomingExhibitionComponent extends Component {
           src="https://source.unsplash.com/500x500/?product"
         />
         <DivRow className={styles.arrow_container}>
-          <div>left</div>
-          <div>right</div>
+          <img src={arrowRight} className={styles.arrow_left} />
+          <img src={arrowRight} className={styles.arrow_right} />
         </DivRow>
       </DivRow>
     );
