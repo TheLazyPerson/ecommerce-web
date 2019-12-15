@@ -192,12 +192,12 @@ class NewHomePage extends Component {
           </InitialPageLoader>
         </DivColumn>
 
-        <DivColumn style={{alignSelf: 'stretch'}}>
+        <DivColumn className={styles.masonary_container}>
             <Masonry
               options={{
-                columnWidth: 50
+                columnWidth: 39,
               }}
-              className={styles.custom_masonary} // default ''
+              className={styles.masonary} // default ''
             >
               <div 
                 className={styles.type2}

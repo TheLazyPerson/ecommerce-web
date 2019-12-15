@@ -203,18 +203,24 @@
   }
 }
 
-.custom_masonary {
-  align-self: stretch;
+.masonary_container {
+  align-items: center;
+  .masonary {
+    // max-width: 1140px;
+    min-width: 1140px;
+  }
 }
 
 .type1 {
   width: 503px;
   height: 273px;
-  margin: 10px;
+  margin-top: 3px;
+  background-position: center;
 }
 
 .type2 {
   width: 310px;
-  height: 434px;
-  margin: 10px;
+  height: 411px;
+  margin-top: 3px;
+  background-position: top;
 }
