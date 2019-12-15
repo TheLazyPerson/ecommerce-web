@@ -21,7 +21,7 @@ import {
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import SectionedHeader from "CommonContainers/sectionedHeader";
-import appIcon from "Icons/app-icon-white.svg";
+import appIcon from "Images/logo-image.png";
 import navigatorHoc from "Hoc/navigatorHoc";
 import exhibitionImage from "Images/exhibition-item-3.png";
 import PageFooter from "CommonComponents/pageFooter";
@@ -247,6 +247,13 @@ class NewHomePage extends Component {
               className={styles.app_icon}
               onClick={this.onClickAppIcon}
             />
+            <div style={{
+                fontWeight: 'bold',
+                marginLeft: 6,
+                marginRight: 32,
+                color: 'white',
+                cursor: 'pointer'
+              }} onClick={this.onClickAppIcon}>MA3RATH</div>
             <LanguageSelect whiteColor />
           </DivRow>
           <SectionedHeader whiteColor />
