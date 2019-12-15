@@ -4,15 +4,22 @@ import DivColumn from "CommonComponents/divColumn";
 import styles from "./product_item_component.module.scss";
 import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
-
-export default class ProductItemComponent extends Component {
+import navigatorHoc from 'Hoc/navigatorHoc';
+class ProductItemComponent extends Component {
 
   onClickExhibition = () => {
-
+    const { navigateTo, product } = this.props;
+    navigateTo('plp', {
+      id: product.exhibition.id,
+    });
   }
 
   onClickProduct = () => {
-
+    const { navigateTo, product } = this.props;
+    navigateTo('pdp', {
+      exhibitionId: product.exhibition.id,
+      productId: product.id,
+    });
   }
 
   render() {
@@ -71,3 +78,6 @@ export default class ProductItemComponent extends Component {
     );
   }
 }
+
+
+export default navigatorHoc(ProductItemComponent);
