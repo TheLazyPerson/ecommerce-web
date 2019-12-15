@@ -3,7 +3,7 @@ import SectionedHeader from 'CommonContainers/sectionedHeader';
 import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './sectioned_container.module.scss';
-import appIcon from 'Icons/app-icon-white.svg';
+import appIcon from 'Images/logo-image.png';
 import LanguageSelect from 'CommonComponents/languageSelect';
 import navigatorHoc from 'Hoc/navigatorHoc';
 
@@ -26,6 +26,12 @@ class SectionedContainer extends Component {
          <DivColumn className={styles.left_container}>
             <DivRow className={styles.header_container}>
               <img src={appIcon} className={styles.app_icon} onClick={this.onClickAppIcon}/>
+              <div style={{
+                fontWeight: 'bold',
+                marginLeft: 6,
+                color: 'white',
+                cursor: 'pointer'
+              }} onClick={this.onClickAppIcon}>MA3RATH</div>
             </DivRow>
             
             { !isAbsoluteContent && (

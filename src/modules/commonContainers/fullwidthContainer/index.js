@@ -4,7 +4,7 @@ import DivRow from 'CommonComponents/divRow';
 import DivColumn from 'CommonComponents/divColumn';
 import styles from './full_width_container.module.scss';
 import LanguageSelect from 'CommonComponents/languageSelect';
-import appIcon from 'Icons/app-icon-black.svg'
+import appIcon from 'Images/logo-image.png';
 import navigatorHoc from 'Hoc/navigatorHoc';
 import PageFooter from 'CommonComponents/pageFooter';
 
@@ -24,6 +24,12 @@ class FullWidthContainer extends Component {
           <DivRow className={styles.header_container}>
             <DivRow className={styles.header_icon_container}>
               <img src={appIcon}  className={styles.app_icon} onClick={this.onClickAppIcon} />
+              <div style={{
+                fontWeight: 'bold',
+                marginLeft: 6,
+                marginRight: 32,
+                cursor: 'pointer'
+              }} onClick={this.onClickAppIcon}>MA3RATH</div>
               <LanguageSelect blackColor/>
             </DivRow>
             <SectionedHeader />
