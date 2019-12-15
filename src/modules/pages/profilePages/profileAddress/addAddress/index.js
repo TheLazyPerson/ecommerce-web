@@ -35,7 +35,8 @@ class AddAddress extends Component {
       state: isEmptyValidator(values.state),
       country: isEmptyValidator(values.country),
       country_code: isEmptyValidator(values.country_code),
-      pincode: isEmptyValidator(values.pincode)
+      pincode: isEmptyValidator(values.pincode),
+      name: isEmptyValidator(values.name)
     };
 
     Object.keys(validators).forEach(key => {
@@ -56,14 +57,15 @@ class AddAddress extends Component {
       first_name: form.firstName,
       last_name: form.firstName,
       phone_number: form.mobileNumber,
-      address1: form.street,
-      address2: form.address,
+      address1: form.address1,
+      address2: form.address2,
       postcode: form.pincode,
       city: form.city,
       state: form.city,
       country: form.country,
       country_code: form.country_code,
-      default_address: 1
+      default_address: 1,
+      name: form.name
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         navigateTo("address");
@@ -127,6 +129,16 @@ class AddAddress extends Component {
                 <HorizontalBorder className={styles.address_divider} />
 
                 <DivColumn className={styles.text_input_container}>
+                  <Field name="name">
+                    {({ input, meta }) => (
+                      <InputTextComponent
+                        meta={meta}
+                        {...input}
+                        placeholder="Home/Office"
+                        className={styles.input_text}
+                      />
+                    )}
+                  </Field>
                   <Field name="address1">
                     {({ input, meta }) => (
                       <InputTextComponent

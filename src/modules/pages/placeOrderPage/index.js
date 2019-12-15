@@ -120,23 +120,38 @@ class PlaceOrderPage extends Component {
               <div className={styles.coupon_header_text}>
                 Choose Delivery Speed
               </div>
-              <DivColumn className={styles.coupon_description_container}>
-                <DivColumn className={styles.coupon_content_container}>
-                  <div className={styles.coupon_title}>Standard Delivery</div>
-                  <div className={styles.coupon_description}>
-                    Get it by 22 Dec | Free Delivery.
-                  </div>
+              <label>
+                <input
+                  type="radio"
+                  name="delivery"
+                  class={styles.card_input_element}
+                  onChange={() => this.onDeliverySelect()}
+                />
+                <DivColumn className={styles.coupon_description_container}>
+                  <DivColumn className={styles.coupon_content_container}>
+                    <div className={styles.coupon_title}>Standard Delivery</div>
+                    <div className={styles.coupon_description}>
+                      Get it by 22 Dec | Free Delivery.
+                    </div>
+                  </DivColumn>
                 </DivColumn>
-              </DivColumn>
-
-              <DivColumn className={styles.coupon_description_container}>
-                <DivColumn className={styles.coupon_content_container}>
-                  <div className={styles.coupon_title}>Express Delivery</div>
-                  <div className={styles.coupon_description}>
-                    Get it by 18 Dec | Charges Applied.
-                  </div>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="delivery"
+                  class={styles.card_input_element}
+                  onChange={() => this.onDeliverySelect()}
+                />
+                <DivColumn className={styles.coupon_description_container}>
+                  <DivColumn className={styles.coupon_content_container}>
+                    <div className={styles.coupon_title}>Express Delivery</div>
+                    <div className={styles.coupon_description}>
+                      Get it by 18 Dec | Charges Applied.
+                    </div>
+                  </DivColumn>
                 </DivColumn>
-              </DivColumn>
+              </label>
 
               <HorizontalBorder />
 
