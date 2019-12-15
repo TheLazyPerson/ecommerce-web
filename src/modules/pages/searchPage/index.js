@@ -14,6 +14,12 @@ import isEmpty from 'lodash/isEmpty';
 import queryString from "query-string";
 class SearchPage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.initialLoaderRef = React.createRef()
+  }
+
+
   getSlugBasedOntype = (searchType) => {
     switch(searchType) {
       case 'products':
@@ -25,15 +31,13 @@ class SearchPage extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      match,
-      location,
-    } = this.props;
-    const currentSearchType = match.params.searchType;
-    const currentQuery = queryString.parse(location.search).query;
-
-  }
+   componentWillReceiveProps(nextProps) {
+     if (this.props.location !== nextProps.location) {
+      setTimeout(()=>{
+        this.initialLoaderRef.current.reload();
+      }, 200)
+     }
+   }
 
   render() {
     const {
@@ -50,6 +54,7 @@ class SearchPage extends Component {
         <DivColumn fillParent className={styles.search_container}>
           <div className={styles.page_header}>Search: the craft show</div>
           <InitialPageLoader 
+            ref={this.initialLoaderRef}
             initialPageApi={() => searchAction(this.getSlugBasedOntype(searchType), query)}
             isEmpty={(isEmpty(productList) && isEmpty(exhibitionList))}
             emptyScreenMessage="Can't find any exhibition or product"
