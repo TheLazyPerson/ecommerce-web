@@ -31,7 +31,12 @@ class UpcomingExhibitionComponent extends Component {
     const exhibition = exhibitionList[currentSlide];
     const isLeftButtonClickable = currentSlide !== 0;
     const isRightButtonClickable = currentSlide + 1 !== totalSlide;
-
+    console.log(' something ', {
+      currentSlide,
+      isLeftButtonClickable,
+      isRightButtonClickable,
+      totalSlide
+    });
     return (
       <DivRow fillSelfHorizontal className={styles.component_container}>
         <DivRow className={styles.content_container}>

@@ -4,6 +4,7 @@
   margin: 0px 150px;
   min-height: 430px;
   min-width: 980px;
+  margin-bottom: 200px;
   align-self: center;
   align-items: flex-end;
   position: relative;
@@ -11,8 +12,8 @@
   .content_container {
     position: absolute;
     top: 0;
-    left: 60px;
-    bottom: 60px;
+    left: 0px;
+    bottom: 0px;
     right: 0px;
     background: rgba($color-very-light-blue, 0.9);
     justify-content: flex-end;
@@ -51,9 +52,9 @@
   }
  
   .image {
-    width: 55%;
+    width: 50%;
     // width: 713px;
-     height: 370px;
+     height: 430px;
     z-index: 2;
     object-fit: cover;
   }
@@ -65,12 +66,12 @@
     .arrow_left {
       margin-right: 9.5px;
       transform: scaleX(-1);
-      width: 46px;
+      width: 35px;
       cursor: pointer;
     }
 
     .arrow_right {
-      width: 46px;
+      width: 35px;
       margin-left: 20px;
       cursor: pointer;
     }
