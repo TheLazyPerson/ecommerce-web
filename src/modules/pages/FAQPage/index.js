@@ -38,7 +38,7 @@ export default class FAQPage extends Component {
        <FullWidthContainer>
         <DivColumn fillParent className={styles.page_container}>
         <StaticPageHeader subTitle="HELP" title="Frequenty Asked Questions" />
-          <div className={styles.page_title}>MAERID</div>
+          <div className={styles.page_title}>MA3RATH</div>
           <DivColumn fillParent>
             {
               map(faq, (faqItem, index) => {

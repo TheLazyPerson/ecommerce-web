@@ -1,6 +1,6 @@
 export const faq = [
   {
-    title: 'Does maerid provide best quality products?',
+    title: 'Does MA3RATH provide best quality products?',
     description: `Unlike online competitors, we are not a marketplace. We don’t let third party wholesalers
     list their diamonds on our site, and only Couple diamonds are sold on our site. We do this 
     because we have strict standards for our diamond engagement rings. In order to offer the 
@@ -9,7 +9,7 @@ export const faq = [
     isSelected: true,
   },
   {
-    title: 'Does maerid provide best quality products?',
+    title: 'Does MA3RATH provide best quality products?',
     description: `Unlike online competitors, we are not a marketplace. We don’t let third party wholesalers
     list their diamonds on our site, and only Couple diamonds are sold on our site. We do this 
     because we have strict standards for our diamond engagement rings. In order to offer the 
@@ -18,7 +18,7 @@ export const faq = [
     isSelected: false,
   },
   {
-    title: 'Does maerid provide best quality products?',
+    title: 'Does MA3RATH provide best quality products?',
     description: `Unlike online competitors, we are not a marketplace. We don’t let third party wholesalers
     list their diamonds on our site, and only Couple diamonds are sold on our site. We do this 
     because we have strict standards for our diamond engagement rings. In order to offer the 
