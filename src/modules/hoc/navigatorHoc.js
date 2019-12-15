@@ -32,6 +32,9 @@ const navigatorHoc = WrappedComponent => {
         case "checkout":
           return navigationFunction("/checkout");
 
+        case "place-order":
+          return navigationFunction("/place-order");
+
         case "signin":
           return navigationFunction("/signin");
 

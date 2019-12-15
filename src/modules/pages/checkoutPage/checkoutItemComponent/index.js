@@ -7,10 +7,19 @@ import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import closeIcon from "Icons/close-icon-black.svg";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { removeFromBagAction } from "Core/modules/bag/bagActions";
+import {
+  removeFromBagAction,
+  editQuantityAction
+} from "Core/modules/bag/bagActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import navigatorHoc from "Hoc/navigatorHoc";
+import minusIcon from "Icons/minus-icon.svg";
+import plusIcon from "Icons/plus-icon.svg";
 
 class CheckoutItemComponent extends Component {
+  state = {
+    quantity: this.props.checkoutItem.quantity
+  };
   handleRemove = id => {
     const { removeFromBagAction, showSuccessFlashMessage } = this.props;
     removeFromBagAction(id).then(({ payload }) => {
@@ -19,35 +28,113 @@ class CheckoutItemComponent extends Component {
       }
     });
   };
+
+  onClickViewProduct = (exhibitionId, productId) => {
+    const { navigateTo } = this.props;
+    navigateTo("pdp", {
+      exhibitionId,
+      productId
+    });
+  };
+
+  incrementItem = async () => {
+    await this.setState(prevState => {
+      return {
+        quantity: prevState.quantity + 1
+      };
+    });
+    this.onEditQuanity();
+  };
+
+  decreaseItem = async () => {
+    await this.setState(prevState => {
+      if (prevState.quantity > 1) {
+        return {
+          quantity: prevState.quantity - 1
+        };
+      } else {
+        return null;
+      }
+    });
+    this.onEditQuanity();
+  };
+  onEditQuanity = () => {
+    const { editQuantityAction, checkoutItem } = this.props;
+    const id = checkoutItem.id;
+    editQuantityAction({
+      quantity: {
+        [id]: this.state.quantity
+      }
+    }).then(({ payload }) => {
+      if (payload.code === 200 || payload.code === 201) {
+      }
+    });
+  };
+
   render() {
     const { checkoutItem } = this.props;
     return (
       <DivRow className={styles.table_item}>
-        <DivRow className={`${styles.product_column} ${styles.flex_2}`}>
-          <img src={exhibitionImage1} className={styles.product_image} />
+        <DivRow
+          className={`${styles.product_column} ${styles.flex_2}`}
+          onClick={() =>
+            this.onClickViewProduct(
+              checkoutItem.exhibition.id,
+              checkoutItem.product.id
+            )
+          }
+        >
+          <img
+            src={checkoutItem.product.base_image.path}
+            className={styles.product_image}
+          />
           <DivColumn>
-            <div className={styles.title}>Product 1</div>
-            <div className={styles.description}>Light gray</div>
+            <div className={styles.title}>{checkoutItem.product.name}</div>
+            <div className={styles.description}>
+              {checkoutItem.product.short_description}
+            </div>
           </DivColumn>
         </DivRow>
 
         <DivColumn className={`${styles.exhibition_column} ${styles.flex_1}`}>
-          <div className={styles.title}>{checkoutItem.name}</div>
-          <div className={styles.description}>Expires in: 2 days</div>
+          <div className={styles.title}>{checkoutItem.exhibition.title}</div>
+          {/* <div className={styles.description}>Expires in: 2 days</div> */}
         </DivColumn>
 
+        <DivRow
+          verticalCenter
+          className={`${styles.price_column} ${styles.flex_1}`}
+        >
+          <div className={styles.product_price}>
+            {checkoutItem.formated_price}
+          </div>
+        </DivRow>
+
         <DivRow className={`${styles.flex_1}`}>
-          <BareQuantityComponent
-            className={styles.quantity_container}
-            quantity={checkoutItem.quantity}
-          />
+          <DivRow verticalCenter className={`${styles.quantity_container}`}>
+            <img
+              alt={"remove"}
+              className={styles.quantity_button}
+              src={minusIcon}
+              onClick={this.decreaseItem}
+            />
+            <div className={styles.quantity_text}>{this.state.quantity}</div>
+            <img
+              alt={"add"}
+              className={styles.quantity_button}
+              src={plusIcon}
+              onClick={this.incrementItem}
+            />
+          </DivRow>
         </DivRow>
 
         <DivRow
           verticalCenter
           className={`${styles.price_column} ${styles.flex_1}`}
         >
-          <div className={styles.product_price}>{checkoutItem.total}</div>
+          <div className={styles.product_price}>
+            {checkoutItem.formated_total}
+          </div>
           <img
             src={closeIcon}
             onClick={() => this.handleRemove(checkoutItem.id)}
@@ -70,11 +157,12 @@ const mapDispathToProps = dispatch => {
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
+    editQuantityAction: bindActionCreators(editQuantityAction, dispatch)
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(CheckoutItemComponent);
+)(navigatorHoc(CheckoutItemComponent));

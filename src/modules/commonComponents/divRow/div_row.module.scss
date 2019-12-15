@@ -10,3 +10,8 @@
 .align_center {
   align-items: center;
 }
+
+.fill_parent {
+  flex: 1;
+  align-self: stretch;
+}

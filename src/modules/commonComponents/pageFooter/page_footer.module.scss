@@ -13,7 +13,7 @@
   }
 
   .footer_link_container {
-    width: 200px;
+    min-width: 200px;
     padding-right: 20px;
 
     .link_header {
@@ -28,4 +28,50 @@
       font-weight: 300;
     }
   }
+}
+
+.badge_icon {
+  width: 140px;
+}
+
+.apple_badge {
+  width: 140px;
+  height: 38px;
+}
+
+
+.facebook {
+  background: url(https://assets.myntassets.com/assets/images/2017/2/3/11486103069298-footerSprite.png);  
+  width: 23px;
+  height: 21px;
+  background-size: 706px 49px;
+  background-position: -2023px 0px;
+  margin-right: 10px;
+}
+
+.twitter {
+  background: url(https://assets.myntassets.com/assets/images/2017/2/3/11486103069298-footerSprite.png);
+  width: 23px;
+  height: 21px;
+  background-size: 706px 49px;
+  background-position: -2045px 0px;
+  margin-right: 10px;
+}
+
+.youtube {
+  background: url(https://assets.myntassets.com/assets/images/2017/2/3/11486103069298-footerSprite.png);
+  width: 31px;
+  height: 20px;
+  background-size: 706px 49px;
+  background-position: -1361px 0px;
+  margin-right: 10px;
+}
+
+.insta {
+  background: url(https://assets.myntassets.com/assets/images/2017/2/3/11486103069298-footerSprite.png);
+  width: 23px;
+  height: 21px;
+  background-size: 706px 49px;
+  background-position: -1392px 0px;
+  margin-right: 10px;
 }
