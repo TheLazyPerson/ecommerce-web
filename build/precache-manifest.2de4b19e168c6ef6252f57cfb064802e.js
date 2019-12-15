@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ae439e399bcd34276177e5c9bdfb5022",
+    "revision": "73870b250b341d0e543d6c1d663600bb",
     "url": "/index.html"
   },
   {
-    "revision": "c69cdb1c30b46b9ab474",
+    "revision": "a77135b682cc1007762c",
     "url": "/static/css/2.0003a0f4.chunk.css"
   },
   {
-    "revision": "6c338eeb38b9dac539df",
-    "url": "/static/css/main.62530b51.chunk.css"
+    "revision": "8810356e1d5d490d7eb6",
+    "url": "/static/css/main.c6b00ceb.chunk.css"
   },
   {
-    "revision": "c69cdb1c30b46b9ab474",
-    "url": "/static/js/2.a989d578.chunk.js"
+    "revision": "a77135b682cc1007762c",
+    "url": "/static/js/2.71269213.chunk.js"
   },
   {
-    "revision": "6c338eeb38b9dac539df",
-    "url": "/static/js/main.5061de85.chunk.js"
+    "revision": "8810356e1d5d490d7eb6",
+    "url": "/static/js/main.b64ffb3c.chunk.js"
   },
   {
     "revision": "73de5f499f1f7ece7aa9",
@@ -38,6 +38,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "11e703e281df37b6d9a776312ff0d15c",
     "url": "/static/media/app-icon-white.11e703e2.svg"
+  },
+  {
+    "revision": "1b65926236d951b2af57201b275f595b",
+    "url": "/static/media/app-store-badge.1b659262.svg"
   },
   {
     "revision": "465cc04a18a4cc8187a3f79d238c43f3",
@@ -90,6 +94,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "eeea22bc968f764a709abf3d5944c8d1",
     "url": "/static/media/faq-icon-black.eeea22bc.svg"
+  },
+  {
+    "revision": "db9b21a1c41f3dcd9731e1e7acfdbb57",
+    "url": "/static/media/google-play-badge.db9b21a1.png"
   },
   {
     "revision": "4ba163c3ccb89f3c2ee1d41c6a89d603",
