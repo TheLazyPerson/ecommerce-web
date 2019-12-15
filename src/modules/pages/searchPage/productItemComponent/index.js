@@ -4,28 +4,86 @@ import DivColumn from "CommonComponents/divColumn";
 import styles from "./product_item_component.module.scss";
 import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import heartFilledIcon from "Icons/heart-filled-icon.svg";
-import navigatorHoc from 'Hoc/navigatorHoc';
+import heartEmptyIcon from "Icons/heart-empty-icon.svg";
+import navigatorHoc from "Hoc/navigatorHoc";
+import {
+  addToWishlistAction,
+  removeFromWishlistAction
+} from "Core/modules/wishlist/wishlistActions";
+import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 class ProductItemComponent extends Component {
+  state = {
+    isWishlistLoading: false
+  };
 
   onClickExhibition = () => {
     const { navigateTo, product } = this.props;
-    navigateTo('plp', {
-      id: product.exhibition.id,
+    navigateTo("plp", {
+      id: product.exhibition.id
     });
-  }
+  };
 
   onClickProduct = () => {
     const { navigateTo, product } = this.props;
-    navigateTo('pdp', {
+    navigateTo("pdp", {
       exhibitionId: product.exhibition.id,
-      productId: product.id,
+      productId: product.id
     });
-  }
+  };
+
+  onClickWishlist = () => {
+    const {
+      product,
+      addToWishlistAction,
+      removeFromWishlistAction
+    } = this.props;
+    const { isWishlistLoading } = this.state;
+
+    if (!isWishlistLoading) {
+      if (product.is_wishlisted)
+        this.wishlistAction(
+          removeFromWishlistAction,
+          "Product removed from Wishlist"
+        );
+      else
+        this.wishlistAction(addToWishlistAction, "Product added to Wishlist");
+    }
+  };
+
+  wishlistAction = (action, successMessage) => {
+    const {
+      product,
+      showSuccessFlashMessage,
+      isUserSignedIn,
+      navigateTo
+    } = this.props;
+
+    if (isUserSignedIn) {
+      this.setState({ isWishlistLoading: true });
+      action({
+        product_id: product.id,
+        exhibition_id: product.exhibition.id
+      })
+        .then(({ payload }) => {
+          if (payload.code == 200 || payload.code == 201) {
+            showSuccessFlashMessage(successMessage);
+          }
+          this.setState({ isWishlistLoading: false });
+        })
+        .catch(error => {
+          this.setState({ isWishlistLoading: false });
+        });
+    } else {
+      navigateTo("signin");
+    }
+  };
 
   render() {
-    const {
-      product
-    } = this.props;
+    const { product } = this.props;
+    const { isWishlistLoading } = this.state;
 
     return (
       <DivColumn className={styles.product_container}>
@@ -46,13 +104,21 @@ class ProductItemComponent extends Component {
             <div className={styles.exhibition_title}>EXHIBITION</div>
             <DivRow verticalCenter>
               <img src={exhibitionImage1} className={styles.exhibition_image} />
-              <div className={styles.exhibition_name}>{product.exhibition.title}</div>
+              <div className={styles.exhibition_name}>
+                {product.exhibition.title}
+              </div>
             </DivRow>
           </DivColumn>
         )}
 
         <DivRow className={styles.action_container}>
-          <img src={heartFilledIcon} className={styles.wishlist_icon} />
+          <img
+            src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon}
+            className={`${styles.wishlist_icon} ${
+              isWishlistLoading ? styles.disabled : ""
+            }`}
+            onClick={this.onClickWishlist}
+          />
           <DivRow className={styles.action_buttons}>
             <DivRow
               verticalCenter
@@ -79,5 +145,27 @@ class ProductItemComponent extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn
+  };
+};
 
-export default navigatorHoc(ProductItemComponent);
+const mapDispathToProps = dispatch => {
+  return {
+    addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
+    removeFromWishlistAction: bindActionCreators(
+      removeFromWishlistAction,
+      dispatch
+    ),
+    showSuccessFlashMessage: bindActionCreators(
+      showSuccessFlashMessage,
+      dispatch
+    )
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(ProductItemComponent));

@@ -80,6 +80,8 @@
       height: 14px;
       margin: 0px 7px;
       align-self: center;
+
+      @include on_click_button;
     }
 
     .action_buttons {
@@ -102,4 +104,8 @@
       }
     }
   }
+}
+
+.disabled {
+  opacity: 0.5;
 }
