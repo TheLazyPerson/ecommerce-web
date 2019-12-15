@@ -4,7 +4,6 @@ import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./place_order_page.module.scss";
 import HorizontalBorder from "CommonComponents/horizontalBorder";
-import couponIcon from "Icons/coupon-icon-white.svg";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -18,10 +17,10 @@ import {
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 
 class PlaceOrderPage extends Component {
-
-  state ={
-    selectedAddressId: 0
-  }
+  state = {
+    selectedAddressId: 0,
+    selectedDeliveryType: "standard"
+  };
 
   navigateToWishlist = () => {
     const { navigateTo } = this.props;
@@ -32,7 +31,14 @@ class PlaceOrderPage extends Component {
     this.setState({
       selectedAddressId: address.id
     });
-    console.log(address.address1);
+    console.log(address);
+  };
+
+  setDeliveryMethod = type => {
+    console.log(type);
+    this.setState({
+      selectedDeliveryType: type
+    });
   };
 
   handleRemove = id => {
@@ -46,13 +52,25 @@ class PlaceOrderPage extends Component {
   };
 
   render() {
+    const deliveryTypes = [
+      {
+        type: "standard",
+        name: "Standard Delivery",
+        priceType: "Free Delivery",
+        deliveryDate: "22 Dec"
+      },
+      {
+        type: "express",
+        name: "Express Delivery",
+        priceType: "Paid Delivery",
+        deliveryDate: "18 Dec"
+      }
+    ];
     const {
       addressReducer: { addressList },
       getAddressListAction
     } = this.props;
-    const {
-      selectedAddressId
-    } = this.state;
+    const { selectedAddressId, selectedDeliveryType } = this.state;
 
     return (
       <FullWidthContainer>
@@ -68,41 +86,45 @@ class PlaceOrderPage extends Component {
               <DivColumn fillParent className={styles.table_content_container}>
                 {map(addressList, (address, index) => {
                   return (
-                      <DivColumn 
-                        className={`${styles.address_item} ${selectedAddressId == address.id ? styles.selected_address: ''}`} 
-                        onClick={()=>this.onAddressSelect(address)}
-                        >
-                        <DivColumn
-                          fillParent
-                          className={styles.item_content_container}
-                        >
-                          <div className={styles.item_name}>{address.name}</div>
-                          <div className={styles.item_address}>
-                            {address.address1}, <br />
-                            {address.address2}, <br />
-                            {address.city}, {address.state}, <br />
-                            {address.country} - {address.postcode}
-                          </div>
-                          <div className={styles.item_phonenumber}>
-                            Phone Number: {address.country_code}-
-                            {address.phone_number}
-                          </div>
-                        </DivColumn>
-                        <DivRow className={styles.action_container}>
-                          <div
-                            className={styles.action_button}
-                            onClick={() => this.handleEdit(address.id)}
-                          >
-                            Edit
-                          </div>
-                          <div
-                            className={styles.action_button}
-                            onClick={() => this.handleRemove(address.id)}
-                          >
-                            Remove
-                          </div>
-                        </DivRow>
+                    <DivColumn
+                      className={`${styles.address_item} ${
+                        selectedAddressId === address.id
+                          ? styles.selected_address
+                          : ""
+                      }`}
+                      onClick={() => this.onAddressSelect(address)}
+                    >
+                      <DivColumn
+                        fillParent
+                        className={styles.item_content_container}
+                      >
+                        <div className={styles.item_name}>{address.name}</div>
+                        <div className={styles.item_address}>
+                          {address.address1}, <br />
+                          {address.address2}, <br />
+                          {address.city}, {address.state}, <br />
+                          {address.country} - {address.postcode}
+                        </div>
+                        <div className={styles.item_phonenumber}>
+                          Phone Number: {address.country_code}-
+                          {address.phone_number}
+                        </div>
                       </DivColumn>
+                      <DivRow className={styles.action_container}>
+                        <div
+                          className={styles.action_button}
+                          onClick={() => this.handleEdit(address.id)}
+                        >
+                          Edit
+                        </div>
+                        <div
+                          className={styles.action_button}
+                          onClick={() => this.handleRemove(address.id)}
+                        >
+                          Remove
+                        </div>
+                      </DivRow>
+                    </DivColumn>
                   );
                 })}
               </DivColumn>
@@ -110,54 +132,31 @@ class PlaceOrderPage extends Component {
           </DivColumn>
           <DivColumn>
             <DivColumn className={styles.order_summary_container}>
-              {/* <div className={styles.order_summary_title}>Order Summary</div>
+              <div className={styles.order_summary_title}>Order Summary</div>
               <HorizontalBorder />
-              <DivRow verticalCenter className={styles.coupon_input}>
-                <img src={couponIcon} className={styles.icon} />
-                <input
-                  type="text"
-                  placeholder="Apply Coupon"
-                  className={styles.input}
-                />
-                <div className={styles.apply_button}>APPLY</div>
-              </DivRow>
-              <HorizontalBorder /> */}
 
               <div className={styles.coupon_header_text}>
                 Choose Delivery Speed
               </div>
-              <label>
-                <input
-                  type="radio"
-                  name="delivery"
-                  class={styles.card_input_element}
-                  onChange={() => this.onDeliverySelect()}
-                />
-                <DivColumn className={styles.coupon_description_container}>
-                  <DivColumn className={styles.coupon_content_container}>
-                    <div className={styles.coupon_title}>Standard Delivery</div>
-                    <div className={styles.coupon_description}>
-                      Get it by 22 Dec | Free Delivery.
-                    </div>
+              {map(deliveryTypes, (delivery, index) => {
+                return (
+                  <DivColumn
+                    className={`${styles.coupon_description_container} ${
+                      selectedDeliveryType === delivery.type
+                        ? styles.selected_delivery
+                        : ""
+                    }`}
+                    onClick={() => this.setDeliveryMethod(delivery.type)}
+                  >
+                    <DivColumn className={styles.coupon_content_container}>
+                      <div className={styles.coupon_title}>{delivery.name}</div>
+                      <div className={styles.coupon_description}>
+                        Get it by {delivery.deliveryDate} | {delivery.priceType}
+                      </div>
+                    </DivColumn>
                   </DivColumn>
-                </DivColumn>
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="delivery"
-                  class={styles.card_input_element}
-                  onChange={() => this.onDeliverySelect()}
-                />
-                <DivColumn className={styles.coupon_description_container}>
-                  <DivColumn className={styles.coupon_content_container}>
-                    <div className={styles.coupon_title}>Express Delivery</div>
-                    <div className={styles.coupon_description}>
-                      Get it by 18 Dec | Charges Applied.
-                    </div>
-                  </DivColumn>
-                </DivColumn>
-              </label>
+                );
+              })}
 
               <HorizontalBorder />
 
