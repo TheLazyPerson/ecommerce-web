@@ -25,6 +25,7 @@
   background-size: cover;
   transition: all 0.5s ease;
   position: relative;
+  cursor: pointer;
 
   .content_container {
     background: rgba($primary-text-color, 0.3);
