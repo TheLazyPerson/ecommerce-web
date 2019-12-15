@@ -4,6 +4,10 @@
 .page_container {
   position: relative;
 
+  .header_background {
+    background-color: $primary-text-color;
+  }
+
   .header_container {
     position: fixed;
     top: 0;
@@ -11,6 +15,8 @@
     right: 0;
     height: 84px;
     padding: 18px 60px;
+    z-index: 10;
+    transition: background-color 0.5s ease;
 
     .header_icon_container {
       width: 40%;
