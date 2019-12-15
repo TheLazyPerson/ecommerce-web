@@ -1,38 +1,62 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Masonry from "react-masonry-component";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
-import exhibitionImage from "Images/exhibition-item-3.png";
 import styles from "./upcoming_exhibition_component.module.scss";
-import map from "lodash/map";
-import arrowRight from 'Icons/arrow-right-point-icon-black.svg';
+import arrowRight from "Icons/arrow-right-point-icon-black.svg";
 
 class UpcomingExhibitionComponent extends Component {
+  state = {
+    currentSlide: 0
+  };
+
+  onClickLeft = () => {
+    const { currentSlide } = this.state;
+    this.setState({
+      currentSlide: currentSlide - 1
+    });
+  }
+
+  onClickRight = () => {
+    const { currentSlide } = this.state;
+    this.setState({
+      currentSlide: currentSlide + 1
+    });
+  }
+
   render() {
     const { exhibitionList } = this.props;
+    const { currentSlide } = this.state;
+    const totalSlide = exhibitionList.length;
+
+    const exhibition = exhibitionList[currentSlide];
+    const isLeftButtonClickable = currentSlide !== 0;
+    const isRightButtonClickable = currentSlide + 1 !== totalSlide;
 
     return (
       <DivRow fillSelfHorizontal className={styles.component_container}>
         <DivRow className={styles.content_container}>
           <DivColumn className={styles.contents}>
-            <div className={styles.title}>HOME DECORATION EXHIBITION</div>
+            <div className={styles.title}>{exhibition.title}</div>
             <div className={styles.divider}></div>
-            <div className={styles.description}>
-              The Craft Show will display products like Handcrafted Watches,
-              Products, Farsis, Palazzos, Culottes and Products.With love, and
-              much more.
-            </div>
+            <div className={styles.description}>{exhibition.description}</div>
             <div className={styles.time_text}>STARTING IN TWO DAYS</div>
           </DivColumn>
         </DivRow>
         <img
           className={styles.image}
-          src="https://source.unsplash.com/500x500/?product"
+          src={`https://source.unsplash.com/500x50${currentSlide}/?product`}
         />
         <DivRow className={styles.arrow_container}>
-          <img src={arrowRight} className={styles.arrow_left} />
-          <img src={arrowRight} className={styles.arrow_right} />
+          <img
+            src={arrowRight}
+            className={`${styles.arrow_left} ${!isLeftButtonClickable ? styles.disabled : ''}`}
+            onClick={isLeftButtonClickable ? this.onClickLeft : null}
+          />
+          <img 
+            src={arrowRight}
+            className={`${styles.arrow_right} ${!isRightButtonClickable ? styles.disabled : ''}`}
+            onClick={isRightButtonClickable ? this.onClickRight : null}
+          />
         </DivRow>
       </DivRow>
     );

@@ -53,6 +53,7 @@
     // width: 713px;
      height: 505px;
     z-index: 2;
+    object-fit: cover;
   }
 
   .arrow_container {
@@ -72,4 +73,8 @@
       cursor: pointer;
     }
   }
+}
+
+.disabled {
+  opacity: 0.5;
 }
