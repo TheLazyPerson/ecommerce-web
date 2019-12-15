@@ -17,7 +17,7 @@
     padding: 81px 85px 55px 0px;
 
     .contents {
-      max-width: 404px;
+      max-width: 380px;
 
       .title {
         font-size: 36px;
@@ -49,8 +49,9 @@
   }
  
   .image {
-    width: 713px;
-    height: 505px;
+    width: 50%;
+    // width: 713px;
+     height: 505px;
     z-index: 2;
   }
 
