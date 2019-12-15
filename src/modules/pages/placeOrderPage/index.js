@@ -18,12 +18,20 @@ import {
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 
 class PlaceOrderPage extends Component {
+
+  state ={
+    selectedAddressId: 0
+  }
+
   navigateToWishlist = () => {
     const { navigateTo } = this.props;
     navigateTo("wishlist");
   };
 
   onAddressSelect = address => {
+    this.setState({
+      selectedAddressId: address.id
+    });
     console.log(address.address1);
   };
 
@@ -42,6 +50,10 @@ class PlaceOrderPage extends Component {
       addressReducer: { addressList },
       getAddressListAction
     } = this.props;
+    const {
+      selectedAddressId
+    } = this.state;
+
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
@@ -56,15 +68,10 @@ class PlaceOrderPage extends Component {
               <DivColumn fillParent className={styles.table_content_container}>
                 {map(addressList, (address, index) => {
                   return (
-                    <label>
-                      <input
-                        type="radio"
-                        name="product"
-                        class={styles.card_input_element}
-                        onChange={() => this.onAddressSelect(address)}
-                      />
-
-                      <DivColumn className={styles.address_item}>
+                      <DivColumn 
+                        className={`${styles.address_item} ${selectedAddressId == address.id ? styles.selected_address: ''}`} 
+                        onClick={()=>this.onAddressSelect(address)}
+                        >
                         <DivColumn
                           fillParent
                           className={styles.item_content_container}
@@ -96,7 +103,6 @@ class PlaceOrderPage extends Component {
                           </div>
                         </DivRow>
                       </DivColumn>
-                    </label>
                   );
                 })}
               </DivColumn>
