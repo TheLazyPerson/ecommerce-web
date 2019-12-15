@@ -34,7 +34,8 @@
     }
 
     .table_content_container {
-      // overflow: scroll;
+      flex-wrap: wrap;
+      flex-direction: row; // overflow: scroll;
     }
   }
 
@@ -94,8 +95,8 @@
 
     .coupon_description_container {
       color: white;
-      border: solid 1px white;
       margin-bottom: 10px;
+      cursor: pointer;
 
       .coupon_content_container {
         padding: 9px 9px 9px;
@@ -169,14 +170,6 @@
   margin-top: 24px;
 }
 
-.card_input_element {
-  display: none;
-}
-.card-input-element:checked + .address_item {
-  border: solid 1x rgba($primary-text-color, 0.1);
-  background-color: #000000;
-}
-
 .header_container {
   border-top: 0.5px solid #ededed;
   border-bottom: 0.5px solid #ededed;
@@ -205,10 +198,10 @@
   margin: 8px 0px 0px 33px;
   border: solid 0.5px rgba($primary-text-color, 0.1);
   background-color: rgba($color-very-light-blue, 0.9);
+  cursor: pointer;
 
   .item_content_container {
     padding: 18px 16px 0px 16px;
-    cursor: pointer;
 
     .item_name {
       font-size: 14px;
@@ -240,9 +233,16 @@
       text-align: center;
       font-size: 12px;
       color: $color-orangey-red;
-      cursor: pointer;
     }
   }
+}
+
+.selected_address {
+  border: 2px solid $color-gold;
+}
+
+.selected_delivery {
+  border: solid 1px white;
 }
 
 label {

@@ -28,6 +28,8 @@
   .hero_section_container {
     min-height: 100vh;
     position: relative;
+    background-position: center;
+    background-size: cover;
 
     .top_gradient {
       position: absolute;
@@ -45,7 +47,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba($primary-text-color, 0.1);
+      background: rgba($primary-text-color, 0.3);
     }
     
     .bottom_gradient {
@@ -203,24 +205,10 @@
   }
 }
 
-.masonary_container {
-  align-items: center;
-  .masonary {
-    // max-width: 1140px;
-    min-width: 1140px;
-  }
-}
-
-.type1 {
-  width: 503px;
-  height: 273px;
-  margin-top: 3px;
-  background-position: center;
-}
-
-.type2 {
-  width: 310px;
-  height: 411px;
-  margin-top: 3px;
-  background-position: top;
+.header_title {
+  opacity: 0.7;
+  font-size: 40px;
+  font-weight: bold;
+  color: $color-gold;
+  margin: 77px 0px 50px;
 }

@@ -13,7 +13,11 @@ import Swiper from "react-id-swiper";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "swiper/css/swiper.css";
-import { getExhibitionListAction } from "Core/modules/homepage/homePageActions";
+import { 
+  getExhibitionListAction,
+  getUpcomingExhibitionListAction,
+  getTrendingExhibitionListAction,
+ } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import SectionedHeader from "CommonContainers/sectionedHeader";
@@ -22,7 +26,8 @@ import navigatorHoc from "Hoc/navigatorHoc";
 import exhibitionImage from "Images/exhibition-item-3.png";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
-import Masonry from 'react-masonry-component';
+import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
+import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 
 class NewHomePage extends Component {
   state = {
@@ -52,8 +57,10 @@ class NewHomePage extends Component {
 
     const { currentSlide } = this.state;
     const {
-      homePageReducer: { exhibitionList },
-      getExhibitionListAction
+      homePageReducer: { exhibitionList, trendingExhibitionList, upcomingExhibitionList },
+      getExhibitionListAction,
+      getTrendingExhibitionListAction,
+      getUpcomingExhibitionListAction
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -64,8 +71,8 @@ class NewHomePage extends Component {
       <DivColumn fillParent className={styles.page_container}>
         <DivColumn
           style={{
-            backgroundImage: `url("${exhibitionImage}")`,
-            backgroundPosition: "center"
+            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
+
           }}
           fillSelfHorizontal
           className={styles.hero_section_container}
@@ -191,58 +198,25 @@ class NewHomePage extends Component {
             </Fragment>
           </InitialPageLoader>
         </DivColumn>
+        
+        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+          TRENDING NOW
+        </DivRow>
+  
+        <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
+          <MasonryGridContainer 
+            exhibitionList={trendingExhibitionList}
+          />
+        </InitialPageLoader>
 
-        <DivColumn className={styles.masonary_container}>
-            <Masonry
-              options={{
-                columnWidth: 39,
-              }}
-              className={styles.masonary} // default ''
-            >
-              <div 
-                className={styles.type2}
-                style={{background: `url(${exhibitionImage})`}}
-              >
+        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+          KEEP AN EYE ON THESE EXHIBITIONS
+        </DivRow>
+        
+        <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
+          <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
+        </InitialPageLoader>
 
-              </div>
-              <div 
-                className={styles.type1}
-                style={{background: `url(${exhibitionImage})`}}
-              >
-              </div>
-              <div
-                className={styles.type2}
-               style={{background: `url(${exhibitionImage})`}}
-              >
-                  
-              </div>              
-              <div
-                className={styles.type1}
-               style={{background: `url(${exhibitionImage})`}}
-              >
-                  
-              </div>              
-              <div
-                className={styles.type2}
-               style={{background: `url(${exhibitionImage})`}}
-              >
-                  
-              </div>              
-              <div
-                className={styles.type2}
-               style={{background: `url(${exhibitionImage})`}}
-              >
-                  
-              </div>              
-              <div
-                className={styles.type1}
-               style={{background: `url(${exhibitionImage})`}}
-              >
-                  
-              </div>              
-
-            </Masonry>
-        </DivColumn>
         <PageFooter />
         
           
@@ -273,6 +247,14 @@ const mapDispathToProps = dispatch => {
   return {
     getExhibitionListAction: bindActionCreators(
       getExhibitionListAction,
+      dispatch
+    ),
+    getTrendingExhibitionListAction: bindActionCreators(
+      getTrendingExhibitionListAction,
+      dispatch
+    ),
+    getUpcomingExhibitionListAction: bindActionCreators(
+      getUpcomingExhibitionListAction,
       dispatch
     )
   };

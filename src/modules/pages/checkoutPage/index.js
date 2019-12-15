@@ -67,14 +67,18 @@ class CheckoutPage extends Component {
 
           <DivColumn>
             <DivColumn className={styles.order_summary_container}>
-              {/* <div className={styles.order_summary_title}>Order Summary</div>
-              <HorizontalBorder />
+              <div className={styles.order_summary_title}>Order Summary</div>
+              {/* <HorizontalBorder />
               <DivRow verticalCenter className={styles.coupon_input}>
                 <img src={couponIcon} className={styles.icon} />
-                <input type="text" placeholder="Apply Coupon" className={styles.input} />
+                <input
+                  type="text"
+                  placeholder="Apply Coupon"
+                  className={styles.input}
+                />
                 <div className={styles.apply_button}>APPLY</div>
               </DivRow>
-              <HorizontalBorder /> */}
+              <HorizontalBorder />
 
               <div className={styles.coupon_header_text}>Coupons</div>
               <DivColumn className={styles.coupon_description_container}>
@@ -89,7 +93,7 @@ class CheckoutPage extends Component {
                   <div className={styles.coupon}>FREEITEM29</div>
                   <div className={styles.coupon_apply}>APPLY</div>
                 </DivRow>
-              </DivColumn>
+              </DivColumn> */}
 
               <HorizontalBorder />
 
