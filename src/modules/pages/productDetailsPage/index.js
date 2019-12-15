@@ -131,14 +131,6 @@ class ProductDetailsPage extends Component {
     });
   };
 
-  updateQuantity = count => {
-    console.log("BEFORE STATE", this.state.quantity);
-    this.setState({
-      quantity: count
-    });
-    console.log("AFTER STATE", this.state.quantity);
-  };
-
   render() {
     const parsed = queryString.parse(this.props.location.search);
     const { imageList, selectedImage, isWishlistLoading } = this.state;

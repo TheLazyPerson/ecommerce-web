@@ -22,6 +22,7 @@ import navigatorHoc from "Hoc/navigatorHoc";
 import exhibitionImage from "Images/exhibition-item-3.png";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
+import Masonry from 'react-masonry-component';
 
 class NewHomePage extends Component {
   state = {
@@ -190,8 +191,61 @@ class NewHomePage extends Component {
             </Fragment>
           </InitialPageLoader>
         </DivColumn>
-        <PageFooter />
 
+        <DivColumn className={styles.masonary_container}>
+            <Masonry
+              options={{
+                columnWidth: 39,
+              }}
+              className={styles.masonary} // default ''
+            >
+              <div 
+                className={styles.type2}
+                style={{background: `url(${exhibitionImage})`}}
+              >
+
+              </div>
+              <div 
+                className={styles.type1}
+                style={{background: `url(${exhibitionImage})`}}
+              >
+              </div>
+              <div
+                className={styles.type2}
+               style={{background: `url(${exhibitionImage})`}}
+              >
+                  
+              </div>              
+              <div
+                className={styles.type1}
+               style={{background: `url(${exhibitionImage})`}}
+              >
+                  
+              </div>              
+              <div
+                className={styles.type2}
+               style={{background: `url(${exhibitionImage})`}}
+              >
+                  
+              </div>              
+              <div
+                className={styles.type2}
+               style={{background: `url(${exhibitionImage})`}}
+              >
+                  
+              </div>              
+              <div
+                className={styles.type1}
+               style={{background: `url(${exhibitionImage})`}}
+              >
+                  
+              </div>              
+
+            </Masonry>
+        </DivColumn>
+        <PageFooter />
+        
+          
         {/* Absolute position */}
         <DivRow className={styles.header_container}>
           <DivRow className={styles.header_icon_container}>

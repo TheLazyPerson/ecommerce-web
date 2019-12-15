@@ -7,12 +7,8 @@ import plusIcon from "Icons/plus-icon.svg";
 
 export default class QuantityComponent extends Component {
   render() {
-    const { className } = this.props;
     return (
-      <DivRow
-        verticalCenter
-        className={`${styles.quantity_container} ${className}`}
-      >
+      <DivRow verticalCenter className={`${styles.quantity_container} `}>
         <img
           alt={"remove"}
           className={styles.quantity_button}

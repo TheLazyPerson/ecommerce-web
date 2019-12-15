@@ -22,6 +22,11 @@ class CheckoutPage extends Component {
     navigateTo("wishlist");
   };
 
+  navigateToPlaceOrder = () => {
+    const { navigateTo } = this.props;
+    navigateTo("place-order");
+  };
+
   render() {
     const {
       bagReducer: { bagData },
@@ -34,7 +39,7 @@ class CheckoutPage extends Component {
             <DivRow className={styles.table_header}>
               <div className={styles.flex_2}>Product</div>
               <div className={styles.flex_1}>Exhibition</div>
-              <div className={styles.flex_1}>Product Price</div>
+              <div className={styles.flex_1}>Price</div>
               <div className={styles.flex_1}>Quantity</div>
               <div className={styles.flex_1}>Total Price</div>
             </DivRow>
@@ -121,7 +126,10 @@ class CheckoutPage extends Component {
                 </DivRow>
               </DivColumn>
 
-              <CapsuleButton className={styles.capsule_button}>
+              <CapsuleButton
+                className={styles.capsule_button}
+                onClick={this.navigateToPlaceOrder}
+              >
                 Place Order
               </CapsuleButton>
             </DivColumn>
