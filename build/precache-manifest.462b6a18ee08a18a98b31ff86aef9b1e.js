@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6c55e8fe95728fddecccb7c69b9f651c",
+    "revision": "f665d4cd1d1057e0f042fc4422858848",
     "url": "/index.html"
   },
   {
-    "revision": "ab41dd61e645ea9b26ec",
+    "revision": "30053d57dbb314bc232d",
     "url": "/static/css/2.676b45a0.chunk.css"
   },
   {
-    "revision": "34705c1b780818e6fb50",
-    "url": "/static/css/main.aafe1458.chunk.css"
+    "revision": "d2ca668cc325a7ee7e0d",
+    "url": "/static/css/main.8aff0fbd.chunk.css"
   },
   {
-    "revision": "ab41dd61e645ea9b26ec",
-    "url": "/static/js/2.934d4ad1.chunk.js"
+    "revision": "30053d57dbb314bc232d",
+    "url": "/static/js/2.c149b5d8.chunk.js"
   },
   {
-    "revision": "34705c1b780818e6fb50",
-    "url": "/static/js/main.7a0314c9.chunk.js"
+    "revision": "d2ca668cc325a7ee7e0d",
+    "url": "/static/js/main.56bc8797.chunk.js"
   },
   {
     "revision": "75bbd0767c10846482fc",
@@ -30,14 +30,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "76bc8314933b3e0510c7802216e9e0c9",
     "url": "/static/media/address-icon-white.76bc8314.svg"
-  },
-  {
-    "revision": "1b76da6d9027072ded0fecf410507b92",
-    "url": "/static/media/app-icon-black.1b76da6d.svg"
-  },
-  {
-    "revision": "8844958f9db0befbbe668f3812ffafaa",
-    "url": "/static/media/app-icon-white.8844958f.svg"
   },
   {
     "revision": "2928664fe1fc6aca88583a6f606d60ba",
@@ -122,6 +114,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "063ff19fc1bb8c4df202eb6aff998fdc",
     "url": "/static/media/help-center-icon-white.063ff19f.svg"
+  },
+  {
+    "revision": "46ac7e435f96d8d866d0166e642a634b",
+    "url": "/static/media/logo-image.46ac7e43.png"
   },
   {
     "revision": "8039812053062779444eb7169733de2f",
