@@ -1,3 +1,5 @@
+@import '~Styles/colors.module';
+
 .masonary_container {
   align-items: center;
   .masonary {
@@ -9,15 +11,110 @@
 .type1 {
   width: 503px;
   height: 273px;
-  margin-top: 3px;
-  background-position: center;
-  background-size: cover;
 }
 
 .type2 {
   width: 310px;
   height: 411px;
+
+}
+
+.grid_image_container {
   margin-top: 3px;
   background-position: top;
   background-size: cover;
+  transition: all 0.5s ease;
+  position: relative;
+
+  .content_container {
+    background: rgba($primary-text-color, 0.3);
+    padding: 23px 20px;
+    justify-content: flex-end;
+    transition: all 0.5s ease;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .description {
+      font-size: 14px;
+      color: white;
+      margin-top: 6px;
+      max-height: 0px;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .remaining {
+      margin-top: 2px;
+      font-size: 10px;
+      font-weight: bold;
+      color: $color-orangey-red;
+      max-height: 0px;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .capsule_container {
+      margin-top: 9px;
+      transition: all 0.5s ease;
+
+      .capsule {
+        border-radius: 24px;
+        padding: 3px 12px;
+        border: solid 1px rgba(#979797, 0.6);
+
+        font-size: 10px;
+        font-weight: bold;
+        color: white;
+        margin-right: 5px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+
+}
+
+
+.type2:hover {
+  .content_container {
+    background: rgba($primary-text-color, 0.7);
+
+    .description {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .remaining {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .capsule_container {
+      margin-top: 160px;
+    }
+  }
+}
+
+.type1:hover {
+  .content_container {
+    background: rgba($primary-text-color, 0.7);
+    
+    .description {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .remaining {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .capsule_container {
+      margin-top: 80px;
+    }
+  }
 }

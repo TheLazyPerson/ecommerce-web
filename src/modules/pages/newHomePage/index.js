@@ -13,7 +13,11 @@ import Swiper from "react-id-swiper";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "swiper/css/swiper.css";
-import { getExhibitionListAction } from "Core/modules/homepage/homePageActions";
+import { 
+  getExhibitionListAction,
+  getUpcommingExhibitionListAction,
+  getTrendingExhibitionListAction,
+ } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import SectionedHeader from "CommonContainers/sectionedHeader";
@@ -52,8 +56,10 @@ class NewHomePage extends Component {
 
     const { currentSlide } = this.state;
     const {
-      homePageReducer: { exhibitionList },
-      getExhibitionListAction
+      homePageReducer: { exhibitionList, trendingExhibitionList, upcommingExhibitionList },
+      getExhibitionListAction,
+      getTrendingExhibitionListAction,
+      getUpcommingExhibitionListAction
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -192,7 +198,12 @@ class NewHomePage extends Component {
           </InitialPageLoader>
         </DivColumn>
         
-        <MasonryGridContainer />
+        <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
+          <MasonryGridContainer 
+            exhibitionList={trendingExhibitionList}
+          />
+        </InitialPageLoader>
+
         <PageFooter />
         
           
@@ -223,6 +234,14 @@ const mapDispathToProps = dispatch => {
   return {
     getExhibitionListAction: bindActionCreators(
       getExhibitionListAction,
+      dispatch
+    ),
+    getTrendingExhibitionListAction: bindActionCreators(
+      getTrendingExhibitionListAction,
+      dispatch
+    ),
+    getUpcommingExhibitionListAction: bindActionCreators(
+      getUpcommingExhibitionListAction,
       dispatch
     )
   };
