@@ -15,7 +15,7 @@ import { bindActionCreators } from "redux";
 import "swiper/css/swiper.css";
 import { 
   getExhibitionListAction,
-  getUpcommingExhibitionListAction,
+  getUpcomingExhibitionListAction,
   getTrendingExhibitionListAction,
  } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
@@ -56,10 +56,10 @@ class NewHomePage extends Component {
 
     const { currentSlide } = this.state;
     const {
-      homePageReducer: { exhibitionList, trendingExhibitionList, upcommingExhibitionList },
+      homePageReducer: { exhibitionList, trendingExhibitionList, upcomingExhibitionList },
       getExhibitionListAction,
       getTrendingExhibitionListAction,
-      getUpcommingExhibitionListAction
+      getUpcomingExhibitionListAction
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -199,11 +199,21 @@ class NewHomePage extends Component {
           </InitialPageLoader>
         </DivColumn>
         
+        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+          TRENDING NOW
+        </DivRow>
+  
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
           <MasonryGridContainer 
             exhibitionList={trendingExhibitionList}
           />
         </InitialPageLoader>
+
+        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+          KEEP AN EYE ON THESE EXHIBITIONS
+        </DivRow>
+        
+
 
         <PageFooter />
         
@@ -241,8 +251,8 @@ const mapDispathToProps = dispatch => {
       getTrendingExhibitionListAction,
       dispatch
     ),
-    getUpcommingExhibitionListAction: bindActionCreators(
-      getUpcommingExhibitionListAction,
+    getUpcomingExhibitionListAction: bindActionCreators(
+      getUpcomingExhibitionListAction,
       dispatch
     )
   };
