@@ -68,7 +68,7 @@ class CheckoutPage extends Component {
           <DivColumn>
             <DivColumn className={styles.order_summary_container}>
               <div className={styles.order_summary_title}>Order Summary</div>
-              <HorizontalBorder />
+              {/* <HorizontalBorder />
               <DivRow verticalCenter className={styles.coupon_input}>
                 <img src={couponIcon} className={styles.icon} />
                 <input
@@ -93,7 +93,7 @@ class CheckoutPage extends Component {
                   <div className={styles.coupon}>FREEITEM29</div>
                   <div className={styles.coupon_apply}>APPLY</div>
                 </DivRow>
-              </DivColumn>
+              </DivColumn> */}
 
               <HorizontalBorder />
 
