@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css, StyleSheet } from "aphrodite";
+import Masonry from 'react-masonry-component';
+import DivColumn from 'CommonComponents/divColumn';
+import exhibitionImage from "Images/exhibition-item-3.png";
+import styles from './masonry_grid_container.module.scss';
 
 class MasonryGridContainer extends Component {
   render() {
@@ -14,39 +17,37 @@ class MasonryGridContainer extends Component {
         >
           <div
             className={styles.type2}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
           <div
             className={styles.type1}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
           <div
             className={styles.type2}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
           <div
             className={styles.type1}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
           <div
             className={styles.type2}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
           <div
             className={styles.type2}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
           <div
             className={styles.type1}
-            style={{ background: `url(${exhibitionImage})` }}
+            style={{ backgroundImage: `url(${exhibitionImage})` }}
           ></div>
         </Masonry>
       </DivColumn>
     );
   }
 }
-
-const styles = StyleSheet.create({});
 
 MasonryGridContainer.propTypes = {};
 
