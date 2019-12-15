@@ -10,6 +10,7 @@
     min-width: 164px;
     width: 164px;
     height: 164px;
+    object-fit: cover;
   }
 
   .exhibition_details_container {
@@ -20,12 +21,22 @@
       font-size: 18px;
       font-weight: 900;
       color: $primary-text-color;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     .exhibition_details {
       font-size: 10px;
       margin: 6px 0px;
       color: $primary-text-color;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     .capsule_container {

@@ -67,7 +67,9 @@ class SearchPage extends Component {
                   <div className={styles.section_header}>EXHIBITIONS</div>
                   <DivRow className={styles.section_list}>
                     {map(exhibitionList, exhibition => (
-                      <ExhibitionItemComponent />
+                      <ExhibitionItemComponent 
+                        exhibition={exhibition}
+                      />
                     ))}
                   </DivRow>
                 </DivColumn>
