@@ -31,6 +31,7 @@ import AddAddress from "./pages/profilePages/profileAddress/addAddress";
 import EditAddress from "./pages/profilePages/profileAddress/editAddress";
 import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 import PlaceOrderPage from "./pages/placeOrderPage";
+import SelectPaymentPage from "./pages/selectPaymentPage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -154,6 +155,13 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/place-order"
         component={PlaceOrderPage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/select-payment"
+        component={SelectPaymentPage}
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />

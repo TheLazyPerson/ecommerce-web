@@ -47,28 +47,24 @@ class AddAddress extends Component {
   };
 
   onSubmit = form => {
-    const {
-      createAddressAction,
-      navigateTo,
-      showSuccessFlashMessage
-    } = this.props;
+    const { createAddressAction, pop, showSuccessFlashMessage } = this.props;
 
     createAddressAction({
       first_name: form.firstName,
-      last_name: form.firstName,
+      last_name: form.lastName,
       phone_number: form.mobileNumber,
       address1: form.address1,
       address2: form.address2,
       postcode: form.pincode,
       city: form.city,
-      state: form.city,
+      state: form.state,
       country: form.country,
       country_code: form.country_code,
       default_address: 1,
       name: form.name
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
-        navigateTo("address");
+        pop();
         showSuccessFlashMessage("Address Added");
       }
     });
