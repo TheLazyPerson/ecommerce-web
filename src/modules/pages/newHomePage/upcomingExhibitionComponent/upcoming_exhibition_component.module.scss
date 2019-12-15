@@ -1,16 +1,16 @@
 @import '~Styles/colors.module';
 
 .component_container {
-  margin: 0px 129px;
-  min-height: 589px;
+  margin: 0px 150px;
+  min-height: 489px;
   align-items: flex-end;
   position: relative;
 
   .content_container {
     position: absolute;
     top: 0;
-    left: 84px;
-    bottom: 84px;
+    left: 70px;
+    bottom: 70px;
     right: 0px;
     background: rgba($color-very-light-blue, 0.9);
     justify-content: flex-end;
@@ -51,7 +51,7 @@
   .image {
     width: 50%;
     // width: 713px;
-     height: 505px;
+     height: 400px;
     z-index: 2;
     object-fit: cover;
   }
