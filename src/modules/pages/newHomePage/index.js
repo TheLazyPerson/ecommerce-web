@@ -70,8 +70,9 @@ class NewHomePage extends Component {
       <DivColumn fillParent className={styles.page_container}>
         <DivColumn
           style={{
-            backgroundImage: `url("${exhibitionImage}")`,
-            backgroundPosition: "center"
+            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
+            backgroundPosition: "center",
+            backgroundSize: 'cover'
           }}
           fillSelfHorizontal
           className={styles.hero_section_container}
