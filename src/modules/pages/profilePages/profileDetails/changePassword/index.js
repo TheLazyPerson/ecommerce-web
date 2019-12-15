@@ -76,6 +76,7 @@ class ChangePassword extends Component {
                   <InputTextComponent
                     meta={meta}
                     {...input}
+                    type="password"
                     placeholder="Old Password"
                     className={styles.input_text}
                   />
@@ -86,6 +87,7 @@ class ChangePassword extends Component {
                   <InputTextComponent
                     meta={meta}
                     {...input}
+                    type="password"
                     placeholder="New Password"
                     className={styles.input_text}
                   />
@@ -96,6 +98,7 @@ class ChangePassword extends Component {
                   <InputTextComponent
                     meta={meta}
                     {...input}
+                    type="password"
                     placeholder="Confirm Password"
                     className={styles.input_text}
                   />

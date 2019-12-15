@@ -30,6 +30,7 @@ import FAQPage from "./pages/FAQPage";
 import AddAddress from "./pages/profilePages/profileAddress/addAddress";
 import EditAddress from "./pages/profilePages/profileAddress/editAddress";
 import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
+import PlaceOrderPage from "./pages/placeOrderPage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -146,6 +147,13 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/checkout"
         component={CheckoutPage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/place-order"
+        component={PlaceOrderPage}
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />
