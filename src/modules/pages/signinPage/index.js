@@ -74,9 +74,9 @@ class SignInPage extends Component {
               className={styles.input_submit}
             />
           </form>
-          <a className={styles.hyper_link} href="/forgot-password">
+          {/* <a className={styles.hyper_link} href="/forgot-password">
             Forgot password
-          </a>
+          </a> */}
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>
               New to Maerid?&nbsp;
