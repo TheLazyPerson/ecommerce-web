@@ -134,7 +134,7 @@ class CheckoutPage extends Component {
                 className={styles.capsule_button}
                 onClick={this.navigateToPlaceOrder}
               >
-                Place Order
+                Select Delivery Address
               </CapsuleButton>
             </DivColumn>
           </DivColumn>

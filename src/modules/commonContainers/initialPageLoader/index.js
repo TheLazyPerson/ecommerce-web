@@ -55,10 +55,15 @@ class InitialPageLoader extends Component {
   }
 
   emptyScreen = () => {
+    const {
+      emptyScreenMessage,
+      emptyScreenTitle,
+    } = this.props;
+
     return (
       <DivColumn fillParent verticalCenter horizontalCenter className={styles.error_container}>
-        <div className={styles.error_title_text}>No Result</div>
-        <div className={styles.error_message_text}>Looks like its Empty</div>
+        <div className={styles.error_title_text}>{emptyScreenTitle}</div>
+        <div className={styles.error_message_text}>{emptyScreenMessage}</div>
       </DivColumn>
     )
   }
@@ -107,6 +112,9 @@ InitialPageLoader.defaultProps = {
 
   customEmptyScreen: null,
   isEmpty: false,
+
+  emptyScreenTitle: 'No Result',
+  emptyScreenMessage: "Looks like its Empty"
 };
 
 InitialPageLoader.propTypes = {

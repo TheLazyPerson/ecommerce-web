@@ -27,21 +27,36 @@ class PlaceOrderPage extends Component {
     navigateTo("wishlist");
   };
 
+  navigateToSelectPayment = () => {
+    const { navigateTo } = this.props;
+    navigateTo("select-payment");
+  };
+
+  onClickNewAddress = () => {
+    const { navigateTo } = this.props;
+    navigateTo("add-address");
+  };
+
+  handleEdit = id => {
+    const { navigateTo } = this.props;
+    navigateTo("edit-address", {
+      id
+    });
+  };
+
   onAddressSelect = address => {
     this.setState({
       selectedAddressId: address.id
     });
-    console.log(address);
   };
 
   setDeliveryMethod = type => {
-    console.log(type);
     this.setState({
       selectedDeliveryType: type
     });
   };
 
-  handleRemove = id => {
+  handleAddressRemove = id => {
     const { removeAddressAction, showSuccessFlashMessage } = this.props;
     removeAddressAction(id).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
@@ -78,7 +93,7 @@ class PlaceOrderPage extends Component {
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.header_container}>
               <div className={styles.header_title}>SELECT ADDRESS</div>
-              <CapsuleButton onClick={() => this.onAddressSelect()}>
+              <CapsuleButton onClick={() => this.onClickNewAddress()}>
                 + ADD NEW ADDRESS
               </CapsuleButton>
             </DivRow>
@@ -113,13 +128,19 @@ class PlaceOrderPage extends Component {
                       <DivRow className={styles.action_container}>
                         <div
                           className={styles.action_button}
-                          onClick={() => this.handleEdit(address.id)}
+                          onClick={e => {
+                            e.stopPropagation();
+                            this.handleEdit(address.id);
+                          }}
                         >
                           Edit
                         </div>
                         <div
                           className={styles.action_button}
-                          onClick={() => this.handleRemove(address.id)}
+                          onClick={e => {
+                            e.stopPropagation();
+                            this.handleAddressRemove(address.id);
+                          }}
                         >
                           Remove
                         </div>
@@ -187,8 +208,11 @@ class PlaceOrderPage extends Component {
                 </DivRow>
               </DivColumn>
 
-              <CapsuleButton className={styles.capsule_button}>
-                Continue
+              <CapsuleButton
+                className={styles.capsule_button}
+                onClick={this.navigateToSelectPayment}
+              >
+                Make Payment
               </CapsuleButton>
             </DivColumn>
           </DivColumn>

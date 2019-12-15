@@ -109,7 +109,7 @@ class SectionedHeader extends Component {
             <form className={styles.search_form} onSubmit={this.onSubmitSearch}>
               <input
                 type="text"
-                name="firstname"
+                name="query"
                 placeholder="Search"
                 className={`${styles.search_input} ${
                   !(showSearchResult && searchText) && whiteColor

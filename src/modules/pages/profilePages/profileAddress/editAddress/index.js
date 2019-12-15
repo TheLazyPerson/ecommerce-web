@@ -37,7 +37,8 @@ class EditAddress extends Component {
       state: isEmptyValidator(values.state),
       country: isEmptyValidator(values.country),
       country_code: isEmptyValidator(values.country_code),
-      pincode: isEmptyValidator(values.pincode)
+      pincode: isEmptyValidator(values.pincode),
+      name: isEmptyValidator(values.name)
     };
 
     Object.keys(validators).forEach(key => {
@@ -48,27 +49,25 @@ class EditAddress extends Component {
   };
 
   onSubmit = form => {
-    const {
-      editAddressAction,
-      navigateTo,
-      showSuccessFlashMessage
-    } = this.props;
+    const { editAddressAction, pop, showSuccessFlashMessage } = this.props;
+    const parsed = queryString.parse(this.props.location.search);
 
-    editAddressAction({
+    editAddressAction(parsed.id, {
       first_name: form.firstName,
-      last_name: form.firstName,
+      last_name: form.lastName,
       phone_number: form.mobileNumber,
-      address1: form.street,
-      address2: form.address,
+      address1: form.address1,
+      address2: form.address2,
       postcode: form.pincode,
       city: form.city,
-      state: form.city,
+      state: form.state,
       country: form.country,
       country_code: form.country_code,
-      default_address: 1
+      default_address: 1,
+      name: form.name
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
-        navigateTo("address");
+        pop();
         showSuccessFlashMessage("Address Updated");
       }
     });
@@ -95,7 +94,7 @@ class EditAddress extends Component {
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <NavHeader title="Add Address" onBackClick={this.onBackPress} />
+        <NavHeader title="Edit Address" onBackClick={this.onBackPress} />
         <DivColumn fillParent className={styles.page_container}>
           <Form
             onSubmit={this.onSubmit}
@@ -103,7 +102,8 @@ class EditAddress extends Component {
             initialValues={{
               firstName: address.first_name ? address.first_name : "",
               lastName: address.last_name ? address.last_name : "",
-              mobileNumber: address.phone ? address.phone : "",
+              mobileNumber: address.phone_number ? address.phone_number : "",
+              name: address.name ? address.name : "",
               address1: address.address1 ? address.address1 : "",
               address2: address.address2 ? address.address2 : "",
               city: address.city ? address.city : "",
@@ -150,6 +150,16 @@ class EditAddress extends Component {
                 <HorizontalBorder className={styles.address_divider} />
 
                 <DivColumn className={styles.text_input_container}>
+                  <Field name="name">
+                    {({ input, meta }) => (
+                      <InputTextComponent
+                        meta={meta}
+                        {...input}
+                        placeholder="Home/Office"
+                        className={styles.input_text}
+                      />
+                    )}
+                  </Field>
                   <Field name="address1">
                     {({ input, meta }) => (
                       <InputTextComponent

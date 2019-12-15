@@ -4,6 +4,10 @@
 .page_container {
   position: relative;
 
+  .header_background {
+    background-color: $primary-text-color;
+  }
+
   .header_container {
     position: fixed;
     top: 0;
@@ -11,6 +15,8 @@
     right: 0;
     height: 84px;
     padding: 18px 60px;
+    z-index: 10;
+    transition: background-color 0.5s ease;
 
     .header_icon_container {
       width: 40%;
@@ -28,6 +34,7 @@
   .hero_section_container {
     min-height: 100vh;
     position: relative;
+    background: $primary-text-color;
     background-position: center;
     background-size: cover;
 
@@ -38,7 +45,7 @@
       right: 0;
 
       height: 98px;
-      background-image: linear-gradient(to bottom, #141414, rgba(20, 20, 20, 0));
+      background-image: linear-gradient(to bottom, rgba(#141414, 0.6), rgba(20, 20, 20, 0));
     }
     
     .overlay_gradient {
@@ -47,7 +54,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba($primary-text-color, 0.3);
+      background: rgba($primary-text-color, 0.15);
     }
     
     .bottom_gradient {
@@ -57,7 +64,7 @@
       right: 0;
 
       height: 210px;
-      background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0), #141414);
+      background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0), rgba(#141414, 0.6));
     }
 
     .hero_main_content {

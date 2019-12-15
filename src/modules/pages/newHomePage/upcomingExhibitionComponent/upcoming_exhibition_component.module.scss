@@ -1,26 +1,28 @@
 @import '~Styles/colors.module';
 
 .component_container {
-  margin: 0px 129px;
-  min-height: 589px;
+  margin: 0px 150px;
+  min-height: 430px;
+  min-width: 980px;
+  align-self: center;
   align-items: flex-end;
   position: relative;
 
   .content_container {
     position: absolute;
     top: 0;
-    left: 84px;
-    bottom: 84px;
+    left: 60px;
+    bottom: 60px;
     right: 0px;
     background: rgba($color-very-light-blue, 0.9);
     justify-content: flex-end;
-    padding: 81px 85px 55px 0px;
+    padding: 61px 65px 35px 0px;
 
     .contents {
-      max-width: 380px;
+      max-width: 320px;
 
       .title {
-        font-size: 36px;
+        font-size: 28px;
         font-weight: bold;
         color: $primary-text-color;
       }
@@ -29,18 +31,18 @@
         width: 100px;
         height: 2px;
         background-color: #d2dce7;
-        margin: 40px 0px 28px;
+        margin: 30px 0px 18px;
       }
 
       .description {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: bold;
         color: rgba($primary-text-color, 0.7);
       }
 
       .time_text {
         opacity: 0.8;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: bold;
         color: $color-gold;
         margin-top: 48px;
@@ -49,15 +51,15 @@
   }
  
   .image {
-    width: 50%;
+    width: 55%;
     // width: 713px;
-     height: 505px;
+     height: 370px;
     z-index: 2;
     object-fit: cover;
   }
 
   .arrow_container {
-    margin-left: 50px;
+    margin-left: 40px;
     margin-bottom: 10px;
 
     .arrow_left {
@@ -69,7 +71,7 @@
 
     .arrow_right {
       width: 46px;
-      margin-left: 46px;
+      margin-left: 20px;
       cursor: pointer;
     }
   }

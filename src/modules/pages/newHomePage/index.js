@@ -13,11 +13,11 @@ import Swiper from "react-id-swiper";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "swiper/css/swiper.css";
-import { 
+import {
   getExhibitionListAction,
   getUpcomingExhibitionListAction,
   getTrendingExhibitionListAction,
- } from "Core/modules/homepage/homePageActions";
+} from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import SectionedHeader from "CommonContainers/sectionedHeader";
@@ -31,8 +31,27 @@ import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 
 class NewHomePage extends Component {
   state = {
-    currentSlide: 0
+    currentSlide: 0,
+    showHeaderShadow: false,
   };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.hideNavBar);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hideNavBar);
+  }
+
+  hideNavBar = () =>{
+    const scrollThreshold = 150;
+    const { showHeaderShadow } = this.state;
+
+    window.scrollY > scrollThreshold?
+    !showHeaderShadow && this.setState({showHeaderShadow: true})
+    :
+    showHeaderShadow && this.setState({showHeaderShadow: false})
+ }
+
 
   onClickAppIcon = () => {
     const { navigateTo } = this.props;
@@ -55,7 +74,7 @@ class NewHomePage extends Component {
       }
     };
 
-    const { currentSlide } = this.state;
+    const { currentSlide, showHeaderShadow } = this.state;
     const {
       homePageReducer: { exhibitionList, trendingExhibitionList, upcomingExhibitionList },
       getExhibitionListAction,
@@ -155,7 +174,7 @@ class NewHomePage extends Component {
                   <div
                     className={`${
                       !isLeftButtonClickable ? styles.non_clickable : ""
-                    } ${styles.arrow_text}`}
+                      } ${styles.arrow_text}`}
                     onClick={() => this.swiper.slidePrev()}
                   >
                     <img
@@ -169,7 +188,7 @@ class NewHomePage extends Component {
                   <div
                     className={`${
                       !isRightButtonClickable ? styles.non_clickable : ""
-                    } ${styles.arrow_text}`}
+                      } ${styles.arrow_text}`}
                     onClick={() => this.swiper.slideNext()}
                   >
                     Next{" "}
@@ -198,13 +217,13 @@ class NewHomePage extends Component {
             </Fragment>
           </InitialPageLoader>
         </DivColumn>
-        
+
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
           TRENDING NOW
         </DivRow>
-  
+
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
-          <MasonryGridContainer 
+          <MasonryGridContainer
             exhibitionList={trendingExhibitionList}
           />
         </InitialPageLoader>
@@ -212,16 +231,16 @@ class NewHomePage extends Component {
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
           KEEP AN EYE ON THESE EXHIBITIONS
         </DivRow>
-        
+
         <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
           <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
         </InitialPageLoader>
 
         <PageFooter />
-        
-          
+
+
         {/* Absolute position */}
-        <DivRow className={styles.header_container}>
+        <DivRow className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}>
           <DivRow className={styles.header_icon_container}>
             <img
               src={appIcon}
