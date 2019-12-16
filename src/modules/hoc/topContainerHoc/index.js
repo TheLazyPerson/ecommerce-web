@@ -6,6 +6,7 @@ import DivRow from 'CommonComponents/divRow';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideFlashMessage } from 'Redux/actions/flashMessageActions';
+import { setBagCount } from 'Core/modules/bag/bagActions';
 import { setUserDataAction } from 'Core/modules/signin/actions/signinActions';
 import { CookieService } from 'Utils/cookieService';
 import { USER_DATA_COOKIE } from 'Constants/cookieConstants';
@@ -19,11 +20,13 @@ const topContainerHoc  = (WrappedComponent) => {
 
     componentDidMount() {
       //Sets user data from cookie to reducer
-      const { setUserDataAction } = this.props;
+      const { setUserDataAction, setBagCount } = this.props;
       const userData = CookieService.getJSON(USER_DATA_COOKIE);
+      const bagCount = CookieService.get('BAG_COUNT');
       //TODO call backdetails api here
       
-      if (userData) {        
+      if (userData) {
+        setBagCount(bagCount);
         setUserDataAction(userData);
         this.setState({
           isChildReady: true
@@ -92,6 +95,7 @@ const topContainerHoc  = (WrappedComponent) => {
     return {
       hideFlashMessage: bindActionCreators (hideFlashMessage, dispatch),
       setUserDataAction: bindActionCreators(setUserDataAction, dispatch),
+      setBagCount: bindActionCreators(setBagCount, dispatch),
     };
   };
   

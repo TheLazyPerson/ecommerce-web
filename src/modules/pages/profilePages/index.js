@@ -24,6 +24,7 @@ class ProfileOverview extends Component {
     } else if (slug === "logout") {
       logoutAction().then(() => {
         CookieService.delete(USER_DATA_COOKIE);
+        CookieService.delete('BAG_COUNT');
         navigateTo(""); // ToHomePage
       });
     } else {
