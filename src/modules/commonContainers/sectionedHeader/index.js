@@ -229,7 +229,7 @@ class SectionedHeader extends Component {
 const mapStateToProps = state => {
   return {
     isUserSignedIn: state.signInReducer.isUserSignedIn,
-    bagCount: state.bagReducer.items_count //TODO: going undefined. To fix
+    bagCount: state.bagReducer.bagCount
   };
 };
 
