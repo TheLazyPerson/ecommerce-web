@@ -29,6 +29,7 @@ class SignUpPage extends Component {
       "email": form.email,
       "password": form.password,
       "password_confirmation": form.confirmPassword
+
     }).then(({payload}) => {
       if (payload.code == 200 ||payload.code == 201) {
         navigateTo('signin');
