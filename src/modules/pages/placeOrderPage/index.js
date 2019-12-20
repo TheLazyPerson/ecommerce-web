@@ -8,7 +8,7 @@ import CapsuleButton from "CommonComponents/capsuleButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
-import NavHeader from '../profilePages/components/navHeader';
+import NavHeader from "../profilePages/components/navHeader";
 import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
 import {
@@ -16,8 +16,9 @@ import {
   removeAddressAction
 } from "Core/modules/address/addressActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import AddressItemComponent from 'CommonComponents/addressItemComponent';
-import { pageStates } from './constants';
+import AddressItemComponent from "CommonComponents/addressItemComponent";
+import AddAddressForm from "CommonContainers/addAddressForm";
+import { pageStates } from "./constants";
 import OrderSummary from "./orderSummary";
 
 class PlaceOrderPage extends Component {
@@ -31,14 +32,11 @@ class PlaceOrderPage extends Component {
     navigateTo("wishlist");
   };
 
-  onClickNewAddress = () => {
-    const { navigateTo } = this.props;
-    navigateTo("add-address");
-  };
+  changePageState = (pageState) => {
+    this.setState({ currentScreen: pageState });
+  }
 
-  handleEdit = id => {
-
-  };
+  handleEdit = id => {};
 
   onAddressSelect = address => {
     this.setState({
@@ -56,40 +54,63 @@ class PlaceOrderPage extends Component {
     });
   };
 
-  render() {
+  onClickHeaderBack = () => {
+    const { currentScreen } = this.state;
+    
+    if(currentScreen == pageStates.ADD_ADDRESS) {
+      return () => this.changePageState(pageStates.SELECT_ADDRESS);
+    }
 
+    return null;
+  }
+
+  render() {
     const {
       addressReducer: { addressList },
       getAddressListAction
     } = this.props;
-    const { selectedAddressId } = this.state;
+    const { selectedAddressId, currentScreen } = this.state;
+    let navHeaderTitle = "SELECT ADDRESS";
+
+    if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "ADD ADDRESS";
 
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
           <DivColumn className={styles.cart_list_container}>
 
-          <NavHeader title="SELECT ADDRESS">
-            <CapsuleButton onClick={() => this.onClickNewAddress()}>
-              + ADD NEW ADDRESS
-            </CapsuleButton>
-          </NavHeader>
+            <NavHeader 
+              title={navHeaderTitle}
+              onBackClick={this.onClickHeaderBack()}
+            >
+              {currentScreen == pageStates.SELECT_ADDRESS && (
+                <CapsuleButton onClick={() => this.changePageState(pageStates.ADD_ADDRESS)}>
+                  + ADD NEW ADDRESS
+                </CapsuleButton>
+              )}
+            </NavHeader>
 
-            <InitialPageLoader initialPageApi={getAddressListAction}>
-              <DivColumn fillParent className={styles.table_content_container}>
-                {map(addressList, (address, index) => {
-                  return (
-                    <AddressItemComponent 
-                      address={address}
-                      isSelected={address.id == selectedAddressId}
-                      onClickEdit={this.handleEdit}
-                      onClickRemove={this.handleAddressRemove}
-                      onClickItem={this.onAddressSelect}
-                    />
-                  );
-                })}
-              </DivColumn>
-            </InitialPageLoader>
+            {currentScreen == pageStates.SELECT_ADDRESS && (
+              <InitialPageLoader initialPageApi={getAddressListAction}>
+                <DivColumn
+                  fillParent
+                  className={styles.table_content_container}
+                >
+                  {map(addressList, (address, index) => {
+                    return (
+                      <AddressItemComponent
+                        address={address}
+                        isSelected={address.id == selectedAddressId}
+                        onClickEdit={this.handleEdit}
+                        onClickRemove={this.handleAddressRemove}
+                        onClickItem={this.onAddressSelect}
+                      />
+                    );
+                  })}
+                </DivColumn>
+              </InitialPageLoader>
+            )}
+            {currentScreen == pageStates.ADD_ADDRESS && <AddAddressForm />}
           </DivColumn>
           <OrderSummary />
         </DivRow>
