@@ -8,6 +8,7 @@ import CapsuleButton from "CommonComponents/capsuleButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
+import NavHeader from '../profilePages/components/navHeader';
 import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
 import {
@@ -20,7 +21,8 @@ import AddressItemComponent from 'CommonComponents/addressItemComponent';
 class PlaceOrderPage extends Component {
   state = {
     selectedAddressId: 0,
-    selectedDeliveryType: "standard"
+    selectedDeliveryType: "standard",
+    currentScreen: 'selectAddress', //addAddress
   };
 
   navigateToWishlist = () => {
@@ -92,12 +94,17 @@ class PlaceOrderPage extends Component {
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
           <DivColumn className={styles.cart_list_container}>
-            <DivRow className={styles.header_container}>
-              <div className={styles.header_title}>SELECT ADDRESS</div>
+          <NavHeader title="SELECT ADDRESS">
+            <CapsuleButton onClick={() => this.onClickNewAddress()}>
+              + ADD NEW ADDRESS
+            </CapsuleButton>
+          </NavHeader>
+            {/* <DivRow className={styles.header_container}>
+              <div className={styles.header_title}></div>
               <CapsuleButton onClick={() => this.onClickNewAddress()}>
                 + ADD NEW ADDRESS
               </CapsuleButton>
-            </DivRow>
+            </DivRow> */}
             <InitialPageLoader initialPageApi={getAddressListAction}>
               <DivColumn fillParent className={styles.table_content_container}>
                 {map(addressList, (address, index) => {
