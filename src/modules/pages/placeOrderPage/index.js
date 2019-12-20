@@ -15,6 +15,7 @@ import {
   removeAddressAction
 } from "Core/modules/address/addressActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import AddressItemComponent from 'CommonComponents/addressItemComponent';
 
 class PlaceOrderPage extends Component {
   state = {
@@ -101,51 +102,13 @@ class PlaceOrderPage extends Component {
               <DivColumn fillParent className={styles.table_content_container}>
                 {map(addressList, (address, index) => {
                   return (
-                    <DivColumn
-                      className={`${styles.address_item} ${
-                        selectedAddressId === address.id
-                          ? styles.selected_address
-                          : ""
-                      }`}
-                      onClick={() => this.onAddressSelect(address)}
-                    >
-                      <DivColumn
-                        fillParent
-                        className={styles.item_content_container}
-                      >
-                        <div className={styles.item_name}>{address.name}</div>
-                        <div className={styles.item_address}>
-                          {address.address1}, <br />
-                          {address.address2}, <br />
-                          {address.city}, {address.state}, <br />
-                          {address.country} - {address.postcode}
-                        </div>
-                        <div className={styles.item_phonenumber}>
-                          Phone Number: {address.country_code}-
-                          {address.phone_number}
-                        </div>
-                      </DivColumn>
-                      <DivRow className={styles.action_container}>
-                        <div
-                          className={styles.action_button}
-                          onClick={e => {
-                            e.stopPropagation();
-                            this.handleEdit(address.id);
-                          }}
-                        >
-                          Edit
-                        </div>
-                        <div
-                          className={styles.action_button}
-                          onClick={e => {
-                            e.stopPropagation();
-                            this.handleAddressRemove(address.id);
-                          }}
-                        >
-                          Remove
-                        </div>
-                      </DivRow>
-                    </DivColumn>
+                    <AddressItemComponent 
+                      address={address}
+                      isSelected={address.id == selectedAddressId}
+                      onClickEdit={this.handleEdit}
+                      onClickRemove={this.handleAddressRemove}
+                      onClickItem={this.onAddressSelect}
+                    />
                   );
                 })}
               </DivColumn>
