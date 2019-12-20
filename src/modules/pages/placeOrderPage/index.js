@@ -17,22 +17,18 @@ import {
 } from "Core/modules/address/addressActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import AddressItemComponent from 'CommonComponents/addressItemComponent';
+import { pageStates } from './constants';
+import OrderSummary from "./orderSummary";
 
 class PlaceOrderPage extends Component {
   state = {
     selectedAddressId: 0,
-    selectedDeliveryType: "standard",
-    currentScreen: 'selectAddress', //addAddress
+    currentScreen: pageStates.SELECT_ADDRESS
   };
 
   navigateToWishlist = () => {
     const { navigateTo } = this.props;
     navigateTo("wishlist");
-  };
-
-  navigateToSelectPayment = () => {
-    const { navigateTo } = this.props;
-    navigateTo("select-payment");
   };
 
   onClickNewAddress = () => {
@@ -41,21 +37,12 @@ class PlaceOrderPage extends Component {
   };
 
   handleEdit = id => {
-    const { navigateTo } = this.props;
-    navigateTo("edit-address", {
-      id
-    });
+
   };
 
   onAddressSelect = address => {
     this.setState({
       selectedAddressId: address.id
-    });
-  };
-
-  setDeliveryMethod = type => {
-    this.setState({
-      selectedDeliveryType: type
     });
   };
 
@@ -70,41 +57,24 @@ class PlaceOrderPage extends Component {
   };
 
   render() {
-    const deliveryTypes = [
-      {
-        type: "standard",
-        name: "Standard Delivery",
-        priceType: "Free Delivery",
-        deliveryDate: "22 Dec"
-      },
-      {
-        type: "express",
-        name: "Express Delivery",
-        priceType: "Paid Delivery",
-        deliveryDate: "18 Dec"
-      }
-    ];
+
     const {
       addressReducer: { addressList },
       getAddressListAction
     } = this.props;
-    const { selectedAddressId, selectedDeliveryType } = this.state;
+    const { selectedAddressId } = this.state;
 
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
           <DivColumn className={styles.cart_list_container}>
+
           <NavHeader title="SELECT ADDRESS">
             <CapsuleButton onClick={() => this.onClickNewAddress()}>
               + ADD NEW ADDRESS
             </CapsuleButton>
           </NavHeader>
-            {/* <DivRow className={styles.header_container}>
-              <div className={styles.header_title}></div>
-              <CapsuleButton onClick={() => this.onClickNewAddress()}>
-                + ADD NEW ADDRESS
-              </CapsuleButton>
-            </DivRow> */}
+
             <InitialPageLoader initialPageApi={getAddressListAction}>
               <DivColumn fillParent className={styles.table_content_container}>
                 {map(addressList, (address, index) => {
@@ -121,71 +91,7 @@ class PlaceOrderPage extends Component {
               </DivColumn>
             </InitialPageLoader>
           </DivColumn>
-          <DivColumn>
-            <DivColumn className={styles.order_summary_container}>
-              <div className={styles.order_summary_title}>Order Summary</div>
-              <HorizontalBorder />
-
-              <div className={styles.coupon_header_text}>
-                Choose Delivery Speed
-              </div>
-              {map(deliveryTypes, (delivery, index) => {
-                return (
-                  <DivColumn
-                    className={`${styles.coupon_description_container} ${
-                      selectedDeliveryType === delivery.type
-                        ? styles.selected_delivery
-                        : ""
-                    }`}
-                    onClick={() => this.setDeliveryMethod(delivery.type)}
-                  >
-                    <DivColumn className={styles.coupon_content_container}>
-                      <div className={styles.coupon_title}>{delivery.name}</div>
-                      <div className={styles.coupon_description}>
-                        Get it by {delivery.deliveryDate} | {delivery.priceType}
-                      </div>
-                    </DivColumn>
-                  </DivColumn>
-                );
-              })}
-
-              <HorizontalBorder />
-
-              <DivColumn>
-                <div className={styles.coupon_header_text}>Price Details</div>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Bag Total</div>
-                  <div className={styles.value}>KD 1322</div>
-                </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Coupon Discount</div>
-                  <div className={styles.value}>Not Applied</div>
-                </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Order Total</div>
-                  <div className={styles.value}>KD 1103</div>
-                </DivRow>
-                {/* <DivRow className={styles.price_details_container}>
-                    <div className={styles.title}>Delivery Charges</div>
-                    <div className={styles.value}>FREE</div>
-                  </DivRow> */}
-
-                <HorizontalBorder className={styles.price_divider} />
-
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Total</div>
-                  <div className={styles.value}>KD 1534</div>
-                </DivRow>
-              </DivColumn>
-
-              <CapsuleButton
-                className={styles.capsule_button}
-                onClick={this.navigateToSelectPayment}
-              >
-                Make Payment
-              </CapsuleButton>
-            </DivColumn>
-          </DivColumn>
+          <OrderSummary />
         </DivRow>
       </FullWidthContainer>
     );

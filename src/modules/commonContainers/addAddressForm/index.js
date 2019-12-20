@@ -47,7 +47,6 @@ class AddAddressForm extends Component {
   onSubmit = form => {
     const { 
       createAddressAction, 
-      pop, 
       showSuccessFlashMessage,
       onSubmitComplete
     } = this.props;
