@@ -10,21 +10,49 @@ import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import { checkoutBagAction } from 'Core/modules/bag/bagActions';
+import checkedIconBlack from 'Icons/checked-icon-black.svg';
 
 class SelectPaymentPage extends Component {
+
+  placeOrder = () => {
+    const {
+      navigateTo,
+      showSuccessFlashMessage,
+      checkoutBagAction
+    } = this.props;
+
+    checkoutBagAction().then(data => {
+      if(data.code ==200 || data.code == 201) {
+       navigateTo('');
+       showSuccessFlashMessage('Your Order has been successfuly placed');
+      }
+    });
+  }
+
   render() {
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
+
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.header_container}>
               <div className={styles.header_title}>CHOOSE PAYMENT METHOD</div>
             </DivRow>
-            <DivColumn
-              fillParent
-              className={styles.table_content_container}
-            ></DivColumn>
+
+            <DivColumn fillParent className={styles.payment_method_container}>
+
+              <DivRow verticalCenter className={styles.payment_method_item_container}>
+                <DivColumn style={{flex:1}}>
+                  <div className={styles.title}>Cash on delivery</div>
+                  <div className={styles.description}>Pay cash during delivery</div>
+                </DivColumn>
+                <img src={checkedIconBlack} className={styles.icon}/>
+              </DivRow>
+
+            </DivColumn>            
           </DivColumn>
+
           <DivColumn>
             <DivColumn className={styles.order_summary_container}>
               <div className={styles.order_summary_title}>Order Summary</div>
@@ -56,7 +84,7 @@ class SelectPaymentPage extends Component {
               <DivColumn
                 className={styles.coupon_description_container}
               ></DivColumn>
-              <CapsuleButton className={styles.capsule_button}>
+              <CapsuleButton className={styles.capsule_button} onClick={this.placeOrder}>
                 Place Order
               </CapsuleButton>
             </DivColumn>
@@ -67,20 +95,17 @@ class SelectPaymentPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
 const mapDispathToProps = dispatch => {
   return {
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
+    checkoutBagAction:  bindActionCreators(checkoutBagAction, dispatch)
   };
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispathToProps
 )(navigatorHoc(SelectPaymentPage));
