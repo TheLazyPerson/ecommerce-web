@@ -16,8 +16,8 @@ import {
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { createAddressAction } from "Core/modules/address/addressActions";
-
+import { createAddressAction, editAddressAction } from "Core/modules/address/addressActions";
+import find from 'lodash/find';
 
 class AddAddressForm extends Component {
 
@@ -48,10 +48,12 @@ class AddAddressForm extends Component {
     const { 
       createAddressAction, 
       showSuccessFlashMessage,
-      onSubmitComplete
+      onSubmitComplete,
+      addressId,
+      editAddressAction
     } = this.props;
 
-    createAddressAction({
+    const formData = {
       first_name: form.firstName,
       last_name: form.lastName,
       phone_number: form.mobileNumber,
@@ -64,22 +66,51 @@ class AddAddressForm extends Component {
       country_code: form.country_code,
       default_address: 1,
       name: form.name
-    }).then(({ payload }) => {
-      if (payload.code === 200 || payload.code === 201) {
-        onSubmitComplete();
-        showSuccessFlashMessage("Address Added");
-      }
-    });
+    };
+
+    if (addressId) {
+      editAddressAction(addressId, formData).then(({ payload }) => {
+        if (payload.code === 200 || payload.code === 201) {
+          onSubmitComplete();
+          showSuccessFlashMessage("Address Edited");
+        }
+      });
+    } else {
+      createAddressAction(formData).then(({ payload }) => {
+        if (payload.code === 200 || payload.code === 201) {
+          onSubmitComplete();
+          showSuccessFlashMessage("Address Added");
+        }
+      });
+    }
   };
 
+  getInitialValuesFromAddress =  (address) => {
+    return {
+      firstName: address.first_name ? address.first_name : "",
+      lastName: address.last_name ? address.last_name : "",
+      mobileNumber: address.phone_number ? address.phone_number : "",
+      name: address.name ? address.name : "",
+      address1: address.address1 ? address.address1 : "",
+      address2: address.address2 ? address.address2 : "",
+      city: address.city ? address.city : "",
+      state: address.state ? address.state : "",
+      country: address.country ? address.country : "",
+      country_code: address.country_code ? address.country_code : "",
+      pincode: address.postcode ? address.postcode : ""
+    };
+  }
+
   render() {
-    const { onClickCancel } = this.props;
+    const { onClickCancel, addressReducer: { addressList }, addressId } = this.props;
+    const editAddress = find(addressList, address => { return address.id == addressId });
 
     return (
       <DivColumn fillParent className={styles.page_container}>
         <Form
           onSubmit={this.onSubmit}
           validate={this.validate}
+          initialValues={editAddress ? this.getInitialValuesFromAddress(editAddress) : null}
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form className={styles.form_container} onSubmit={handleSubmit}>
               <DivColumn className={styles.text_input_container}>
@@ -230,9 +261,17 @@ class AddAddressForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    addressReducer: state.addressReducer
+  };
+};
+
+
 const mapDispathToProps = dispatch => {
   return {
     createAddressAction: bindActionCreators(createAddressAction, dispatch),
+    editAddressAction: bindActionCreators(editAddressAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
@@ -241,7 +280,7 @@ const mapDispathToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispathToProps
 )(AddAddressForm);
 
