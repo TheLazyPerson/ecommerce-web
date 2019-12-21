@@ -56,9 +56,9 @@ class ProfileOrders extends Component {
                       <div className={styles.order_exhibition}>
                         {item.type}
                       </div>
-                      <div className={styles.order_name}>Perfumes</div>
-                      <div className={styles.order_price}>KD 3.99</div>
-                      <div className={styles.order_state}>DELIVERED</div>
+                      <div className={styles.order_name}>Exhibition Name</div>
+                      <div className={styles.order_price}>{item.formated_price}</div>
+                      <div className={styles.order_state}>{order.status}</div>
                       <div
                         className={styles.view_order_button}
                         onClick={()=>this.onClickProductViewDetails(order.id)}
