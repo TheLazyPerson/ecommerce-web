@@ -5,6 +5,7 @@ import HorizontalBorder from "CommonComponents/horizontalBorder";
 import styles from './order_summary.module.scss';
 import CapsuleButton from "CommonComponents/capsuleButton";
 import map from 'lodash/map';
+import navigatorHoc from 'Hoc/navigatorHoc';
 
 class OrderSummary extends Component {
   state = {
@@ -107,4 +108,4 @@ class OrderSummary extends Component {
   }
 }
 
-export default OrderSummary;
+export default navigatorHoc(OrderSummary);

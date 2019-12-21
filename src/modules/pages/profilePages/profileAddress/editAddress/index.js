@@ -85,4 +85,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(EditAddress));
+)(EditAddress);
