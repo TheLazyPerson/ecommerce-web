@@ -12,6 +12,7 @@ import changePasswordReducer from "Core/modules/changepassword/changePasswordRed
 import wishlistReducer from "Core/modules/wishlist/wishlistReducer";
 import bagReducer from "Core/modules/bag/bagReducer";
 import searchReducer from 'Core/modules/search/searchReducer';
+import orderReducer from 'Core/modules/order/orderReducer';
 
 const appReducer = history =>
   combineReducers({
@@ -28,6 +29,7 @@ const appReducer = history =>
     changePasswordReducer,
     bagReducer,
     searchReducer,
+    orderReducer
   });
 
 /* const rootReducer = ( state, action ) => {
