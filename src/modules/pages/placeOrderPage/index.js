@@ -24,7 +24,8 @@ import OrderSummary from "./orderSummary";
 class PlaceOrderPage extends Component {
   state = {
     selectedAddressId: 0,
-    currentScreen: pageStates.SELECT_ADDRESS
+    currentScreen: pageStates.SELECT_ADDRESS,
+    editAddressId: null,
   };
 
   navigateToWishlist = () => {
@@ -33,10 +34,12 @@ class PlaceOrderPage extends Component {
   };
 
   changePageState = (pageState) => {
-    this.setState({ currentScreen: pageState });
+    this.setState({ currentScreen: pageState});
   }
 
-  handleEdit = id => {};
+  handleEdit = id => {
+    this.setState({editAddressId: id, currentScreen: pageStates.EDIT_ADDRESS});
+  };
 
   onAddressSelect = address => {
     this.setState({
@@ -57,7 +60,7 @@ class PlaceOrderPage extends Component {
   onClickHeaderBack = () => {
     const { currentScreen } = this.state;
     
-    if(currentScreen == pageStates.ADD_ADDRESS) {
+    if (currentScreen != pageStates.SELECT_ADDRESS) {
       return () => this.changePageState(pageStates.SELECT_ADDRESS);
     }
 
@@ -69,10 +72,11 @@ class PlaceOrderPage extends Component {
       addressReducer: { addressList },
       getAddressListAction
     } = this.props;
-    const { selectedAddressId, currentScreen } = this.state;
+    const { selectedAddressId, currentScreen, editAddressId } = this.state;
     let navHeaderTitle = "SELECT ADDRESS";
 
     if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "ADD ADDRESS";
+    else if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "EDIT ADDRESS";
 
     return (
       <FullWidthContainer>
@@ -110,7 +114,21 @@ class PlaceOrderPage extends Component {
                 </DivColumn>
               </InitialPageLoader>
             )}
-            {currentScreen == pageStates.ADD_ADDRESS && <AddAddressForm />}
+            {
+              currentScreen == pageStates.EDIT_ADDRESS && (
+                <AddAddressForm 
+                  addressId={editAddressId}
+                  onSubmitComplete={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+                  onClickCancel={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+              />
+              )
+            }
+            {currentScreen == pageStates.ADD_ADDRESS && (
+              <AddAddressForm 
+                onSubmitComplete={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+                onClickCancel={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+              />
+            )}
           </DivColumn>
           <OrderSummary />
         </DivRow>
