@@ -1,28 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import DivColumn from "CommonComponents/divColumn";
-import DivRow from 'CommonComponents/divRow';
+import DivRow from "CommonComponents/divRow";
 import HorizontalBorder from "CommonComponents/horizontalBorder";
-import styles from './order_summary.module.scss';
+import styles from "./order_summary.module.scss";
 import CapsuleButton from "CommonComponents/capsuleButton";
-import map from 'lodash/map';
-import navigatorHoc from 'Hoc/navigatorHoc';
+import map from "lodash/map";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { selectShippingMethod } from "Core/modules/checkout/checkoutActions";
 
 class OrderSummary extends Component {
-  state = {
-    selectedDeliveryType: "standard",
-  };
-
-  navigateToSelectPayment = () => {
-    const { navigateTo } = this.props;
-    navigateTo("select-payment");
-  };
-
-  setDeliveryMethod = type => {
-    this.setState({
-      selectedDeliveryType: type
-    });
-  };
-
   render() {
     const deliveryTypes = [
       {
@@ -38,34 +25,73 @@ class OrderSummary extends Component {
         deliveryDate: "18 Dec"
       }
     ];
-    const { selectedDeliveryType } = this.state;
+    const {
+      checkoutReducer: { shippingMethod },
+      bagReducer: { bagData },
+      selectShippingMethod,
+      onSubmitButtonClick,
+      showChooseDelivery,
+      submitButtonText
+    } = this.props;
 
     return (
       <DivColumn>
         <DivColumn className={styles.order_summary_container}>
           <div className={styles.order_summary_title}>Order Summary</div>
-          <HorizontalBorder />
+          {/* <HorizontalBorder />
+              <DivRow verticalCenter className={styles.coupon_input}>
+                <img src={couponIcon} className={styles.icon} />
+                <input
+                  type="text"
+                  placeholder="Apply Coupon"
+                  className={styles.input}
+                />
+                <div className={styles.apply_button}>APPLY</div>
+              </DivRow>
+              <HorizontalBorder />
 
-          <div className={styles.coupon_header_text}>Choose Delivery Speed</div>
-          {map(deliveryTypes, (delivery, index) => {
-            return (
-              <DivColumn
-                className={`${styles.coupon_description_container} ${
-                  selectedDeliveryType === delivery.type
-                    ? styles.selected_delivery
-                    : ""
-                }`}
-                onClick={() => this.setDeliveryMethod(delivery.type)}
-              >
+              <div className={styles.coupon_header_text}>Coupons</div>
+              <DivColumn className={styles.coupon_description_container}>
                 <DivColumn className={styles.coupon_content_container}>
-                  <div className={styles.coupon_title}>{delivery.name}</div>
+                  <div className={styles.coupon_title}>40% OFF up to KD 29</div>
                   <div className={styles.coupon_description}>
-                    Get it by {delivery.deliveryDate} | {delivery.priceType}
+                    On order of KD 400 and above. Valid once per user.
                   </div>
                 </DivColumn>
-              </DivColumn>
-            );
-          })}
+                <HorizontalBorder />
+                <DivRow className={styles.coupon_container}>
+                  <div className={styles.coupon}>FREEITEM29</div>
+                  <div className={styles.coupon_apply}>APPLY</div>
+                </DivRow>
+              </DivColumn> */}
+
+          {showChooseDelivery && (
+            <Fragment>
+              <div className={styles.coupon_header_text}>
+                Choose Delivery Speed
+              </div>
+              {map(deliveryTypes, (delivery, index) => {
+                return (
+                  <DivColumn
+                    className={`${styles.coupon_description_container} ${
+                      shippingMethod === delivery.type
+                        ? styles.selected_delivery
+                        : ""
+                    }`}
+                    onClick={() => selectShippingMethod(delivery.type)}
+                  >
+                    <DivColumn className={styles.coupon_content_container}>
+                      <div className={styles.coupon_title}>{delivery.name}</div>
+                      <div className={styles.coupon_description}>
+                        Get it by {delivery.deliveryDate} | {delivery.priceType}
+                      </div>
+                    </DivColumn>
+                  </DivColumn>
+                );
+              })}
+            </Fragment>
+          )}
+          <HorizontalBorder />
 
           <HorizontalBorder />
 
@@ -73,15 +99,15 @@ class OrderSummary extends Component {
             <div className={styles.coupon_header_text}>Price Details</div>
             <DivRow className={styles.price_details_container}>
               <div className={styles.title}>Bag Total</div>
-              <div className={styles.value}>KD 1322</div>
+              <div className={styles.value}>{bagData.formated_grand_total}</div>
             </DivRow>
             <DivRow className={styles.price_details_container}>
               <div className={styles.title}>Coupon Discount</div>
-              <div className={styles.value}>Not Applied</div>
+              <div className={styles.value}>Apply Coupon</div>
             </DivRow>
             <DivRow className={styles.price_details_container}>
               <div className={styles.title}>Order Total</div>
-              <div className={styles.value}>KD 1103</div>
+              <div className={styles.value}>{bagData.formated_sub_total}</div>
             </DivRow>
             {/* <DivRow className={styles.price_details_container}>
               <div className={styles.title}>Delivery Charges</div>
@@ -92,15 +118,15 @@ class OrderSummary extends Component {
 
             <DivRow className={styles.price_details_container}>
               <div className={styles.title}>Total</div>
-              <div className={styles.value}>KD 1534</div>
+              <div className={styles.value}>{bagData.formated_sub_total}</div>
             </DivRow>
           </DivColumn>
 
           <CapsuleButton
             className={styles.capsule_button}
-            onClick={this.navigateToSelectPayment}
+            onClick={onSubmitButtonClick}
           >
-            Make Payment
+            {submitButtonText}
           </CapsuleButton>
         </DivColumn>
       </DivColumn>
@@ -108,4 +134,20 @@ class OrderSummary extends Component {
   }
 }
 
-export default navigatorHoc(OrderSummary);
+const mapStateToProps = state => {
+  return {
+    checkoutReducer: state.checkoutReducer,
+    bagReducer: state.bagReducer,
+  };
+};
+
+const mapDispathToProps = dispatch => {
+  return {
+    selectShippingMethod: bindActionCreators(selectShippingMethod, dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(OrderSummary);

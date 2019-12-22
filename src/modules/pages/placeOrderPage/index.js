@@ -15,15 +15,16 @@ import {
   getAddressListAction,
   removeAddressAction
 } from "Core/modules/address/addressActions";
+import { selectDeliveryAddress } from 'Core/modules/checkout/checkoutActions';
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import AddressItemComponent from "CommonComponents/addressItemComponent";
 import AddAddressForm from "CommonContainers/addAddressForm";
 import { pageStates } from "./constants";
 import OrderSummary from "./orderSummary";
+import isEmpty from 'lodash/isEmpty';
 
 class PlaceOrderPage extends Component {
   state = {
-    selectedAddressId: 0,
     currentScreen: pageStates.SELECT_ADDRESS,
     editAddressId: null,
   };
@@ -41,12 +42,6 @@ class PlaceOrderPage extends Component {
     this.setState({editAddressId: id, currentScreen: pageStates.EDIT_ADDRESS});
   };
 
-  onAddressSelect = address => {
-    this.setState({
-      selectedAddressId: address.id
-    });
-  };
-
   handleAddressRemove = id => {
     const { removeAddressAction, showSuccessFlashMessage } = this.props;
     removeAddressAction(id).then(({ payload }) => {
@@ -57,22 +52,29 @@ class PlaceOrderPage extends Component {
     });
   };
 
+  onPlaceOrderClick = () => {
+    //TODO make api call and navigate to next screen
+    
+    // const { navigateTo } = this.props;
+    // navigateTo("select-payment");
+  }
+
   onClickHeaderBack = () => {
     const { currentScreen } = this.state;
-    
     if (currentScreen != pageStates.SELECT_ADDRESS) {
       return () => this.changePageState(pageStates.SELECT_ADDRESS);
     }
-
     return null;
   }
 
   render() {
     const {
       addressReducer: { addressList },
-      getAddressListAction
+      checkoutReducer: { deliveryAddress },
+      getAddressListAction,
+      selectDeliveryAddress
     } = this.props;
-    const { selectedAddressId, currentScreen, editAddressId } = this.state;
+    const { currentScreen, editAddressId } = this.state;
     let navHeaderTitle = "SELECT ADDRESS";
 
     if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "ADD ADDRESS";
@@ -95,7 +97,10 @@ class PlaceOrderPage extends Component {
             </NavHeader>
 
             {currentScreen == pageStates.SELECT_ADDRESS && (
-              <InitialPageLoader initialPageApi={getAddressListAction}>
+              <InitialPageLoader
+                initialPageApi={getAddressListAction}
+                isEmpty={isEmpty(addressList)}
+                >
                 <DivColumn
                   fillParent
                   className={styles.table_content_container}
@@ -104,10 +109,10 @@ class PlaceOrderPage extends Component {
                     return (
                       <AddressItemComponent
                         address={address}
-                        isSelected={address.id == selectedAddressId}
+                        isSelected={address.id == deliveryAddress.id}
                         onClickEdit={this.handleEdit}
                         onClickRemove={this.handleAddressRemove}
-                        onClickItem={this.onAddressSelect}
+                        onClickItem={()=> selectDeliveryAddress(address)}
                       />
                     );
                   })}
@@ -130,7 +135,13 @@ class PlaceOrderPage extends Component {
               />
             )}
           </DivColumn>
-          <OrderSummary />
+
+          <OrderSummary
+            showChooseDelivery
+            submitButtonText="PLACE ORDER"
+            onSubmitButtonClick={this.onPlaceOrderClick}
+          />
+
         </DivRow>
       </FullWidthContainer>
     );
@@ -139,7 +150,8 @@ class PlaceOrderPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    addressReducer: state.addressReducer
+    addressReducer: state.addressReducer,
+    checkoutReducer: state.checkoutReducer,
   };
 };
 
@@ -147,6 +159,7 @@ const mapDispathToProps = dispatch => {
   return {
     getAddressListAction: bindActionCreators(getAddressListAction, dispatch),
     removeAddressAction: bindActionCreators(removeAddressAction, dispatch),
+    selectDeliveryAddress: bindActionCreators(selectDeliveryAddress, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch

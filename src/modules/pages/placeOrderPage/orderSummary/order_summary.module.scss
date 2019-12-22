@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .order_summary_container {
   width: 360px;
@@ -57,7 +58,7 @@
   .coupon_description_container {
     color: white;
     margin-bottom: 10px;
-    cursor: pointer;
+    @include on_click_button;
 
     .coupon_content_container {
       padding: 9px 9px 9px;

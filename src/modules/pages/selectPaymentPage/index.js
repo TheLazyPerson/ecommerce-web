@@ -10,7 +10,7 @@ import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { checkoutBagAction } from 'Core/modules/bag/bagActions';
+import { checkoutBagAction } from 'Core/modules/checkout/checkoutActions';
 import checkedIconBlack from 'Icons/checked-icon-black.svg';
 
 class SelectPaymentPage extends Component {
