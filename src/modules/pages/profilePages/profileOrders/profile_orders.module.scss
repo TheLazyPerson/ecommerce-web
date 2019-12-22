@@ -10,7 +10,7 @@
   flex: 1;
   align-self: stretch;
   margin: 0px 36px 36px;
-  max-height: 248px;
+  // max-height: 248px;
 
   .list_header {
     align-self: stretch;
@@ -26,8 +26,13 @@
     color: $primary-text-color;
   }
 
+  .order_item_container:first-child {
+    margin-top: 0px;
+  }
+
   .order_item_container {
     height: 205px;
+    margin-top: 10px;
     align-self: stretch;
     border-right: solid 0.5px rgba($primary-text-color, 0.1);
     border-bottom: solid 0.5px rgba($primary-text-color, 0.1);
@@ -82,4 +87,5 @@
   
     }
   }
+
 }
