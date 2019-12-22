@@ -225,6 +225,7 @@ class NewHomePage extends Component {
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
           <MasonryGridContainer
             exhibitionList={trendingExhibitionList}
+            showMoreTitle
           />
         </InitialPageLoader>
 
