@@ -13,6 +13,7 @@ import { getOrderDetailsAction } from 'Core/modules/order/orderActions';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import isEmpty from 'lodash/isEmpty';
+import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
 
 class OrderDetails extends Component {
   onBackPress = () => {
@@ -38,11 +39,11 @@ class OrderDetails extends Component {
               className={styles.order_details_container}
             >
               <div className={styles.order_id_text}>
-                ORDER ID: <b>4656009</b>
+                ORDER ID: <b>{orderDetails.id}</b>
               </div>
-              <div className={styles.order_status_text}>DELIVERED</div>
+              <div className={styles.order_status_text}>{orderDetails.status}</div>
               <div className={styles.order_placed_text}>
-                Placed On: 16 OCT 2019
+                {`Placed On: ${formatTimeStamp(orderDetails.created_at, timeFormats.dayMonthComaYear)}`}
               </div>
             </DivColumn>
 
@@ -57,7 +58,7 @@ class OrderDetails extends Component {
                   >{`Phone: +965-955-5836-852`}</div>
                   <div
                     className={styles.contact_text}
-                  >{`Email: omarlastname@mail.com`}</div>
+                  >{`Email: ${orderDetails.customer_email}`}</div>
                 </DivColumn>
                 <div className={styles.header_text}>SHIPPING ADDRESS</div>
                 <DivColumn className={styles.value_container}>
