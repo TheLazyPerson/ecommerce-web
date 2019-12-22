@@ -8,8 +8,23 @@ import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectShippingMethod } from "Core/modules/checkout/checkoutActions";
+import { getBagListAction } from "Core/modules/bag/bagActions";
+import isEmpty from 'lodash/isEmpty';
 
 class OrderSummary extends Component {
+
+  componentDidMount() {
+    const {
+      getBagDetailsWhenEmpty,
+      getBagListAction,
+      bagReducer: { bagData },
+     } = this.props;
+
+    if(getBagDetailsWhenEmpty && isEmpty(bagData)) {
+      getBagListAction();
+    }
+  }
+
   render() {
     const deliveryTypes = [
       {
@@ -67,6 +82,7 @@ class OrderSummary extends Component {
 
           {showChooseDelivery && (
             <Fragment>
+              <HorizontalBorder />
               <div className={styles.coupon_header_text}>
                 Choose Delivery Speed
               </div>
@@ -91,7 +107,6 @@ class OrderSummary extends Component {
               })}
             </Fragment>
           )}
-          <HorizontalBorder />
 
           <HorizontalBorder />
 
@@ -134,6 +149,10 @@ class OrderSummary extends Component {
   }
 }
 
+OrderSummary.defaultProps = {
+  getBagDetailsWhenEmpty: true,
+};
+
 const mapStateToProps = state => {
   return {
     checkoutReducer: state.checkoutReducer,
@@ -143,7 +162,8 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = dispatch => {
   return {
-    selectShippingMethod: bindActionCreators(selectShippingMethod, dispatch)
+    selectShippingMethod: bindActionCreators(selectShippingMethod, dispatch),
+    getBagListAction: bindActionCreators(getBagListAction, dispatch)
   };
 };
 

@@ -15,8 +15,15 @@ import {
   getAddressListAction,
   removeAddressAction
 } from "Core/modules/address/addressActions";
+import {
+  selectAddressAction,
+  selectShippingMethodAction,
+} from 'Core/modules/checkout/checkoutActions';
 import { selectDeliveryAddress } from 'Core/modules/checkout/checkoutActions';
-import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import { 
+  showSuccessFlashMessage,
+  showInfoFlashMessage
+} from "Redux/actions/flashMessageActions";
 import AddressItemComponent from "CommonComponents/addressItemComponent";
 import AddAddressForm from "CommonContainers/addAddressForm";
 import { pageStates } from "./constants";
@@ -53,10 +60,47 @@ class PlaceOrderPage extends Component {
   };
 
   onPlaceOrderClick = () => {
-    //TODO make api call and navigate to next screen
-    
-    // const { navigateTo } = this.props;
-    // navigateTo("select-payment");
+    const { 
+      checkoutReducer: { deliveryAddress, shippingMethod },
+      signInReducer: { userDetails },
+      selectAddressAction,
+      selectShippingMethodAction,
+      showInfoFlashMessage,
+      navigateTo,
+    } = this.props;
+
+    if (isEmpty(deliveryAddress)) {
+      showInfoFlashMessage('Please select delivery Address');
+    }  else if(isEmpty(shippingMethod)) {
+      showInfoFlashMessage('Please select shipping Method'); 
+    } else {
+      const selectAddressObject = {
+        billing: {
+          use_for_shipping: true,
+          first_name: deliveryAddress.first_name,
+          last_name: deliveryAddress.last_name,
+          email: userDetails.email,
+          address_id: deliveryAddress.id,
+        }
+      };
+
+      const shippingObject = {
+        shipping_method: shippingMethod,
+      }
+
+      selectAddressAction(selectAddressObject).then(({payload})=> {
+        if(payload.code == 200 || payload.code == 201) {
+
+          selectShippingMethodAction(shippingObject).then(({payload}) => {
+            if(payload.code == 200 || payload.code == 201) {
+              navigateTo("select-payment");
+            }
+          });
+
+        }
+      })
+    }
+
   }
 
   onClickHeaderBack = () => {
@@ -152,6 +196,7 @@ const mapStateToProps = state => {
   return {
     addressReducer: state.addressReducer,
     checkoutReducer: state.checkoutReducer,
+    signInReducer: state.signInReducer,
   };
 };
 
@@ -160,6 +205,9 @@ const mapDispathToProps = dispatch => {
     getAddressListAction: bindActionCreators(getAddressListAction, dispatch),
     removeAddressAction: bindActionCreators(removeAddressAction, dispatch),
     selectDeliveryAddress: bindActionCreators(selectDeliveryAddress, dispatch),
+    selectAddressAction: bindActionCreators(selectAddressAction, dispatch),
+    selectShippingMethodAction: bindActionCreators(selectShippingMethodAction, dispatch),
+    showInfoFlashMessage: bindActionCreators(showInfoFlashMessage, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
