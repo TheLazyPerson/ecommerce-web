@@ -10,10 +10,26 @@ import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { checkoutBagAction } from 'Core/modules/checkout/checkoutActions';
+import { checkoutBagAction, selectPaymentMethodAction } from 'Core/modules/checkout/checkoutActions';
 import checkedIconBlack from 'Icons/checked-icon-black.svg';
+import OrderSummary from '../placeOrderPage/orderSummary';
 
 class SelectPaymentPage extends Component {
+
+  componentDidMount() {
+    const { selectPaymentMethodAction, showSuccessFlashMessage } = this.props;
+    const paymentMethodObject = {
+      payment: {
+        method: 'cashondelivery'
+      }
+    };
+
+    selectPaymentMethodAction(paymentMethodObject).then(({ payload })=> {
+      if(payload.code == 200 || payload.code == 201) {
+        showSuccessFlashMessage('Cash on delivery selected');
+      }
+    })
+  }
 
   placeOrder = () => {
     const {
@@ -54,40 +70,10 @@ class SelectPaymentPage extends Component {
           </DivColumn>
 
           <DivColumn>
-            <DivColumn className={styles.order_summary_container}>
-              <div className={styles.order_summary_title}>Order Summary</div>
-              <HorizontalBorder />
-              <DivColumn>
-                <div className={styles.coupon_header_text}>Price Details</div>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Bag Total</div>
-                  <div className={styles.value}>KD 1322</div>
-                </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Coupon Discount</div>
-                  <div className={styles.value}>Not Applied</div>
-                </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Order Total</div>
-                  <div className={styles.value}>KD 1103</div>
-                </DivRow>
-
-                <HorizontalBorder className={styles.price_divider} />
-
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Total</div>
-                  <div className={styles.value}>KD 1534</div>
-                </DivRow>
-              </DivColumn>
-              <HorizontalBorder />
-              <div className={styles.coupon_header_text}>Delivery Address</div>
-              <DivColumn
-                className={styles.coupon_description_container}
-              ></DivColumn>
-              <CapsuleButton className={styles.capsule_button} onClick={this.placeOrder}>
-                Place Order
-              </CapsuleButton>
-            </DivColumn>
+            <OrderSummary 
+              onSubmitButtonClick={this.placeOrder}
+              submitButtonText="Place Order"
+            />
           </DivColumn>
         </DivRow>
       </FullWidthContainer>
@@ -101,7 +87,8 @@ const mapDispathToProps = dispatch => {
       showSuccessFlashMessage,
       dispatch
     ),
-    checkoutBagAction:  bindActionCreators(checkoutBagAction, dispatch)
+    checkoutBagAction:  bindActionCreators(checkoutBagAction, dispatch),
+    selectPaymentMethodAction: bindActionCreators(selectPaymentMethodAction, dispatch),
   };
 };
 
