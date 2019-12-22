@@ -1,0 +1,5 @@
+export const pageStates = {
+  SELECT_ADDRESS: 'SELECT_ADDRESS',
+  ADD_ADDRESS: 'ADD_ADDRESS',
+  EDIT_ADDRESS: 'EDIT_ADDRESS',
+}

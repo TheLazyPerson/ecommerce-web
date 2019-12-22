@@ -75,8 +75,23 @@
       }
     }
   }
+}
 
 
+.grid_load_more_container {
+  margin-top: 3px;
+  cursor: pointer;
+
+  .content_container {
+    background: $primary-text-color;
+    transition: all 0.5s ease;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }  
+  }
 }
 
 

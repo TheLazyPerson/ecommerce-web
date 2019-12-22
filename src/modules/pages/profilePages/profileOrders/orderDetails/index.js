@@ -11,7 +11,7 @@ import HorizontalBorder from 'CommonComponents/horizontalBorder';
 
 class OrderDetails extends Component {
 
-  onBackPress= () =>{
+  onBackPress= () => {
     const { pop } = this.props;
     pop();
   }

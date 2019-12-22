@@ -8,18 +8,32 @@ import CapsuleButton from "CommonComponents/capsuleButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
+import NavHeader from "../profilePages/components/navHeader";
 import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
 import {
   getAddressListAction,
   removeAddressAction
 } from "Core/modules/address/addressActions";
-import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import {
+  selectAddressAction,
+  selectShippingMethodAction,
+} from 'Core/modules/checkout/checkoutActions';
+import { selectDeliveryAddress } from 'Core/modules/checkout/checkoutActions';
+import { 
+  showSuccessFlashMessage,
+  showInfoFlashMessage
+} from "Redux/actions/flashMessageActions";
+import AddressItemComponent from "CommonComponents/addressItemComponent";
+import AddAddressForm from "CommonContainers/addAddressForm";
+import { pageStates } from "./constants";
+import OrderSummary from "./orderSummary";
+import isEmpty from 'lodash/isEmpty';
 
 class PlaceOrderPage extends Component {
   state = {
-    selectedAddressId: 0,
-    selectedDeliveryType: "standard"
+    currentScreen: pageStates.SELECT_ADDRESS,
+    editAddressId: null,
   };
 
   navigateToWishlist = () => {
@@ -27,33 +41,12 @@ class PlaceOrderPage extends Component {
     navigateTo("wishlist");
   };
 
-  navigateToSelectPayment = () => {
-    const { navigateTo } = this.props;
-    navigateTo("select-payment");
-  };
-
-  onClickNewAddress = () => {
-    const { navigateTo } = this.props;
-    navigateTo("add-address");
-  };
+  changePageState = (pageState) => {
+    this.setState({ currentScreen: pageState});
+  }
 
   handleEdit = id => {
-    const { navigateTo } = this.props;
-    navigateTo("edit-address", {
-      id
-    });
-  };
-
-  onAddressSelect = address => {
-    this.setState({
-      selectedAddressId: address.id
-    });
-  };
-
-  setDeliveryMethod = type => {
-    this.setState({
-      selectedDeliveryType: type
-    });
+    this.setState({editAddressId: id, currentScreen: pageStates.EDIT_ADDRESS});
   };
 
   handleAddressRemove = id => {
@@ -66,156 +59,133 @@ class PlaceOrderPage extends Component {
     });
   };
 
-  render() {
-    const deliveryTypes = [
-      {
-        type: "standard",
-        name: "Standard Delivery",
-        priceType: "Free Delivery",
-        deliveryDate: "22 Dec"
-      },
-      {
-        type: "express",
-        name: "Express Delivery",
-        priceType: "Paid Delivery",
-        deliveryDate: "18 Dec"
+  onPlaceOrderClick = () => {
+    const { 
+      checkoutReducer: { deliveryAddress, shippingMethod },
+      signInReducer: { userDetails },
+      selectAddressAction,
+      selectShippingMethodAction,
+      showInfoFlashMessage,
+      navigateTo,
+    } = this.props;
+
+    if (isEmpty(deliveryAddress)) {
+      showInfoFlashMessage('Please select delivery Address');
+    }  else if(isEmpty(shippingMethod)) {
+      showInfoFlashMessage('Please select shipping Method'); 
+    } else {
+      const selectAddressObject = {
+        billing: {
+          use_for_shipping: true,
+          first_name: deliveryAddress.first_name,
+          last_name: deliveryAddress.last_name,
+          email: userDetails.email,
+          address_id: deliveryAddress.id,
+        }
+      };
+
+      const shippingObject = {
+        shipping_method: shippingMethod,
       }
-    ];
+
+      selectAddressAction(selectAddressObject).then(({payload})=> {
+        if(payload.code == 200 || payload.code == 201) {
+
+          selectShippingMethodAction(shippingObject).then(({payload}) => {
+            if(payload.code == 200 || payload.code == 201) {
+              navigateTo("select-payment");
+            }
+          });
+
+        }
+      })
+    }
+
+  }
+
+  onClickHeaderBack = () => {
+    const { currentScreen } = this.state;
+    if (currentScreen != pageStates.SELECT_ADDRESS) {
+      return () => this.changePageState(pageStates.SELECT_ADDRESS);
+    }
+    return null;
+  }
+
+  render() {
     const {
       addressReducer: { addressList },
-      getAddressListAction
+      checkoutReducer: { deliveryAddress },
+      getAddressListAction,
+      selectDeliveryAddress
     } = this.props;
-    const { selectedAddressId, selectedDeliveryType } = this.state;
+    const { currentScreen, editAddressId } = this.state;
+    let navHeaderTitle = "SELECT ADDRESS";
+
+    if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "ADD ADDRESS";
+    else if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "EDIT ADDRESS";
 
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
           <DivColumn className={styles.cart_list_container}>
-            <DivRow className={styles.header_container}>
-              <div className={styles.header_title}>SELECT ADDRESS</div>
-              <CapsuleButton onClick={() => this.onClickNewAddress()}>
-                + ADD NEW ADDRESS
-              </CapsuleButton>
-            </DivRow>
-            <InitialPageLoader initialPageApi={getAddressListAction}>
-              <DivColumn fillParent className={styles.table_content_container}>
-                {map(addressList, (address, index) => {
-                  return (
-                    <DivColumn
-                      className={`${styles.address_item} ${
-                        selectedAddressId === address.id
-                          ? styles.selected_address
-                          : ""
-                      }`}
-                      onClick={() => this.onAddressSelect(address)}
-                    >
-                      <DivColumn
-                        fillParent
-                        className={styles.item_content_container}
-                      >
-                        <div className={styles.item_name}>{address.name}</div>
-                        <div className={styles.item_address}>
-                          {address.address1}, <br />
-                          {address.address2}, <br />
-                          {address.city}, {address.state}, <br />
-                          {address.country} - {address.postcode}
-                        </div>
-                        <div className={styles.item_phonenumber}>
-                          Phone Number: {address.country_code}-
-                          {address.phone_number}
-                        </div>
-                      </DivColumn>
-                      <DivRow className={styles.action_container}>
-                        <div
-                          className={styles.action_button}
-                          onClick={e => {
-                            e.stopPropagation();
-                            this.handleEdit(address.id);
-                          }}
-                        >
-                          Edit
-                        </div>
-                        <div
-                          className={styles.action_button}
-                          onClick={e => {
-                            e.stopPropagation();
-                            this.handleAddressRemove(address.id);
-                          }}
-                        >
-                          Remove
-                        </div>
-                      </DivRow>
-                    </DivColumn>
-                  );
-                })}
-              </DivColumn>
-            </InitialPageLoader>
+
+            <NavHeader 
+              title={navHeaderTitle}
+              onBackClick={this.onClickHeaderBack()}
+            >
+              {currentScreen == pageStates.SELECT_ADDRESS && (
+                <CapsuleButton onClick={() => this.changePageState(pageStates.ADD_ADDRESS)}>
+                  + ADD NEW ADDRESS
+                </CapsuleButton>
+              )}
+            </NavHeader>
+
+            {currentScreen == pageStates.SELECT_ADDRESS && (
+              <InitialPageLoader
+                initialPageApi={getAddressListAction}
+                isEmpty={isEmpty(addressList)}
+                >
+                <DivColumn
+                  fillParent
+                  className={styles.table_content_container}
+                >
+                  {map(addressList, (address, index) => {
+                    return (
+                      <AddressItemComponent
+                        address={address}
+                        isSelected={address.id == deliveryAddress.id}
+                        onClickEdit={this.handleEdit}
+                        onClickRemove={this.handleAddressRemove}
+                        onClickItem={()=> selectDeliveryAddress(address)}
+                      />
+                    );
+                  })}
+                </DivColumn>
+              </InitialPageLoader>
+            )}
+            {
+              currentScreen == pageStates.EDIT_ADDRESS && (
+                <AddAddressForm 
+                  addressId={editAddressId}
+                  onSubmitComplete={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+                  onClickCancel={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+              />
+              )
+            }
+            {currentScreen == pageStates.ADD_ADDRESS && (
+              <AddAddressForm 
+                onSubmitComplete={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+                onClickCancel={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
+              />
+            )}
           </DivColumn>
-          <DivColumn>
-            <DivColumn className={styles.order_summary_container}>
-              <div className={styles.order_summary_title}>Order Summary</div>
-              <HorizontalBorder />
 
-              <div className={styles.coupon_header_text}>
-                Choose Delivery Speed
-              </div>
-              {map(deliveryTypes, (delivery, index) => {
-                return (
-                  <DivColumn
-                    className={`${styles.coupon_description_container} ${
-                      selectedDeliveryType === delivery.type
-                        ? styles.selected_delivery
-                        : ""
-                    }`}
-                    onClick={() => this.setDeliveryMethod(delivery.type)}
-                  >
-                    <DivColumn className={styles.coupon_content_container}>
-                      <div className={styles.coupon_title}>{delivery.name}</div>
-                      <div className={styles.coupon_description}>
-                        Get it by {delivery.deliveryDate} | {delivery.priceType}
-                      </div>
-                    </DivColumn>
-                  </DivColumn>
-                );
-              })}
+          <OrderSummary
+            showChooseDelivery
+            submitButtonText="PLACE ORDER"
+            onSubmitButtonClick={this.onPlaceOrderClick}
+          />
 
-              <HorizontalBorder />
-
-              <DivColumn>
-                <div className={styles.coupon_header_text}>Price Details</div>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Bag Total</div>
-                  <div className={styles.value}>KD 1322</div>
-                </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Coupon Discount</div>
-                  <div className={styles.value}>Not Applied</div>
-                </DivRow>
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Order Total</div>
-                  <div className={styles.value}>KD 1103</div>
-                </DivRow>
-                {/* <DivRow className={styles.price_details_container}>
-                    <div className={styles.title}>Delivery Charges</div>
-                    <div className={styles.value}>FREE</div>
-                  </DivRow> */}
-
-                <HorizontalBorder className={styles.price_divider} />
-
-                <DivRow className={styles.price_details_container}>
-                  <div className={styles.title}>Total</div>
-                  <div className={styles.value}>KD 1534</div>
-                </DivRow>
-              </DivColumn>
-
-              <CapsuleButton
-                className={styles.capsule_button}
-                onClick={this.navigateToSelectPayment}
-              >
-                Make Payment
-              </CapsuleButton>
-            </DivColumn>
-          </DivColumn>
         </DivRow>
       </FullWidthContainer>
     );
@@ -224,7 +194,9 @@ class PlaceOrderPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    addressReducer: state.addressReducer
+    addressReducer: state.addressReducer,
+    checkoutReducer: state.checkoutReducer,
+    signInReducer: state.signInReducer,
   };
 };
 
@@ -232,6 +204,10 @@ const mapDispathToProps = dispatch => {
   return {
     getAddressListAction: bindActionCreators(getAddressListAction, dispatch),
     removeAddressAction: bindActionCreators(removeAddressAction, dispatch),
+    selectDeliveryAddress: bindActionCreators(selectDeliveryAddress, dispatch),
+    selectAddressAction: bindActionCreators(selectAddressAction, dispatch),
+    selectShippingMethodAction: bindActionCreators(selectShippingMethodAction, dispatch),
+    showInfoFlashMessage: bindActionCreators(showInfoFlashMessage, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
