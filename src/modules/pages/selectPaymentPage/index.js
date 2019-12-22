@@ -38,8 +38,8 @@ class SelectPaymentPage extends Component {
       checkoutBagAction
     } = this.props;
 
-    checkoutBagAction().then(data => {
-      if(data.code ==200 || data.code == 201) {
+    checkoutBagAction().then(({payload}) => {
+      if(payload.code ==200 || payload.code == 201) {
        navigateTo('');
        showSuccessFlashMessage('Your Order has been successfuly placed');
       }
