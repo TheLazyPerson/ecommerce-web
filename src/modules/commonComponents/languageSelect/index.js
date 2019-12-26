@@ -3,28 +3,22 @@ import styles from "./language_select.module.scss";
 import { withTranslation } from "react-i18next";
 import { LANG } from "Constants/cookieConstants";
 import { CookieService } from "Utils/cookieService";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setLanguageAction } from 'Core/modules/language/languageActions';
 
 class LanguageSelect extends Component {
-  state = {
-    languageCode: "en"
-  };
-
-  componentDidMount() {
-    const languageCode = CookieService.getJSON(LANG) || "en";
-    this.setState({ languageCode });
-  }
 
   changeLanguage = languageCode => {
-    const { i18n } = this.props;
+    const { i18n, setLanguageAction } = this.props;
 
     i18n.changeLanguage(languageCode);
-    this.setState({ languageCode });
+    setLanguageAction(languageCode);
     CookieService.set(LANG, languageCode);
   };
 
   render() {
-    const { blackColor } = this.props;
-    const { languageCode } = this.state;
+    const { blackColor, languageReducer: { languageCode } } = this.props;
     const arSelected = languageCode == "ar";
     const enSelected = languageCode == "en";
 
@@ -53,4 +47,18 @@ class LanguageSelect extends Component {
   }
 }
 
-export default withTranslation()(LanguageSelect);
+
+
+const mapStateToProps = state => {
+  return {
+    languageReducer: state.languageReducer,
+  }
+}
+
+const mapDispathToProps = dispatch => {
+  return {
+    setLanguageAction: bindActionCreators(setLanguageAction, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispathToProps)(withTranslation()(LanguageSelect));

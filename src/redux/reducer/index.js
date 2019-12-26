@@ -14,6 +14,7 @@ import bagReducer from "Core/modules/bag/bagReducer";
 import searchReducer from 'Core/modules/search/searchReducer';
 import orderReducer from 'Core/modules/order/orderReducer';
 import checkoutReducer from 'Core/modules/checkout/checkoutReducer';
+import languageReducer from 'Core/modules/language/languageReducer';
 
 const appReducer = history =>
   combineReducers({
@@ -31,7 +32,8 @@ const appReducer = history =>
     bagReducer,
     searchReducer,
     orderReducer,
-    checkoutReducer
+    checkoutReducer,
+    languageReducer,
   });
 
 /* const rootReducer = ( state, action ) => {
