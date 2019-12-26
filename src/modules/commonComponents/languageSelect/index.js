@@ -16,8 +16,10 @@ class LanguageSelect extends Component {
 
   changeLanguage = languageCode => {
     const { i18n } = this.props;
+
     i18n.changeLanguage(languageCode);
     this.setState({ languageCode });
+    CookieService.set(LANG, languageCode);
   };
 
   render() {
