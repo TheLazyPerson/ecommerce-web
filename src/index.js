@@ -9,20 +9,24 @@ import "./index.css";
 import App from "./modules/routes";
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
-import common_de from "./translations/ar/common.json";
+import common_ar from "./translations/ar/common.json";
 import common_en from "./translations/en/common.json";
+import { LANG } from 'Constants/cookieConstants';
+import { CookieService } from 'Utils/cookieService';
+
+const languageCode = CookieService.getJSON(LANG);
 
 let store = configureStore();
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
-  lng: "en", // language to use
+  lng: languageCode || 'en',
   resources: {
     en: {
       common: common_en
     },
-    de: {
-      common: common_de
+    ar: {
+      common: common_ar
     }
   }
 });

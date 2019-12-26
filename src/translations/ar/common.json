@@ -1,1 +1,11 @@
-{}
+{
+	"common": {
+		"explore_button": "يكتشف",
+		"next_button": "التالى",
+		"prev_button": "السابق"
+	},
+	"home_page": {
+		"trending_now_title": "تتجه الآن",
+		"upcoming_title": "تبقي عين على هذه المعارض"
+	}
+}

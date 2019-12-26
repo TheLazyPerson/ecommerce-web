@@ -1,3 +1,5 @@
+@import '~Styles/mixins.module';
+
 .black {
   color: black;
 }
@@ -7,6 +9,14 @@
 }
 
 .language_item_text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.33;
+
+  @include on_click_button;
+}
+
+.divider {
   font-size: 18px;
   font-weight: 500;
   line-height: 1.33;

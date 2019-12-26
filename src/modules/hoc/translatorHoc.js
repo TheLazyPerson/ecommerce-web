@@ -3,8 +3,6 @@ import { withTranslation, Trans } from 'react-i18next';
 
 const translatorHoc = WrappedComponent => {
   class translator extends Component {
-    // const { i18n } = this.props;
-    // i18n.changeLanguage('en-US');
     translate = (key, variableObject = null) => {
       const { t } = this.props;
 

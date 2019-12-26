@@ -1,11 +1,11 @@
 {
-  "home_page": {
-    "trending_now_title": "TRENDING NOW",
-    "upcoming_title": "KEEP AN EYE ON THESE EXHIBITIONS"
-  },
-  "common": {
-    "explore_button": "Explore",
-    "prev_button": "Prev",
-    "next_button": "Next"
-  }
+	"common": {
+		"explore_button": "Explore",
+		"next_button": "Next",
+		"prev_button": "Prev"
+	},
+	"home_page": {
+		"trending_now_title": "TRENDING NOW",
+		"upcoming_title": "KEEP AN EYE ON THESE EXHIBITIONS"
+	}
 }
