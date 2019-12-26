@@ -28,6 +28,7 @@ import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
 import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
 import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
+import translatorHoc from "Hoc/translatorHoc";
 
 class NewHomePage extends Component {
   state = {
@@ -79,7 +80,8 @@ class NewHomePage extends Component {
       homePageReducer: { exhibitionList, trendingExhibitionList, upcomingExhibitionList },
       getExhibitionListAction,
       getTrendingExhibitionListAction,
-      getUpcomingExhibitionListAction
+      getUpcomingExhibitionListAction,
+      translate,
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -155,7 +157,7 @@ class NewHomePage extends Component {
                                 this.onClickExhibitionItem(exhibition.id)
                               }
                             >
-                              Explore
+                              {translate('common.explore_button')}
                             </DivRow>
                           </ExhibitionDetailComponent>
                         </div>
@@ -182,7 +184,7 @@ class NewHomePage extends Component {
                       className={styles.arrow_left}
                       alt="Arrow"
                     />
-                    Prev
+                    {translate('common.prev_button')}
                   </div>
 
                   <div
@@ -191,7 +193,7 @@ class NewHomePage extends Component {
                       } ${styles.arrow_text}`}
                     onClick={() => this.swiper.slideNext()}
                   >
-                    Next{" "}
+                    {translate('common.next_button')}
                     <img
                       src={arrowRightIcon}
                       className={styles.arrow_right}
@@ -219,7 +221,7 @@ class NewHomePage extends Component {
         </DivColumn>
 
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          TRENDING NOW
+          {translate('home_page.upcoming_title')}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
@@ -230,7 +232,7 @@ class NewHomePage extends Component {
         </InitialPageLoader>
 
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          KEEP AN EYE ON THESE EXHIBITIONS
+          {translate('home_page.upcoming_title')}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
@@ -290,4 +292,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(NewHomePage));
+)(translatorHoc(navigatorHoc(NewHomePage)));
