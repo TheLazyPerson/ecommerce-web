@@ -88,6 +88,14 @@
 		"delivery_time": "Standard delivery in 2-4 day’s",
 		"quantity": "Quantity"
 	},
+	"select_payment": {
+		"choose_payment_method": "CHOOSE PAYMENT METHOD",
+		"cod_description": "Pay cash during delivery",
+		"cod_selected": "Cash on delivery selected",
+		"cod_title": "Cash on delivery",
+		"order_placed": "Your Order has been successfuly placed",
+		"place_order_button": "Place Order"
+	},
 	"signin_page": {
 		"create": "Create an account",
 		"new": "New to MA3RATH?",

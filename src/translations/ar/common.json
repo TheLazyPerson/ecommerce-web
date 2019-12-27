@@ -88,6 +88,14 @@
 		"delivery_time": "تسليم قياسي في 2-4 يوم",
 		"quantity": "كمية"
 	},
+	"select_payment": {
+		"choose_payment_method": "اختر وسيلة الدفع",
+		"cod_description": "دفع نقدا أثناء الولادة",
+		"cod_selected": "نقدا عند التسليم المحدد",
+		"cod_title": "الدفع عن الاستلام",
+		"order_placed": "تم وضع طلبك بنجاح",
+		"place_order_button": "مكان الامر"
+	},
 	"signin_page": {
 		"create": "انشئ حساب",
 		"new": "جديد على MA3RATH؟",
