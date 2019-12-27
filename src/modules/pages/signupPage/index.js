@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import FullWidthContainer from 'CommonContainers/fullwidthContainer';
 import DivColumn from 'CommonComponents/divColumn';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import DivRow from 'CommonComponents/divRow';
 import styles from './signup_page.module.scss';
 import InputTextComponent from 'CommonComponents/InputTextComponent';

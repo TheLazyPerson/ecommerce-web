@@ -1,8 +1,19 @@
 {
 	"common": {
+		"add_to_bag": "Add to Bag",
+		"added_to_bag": "Added to Bag",
+		"added_to_wishlist": "Product added to Wishlist",
 		"explore_button": "Explore",
 		"next_button": "Next",
-		"prev_button": "Prev"
+		"prev_button": "Prev",
+		"removed_from_wishlist": "Product removed from Wishlist",
+		"wishlist": "Wishlist"
+	},
+	"filters": {
+		"categories": "CATEGORIES",
+		"clear_all": "CLEAR ALL",
+		"filters": "FILTERS",
+		"prices": "PRICES"
 	},
 	"footer": {
 		"experience": "EXPERIENCE MA3RATH APP ON MOBILE",
@@ -32,6 +43,10 @@
 	},
 	"masonry_grid": {
 		"show_more": "SHOW MORE"
+	},
+	"quantity_container": {
+		"delivery_time": "Standard delivery in 2-4 day’s",
+		"quantity": "Quantity"
 	},
 	"signin_page": {
 		"create": "Create an account",

@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addToBagAction } from "Core/modules/bag/bagActions";
 import longRightArrow from "Icons/long-right-arrow-white.svg";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class ProductGridItem extends Component {
   state = {
@@ -35,17 +36,18 @@ class ProductGridItem extends Component {
     const {
       product,
       addToWishlistAction,
-      removeFromWishlistAction
+      removeFromWishlistAction,
+      translate
     } = this.props;
 
     if (!isWishlistLoading) {
       if (product.is_wishlisted)
         this.wishlistAction(
           removeFromWishlistAction,
-          "Product removed from Wishlist"
+          translate('common.removed_from_wishlist')
         );
       else
-        this.wishlistAction(addToWishlistAction, "Product added to Wishlist");
+        this.wishlistAction(addToWishlistAction, translate('common.added_to_wishlist'));
     }
   };
 
@@ -83,7 +85,8 @@ class ProductGridItem extends Component {
       addToBagAction,
       showSuccessFlashMessage,
       isUserSignedIn,
-      navigateTo
+      navigateTo,
+      translate,
     } = this.props;
 
     if (isUserSignedIn) {
@@ -94,7 +97,7 @@ class ProductGridItem extends Component {
         is_configurable: is_configurable
       }).then(({ payload }) => {
         if (payload.code === 200 || payload.code === 201) {
-          showSuccessFlashMessage("Added to Bag");
+          showSuccessFlashMessage(translate('common.added_to_bag'));
         }
       });
     } else {
@@ -103,7 +106,7 @@ class ProductGridItem extends Component {
   };
 
   render() {
-    const { exhibitionId, product } = this.props;
+    const { exhibitionId, product, translate } = this.props;
     const { isWishlistLoading } = this.state;
 
     return (
@@ -146,7 +149,7 @@ class ProductGridItem extends Component {
                 this.onClickAddToBag(exhibitionId, product.id, 1, false);
               }}
             >
-              Add to Bag | {product.formatted_price}
+              {`${translate('common.add_to_bag')} | ${product.formatted_price}`}
             </div>
             <img src={longRightArrow} />
           </DivRow>
@@ -180,4 +183,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProductGridItem));
+)(translatorHoc(navigatorHoc(ProductGridItem)));

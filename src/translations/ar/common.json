@@ -1,8 +1,19 @@
 {
 	"common": {
+		"add_to_bag": "أضف الى الحقيبة",
+		"added_to_bag": "أضيفت إلى الحقيبة",
+		"added_to_wishlist": "تم اضافة المنتج الى قائمة الامنيات",
 		"explore_button": "يكتشف",
 		"next_button": "التالى",
-		"prev_button": "السابق"
+		"prev_button": "السابق",
+		"removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
+		"wishlist": "الأماني"
+	},
+	"filters": {
+		"categories": "الاقسام",
+		"clear_all": "امسح الكل",
+		"filters": "مرشحات",
+		"prices": "الأسعار"
 	},
 	"footer": {
 		"experience": "تجربة MA3RATH APP على الهاتف المحمول",
@@ -32,6 +43,10 @@
 	},
 	"masonry_grid": {
 		"show_more": "أظهر المزيد"
+	},
+	"quantity_container": {
+		"delivery_time": "تسليم قياسي في 2-4 يوم",
+		"quantity": "كمية"
 	},
 	"signin_page": {
 		"create": "انشئ حساب",
