@@ -1,4 +1,9 @@
 {
+	"address_item_component": {
+		"edit": "Edit",
+		"phone_number": "Phone Number:",
+		"remove": "Remove"
+	},
 	"checkout_page": {
 		"apply_discount": "Apply Coupon",
 		"bag_total": "Bag Total",
@@ -6,6 +11,8 @@
 		"delivery_speed": "Choose Delivery Speed",
 		"empty_description": "There is nothing in your bag. Let’s add some items.",
 		"empty_title": "Hey, it feels so light!",
+		"express_delivery": "Express Delivery",
+		"free_delivery": "Free Delivery",
 		"get_by": "Get it by",
 		"go_to_wishlist": "ADD ITEMS FROM WISHLIST",
 		"header_exhibition": "Exhibition",
@@ -15,14 +22,17 @@
 		"header_total_price": "Total Price",
 		"order_summary": "Order Summary",
 		"order_total": "Order Total",
+		"paid_delivery": "Paid Delivery",
 		"price_details": "Price Details",
 		"select_delivery_address": "Select Delivery Address",
+		"standard_delivery": "Standard Delivery",
 		"total": "Total"
 	},
 	"common": {
 		"add_to_bag": "Add to Bag",
 		"added_to_bag": "Added to Bag",
 		"added_to_wishlist": "Product added to Wishlist",
+		"address_deleted": "Address Deleted",
 		"explore_button": "Explore",
 		"next_button": "Next",
 		"prev_button": "Prev",
@@ -64,6 +74,15 @@
 	},
 	"masonry_grid": {
 		"show_more": "SHOW MORE"
+	},
+	"place_order_page": {
+		"add_address": "+ ADD NEW ADDRESS",
+		"place_order": "PLACE ORDER",
+		"select_address": "Please select delivery Address",
+		"shipping_method": "Please select shipping Method",
+		"title_add_address": "ADD ADDRESS",
+		"title_edit_address": "EDIT ADDRESS",
+		"title_select_address": "SELECT ADDRESS"
 	},
 	"quantity_container": {
 		"delivery_time": "Standard delivery in 2-4 day’s",

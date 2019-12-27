@@ -27,20 +27,6 @@ class OrderSummary extends Component {
   }
 
   render() {
-    const deliveryTypes = [
-      {
-        type: "standard",
-        name: "Standard Delivery",
-        priceType: "Free Delivery",
-        deliveryDate: "22 Dec"
-      },
-      {
-        type: "express",
-        name: "Express Delivery",
-        priceType: "Paid Delivery",
-        deliveryDate: "18 Dec"
-      }
-    ];
     const {
       checkoutReducer: { shippingMethod },
       bagReducer: { bagData },
@@ -50,6 +36,21 @@ class OrderSummary extends Component {
       submitButtonText,
       translate,
     } = this.props;
+
+    const deliveryTypes = [
+      {
+        type: "standard",
+        name: translate('checkout_page.standard_delivery'),
+        priceType: translate('checkout_page.free_delivery'),
+        deliveryDate: "22 Dec"
+      },
+      {
+        type: "express",
+        name: translate('checkout_page.express_delivery'),
+        priceType: translate('checkout_page.paid_delivery'),
+        deliveryDate: "18 Dec"
+      }
+    ];
 
     return (
       <DivColumn>

@@ -23,7 +23,6 @@ import map from "lodash/map";
 import SectionedHeader from "CommonContainers/sectionedHeader";
 import appIcon from "Images/logo-image.png";
 import navigatorHoc from "Hoc/navigatorHoc";
-import exhibitionImage from "Images/exhibition-item-3.png";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
 import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
@@ -221,7 +220,7 @@ class NewHomePage extends Component {
         </DivColumn>
 
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          {translate('home_page.upcoming_title')}
+          {translate('home_page.trending_now_title')}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>

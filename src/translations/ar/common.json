@@ -1,4 +1,9 @@
 {
+	"address_item_component": {
+		"edit": "تصحيح",
+		"phone_number": "رقم الهاتف:",
+		"remove": "إزالة"
+	},
 	"checkout_page": {
 		"apply_discount": "تطبيق القسيمة",
 		"bag_total": "حقيبة المجموع",
@@ -6,6 +11,8 @@
 		"delivery_speed": "اختيار سرعة التسليم",
 		"empty_description": "لا يوجد شيء في حقيبتك. دعنا نضيف بعض العناصر.",
 		"empty_title": "مهلا ، إنه شعور خفيف جدا!",
+		"express_delivery": "تسليم سريع",
+		"free_delivery": "توصيل مجاني",
 		"get_by": "الحصول عليها من قبل",
 		"go_to_wishlist": "أضف عناصر من قائمة أمنيات",
 		"header_exhibition": "معرض",
@@ -15,14 +22,17 @@
 		"header_total_price": "السعر الكلي",
 		"order_summary": "ملخص الطلب",
 		"order_total": "الطلب الكلي",
+		"paid_delivery": "التسليم المدفوع",
 		"price_details": "تفاصيل السعر",
 		"select_delivery_address": "حدد عنوان التسليم",
+		"standard_delivery": "التسليم القياسية",
 		"total": "مجموع"
 	},
 	"common": {
 		"add_to_bag": "أضف الى الحقيبة",
 		"added_to_bag": "أضيفت إلى الحقيبة",
 		"added_to_wishlist": "تم اضافة المنتج الى قائمة الامنيات",
+		"address_deleted": "تم حذف العنوان",
 		"explore_button": "يكتشف",
 		"next_button": "التالى",
 		"prev_button": "السابق",
@@ -64,6 +74,15 @@
 	},
 	"masonry_grid": {
 		"show_more": "أظهر المزيد"
+	},
+	"place_order_page": {
+		"add_address": "+ إضافة عنوان جديد",
+		"place_order": "مكان الامر",
+		"select_address": "يرجى اختيار عنوان التسليم",
+		"shipping_method": "يرجى اختيار طريقة الشحن",
+		"title_add_address": "اضف عنوان",
+		"title_edit_address": "تعديل العنوان",
+		"title_select_address": "اختر العنوان"
 	},
 	"quantity_container": {
 		"delivery_time": "تسليم قياسي في 2-4 يوم",
