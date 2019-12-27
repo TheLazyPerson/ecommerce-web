@@ -17,6 +17,7 @@ import {
   passwordValidator,
   isEmptyValidator
 } from 'Utils/validators';
+import translatorHoc from 'Hoc/translatorHoc';
 
 class SignUpPage extends Component {
 
@@ -57,10 +58,12 @@ class SignUpPage extends Component {
   }
 
   render() {
+    const { translate } = this.props;
+
     return (
       <FullWidthContainer>
         <DivColumn verticalCenter horizontalCenter className={styles.page_container}>
-          <div className={styles.signin_title_text}>Sign Up</div>
+          <div className={styles.signin_title_text}>{translate('signup_page.page_title')}</div>
           <Form
             onSubmit={this.onSubmit}
             validate={this.validate}
@@ -71,9 +74,9 @@ class SignUpPage extends Component {
                     {
                       ({ input, meta }) => (
                         <InputTextComponent 
-                          meta={meta} 
+                          meta={meta}
                           {...input}
-                          placeholder="Firstname"
+                          placeholder={translate('signup_page.firstname')}
                           className={styles.input_text}
                         />
                       )
@@ -85,7 +88,7 @@ class SignUpPage extends Component {
                         <InputTextComponent
                          meta={meta}
                          {...input}
-                         placeholder="Lastname"
+                         placeholder={translate('signup_page.lastname')}
                          className={styles.input_text}
                         />
                       )
@@ -98,7 +101,7 @@ class SignUpPage extends Component {
                         <InputTextComponent
                          meta={meta}
                          {...input}
-                         placeholder="Email"
+                         placeholder={translate('signup_page.email')}
                          className={styles.input_text}
                         />
                       )
@@ -113,7 +116,7 @@ class SignUpPage extends Component {
                          meta={meta}
                          type="password"
                          {...input}
-                         placeholder="Password"
+                         placeholder={translate('signup_page.password')}
                          className={styles.input_text}
                         />
                       )
@@ -127,7 +130,7 @@ class SignUpPage extends Component {
                          meta={meta}
                          type="password"
                          {...input}
-                         placeholder="Confirm Password"
+                         placeholder={translate('signup_page.confirm_password')}
                          className={styles.input_text}
                         />
                       )
@@ -135,7 +138,7 @@ class SignUpPage extends Component {
                 </Field>
                 <input 
                   type='submit'
-                  value="Create"
+                  value={translate('signup_page.create')}
                   className={styles.input_submit}
                   disabled={submitting}
                 />
@@ -144,8 +147,8 @@ class SignUpPage extends Component {
           />
 
           <div className={styles.create_account_container}>
-            <span className={styles.new_description_text}>Already have an account?&nbsp;</span>
-            <a className={styles.hyper_link} href="/signin">Sign in</a>
+            <span className={styles.new_description_text}>{translate('signup_page.have_account')}&nbsp;</span>
+            <a className={styles.hyper_link} href="/signin">{translate('signup_page.sign_in')}</a>
           </div>
         </DivColumn>
       </FullWidthContainer>
@@ -167,4 +170,4 @@ const mapDispathToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(navigatorHoc(SignUpPage));
+export default connect(mapStateToProps, mapDispathToProps)(translatorHoc(navigatorHoc(SignUpPage)));

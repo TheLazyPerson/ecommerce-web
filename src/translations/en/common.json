@@ -29,5 +29,28 @@
 	"home_page": {
 		"trending_now_title": "TRENDING NOW",
 		"upcoming_title": "KEEP AN EYE ON THESE EXHIBITIONS"
+	},
+	"masonry_grid": {
+		"show_more": "SHOW MORE"
+	},
+	"signin_page": {
+		"create": "Create an account",
+		"new": "New to MA3RATH?",
+		"page_title": "SignIn",
+		"password": "Password",
+		"remember_me": "Remember Me",
+		"sign_in_button": "Sign In",
+		"username": "Username"
+	},
+	"signup_page": {
+		"confirm_password": "Confirm Password",
+		"create": "Create",
+		"email": "Email",
+		"firstname": "First Name",
+		"have_account": "Already have an account?",
+		"lastname": "Last Name",
+		"page_title": "Sign Up",
+		"password": "Password",
+		"sign_in": "Sign In"
 	}
 }

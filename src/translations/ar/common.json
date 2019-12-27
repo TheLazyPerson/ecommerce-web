@@ -29,5 +29,28 @@
 	"home_page": {
 		"trending_now_title": "تتجه الآن",
 		"upcoming_title": "تبقي عين على هذه المعارض"
+	},
+	"masonry_grid": {
+		"show_more": "أظهر المزيد"
+	},
+	"signin_page": {
+		"create": "انشئ حساب",
+		"new": "جديد على MA3RATH؟",
+		"page_title": "تسجيل الدخول",
+		"password": "كلمه السر",
+		"remember_me": "تذكرنى",
+		"sign_in_button": "تسجيل الدخول",
+		"username": "اسم المستخدم"
+	},
+	"signup_page": {
+		"confirm_password": "تأكيد كلمة المرور",
+		"create": "خلق",
+		"email": "البريد الإلكتروني",
+		"firstname": "الاسم الاول",
+		"have_account": "هل لديك حساب؟",
+		"lastname": "الكنية",
+		"page_title": "سجل",
+		"password": "كلمه السر",
+		"sign_in": "تسجيل الدخول"
 	}
 }
