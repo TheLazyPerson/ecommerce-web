@@ -4,6 +4,28 @@
 		"next_button": "التالى",
 		"prev_button": "السابق"
 	},
+	"footer": {
+		"experience": "تجربة MA3RATH APP على الهاتف المحمول",
+		"faq": "التعليمات",
+		"helpcenter": "مركز المساعدة",
+		"home": "الصفحة الرئيسية",
+		"keep_in_touch": "أبق على اتصال",
+		"privacy_policy": "سياسة خاصة",
+		"profile": "الملف الشخصي",
+		"settings": "الإعدادات",
+		"shipping": "الشحن والإرجاع",
+		"terms": "أحكام وشروط",
+		"title_app": "تطبيق",
+		"title_link": "روابط مفيدة",
+		"wishlist": "الأماني"
+	},
+	"header": {
+		"login": "تسجيل الدخول",
+		"register": "تسجيل",
+		"search": "بحث",
+		"search_exhibition": "بحث المعارض",
+		"search_products": "البحث عن المنتجات"
+	},
 	"home_page": {
 		"trending_now_title": "تتجه الآن",
 		"upcoming_title": "تبقي عين على هذه المعارض"
