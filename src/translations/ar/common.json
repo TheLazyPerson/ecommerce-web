@@ -1,4 +1,24 @@
 {
+	"checkout_page": {
+		"apply_discount": "تطبيق القسيمة",
+		"bag_total": "حقيبة المجموع",
+		"coupon_discount": "خصم القسيمة",
+		"delivery_speed": "اختيار سرعة التسليم",
+		"empty_description": "لا يوجد شيء في حقيبتك. دعنا نضيف بعض العناصر.",
+		"empty_title": "مهلا ، إنه شعور خفيف جدا!",
+		"get_by": "الحصول عليها من قبل",
+		"go_to_wishlist": "أضف عناصر من قائمة أمنيات",
+		"header_exhibition": "معرض",
+		"header_price": "السعر",
+		"header_product": "المنتج",
+		"header_quantity": "كمية",
+		"header_total_price": "السعر الكلي",
+		"order_summary": "ملخص الطلب",
+		"order_total": "الطلب الكلي",
+		"price_details": "تفاصيل السعر",
+		"select_delivery_address": "حدد عنوان التسليم",
+		"total": "مجموع"
+	},
 	"common": {
 		"add_to_bag": "أضف الى الحقيبة",
 		"added_to_bag": "أضيفت إلى الحقيبة",
@@ -6,6 +26,7 @@
 		"explore_button": "يكتشف",
 		"next_button": "التالى",
 		"prev_button": "السابق",
+		"removed_from_bag": "تمت إزالة العنصر من الحقيبة",
 		"removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
 		"wishlist": "الأماني"
 	},
@@ -67,5 +88,12 @@
 		"page_title": "سجل",
 		"password": "كلمه السر",
 		"sign_in": "تسجيل الدخول"
+	},
+	"wishlist_page": {
+		"empty_message": "يا سناب! ليس لديك منتج في قائمة أمنياتك.",
+		"exhibition": "معرض",
+		"move_bag": "الانتقال إلى حقيبة",
+		"my_wishlist": "قائمة امنياتي",
+		"start_shopping": "ابدأ التسوق"
 	}
 }

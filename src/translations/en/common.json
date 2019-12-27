@@ -1,4 +1,24 @@
 {
+	"checkout_page": {
+		"apply_discount": "Apply Coupon",
+		"bag_total": "Bag Total",
+		"coupon_discount": "Coupon Discount",
+		"delivery_speed": "Choose Delivery Speed",
+		"empty_description": "There is nothing in your bag. Let’s add some items.",
+		"empty_title": "Hey, it feels so light!",
+		"get_by": "Get it by",
+		"go_to_wishlist": "ADD ITEMS FROM WISHLIST",
+		"header_exhibition": "Exhibition",
+		"header_price": "Price",
+		"header_product": "Product",
+		"header_quantity": "Quantity",
+		"header_total_price": "Total Price",
+		"order_summary": "Order Summary",
+		"order_total": "Order Total",
+		"price_details": "Price Details",
+		"select_delivery_address": "Select Delivery Address",
+		"total": "Total"
+	},
 	"common": {
 		"add_to_bag": "Add to Bag",
 		"added_to_bag": "Added to Bag",
@@ -6,6 +26,7 @@
 		"explore_button": "Explore",
 		"next_button": "Next",
 		"prev_button": "Prev",
+		"removed_from_bag": "Item Removed from Bag",
 		"removed_from_wishlist": "Product removed from Wishlist",
 		"wishlist": "Wishlist"
 	},
@@ -67,5 +88,12 @@
 		"page_title": "Sign Up",
 		"password": "Password",
 		"sign_in": "Sign In"
+	},
+	"wishlist_page": {
+		"empty_message": "Oh Snap! You have no product in your wishlist.",
+		"exhibition": "EXHIBITION",
+		"move_bag": "MOVE TO BAG",
+		"my_wishlist": "My Wishlist",
+		"start_shopping": "START SHOPPING"
 	}
 }

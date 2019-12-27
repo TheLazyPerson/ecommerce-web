@@ -13,7 +13,7 @@ import size from "lodash/size";
 import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
 import OrderSummary from "../placeOrderPage/orderSummary";
-
+import translatorHoc from 'Hoc/translatorHoc';
 class CheckoutPage extends Component {
   navigateToWishlist = () => {
     const { navigateTo } = this.props;
@@ -28,18 +28,19 @@ class CheckoutPage extends Component {
   render() {
     const {
       bagReducer: { bagData },
-      getBagListAction
+      getBagListAction,
+      translate
     } = this.props;
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.table_header}>
-              <div className={styles.flex_2}>Product</div>
-              <div className={styles.flex_1}>Exhibition</div>
-              <div className={styles.flex_1}>Price</div>
-              <div className={styles.flex_1}>Quantity</div>
-              <div className={styles.flex_1}>Total Price</div>
+              <div className={styles.flex_2}>{translate('checkout_page.header_product')}</div>
+              <div className={styles.flex_1}>{translate('checkout_page.header_exhibition')}</div>
+              <div className={styles.flex_1}>{translate('checkout_page.header_price')}</div>
+              <div className={styles.flex_1}>{translate('checkout_page.header_quantity')}</div>
+              <div className={styles.flex_1}>{translate('checkout_page.header_total_price')}</div>
             </DivRow>
 
             <InitialPageLoader
@@ -47,9 +48,9 @@ class CheckoutPage extends Component {
               initialPageApi={getBagListAction}
               customEmptyScreen={
                 <EmptyScreenComponent
-                  title="Hey, it feels so light!"
-                  description="There is nothing in your bag. Let’s add some items."
-                  buttonTitle="ADD ITEMS FROM WISHLIST"
+                  title={translate('checkout_page.empty_title')}
+                  description={translate('checkout_page.empty_description')}
+                  buttonTitle={translate('checkout_page.go_to_wishlist')}
                   className={styles.empty_page_container}
                   buttonOnClick={this.navigateToWishlist}
                 />
@@ -66,7 +67,7 @@ class CheckoutPage extends Component {
           <DivColumn>
             <OrderSummary 
               onSubmitButtonClick={this.navigateToPlaceOrder}
-              submitButtonText="Select Delivery Address"
+              submitButtonText={translate('checkout_page.select_delivery_address')}
             />
           </DivColumn>
         </DivRow>
@@ -90,4 +91,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(CheckoutPage));
+)(navigatorHoc(translatorHoc(CheckoutPage)));

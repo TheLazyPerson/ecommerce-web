@@ -10,6 +10,7 @@ import { bindActionCreators } from "redux";
 import { selectShippingMethod } from "Core/modules/checkout/checkoutActions";
 import { getBagListAction } from "Core/modules/bag/bagActions";
 import isEmpty from 'lodash/isEmpty';
+import translatorHoc from 'Hoc/translatorHoc';
 
 class OrderSummary extends Component {
 
@@ -46,13 +47,14 @@ class OrderSummary extends Component {
       selectShippingMethod,
       onSubmitButtonClick,
       showChooseDelivery,
-      submitButtonText
+      submitButtonText,
+      translate,
     } = this.props;
 
     return (
       <DivColumn>
         <DivColumn className={styles.order_summary_container}>
-          <div className={styles.order_summary_title}>Order Summary</div>
+          <div className={styles.order_summary_title}>{translate('checkout_page.order_summary')}</div>
           {/* <HorizontalBorder />
               <DivRow verticalCenter className={styles.coupon_input}>
                 <img src={couponIcon} className={styles.icon} />
@@ -84,7 +86,7 @@ class OrderSummary extends Component {
             <Fragment>
               <HorizontalBorder />
               <div className={styles.coupon_header_text}>
-                Choose Delivery Speed
+                {translate('checkout_page.delivery_speed')}
               </div>
               {map(deliveryTypes, (delivery, index) => {
                 return (
@@ -99,7 +101,7 @@ class OrderSummary extends Component {
                     <DivColumn className={styles.coupon_content_container}>
                       <div className={styles.coupon_title}>{delivery.name}</div>
                       <div className={styles.coupon_description}>
-                        Get it by {delivery.deliveryDate} | {delivery.priceType}
+                       {`${translate('checkout_page.get_by')} ${delivery.deliveryDate} | ${delivery.priceType}`}
                       </div>
                     </DivColumn>
                   </DivColumn>
@@ -111,17 +113,17 @@ class OrderSummary extends Component {
           <HorizontalBorder />
 
           <DivColumn>
-            <div className={styles.coupon_header_text}>Price Details</div>
+            <div className={styles.coupon_header_text}>{translate('checkout_page.price_details')}</div>
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>Bag Total</div>
+              <div className={styles.title}>{translate('checkout_page.bag_total')}</div>
               <div className={styles.value}>{bagData.formated_grand_total}</div>
             </DivRow>
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>Coupon Discount</div>
-              <div className={styles.value}>Apply Coupon</div>
+              <div className={styles.title}>{translate('checkout_page.coupon_discount')}</div>
+              <div className={styles.value}>{translate('checkout_page.apply_discount')}</div>
             </DivRow>
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>Order Total</div>
+              <div className={styles.title}>{translate('checkout_page.order_total')}</div>
               <div className={styles.value}>{bagData.formated_sub_total}</div>
             </DivRow>
             {/* <DivRow className={styles.price_details_container}>
@@ -132,7 +134,7 @@ class OrderSummary extends Component {
             <HorizontalBorder className={styles.price_divider} />
 
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>Total</div>
+              <div className={styles.title}>{translate('checkout_page.total')}</div>
               <div className={styles.value}>{bagData.formated_sub_total}</div>
             </DivRow>
           </DivColumn>
@@ -170,4 +172,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(OrderSummary);
+)(translatorHoc(OrderSummary));
