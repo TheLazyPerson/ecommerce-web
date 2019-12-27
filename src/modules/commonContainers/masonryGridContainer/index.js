@@ -8,7 +8,7 @@ import styles from "./masonry_grid_container.module.scss";
 import map from "lodash/map";
 import size from 'lodash/size';
 import navigatorHoc from 'Hoc/navigatorHoc';
-
+import translatorHoc from 'Hoc/translatorHoc';
 class MasonryGridContainer extends Component {
   imageStates = [2, 1, 2, 1, 2, 1, 2];
 
@@ -24,7 +24,7 @@ class MasonryGridContainer extends Component {
   }
 
   render() {
-    const { exhibitionList, showMoreTitle } = this.props;
+    const { exhibitionList, showMoreTitle, translate } = this.props;
 
     return (
       <DivColumn className={styles.masonary_container}>
@@ -55,7 +55,7 @@ class MasonryGridContainer extends Component {
                     fillParent
                     className={styles.content_container}
                   >
-                    <div className={styles.title}>SHOW MORE</div>
+                    <div className={styles.title}>{translate('masonry_grid.show_more')}</div>
                   </DivColumn>
               </DivColumn>
               )
@@ -89,4 +89,4 @@ class MasonryGridContainer extends Component {
 // https://source.unsplash.com/500x500/?product
 MasonryGridContainer.propTypes = {};
 
-export default navigatorHoc(MasonryGridContainer);
+export default translatorHoc(navigatorHoc(MasonryGridContainer));

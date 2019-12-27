@@ -13,11 +13,16 @@ import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { checkoutBagAction, selectPaymentMethodAction } from 'Core/modules/checkout/checkoutActions';
 import checkedIconBlack from 'Icons/checked-icon-black.svg';
 import OrderSummary from '../placeOrderPage/orderSummary';
+import translatorHoc from 'Hoc/translatorHoc';
 
 class SelectPaymentPage extends Component {
 
   componentDidMount() {
-    const { selectPaymentMethodAction, showSuccessFlashMessage } = this.props;
+    const {
+      selectPaymentMethodAction,
+      showSuccessFlashMessage,
+      translate
+    } = this.props;
     const paymentMethodObject = {
       payment: {
         method: 'cashondelivery'
@@ -26,7 +31,7 @@ class SelectPaymentPage extends Component {
 
     selectPaymentMethodAction(paymentMethodObject).then(({ payload })=> {
       if(payload.code == 200 || payload.code == 201) {
-        showSuccessFlashMessage('Cash on delivery selected');
+        showSuccessFlashMessage(translate('select_payment.cod_selected'));
       }
     })
   }
@@ -35,33 +40,36 @@ class SelectPaymentPage extends Component {
     const {
       navigateTo,
       showSuccessFlashMessage,
-      checkoutBagAction
+      checkoutBagAction,
+      translate,
     } = this.props;
 
     checkoutBagAction().then(({payload}) => {
       if(payload.code ==200 || payload.code == 201) {
        navigateTo('');
-       showSuccessFlashMessage('Your Order has been successfuly placed');
+       showSuccessFlashMessage(translate('select_payment.order_placed'));
       }
     });
   }
 
   render() {
+    const { translate } = this.props;
+
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
 
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.header_container}>
-              <div className={styles.header_title}>CHOOSE PAYMENT METHOD</div>
+              <div className={styles.header_title}>{translate('select_payment.choose_payment_method')}</div>
             </DivRow>
 
             <DivColumn fillParent className={styles.payment_method_container}>
 
               <DivRow verticalCenter className={styles.payment_method_item_container}>
                 <DivColumn style={{flex:1}}>
-                  <div className={styles.title}>Cash on delivery</div>
-                  <div className={styles.description}>Pay cash during delivery</div>
+                  <div className={styles.title}>{translate('select_payment.cod_title')}</div>
+                  <div className={styles.description}>{translate('select_payment.cod_description')}</div>
                 </DivColumn>
                 <img src={checkedIconBlack} className={styles.icon}/>
               </DivRow>
@@ -72,7 +80,7 @@ class SelectPaymentPage extends Component {
           <DivColumn>
             <OrderSummary 
               onSubmitButtonClick={this.placeOrder}
-              submitButtonText="Place Order"
+              submitButtonText={translate('select_payment.place_order_button')}
             />
           </DivColumn>
         </DivRow>
@@ -95,4 +103,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   null,
   mapDispathToProps
-)(navigatorHoc(SelectPaymentPage));
+)(navigatorHoc(translatorHoc(SelectPaymentPage)));

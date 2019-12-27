@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from './address_item_component.module.scss';
+import translatorHoc from 'Hoc/translatorHoc';
 
 class AddressItemComponent extends Component {
   render() {
@@ -10,7 +11,8 @@ class AddressItemComponent extends Component {
       onClickEdit,
       onClickRemove,
       isSelected,
-      onClickItem
+      onClickItem,
+      translate
     } = this.props;
     
     return (
@@ -27,7 +29,7 @@ class AddressItemComponent extends Component {
             {address.country} - {address.postcode}
           </div>
           <div className={styles.item_phonenumber}>
-            Phone Number: {address.country_code}-{address.phone_number}
+            {`${translate('address_item_component.phone_number')} ${address.country_code}-${address.phone_number}`}
           </div>
         </DivColumn>
         <DivRow className={styles.action_container}>
@@ -38,7 +40,7 @@ class AddressItemComponent extends Component {
               onClickEdit(address.id)
             }}
           >
-            Edit
+            {translate('address_item_component.edit')}
           </div>
           <div
             className={styles.action_button}
@@ -47,7 +49,7 @@ class AddressItemComponent extends Component {
               onClickRemove(address.id)
             }}
           >
-            Remove
+            {translate('address_item_component.remove')}
           </div>
         </DivRow>
       </DivColumn>
@@ -55,4 +57,4 @@ class AddressItemComponent extends Component {
   }
 }
 
-export default AddressItemComponent;
+export default translatorHoc(AddressItemComponent);

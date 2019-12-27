@@ -2,22 +2,31 @@ import React, { Component, Fragment } from "react";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./quantity_component.module.scss";
 import BareQuantityComponent from "CommonComponents/bareQuantityComponent";
+import translatorHoc from 'Hoc/translatorHoc';
 
-export default class QuantityComponent extends Component {
+class QuantityComponent extends Component {
   render() {
-    const { quantity, incrementItem, decreaseItem } = this.props;
+    const {
+      quantity,
+      incrementItem,
+      decreaseItem,
+      translate
+    } = this.props;
+    
     return (
       <Fragment>
         <DivColumn>
-          <div className={styles.quantity_title}>Quantity</div>
+          <div className={styles.quantity_title}>{translate('quantity_container.quantity')}</div>
           <BareQuantityComponent
             quantity={quantity}
             incrementItem={incrementItem}
             decreaseItem={decreaseItem}
           />
         </DivColumn>
-        <div className={styles.sub_info}>Standerd delivery in 2-4 day’s</div>
+        <div className={styles.sub_info}>{translate('quantity_container.delivery_time')}</div>
       </Fragment>
     );
   }
 }
+
+export default translatorHoc(QuantityComponent);

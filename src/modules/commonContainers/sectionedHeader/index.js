@@ -16,6 +16,7 @@ import profileIconWhite from "Icons/profile-icon-white.svg";
 import HorizontalBorder from "CommonComponents/horizontalBorder";
 import { searchTypes } from "Constants/searchConstants";
 import { connect } from "react-redux";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class SectionedHeader extends Component {
   clickedOnSearchItem = false;
@@ -94,7 +95,7 @@ class SectionedHeader extends Component {
 
   render() {
     const { searchText, showSearchResult } = this.state;
-    const { isUserSignedIn, bagCount, whiteColor } = this.props;
+    const { isUserSignedIn, bagCount, whiteColor, translate } = this.props;
 
     return (
       <DivRow className={styles.header_container}>
@@ -110,7 +111,7 @@ class SectionedHeader extends Component {
               <input
                 type="text"
                 name="query"
-                placeholder="Search"
+                placeholder={translate('header.search')}
                 className={`${styles.search_input} ${
                   !(showSearchResult && searchText) && whiteColor
                     ? styles.is_white
@@ -143,7 +144,7 @@ class SectionedHeader extends Component {
               onClick={() => this.onSearchItemSelected(searchTypes.EXHIBITIONS)}
             >
               <DivColumn>
-                <div className={styles.title}>Search Exhibitions</div>
+                <div className={styles.title}>{translate('header.search_exhibition')}</div>
                 <div className={styles.description}>{searchText}</div>
               </DivColumn>
               <img /> {/*Icon*/}
@@ -156,7 +157,7 @@ class SectionedHeader extends Component {
               onClick={() => this.onSearchItemSelected(searchTypes.PRODUCTS)}
             >
               <DivColumn>
-                <div className={styles.title}>Search Products</div>
+                <div className={styles.title}>{translate('header.search_products')}</div>
                 <div className={styles.description}>{searchText}</div>
               </DivColumn>
               <img /> {/*Icon*/}
@@ -206,7 +207,7 @@ class SectionedHeader extends Component {
               } ${whiteColor ? styles.is_white : ""}`}
               href="/signin"
             >
-              Signin
+              {translate('header.login')}
             </a>
           )}
           {!isUserSignedIn && (
@@ -216,7 +217,7 @@ class SectionedHeader extends Component {
               } ${whiteColor ? styles.is_white : ""}`}
               href="/signup"
             >
-              SignUp
+              {translate('header.register')}
             </a>
           )}
           {/* <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} /> */}
@@ -233,4 +234,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(navigatorHoc(SectionedHeader));
+export default connect(mapStateToProps, null)(translatorHoc(navigatorHoc(SectionedHeader)));

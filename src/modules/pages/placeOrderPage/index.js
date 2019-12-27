@@ -29,7 +29,7 @@ import AddAddressForm from "CommonContainers/addAddressForm";
 import { pageStates } from "./constants";
 import OrderSummary from "./orderSummary";
 import isEmpty from 'lodash/isEmpty';
-
+import translatorHoc from 'Hoc/translatorHoc';
 class PlaceOrderPage extends Component {
   state = {
     currentScreen: pageStates.SELECT_ADDRESS,
@@ -50,29 +50,35 @@ class PlaceOrderPage extends Component {
   };
 
   handleAddressRemove = id => {
-    const { removeAddressAction, showSuccessFlashMessage } = this.props;
+    const {
+      removeAddressAction,
+      showSuccessFlashMessage,
+      translate
+    } = this.props;
+
     removeAddressAction(id).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
-        showSuccessFlashMessage("Address Deleted");
+        showSuccessFlashMessage(translate('common.address_deleted'));
         window.location.reload(false);
       }
     });
   };
 
   onPlaceOrderClick = () => {
-    const { 
+    const {
       checkoutReducer: { deliveryAddress, shippingMethod },
       signInReducer: { userDetails },
       selectAddressAction,
       selectShippingMethodAction,
       showInfoFlashMessage,
       navigateTo,
+      translate,
     } = this.props;
 
     if (isEmpty(deliveryAddress)) {
-      showInfoFlashMessage('Please select delivery Address');
+      showInfoFlashMessage(translate('place_order_page.select_address'));
     }  else if(isEmpty(shippingMethod)) {
-      showInfoFlashMessage('Please select shipping Method'); 
+      showInfoFlashMessage(translate('place_order_page.shipping_method'));
     } else {
       const selectAddressObject = {
         billing: {
@@ -100,7 +106,6 @@ class PlaceOrderPage extends Component {
         }
       })
     }
-
   }
 
   onClickHeaderBack = () => {
@@ -116,13 +121,14 @@ class PlaceOrderPage extends Component {
       addressReducer: { addressList },
       checkoutReducer: { deliveryAddress },
       getAddressListAction,
-      selectDeliveryAddress
+      selectDeliveryAddress,
+      translate,
     } = this.props;
     const { currentScreen, editAddressId } = this.state;
-    let navHeaderTitle = "SELECT ADDRESS";
+    let navHeaderTitle = translate('place_order_page.title_select_address');
 
-    if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "ADD ADDRESS";
-    else if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = "EDIT ADDRESS";
+    if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = translate('place_order_page.title_add_address');
+    else if (currentScreen == pageStates.ADD_ADDRESS) navHeaderTitle = translate('place_order_page.title_edit_address');
 
     return (
       <FullWidthContainer>
@@ -135,7 +141,7 @@ class PlaceOrderPage extends Component {
             >
               {currentScreen == pageStates.SELECT_ADDRESS && (
                 <CapsuleButton onClick={() => this.changePageState(pageStates.ADD_ADDRESS)}>
-                  + ADD NEW ADDRESS
+                  {translate('place_order_page.add_address')}
                 </CapsuleButton>
               )}
             </NavHeader>
@@ -165,15 +171,15 @@ class PlaceOrderPage extends Component {
             )}
             {
               currentScreen == pageStates.EDIT_ADDRESS && (
-                <AddAddressForm 
+                <AddAddressForm
                   addressId={editAddressId}
                   onSubmitComplete={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
                   onClickCancel={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
-              />
+                />
               )
             }
             {currentScreen == pageStates.ADD_ADDRESS && (
-              <AddAddressForm 
+              <AddAddressForm
                 onSubmitComplete={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
                 onClickCancel={()=>this.changePageState(pageStates.SELECT_ADDRESS)}
               />
@@ -182,7 +188,7 @@ class PlaceOrderPage extends Component {
 
           <OrderSummary
             showChooseDelivery
-            submitButtonText="PLACE ORDER"
+            submitButtonText={translate('place_order_page.place_order')}
             onSubmitButtonClick={this.onPlaceOrderClick}
           />
 
@@ -218,4 +224,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(PlaceOrderPage));
+)(navigatorHoc(translatorHoc(PlaceOrderPage)));
