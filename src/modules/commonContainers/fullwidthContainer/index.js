@@ -21,15 +21,11 @@ class FullWidthContainer extends Component {
      return (
        <DivColumn fillParent className={styles.page_container}>
          <DivColumn fillParent className={styles.content_container}>
+
           <DivRow className={styles.header_container}>
             <DivRow className={styles.header_icon_container}>
               <img src={appIcon}  className={styles.app_icon} onClick={this.onClickAppIcon} />
-              <div style={{
-                fontWeight: 'bold',
-                marginLeft: 6,
-                marginRight: 32,
-                cursor: 'pointer'
-              }} onClick={this.onClickAppIcon}>MA3RATH</div>
+              <div className={styles.app_name} onClick={this.onClickAppIcon}>MA3RATH</div>
               <LanguageSelect blackColor/>
             </DivRow>
             <SectionedHeader />

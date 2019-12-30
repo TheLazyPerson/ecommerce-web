@@ -47,7 +47,11 @@ class SectionedHeader extends Component {
 
     return (
       <DivRow className={styles.header_container}>
-        <SearchBar whiteColor={whiteColor} />
+        <SearchBar
+          className={styles.search_bar_container}
+          whiteColor={whiteColor} 
+        />
+        
         <DivRow verticalCenter>
           <DivRow
             className={styles.header_item_container}

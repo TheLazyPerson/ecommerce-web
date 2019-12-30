@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./language_select.module.scss";
+import DivRow from 'CommonComponents/divRow';
 import { withTranslation } from "react-i18next";
 import { LANG } from "Constants/cookieConstants";
 import { CookieService } from "Utils/cookieService";
@@ -23,7 +24,10 @@ class LanguageSelect extends Component {
     const enSelected = languageCode == "en";
 
     return (
-      <div className={`${blackColor ? styles.black : styles.white}`}>
+      <DivRow
+       className={`${blackColor ? styles.black : styles.white}`}
+       verticalCenter
+      >
         <span
           className={`${styles.language_item_text} ${
             !enSelected ? styles.not_selected : ""
@@ -42,7 +46,7 @@ class LanguageSelect extends Component {
         >
           العربي
         </span>
-      </div>
+      </DivRow>
     );
   }
 }
