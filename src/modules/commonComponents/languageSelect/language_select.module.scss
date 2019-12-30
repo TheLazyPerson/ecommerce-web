@@ -11,7 +11,6 @@
 .language_item_text {
   font-size: 18px;
   font-weight: 500;
-  line-height: 1.33;
 
   @include on_click_button;
 }
@@ -19,9 +18,29 @@
 .divider {
   font-size: 18px;
   font-weight: 500;
-  line-height: 1.33;
 }
 
 .not_selected {
   opacity: 0.3;
+}
+
+
+@include medium {
+  .language_item_text {
+    font-size: 16px;
+  }
+  
+  .divider {
+    font-size: 16px;
+  }
+}
+
+@include small {
+  .language_item_text {
+    font-size: 12px;
+  }
+  
+  .divider {
+    font-size: 12px;
+  }
 }

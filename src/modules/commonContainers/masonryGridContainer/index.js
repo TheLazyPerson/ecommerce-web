@@ -20,7 +20,8 @@ class MasonryGridContainer extends Component {
   };
 
   onClickShowMore = () => {
-
+    const { navigateTo } = this.props;
+    navigateTo("trending-exhibitions");
   }
 
   render() {
