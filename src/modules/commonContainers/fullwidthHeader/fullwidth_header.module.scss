@@ -1,0 +1,70 @@
+@import '~Styles/colors.module';
+@import '~Styles/mixins.module';
+
+.header_container {
+  height: 84px;
+  padding: 18px 60px;
+  align-self: stretch;
+
+  .header_icon_container {
+    width: 40%;
+    align-items: center;
+
+    .app_icon {
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .app_name {
+      font-weight: bold;
+      margin-left: 6px;
+      margin-right: 32px;
+      cursor: pointer;
+    }
+  }
+}
+
+
+
+@include medium {
+  .header_container {
+    height: 60px;
+    padding: 10px 28px;
+  
+    .header_icon_container {
+      width: unset;
+  
+      .app_icon {
+        height: 15px;
+      }
+
+      .app_name {
+        margin-left: 6px;
+        margin-right: 18px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+
+@include small {
+  .header_container {
+    height: 50px;
+    padding: 8px 20px;
+  
+    .header_icon_container {
+      width: unset;
+  
+      .app_icon {
+        height: 12px;
+      }
+
+      .app_name {
+        margin-left: 4px;
+        margin-right: 12px;
+        font-size: 12px;
+      }
+    }
+  }
+}

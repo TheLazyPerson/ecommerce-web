@@ -28,6 +28,7 @@ import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponen
 import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
 import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 import translatorHoc from "Hoc/translatorHoc";
+import FullwidthHeader from 'CommonContainers/fullwidthHeader';
 
 class NewHomePage extends Component {
   state = {
@@ -51,12 +52,6 @@ class NewHomePage extends Component {
     :
     showHeaderShadow && this.setState({showHeaderShadow: false})
  }
-
-
-  onClickAppIcon = () => {
-    const { navigateTo } = this.props;
-    navigateTo("");
-  };
 
   onClickExhibitionItem = id => {
     const { navigateTo } = this.props;
@@ -241,24 +236,11 @@ class NewHomePage extends Component {
 
 
         {/* Absolute position */}
-        <DivRow className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}>
-          <DivRow className={styles.header_icon_container}>
-            <img
-              src={appIcon}
-              className={styles.app_icon}
-              onClick={this.onClickAppIcon}
-            />
-            <div style={{
-                fontWeight: 'bold',
-                marginLeft: 6,
-                marginRight: 32,
-                color: 'white',
-                cursor: 'pointer'
-              }} onClick={this.onClickAppIcon}>MA3RATH</div>
-            <LanguageSelect whiteColor />
-          </DivRow>
-          <SectionedHeader whiteColor />
-        </DivRow>
+        <FullwidthHeader
+          whiteColor
+          className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}
+        />
+
       </DivColumn>
     );
   }
