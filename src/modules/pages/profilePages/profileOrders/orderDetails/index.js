@@ -23,6 +23,10 @@ class OrderDetails extends Component {
 
   render() {
     const { getOrderDetailsAction, orderReducer: {orderDetails}, match } = this.props;
+    const {
+      shipping_address: shippingAddress,
+      items: productItems,
+    } = orderDetails;
     const { orderId } = match.params;
 
     return (
@@ -55,77 +59,90 @@ class OrderDetails extends Component {
                 <DivColumn className={styles.value_container}>
                   <div
                     className={styles.contact_text}
-                  >{`Phone: +965-955-5836-852`}</div>
+                  >{`Phone: +91 9584758695`}</div>
                   <div
                     className={styles.contact_text}
                   >{`Email: ${orderDetails.customer_email}`}</div>
                 </DivColumn>
                 <div className={styles.header_text}>SHIPPING ADDRESS</div>
                 <DivColumn className={styles.value_container}>
-                  <div className={styles.name_text}>Omar Lastname</div>
+                  <div className={styles.name_text}>{`${shippingAddress.first_name} ${shippingAddress.last_name}`}</div>
                   <div className={styles.address_text}>
-                    Building 43B 4th Floor, Suite 402 Street Number 3 P.O. Box
-                    593 Kuwait Safat 13006
+                    {shippingAddress.address1}
                   </div>
                 </DivColumn>
                 <div className={styles.header_text}>PRICING SUMMARY</div>
                 <DivColumn className={styles.value_container}>
                   <DivRow>
                     <div className={styles.price_title}>MRP:</div>
-                    <div className={styles.value}>KD 273</div>
+                    <div className={styles.value}>{orderDetails.formated_sub_total}</div>
                   </DivRow>
                   <DivRow>
                     <div className={styles.price_title}>Discount:</div>
-                    <div className={styles.value}>KD 30</div>
+                    <div className={styles.value}>{orderDetails.formated_discount_amount}</div>
                   </DivRow>
-                  <DivRow>
+                  {/* <DivRow>
                     <div className={styles.price_title}>Item Discount:</div>
-                    <div className={styles.value}>KD 30</div>
-                  </DivRow>
+                    <div className={styles.value}></div>
+                  </DivRow> */}
                   <DivRow>
                     <div className={styles.price_title}>Total:</div>
-                    <div className={styles.value}>KD 333</div>
+                    <div className={styles.value}>{orderDetails.formated_grand_total}</div>
                   </DivRow>
                 </DivColumn>
               </DivColumn>
 
               <DivColumn className={styles.right_container}>
-                {" "}
                 {/*right container*/}
                 <div className={styles.top_header_text}>
                   ITEMS IN THIS ORDER
                 </div>
-                <DivRow className={styles.product_item_container}>
-                  <img className={styles.product_image} />
+                
+                {/* <DivRow className={styles.product_item_container}>
+                  <img
+                    className={styles.product_image}       
+                  />
                   <DivColumn className={styles.product_content_container}>
                     <div className={styles.product_name}>
                       Handcrafted Watches, Products
                     </div>
                     <div className={styles.product_type}>Category</div>
                     <div className={styles.product_price}>
-                      KD <b>3.99</b>
+                      {productItem.formated_price}
                     </div>
                   </DivColumn>
-                </DivRow>
-                <DivRow className={styles.product_item_container}>
-                  <img className={styles.product_image} />
-                  <DivColumn className={styles.product_content_container}>
-                    <div className={styles.product_name}>
-                      Handcrafted Watches, Products
-                    </div>
-                    <div className={styles.product_type}>Category</div>
-                    <div className={styles.product_price}>
-                      KD <b>3.99</b>
-                    </div>
-                  </DivColumn>
-                </DivRow>
-                <DivColumn className={styles.exhibition_container}>
+                </DivRow> */}
+
+                {
+                  map(productItems, (productItem, index) => (
+                    <DivRow className={styles.product_item_container}>
+                      <img
+                        className={styles.product_image}
+                        style={{
+                          backgroundImage: `url(https://source.unsplash.com/200x20${index}/?product)`,
+                        }}
+                      />
+                      <DivColumn className={styles.product_content_container}>
+                        <div className={styles.product_name}>
+                          {productItem.name}
+                        </div>
+                        <div className={styles.product_type}>{productItem.type}</div>
+                        <div className={styles.product_price}>
+                        {productItem.formated_price}
+                        </div>
+                      </DivColumn>
+                    </DivRow>  
+                  ))
+                }
+
+                {/* <DivColumn className={styles.exhibition_container}>
                   <div className={styles.exhibition_title}>EXHIBITION</div>
                   <DivRow verticalCenter>
                     <img className={styles.exhibition_image} />
                     <div className={styles.exhibition_name}>The Craft Show</div>
                   </DivRow>
-                </DivColumn>
+                </DivColumn> */}
+
               </DivColumn>
             </DivRow>
           </DivColumn>

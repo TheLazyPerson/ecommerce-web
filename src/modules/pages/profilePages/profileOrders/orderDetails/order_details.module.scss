@@ -16,6 +16,7 @@
     .order_status_text {
       font-size: 12px;
       color: $color-green-apple;
+      text-transform: capitalize;
     }
 
     .order_placed_text {
@@ -114,6 +115,7 @@
           .product_type {
             font-size: 12px;
             font-weight: 300;
+            text-transform: capitalize;
           }
 
           .product_price {
