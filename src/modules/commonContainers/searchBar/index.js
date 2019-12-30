@@ -16,7 +16,7 @@ import profileIconWhite from "Icons/profile-icon-white.svg";
 import HorizontalBorder from "CommonComponents/horizontalBorder";
 import { searchTypes } from "Constants/searchConstants";
 import { connect } from "react-redux";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class SearchBar extends Component {
   clickedOnSearchItem = false;
@@ -78,76 +78,78 @@ class SearchBar extends Component {
 
   render() {
     const { searchText, showSearchResult } = this.state;
-    const { translate, whiteColor } = this.props;
+    const { translate, whiteColor, className } = this.props;
 
     return (
-      <div className={styles.search_container}>
-      <DivRow
-        className={`${styles.search_wrapper} ${
-          searchText && showSearchResult
-            ? styles.search_wrapper_expanded
-            : ""
-        }`}
-      >
-        <form className={styles.search_form} onSubmit={this.onSubmitSearch}>
-          <input
-            type="text"
-            name="query"
-            placeholder={translate('header.search')}
-            className={`${styles.search_input} ${
+      <div className={`${styles.search_container} ${className}`}>
+        <DivRow
+          className={`${styles.search_wrapper} ${
+            searchText && showSearchResult ? styles.search_wrapper_expanded : ""
+          }`}
+        >
+          <form className={styles.search_form} onSubmit={this.onSubmitSearch}>
+            <input
+              type="text"
+              name="query"
+              placeholder={translate("header.search")}
+              className={`${styles.search_input} ${
+                !(showSearchResult && searchText) && whiteColor
+                  ? styles.is_white
+                  : ""
+              }`}
+              onChange={this.onChangeSearchText}
+              onFocus={this.showSearchBar}
+              onBlur={this.hideSearchBar}
+              autoComplete="off"
+            />
+          </form>
+          <img
+            src={
               !(showSearchResult && searchText) && whiteColor
-                ? styles.is_white
-                : ""
-            }`}
-            onChange={this.onChangeSearchText}
-            onFocus={this.showSearchBar}
-            onBlur={this.hideSearchBar}
-            autoComplete="off"
+                ? searchIconWhite
+                : searchIcon
+            }
+            className={styles.search_icon}
           />
-        </form>
-        <img
-          src={
-            !(showSearchResult && searchText) && whiteColor
-              ? searchIconWhite
-              : searchIcon
-          }
-          className={styles.search_icon}
-        />
-      </DivRow>
-
-      <DivColumn
-        className={`${styles.search_result_container} ${
-          searchText && showSearchResult ? "" : styles.hide_search_bar
-        }`}
-      >
-        <div className={styles.filling_gap}></div>
-        <DivRow
-          className={styles.search_item}
-          onClick={() => this.onSearchItemSelected(searchTypes.EXHIBITIONS)}
-        >
-          <DivColumn>
-            <div className={styles.title}>{translate('header.search_exhibition')}</div>
-            <div className={styles.description}>{searchText}</div>
-          </DivColumn>
-          <img /> {/*Icon*/}
         </DivRow>
 
-        <HorizontalBorder className={styles.divider} />
-
-        <DivRow
-          className={styles.search_item}
-          onClick={() => this.onSearchItemSelected(searchTypes.PRODUCTS)}
+        <DivColumn
+          className={`${styles.search_result_container} ${
+            searchText && showSearchResult ? "" : styles.hide_search_bar
+          }`}
         >
-          <DivColumn>
-            <div className={styles.title}>{translate('header.search_products')}</div>
-            <div className={styles.description}>{searchText}</div>
-          </DivColumn>
-          <img /> {/*Icon*/}
-        </DivRow>
-      </DivColumn>
-    </div>
+          <div className={styles.filling_gap}></div>
+          <DivRow
+            className={styles.search_item}
+            onClick={() => this.onSearchItemSelected(searchTypes.EXHIBITIONS)}
+          >
+            <DivColumn>
+              <div className={styles.title}>
+                {translate("header.search_exhibition")}
+              </div>
+              <div className={styles.description}>{searchText}</div>
+            </DivColumn>
+            <img /> {/*Icon*/}
+          </DivRow>
+
+          <HorizontalBorder className={styles.divider} />
+
+          <DivRow
+            className={styles.search_item}
+            onClick={() => this.onSearchItemSelected(searchTypes.PRODUCTS)}
+          >
+            <DivColumn>
+              <div className={styles.title}>
+                {translate("header.search_products")}
+              </div>
+              <div className={styles.description}>{searchText}</div>
+            </DivColumn>
+            <img /> {/*Icon*/}
+          </DivRow>
+        </DivColumn>
+      </div>
     );
   }
 }
 
-export default translatorHoc(SearchBar);
+export default navigatorHoc(translatorHoc(SearchBar));
