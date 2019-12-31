@@ -78,7 +78,10 @@ const navigatorHoc = WrappedComponent => {
           return navigationFunction("/profile/details/edit-profile");
         
         case "trending-exhibitions":
-            return navigationFunction("/trending-exhibitions");
+          return navigationFunction("/trending-exhibitions");
+
+        case "faq":
+          return navigationFunction("/faq");
 
         case "search":
           return navigationFunction(
