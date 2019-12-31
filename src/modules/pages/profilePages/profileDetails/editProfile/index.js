@@ -22,8 +22,14 @@ import {
   isEmptyValidator,
   emailValidator
 } from "Utils/validators";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class EditProfile extends Component {
+  state = {
+    startDate: null
+  };
+
   onBackPress = () => {
     const { pop } = this.props;
     pop();
@@ -74,7 +80,7 @@ class EditProfile extends Component {
     Object.keys(validators).forEach(key => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
-
+    
     return errors;
   };
 
@@ -86,6 +92,19 @@ class EditProfile extends Component {
     const {
       profileDetailsReducer: { userDetails }
     } = this.props;
+    const { startDate } = this.state;
+    const CustomRenderInput = ({ input, value, onClick, meta }) => {
+      return (
+        <InputTextComponent
+          {...input}
+          meta={meta}
+          placeholder="Birthday"
+          value={value}
+          className={styles.input_text}
+          onClick={onClick}
+        />
+      );
+    };
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
@@ -101,7 +120,15 @@ class EditProfile extends Component {
             email: userDetails.email ? userDetails.email : "",
             birthday: userDetails.birthday ? userDetails.birthday : ""
           }}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
+          render={({
+            handleSubmit,
+            form: {
+              mutators: { mutateValue }
+            },
+            submitting,
+            pristine,
+            values
+          }) => (
             <form className={styles.form_container} onSubmit={handleSubmit}>
               <Field name="firstName">
                 {({ input, meta }) => (
@@ -153,13 +180,35 @@ class EditProfile extends Component {
                   />
                 )}
               </Field>
+              {/* <Field name="birthday">
+                {({ input, meta }) => (                  
+                  <DatePicker
+                    selected={startDate}
+                    onChange={date => setStartDate(date)}
+                    customInput={({value, onClick})=> (
+                      <InputTextComponent
+                        meta={meta}
+                        {...input}
+                        placeholder="Birthday"
+                        className={styles.input_text}
+                        onClick={onClick}
+                      />
+                    )}
+                  />
+                )}
+              </Field> */}
               <Field name="birthday">
                 {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder="Birthday"
-                    className={styles.input_text}
+                  <DatePicker
+                    selected={startDate}
+                    onChange={date => {
+                      this.setState({ startDate: date })
+                      input.onChange(date.toString());
+                    }}
+                    maxDate={new Date()}
+                    customInput={
+                      <CustomRenderInput meta={meta} input={input} />
+                    }
                   />
                 )}
               </Field>
