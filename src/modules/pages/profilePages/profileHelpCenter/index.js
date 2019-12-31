@@ -106,7 +106,7 @@ class ProfileHelpCenter extends Component {
                     )}
                   </Field>
                   <DivRow>
-                    <CapsuleButton type="submit" disabled={submitting}>
+                    <CapsuleButton type="submit" disabled={submitting} onClick={()=>this.onSubmit(values)}>
                       Get Callback
                     </CapsuleButton>
                   </DivRow>
