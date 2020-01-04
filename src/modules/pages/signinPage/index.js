@@ -10,6 +10,7 @@ import { bindActionCreators } from "redux";
 import { postSigninAction } from "Core/modules/signin/actions/signinActions";
 import { CookieService } from "Utils/cookieService";
 import { USER_DATA_COOKIE } from "Constants/cookieConstants";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class SignInPage extends Component {
   state = {
@@ -38,6 +39,7 @@ class SignInPage extends Component {
 
   render() {
     const { userName, password } = this.state;
+    const { translate } = this.props;
 
     return (
       <FullWidthContainer>
@@ -46,10 +48,10 @@ class SignInPage extends Component {
           horizontalCenter
           className={styles.page_container}
         >
-          <div className={styles.signin_title_text}>SignIn</div>
+          <div className={styles.signin_title_text}>{translate('signin_page.page_title')}</div>
           <form className={styles.form_container} onSubmit={this.onSubmit}>
             <InputTextComponent
-              placeholder="Username"
+              placeholder={translate('signin_page.username')}
               className={styles.input_text}
               value={userName}
               onChange={event =>
@@ -58,7 +60,7 @@ class SignInPage extends Component {
             />
 
             <InputTextComponent
-              placeholder="Password"
+              placeholder={translate('signin_page.password')}
               className={styles.input_text}
               type="password"
               value={password}
@@ -67,10 +69,10 @@ class SignInPage extends Component {
               }
             />
 
-            <InputCheckbox text="Remember me" />
+            <InputCheckbox text={translate('signin_page.remember_me')} />
             <input
               type="submit"
-              value="Sign in"
+              value={translate('signin_page.sign_in_button')}
               className={styles.input_submit}
             />
           </form>
@@ -79,10 +81,10 @@ class SignInPage extends Component {
           </a> */}
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>
-              New to MA3RATH?&nbsp;
+            {translate('signin_page.new')}&nbsp;
             </span>
             <a className={styles.hyper_link} href="/signup">
-              Create an account
+            {translate('signin_page.create')}
             </a>
           </div>
         </DivColumn>
@@ -106,4 +108,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(SignInPage));
+)(translatorHoc(navigatorHoc(SignInPage)));

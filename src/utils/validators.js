@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 export const nameValidator = value => {
   const nameRegex = /^[A-Za-z]+$/;
   let error = "";
@@ -45,7 +47,7 @@ export const passwordValidator = (password, confirmPassword) => {
 };
 
 export const isEmptyValidator = value => {
-  if (!value)
+  if (isEmpty(value))
     return {
       result: false,
       error: "Required"

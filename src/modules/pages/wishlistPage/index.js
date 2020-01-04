@@ -12,6 +12,7 @@ import map from "lodash/map";
 import size from "lodash/size";
 import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class WishlistPage extends Component {
   navigateToHome = () => {
@@ -22,20 +23,21 @@ class WishlistPage extends Component {
   render() {
     const {
       getWishlistAction,
-      wishlistReducer: { wishlist }
+      wishlistReducer: { wishlist },
+      translate
     } = this.props;
 
     return (
       <FullWidthContainer>
         <DivColumn fillParent className={styles.wishlist_container}>
-          <div className={styles.page_header}>My Wishlist</div>
+          <div className={styles.page_header}>{translate('wishlist_page.my_wishlist')}</div>
           <InitialPageLoader
             isEmpty={!size(wishlist)}
             initialPageApi={getWishlistAction}
             customEmptyScreen={
               <EmptyScreenComponent
-                description="Oh Snap! You have no product in your wishlist."
-                buttonTitle="START SHOPPING"
+                description={translate('wishlist_page.empty_message')}
+                buttonTitle={translate('wishlist_page.start_shopping')}
                 buttonOnClick={this.navigateToHome}
                 className={styles.empty_screen_container}
               />
@@ -68,4 +70,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(WishlistPage));
+)(navigatorHoc(translatorHoc(WishlistPage)));

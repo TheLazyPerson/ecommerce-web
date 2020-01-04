@@ -32,6 +32,7 @@ import EditAddress from "./pages/profilePages/profileAddress/editAddress";
 import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 import PlaceOrderPage from "./pages/placeOrderPage";
 import SelectPaymentPage from "./pages/selectPaymentPage";
+import TrendingExhibitionsPage from './pages/trendingExhibitionsPage';
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -74,7 +75,7 @@ const App = ({ isUserSignedIn }) => {
       />
       <ProtectedRoute
         exact
-        path="/profile/orders/details"
+        path="/profile/orders/details/:orderId?"
         component={orderDetails}
         redirectTo="signin"
         validator={() => isUserSignedIn}
@@ -175,6 +176,12 @@ const App = ({ isUserSignedIn }) => {
         path="/shipping-and-returns"
         component={ShippingAndReturnsPage}
       />
+      <Route
+        exact
+        path="/trending-exhibitions"
+        component={TrendingExhibitionsPage}
+      />
+
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route exact path="/faq" component={FAQPage} />
 
