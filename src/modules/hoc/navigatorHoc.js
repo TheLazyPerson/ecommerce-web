@@ -48,7 +48,7 @@ const navigatorHoc = WrappedComponent => {
           return navigationFunction("/profile/orders");
 
         case "order-details":
-          return navigationFunction("/profile/orders/details");
+          return navigationFunction(`/profile/orders/details/${data.orderId}`);
 
         case "help-center":
           return navigationFunction("/profile/helpcenter");
@@ -76,6 +76,12 @@ const navigatorHoc = WrappedComponent => {
 
         case "edit-profile":
           return navigationFunction("/profile/details/edit-profile");
+        
+        case "trending-exhibitions":
+          return navigationFunction("/trending-exhibitions");
+
+        case "faq":
+          return navigationFunction("/faq");
 
         case "search":
           return navigationFunction(

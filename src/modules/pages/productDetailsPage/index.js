@@ -22,6 +22,7 @@ import { addToBagAction } from "Core/modules/bag/bagActions";
 import map from "lodash/map";
 import "swiper/css/swiper.css";
 import bagWhiteIcon from "Icons/cart-bag-icon-white.svg";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class ProductDetailsPage extends Component {
   state = {
@@ -136,7 +137,8 @@ class ProductDetailsPage extends Component {
     const { imageList, selectedImage, isWishlistLoading } = this.state;
     const {
       productDetailReducer: { productDetail },
-      getProductDetailAction
+      getProductDetailAction,
+      translate,
     } = this.props;
 
     const params = {
@@ -223,7 +225,7 @@ class ProductDetailsPage extends Component {
                       }
                     >
                       <img src={bagWhiteIcon} className={styles.button_icon} />
-                      <div className={styles.button_text}>Add to Bag</div>
+                      <div className={styles.button_text}>{translate('common.add_to_bag')}</div>
                     </DivRow>
                     <DivRow
                       verticalCenter
@@ -241,7 +243,7 @@ class ProductDetailsPage extends Component {
                         }
                         className={styles.button_icon}
                       />
-                      <div className={styles.button_text}>Wishlist</div>
+                      <div className={styles.button_text}>{translate('common.wishlist')}</div>
                     </DivRow>
                   </DivRow>
                 </ExhibitionDetailComponent>
@@ -284,4 +286,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProductDetailsPage));
+)(translatorHoc(navigatorHoc(ProductDetailsPage)));

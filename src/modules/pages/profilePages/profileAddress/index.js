@@ -14,6 +14,7 @@ import { bindActionCreators } from "redux";
 import map from "lodash/map";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import navigatorHoc from "Hoc/navigatorHoc";
+import AddressItemComponent from 'CommonComponents/addressItemComponent';
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 
 class ProfileAddress extends Component {
@@ -68,38 +69,11 @@ class ProfileAddress extends Component {
               </DivRow>
               {map(default_address, (address, index) => {
                 return (
-                  <DivColumn className={styles.address_item}>
-                    <DivColumn
-                      fillParent
-                      className={styles.item_content_container}
-                    >
-                      <div className={styles.item_name}>{address.name}</div>
-                      <div className={styles.item_address}>
-                        {address.address1}, <br />
-                        {address.address2}, <br />
-                        {address.city}, {address.state}, <br />
-                        {address.country} - {address.postcode}
-                      </div>
-                      <div className={styles.item_phonenumber}>
-                        Phone Number: {address.country_code}-
-                        {address.phone_number}
-                      </div>
-                    </DivColumn>
-                    <DivRow className={styles.action_container}>
-                      <div
-                        className={styles.action_button}
-                        onClick={() => this.handleEdit(address.id)}
-                      >
-                        Edit
-                      </div>
-                      <div
-                        className={styles.action_button}
-                        onClick={() => this.handleRemove(address.id)}
-                      >
-                        Remove
-                      </div>
-                    </DivRow>
-                  </DivColumn>
+                  <AddressItemComponent
+                    address={address}
+                    onClickEdit={this.handleEdit}
+                    onClickRemove={this.handleRemove}
+                  />
                 );
               })}
             </DivColumn>
@@ -111,38 +85,11 @@ class ProfileAddress extends Component {
                 </DivRow>
                 {map(other_address, (address, index) => {
                   return (
-                    <DivColumn className={styles.address_item}>
-                      <DivColumn
-                        fillParent
-                        className={styles.item_content_container}
-                      >
-                        <div className={styles.item_name}>{address.name}</div>
-                        <div className={styles.item_address}>
-                          {address.address1}, <br />
-                          {address.address2}, <br />
-                          {address.city}, {address.state}, <br />
-                          {address.country} - {address.postcode}
-                        </div>
-                        <div className={styles.item_phonenumber}>
-                          Phone Number: {address.country_code}-
-                          {address.phone_number}
-                        </div>
-                      </DivColumn>
-                      <DivRow className={styles.action_container}>
-                        <div
-                          className={styles.action_button}
-                          onClick={() => this.handleEdit(address.id)}
-                        >
-                          Edit
-                        </div>
-                        <div
-                          className={styles.action_button}
-                          onClick={() => this.handleRemove(address.id)}
-                        >
-                          Remove
-                        </div>
-                      </DivRow>
-                    </DivColumn>
+                    <AddressItemComponent
+                      address={address}
+                      onClickEdit={this.handleEdit}
+                      onClickRemove={this.handleRemove}
+                    />
                   );
                 })}
               </DivColumn>

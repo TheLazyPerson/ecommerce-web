@@ -57,7 +57,9 @@ class SectionedContainer extends Component {
               <SectionedHeader />
             </DivRow>
             {/* children/content */}
-            { !isAbsoluteContent && children }
+            <DivColumn fillParent className={styles.content_container}>
+              { !isAbsoluteContent && children }
+            </DivColumn>
           </DivColumn>
           
           { isAbsoluteContent && children }

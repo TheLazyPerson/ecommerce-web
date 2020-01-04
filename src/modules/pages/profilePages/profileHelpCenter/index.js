@@ -14,8 +14,27 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { sendFeedbackAction } from "Core/modules/support/supportActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import map from "lodash/map";
+import navigatorHoc from 'Hoc/navigatorHoc';
 
 class ProfileHelpCenter extends Component {
+  state = {
+    helpCenterList: [
+      {
+        title: "TRACK, CANCEL, RETURN/EXCHANGE",
+        description: "Check your order status",
+        image: cartIcon,
+        redirectTo: "orders"
+      },
+      {
+        title: "FREQUENTLY ASKED QUESTIONS",
+        description: "More queries related to your experience",
+        image: faqIcon,
+        redirectTo: "faq"
+      }
+    ]
+  };
+
   validate = values => {
     const errors = {};
     const validators = {
@@ -46,40 +65,36 @@ class ProfileHelpCenter extends Component {
     pop();
   };
 
+  onHelpCenterItemSelect = redirectTo => {
+    const { navigateTo } = this.props;
+    navigateTo(redirectTo);
+  };
+
   render() {
+    const { helpCenterList } = this.state;
+
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <NavHeader title="Help Center" />
 
         <DivColumn fillParent className={styles.help_center_container}>
           <DivRow className={styles.list_container}>
-            <DivColumn
-              verticalCenter
-              horizontalCenter
-              className={styles.item_container}
-            >
-              <img src={cartIcon} className={styles.item_icon} />
-              <div className={styles.item_title}>
-                TRACK, CANCEL, RETURN/EXCHANGE
-              </div>
-              <div className={styles.item_description}>
-                Check your order status
-              </div>
-            </DivColumn>
-
-            <DivColumn
-              verticalCenter
-              horizontalCenter
-              className={styles.item_container}
-            >
-              <img src={faqIcon} className={styles.item_icon} />
-              <div className={styles.item_title}>
-                FREQUENTLY ASKED QUESTIONS
-              </div>
-              <div className={styles.item_description}>
-                More queries related to your experience
-              </div>
-            </DivColumn>
+            {map(helpCenterList, helpCenterItem => (
+              <DivColumn
+                verticalCenter
+                horizontalCenter
+                className={styles.item_container}
+                onClick={() =>
+                  this.onHelpCenterItemSelect(helpCenterItem.redirectTo)
+                }
+              >
+                <img src={helpCenterItem.image} className={styles.item_icon} />
+                <div className={styles.item_title}>{helpCenterItem.title}</div>
+                <div className={styles.item_description}>
+                  {helpCenterItem.description}
+                </div>
+              </DivColumn>
+            ))}
           </DivRow>
           <div className={styles.form_header}>NEED MORE HELP FROM US</div>
 
@@ -106,7 +121,11 @@ class ProfileHelpCenter extends Component {
                     )}
                   </Field>
                   <DivRow>
-                    <CapsuleButton type="submit" disabled={submitting}>
+                    <CapsuleButton
+                      type="submit"
+                      disabled={submitting}
+                      onClick={() => this.onSubmit(values)}
+                    >
                       Get Callback
                     </CapsuleButton>
                   </DivRow>
@@ -136,4 +155,7 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(ProfileHelpCenter);
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(navigatorHoc(ProfileHelpCenter));

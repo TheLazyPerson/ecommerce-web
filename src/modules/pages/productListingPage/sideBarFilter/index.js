@@ -3,23 +3,26 @@ import DivColumn from 'CommonComponents/divColumn';
 import DivRow from 'CommonComponents/divRow';
 import InputCheckbox from '../../../commonComponents/InputCheckbox';
 import styles from './side_bar_filter.module.scss';
+import translatorHoc from 'Hoc/translatorHoc';
 
-export default class SideBarFilter extends Component {
+class SideBarFilter extends Component {
   render() {
+    const { translate } = this.props;
+
      return (
       <DivColumn>
         <DivRow className={styles.filter_top_heading_container}>
           <div className={styles.filter_text}>
-            FILTERS
+            {translate('filters.filters')}
           </div>
           <div className={styles.clear_text}>
-            CLEAR ALL
+          {translate('filters.clear_all')}
           </div>
         </DivRow>
 
         <DivColumn className={styles.filters_container}>
           <div className={styles.filter_sub_header}>
-            CATEGORIES
+          {translate('filters.categories')}
           </div>
           <DivColumn className={styles.filters_list_container}>
             <InputCheckbox text="Shirt" textStyle={styles.checkbox_text} />
@@ -31,7 +34,7 @@ export default class SideBarFilter extends Component {
 
         <DivColumn className={styles.filters_container}>
           <div className={styles.filter_sub_header}>
-           PRICES
+          {translate('filters.prices')}
           </div>
 
           <DivColumn className={styles.filters_list_container}>
@@ -45,3 +48,5 @@ export default class SideBarFilter extends Component {
      )
   }
 }
+
+export default translatorHoc(SideBarFilter);

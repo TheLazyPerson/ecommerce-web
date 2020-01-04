@@ -7,7 +7,8 @@ import { removeFromWishlistAction } from 'Core/modules/wishlist/wishlistActions'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from 'Redux/actions/flashMessageActions';
-
+import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from 'Hoc/translatorHoc';
 class WishlistItemComponent extends Component {
 
   state = {
@@ -15,7 +16,12 @@ class WishlistItemComponent extends Component {
   }
 
   onClickRemove = () => {
-    const { wishlistItem, removeFromWishlistAction, showSuccessFlashMessage } = this.props;
+    const {
+      wishlistItem,
+      removeFromWishlistAction,
+      showSuccessFlashMessage,
+      translate,
+    } = this.props;
     
     this.setState({ isRemoving: true });
     removeFromWishlistAction({
@@ -23,7 +29,7 @@ class WishlistItemComponent extends Component {
       exhibition_id: wishlistItem.exhibition.id
     }).then(({payload}) => {
       if(payload.code == 200 || payload.code == 201) {
-        showSuccessFlashMessage('Product removed from wishlist')
+        showSuccessFlashMessage(translate('common.removed_from_wishlist'))
       }
       this.setState({ isRemoving: false });
     }).catch(error => {
@@ -32,7 +38,7 @@ class WishlistItemComponent extends Component {
   }
 
   render() {
-    const { wishlistItem: { product, exhibition } } = this.props;
+    const { wishlistItem: { product, exhibition }, translate } = this.props;
     const { isRemoving } = this.state;
 
     return (
@@ -49,13 +55,13 @@ class WishlistItemComponent extends Component {
         </DivColumn>
 
         <DivColumn className={styles.additional_details_container}>
-          <div className={styles.title}>EXHIBITION</div>
+          <div className={styles.title}>{translate('wishlist_page.exhibition')}</div>
           <div className={styles.name}>{exhibition.title}</div>
           <div className={styles.time}>Expires in:  40 Mins</div>
         </DivColumn>
 
         <div className={styles.bag_button}>
-          MOVE TO BAG
+          {translate('wishlist_page.move_bag')}
         </div>
 
       </DivColumn>
@@ -71,4 +77,4 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispathToProps)(WishlistItemComponent);
+export default connect(null, mapDispathToProps)(translatorHoc(navigatorHoc(WishlistItemComponent)));

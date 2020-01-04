@@ -1,109 +1,11 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
-$search-container-background: $color-dessert-storm;
 $bag-count-background: $color-pale;
 
 .header_container {
   flex: 1;
   align-items: center;
-
-  .search_container {
-    flex: 1;
-    position: relative;
-
-    .hide_search_bar {
-      display: none;
-    }
-
-    .search_result_container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 300px;
-      margin-top: 48px;
-      background-color: $search-container-background;
-      border-radius: 0px 0px 24px 24px;
-      color: $primary-text-color;
-      box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
-      z-index: 5;
-
-      .search_item {
-        padding: 6px 19px;
-        
-
-        &:hover {
-          cursor: pointer;
-          background: $primary-text-color;
-  
-          .title {
-            color: white;
-          }
-  
-          .description {
-            color: white;
-          }
-        }
-
-        .title {
-          font-size: 14px;
-          font-weight: bold;
-        }
-  
-        .description {
-          font-size: 10px;
-          font-weight: 300;
-        }
-      }
-
-      .divider {
-        background: #eeeeee;
-      }
-    }
-
-    .search_wrapper {
-      align-items: center;
-      width: 300px;
-      height: 48px;
-      padding: 0px 30px 0px 30px;
-      border-radius: 24px;
-      background-color: rgba($search-container-background, 0.3);      
-      z-index: 0;
-
-      .search_form {
-        display: flex;
-        flex: 1;
-        
-        .search_input {
-          border: 0;
-          flex: 1;
-          background: transparent;
-          color: $primary-text-color;
-  
-          &:focus {
-            outline: none;
-          }
-        }
-
-        .is_white {
-          color: white;
-        }
-        .is_white::placeholder {
-          color: white;
-        }
-      }
-
-      .search_icon {
-        width: 17px;
-        height: 17px;
-      }
-    }
-
-    .search_wrapper_expanded {
-      background-color: $search-container-background;      
-      border-radius: 24px 24px 0px 0px;
-    }
-  }
-
 
   .header_item_container {
     margin-left: 30px;
@@ -126,9 +28,9 @@ $bag-count-background: $color-pale;
     color: white;
   }
 
-  .hamburger_icon {
-    height: 19px;
-  }
+  // .hamburger_icon {
+  //   height: 19px;
+  // }
 
   .bag_count {
     width: 24px;
@@ -147,10 +49,49 @@ $bag-count-background: $color-pale;
     object-fit: contain;
   }
   
-  .arrow_down_icon {
-    width: 10px;
-    height: 5.7px;
-    object-fit: contain;
-    margin-left: 10px;
+  // .arrow_down_icon {
+  //   width: 10px;
+  //   height: 5.7px;
+  //   object-fit: contain;
+  //   margin-left: 10px;
+  // }
+}
+
+@include medium {
+  .header_container {
+    justify-content: flex-end;
+    
+    .header_item_container {
+      margin-left: 20px;
+    }
+
+    .header_icon {
+      height: 20px;
+    }
+
+    .profile_pic {
+      width: 26px;
+      height: 26px;
+    }
+
+    .search_bar_container {
+      display: none;
+    }
+  }
+}
+
+@include small {
+  .header_container {
+    .header_item_container {
+      margin-left: 10px;
+    }
+
+    .header_icon {
+      height: 15px;
+    }
+    .profile_pic {
+      width: 20px;
+      height: 20px;
+      }
   }
 }

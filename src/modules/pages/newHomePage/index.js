@@ -23,11 +23,12 @@ import map from "lodash/map";
 import SectionedHeader from "CommonContainers/sectionedHeader";
 import appIcon from "Images/logo-image.png";
 import navigatorHoc from "Hoc/navigatorHoc";
-import exhibitionImage from "Images/exhibition-item-3.png";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
 import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
 import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
+import translatorHoc from "Hoc/translatorHoc";
+import FullwidthHeader from 'CommonContainers/fullwidthHeader';
 
 class NewHomePage extends Component {
   state = {
@@ -52,12 +53,6 @@ class NewHomePage extends Component {
     showHeaderShadow && this.setState({showHeaderShadow: false})
  }
 
-
-  onClickAppIcon = () => {
-    const { navigateTo } = this.props;
-    navigateTo("");
-  };
-
   onClickExhibitionItem = id => {
     const { navigateTo } = this.props;
     navigateTo("plp", {
@@ -79,7 +74,8 @@ class NewHomePage extends Component {
       homePageReducer: { exhibitionList, trendingExhibitionList, upcomingExhibitionList },
       getExhibitionListAction,
       getTrendingExhibitionListAction,
-      getUpcomingExhibitionListAction
+      getUpcomingExhibitionListAction,
+      translate,
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -91,7 +87,6 @@ class NewHomePage extends Component {
         <DivColumn
           style={{
             backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
-
           }}
           fillSelfHorizontal
           className={styles.hero_section_container}
@@ -155,7 +150,7 @@ class NewHomePage extends Component {
                                 this.onClickExhibitionItem(exhibition.id)
                               }
                             >
-                              Explore
+                              {translate('common.explore_button')}
                             </DivRow>
                           </ExhibitionDetailComponent>
                         </div>
@@ -182,7 +177,7 @@ class NewHomePage extends Component {
                       className={styles.arrow_left}
                       alt="Arrow"
                     />
-                    Prev
+                    {translate('common.prev_button')}
                   </div>
 
                   <div
@@ -191,7 +186,7 @@ class NewHomePage extends Component {
                       } ${styles.arrow_text}`}
                     onClick={() => this.swiper.slideNext()}
                   >
-                    Next{" "}
+                    {translate('common.next_button')}
                     <img
                       src={arrowRightIcon}
                       className={styles.arrow_right}
@@ -219,17 +214,18 @@ class NewHomePage extends Component {
         </DivColumn>
 
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          TRENDING NOW
+          {translate('home_page.trending_now_title')}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
           <MasonryGridContainer
             exhibitionList={trendingExhibitionList}
+            showMoreTitle
           />
         </InitialPageLoader>
 
         <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          KEEP AN EYE ON THESE EXHIBITIONS
+          {translate('home_page.upcoming_title')}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
@@ -240,24 +236,11 @@ class NewHomePage extends Component {
 
 
         {/* Absolute position */}
-        <DivRow className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}>
-          <DivRow className={styles.header_icon_container}>
-            <img
-              src={appIcon}
-              className={styles.app_icon}
-              onClick={this.onClickAppIcon}
-            />
-            <div style={{
-                fontWeight: 'bold',
-                marginLeft: 6,
-                marginRight: 32,
-                color: 'white',
-                cursor: 'pointer'
-              }} onClick={this.onClickAppIcon}>MA3RATH</div>
-            <LanguageSelect whiteColor />
-          </DivRow>
-          <SectionedHeader whiteColor />
-        </DivRow>
+        <FullwidthHeader
+          whiteColor
+          className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}
+        />
+
       </DivColumn>
     );
   }
@@ -289,4 +272,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(NewHomePage));
+)(translatorHoc(navigatorHoc(NewHomePage)));

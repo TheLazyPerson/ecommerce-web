@@ -3,7 +3,6 @@ import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./checkout_item_component.module.scss";
 import BareQuantityComponent from "CommonComponents/bareQuantityComponent";
-import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import closeIcon from "Icons/close-icon-black.svg";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -15,16 +14,18 @@ import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import navigatorHoc from "Hoc/navigatorHoc";
 import minusIcon from "Icons/minus-icon.svg";
 import plusIcon from "Icons/plus-icon.svg";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class CheckoutItemComponent extends Component {
   state = {
     quantity: this.props.checkoutItem.quantity
   };
+
   handleRemove = id => {
-    const { removeFromBagAction, showSuccessFlashMessage } = this.props;
+    const { removeFromBagAction, showSuccessFlashMessage, translate } = this.props;
     removeFromBagAction(id).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
-        showSuccessFlashMessage("Item Removed");
+        showSuccessFlashMessage(translate('common.removed_from_bag'));
       }
     });
   };
@@ -58,6 +59,7 @@ class CheckoutItemComponent extends Component {
     });
     this.onEditQuanity();
   };
+
   onEditQuanity = () => {
     const { editQuantityAction, checkoutItem } = this.props;
     const id = checkoutItem.id;
@@ -165,4 +167,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(CheckoutItemComponent));
+)(translatorHoc(navigatorHoc(CheckoutItemComponent)));

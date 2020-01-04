@@ -6,10 +6,11 @@ import DivRow from 'CommonComponents/divRow';
 import exhibitionImage from "Images/exhibition-item-3.png";
 import styles from "./masonry_grid_container.module.scss";
 import map from "lodash/map";
+import size from 'lodash/size';
 import navigatorHoc from 'Hoc/navigatorHoc';
-
+import translatorHoc from 'Hoc/translatorHoc';
 class MasonryGridContainer extends Component {
-  imageStates = [2, 1, 2, 1, 2, 2, 1];
+  imageStates = [2, 1, 2, 1, 2, 1, 2];
 
   onClickExhibitionItem = id => {
     const { navigateTo } = this.props;
@@ -18,8 +19,13 @@ class MasonryGridContainer extends Component {
     });
   };
 
+  onClickShowMore = () => {
+    const { navigateTo } = this.props;
+    navigateTo("trending-exhibitions");
+  }
+
   render() {
-    const { exhibitionList } = this.props;
+    const { exhibitionList, showMoreTitle, translate } = this.props;
 
     return (
       <DivColumn className={styles.masonary_container}>
@@ -34,6 +40,26 @@ class MasonryGridContainer extends Component {
 
             if (index > 6) {
               typeIndex = index % 7;
+            }
+            
+            if(showMoreTitle && index > 6){
+              return null;
+            } else if (showMoreTitle && index == 6) {
+              return (
+                <DivColumn
+                  className={`${styles.grid_load_more_container} ${styles[`type${this.imageStates[typeIndex]}`]}`}
+                  onClick={()=> this.onClickShowMore()}
+                >
+                  <DivColumn
+                    verticalCenter
+                    horizontalCenter
+                    fillParent
+                    className={styles.content_container}
+                  >
+                    <div className={styles.title}>{translate('masonry_grid.show_more')}</div>
+                  </DivColumn>
+              </DivColumn>
+              )
             }
 
             return (
@@ -64,4 +90,4 @@ class MasonryGridContainer extends Component {
 // https://source.unsplash.com/500x500/?product
 MasonryGridContainer.propTypes = {};
 
-export default navigatorHoc(MasonryGridContainer);
+export default translatorHoc(navigatorHoc(MasonryGridContainer));
