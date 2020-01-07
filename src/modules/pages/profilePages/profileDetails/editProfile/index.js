@@ -24,6 +24,8 @@ import {
 } from "Utils/validators";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select';
+import DivColumn from 'CommonComponents/divColumn';
 
 class EditProfile extends Component {
   state = {
@@ -80,7 +82,7 @@ class EditProfile extends Component {
     Object.keys(validators).forEach(key => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
-    
+
     return errors;
   };
 
@@ -93,6 +95,11 @@ class EditProfile extends Component {
       profileDetailsReducer: { userDetails }
     } = this.props;
     const { startDate } = this.state;
+    const genderOptions = [
+      { value: 'male', label: 'Male' },
+      { value: 'female', label: 'Female' }
+    ];
+
     const CustomRenderInput = ({ input, value, onClick, meta }) => {
       return (
         <InputTextComponent
@@ -129,100 +136,94 @@ class EditProfile extends Component {
             pristine,
             values
           }) => (
-            <form className={styles.form_container} onSubmit={handleSubmit}>
-              <Field name="firstName">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder="First Name"
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="lastName">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder="Last Name"
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="gender">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder="Gender"
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="mobileNumber">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder="Mobile Number"
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="email">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder="Email Address"
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              {/* <Field name="birthday">
-                {({ input, meta }) => (                  
-                  <DatePicker
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
-                    customInput={({value, onClick})=> (
-                      <InputTextComponent
-                        meta={meta}
-                        {...input}
-                        placeholder="Birthday"
-                        className={styles.input_text}
-                        onClick={onClick}
-                      />
-                    )}
-                  />
-                )}
-              </Field> */}
-              <Field name="birthday">
-                {({ input, meta }) => (
-                  <DatePicker
-                    selected={startDate}
-                    onChange={date => {
-                      this.setState({ startDate: date })
-                      input.onChange(date.toString());
-                    }}
-                    maxDate={new Date()}
-                    customInput={
-                      <CustomRenderInput meta={meta} input={input} />
-                    }
-                  />
-                )}
-              </Field>
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <Field name="firstName">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="First Name"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+                <Field name="lastName">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Last Name"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
 
-              <DivRow className={styles.form_button_container}>
-                <SecondaryCapsuleButton onClick={this.onClickCancel}>
-                  Cancel
+                <Field name="gender">
+                  {({ input, meta }) => (
+                    <DivColumn className='input_select_container'>
+                      <Select
+                        options={genderOptions}
+                        onChange={value => {
+                          input.onChange(value.value)
+                        }}
+                        className='react-select-container'
+                        classNamePrefix="react-select"
+                        placeholder="Gender"
+                        //defaultValue={genderOptions[1]}
+                      />
+                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                    </DivColumn>
+                  )}
+                </Field>
+
+                <Field name="mobileNumber">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Mobile Number"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+
+                <Field name="email">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Email Address"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+
+                <Field name="birthday">
+                  {({ input, meta }) => (
+                    <DatePicker
+                      selected={startDate}
+                      onChange={date => {
+                        this.setState({ startDate: date })
+                        input.onChange(date.toString());
+                      }}
+                      maxDate={new Date()}
+                      customInput={
+                        <CustomRenderInput meta={meta} input={input} />
+                      }
+                    />
+                  )}
+                </Field>
+
+                <DivRow className={styles.form_button_container}>
+                  <SecondaryCapsuleButton onClick={this.onClickCancel}>
+                    Cancel
                 </SecondaryCapsuleButton>
-                <CapsuleButton type="submit" disabled={submitting}>
-                  Save Details
+                  <CapsuleButton type="submit" disabled={submitting}>
+                    Save Details
                 </CapsuleButton>
-              </DivRow>
-            </form>
-          )}
+                </DivRow>
+              </form>
+            )}
         />
       </SectionedContainer>
     );
