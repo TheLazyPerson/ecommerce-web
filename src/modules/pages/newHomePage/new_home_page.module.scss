@@ -206,3 +206,20 @@
   color: $color-gold;
   margin: 77px 0px 50px;
 }
+
+.section_container {
+  margin-bottom: 50px;
+}
+
+.seller_container {
+
+  .description {
+    font-size: 25px;
+    margin-bottom: 18px;
+  }
+
+  .seller_button {
+    font-size: 14px;
+    @include on_click_button;
+  }
+}

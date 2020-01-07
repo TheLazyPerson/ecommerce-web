@@ -29,6 +29,7 @@ import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
 import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 import translatorHoc from "Hoc/translatorHoc";
 import FullwidthHeader from 'CommonContainers/fullwidthHeader';
+import CapsuleButton from 'CommonComponents/capsuleButton';
 
 class NewHomePage extends Component {
   state = {
@@ -59,6 +60,10 @@ class NewHomePage extends Component {
       id
     });
   };
+
+  onClickSellerButton = () => {
+    window.location.href = 'http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/';    
+  }
 
   render() {
     const params = {
@@ -232,8 +237,22 @@ class NewHomePage extends Component {
           <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
         </InitialPageLoader>
 
-        <PageFooter />
+        <DivColumn
+          horizontalCenter
+          fillSelfHorizontal
+          className={`${styles.section_container} ${styles.seller_container}`}
+        >
+          <div className={styles.description}>Looking to sell on this platform</div>
+          <CapsuleButton
+            className={styles.seller_button}
+            onClick={this.onClickSellerButton}
+          >
+            Go to seller
+          </CapsuleButton>
+        </DivColumn>
+        
 
+        <PageFooter />
 
         {/* Absolute position */}
         <FullwidthHeader
