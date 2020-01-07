@@ -242,7 +242,7 @@ class NewHomePage extends Component {
           fillSelfHorizontal
           className={`${styles.section_container} ${styles.seller_container}`}
         >
-          <div className={styles.description}>Looking to sell on this platform</div>
+          <div className={styles.description}>Looking to sell on this platform?</div>
           <CapsuleButton
             className={styles.seller_button}
             onClick={this.onClickSellerButton}
