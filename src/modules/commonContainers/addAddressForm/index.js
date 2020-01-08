@@ -19,6 +19,7 @@ import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { createAddressAction, editAddressAction } from "Core/modules/address/addressActions";
 import find from 'lodash/find';
 import Select from 'react-select';
+import map from 'lodash/map';
 
 class AddAddressForm extends Component {
 
@@ -102,17 +103,25 @@ class AddAddressForm extends Component {
     };
   }
 
+  formatSelectorData = (list) => {
+    return map(list, item => ({ value: item.name, label: item.name }))
+  }
+  
   render() {
-    const { onClickCancel, addressReducer: { addressList }, addressId } = this.props;
+    const { onClickCancel, addressReducer: { addressList }, addressId, basicReducer: {basicData} } = this.props;
     const editAddress = find(addressList, address => { return address.id == addressId });
     const addressTypes = [
       {
         value: 'home', label: 'Home'
       },
-      { 
+      {
         value: 'office', label: 'Office'
       }
     ];
+    const countries = this.formatSelectorData(basicData.countries);
+    const states = this.formatSelectorData(basicData.states);
+    const defaultCountry = find(countries, country => { return (editAddress && country.value == editAddress.country) });
+    const defaultState = find(states, state => { return (editAddress && state.value == editAddress.state) });
 
     let defaultAddressType = null;
 
@@ -169,17 +178,6 @@ class AddAddressForm extends Component {
 
               <DivColumn className={styles.text_input_container}>
                 
-                {/* <Field name="name">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="Home/Office"
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field> */}
-
                 <Field name="name">
                   {({ input, meta }) => (
                     <DivColumn className='input_select_container'>
@@ -233,35 +231,52 @@ class AddAddressForm extends Component {
 
                 <Field name="state">
                   {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="State"
-                      className={styles.input_text}
-                    />
+                    <DivColumn className='input_select_container'>
+                      <Select
+                        options={states}
+                        onChange={value => {
+                          input.onChange(value.value)
+                        }}
+                        className='react-select-container'
+                        classNamePrefix="react-select"
+                        placeholder="State"
+                        defaultValue={defaultState}
+                      />
+                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                    </DivColumn>
                   )}
                 </Field>
 
                 <Field name="country">
                   {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="Country"
-                      className={styles.input_text}
-                    />
+                    <DivColumn className='input_select_container'>
+                      <Select
+                        options={countries}
+                        onChange={value => {
+                          input.onChange(value.value)
+                        }}
+                        className='react-select-container'
+                        classNamePrefix="react-select"
+                        placeholder="County"
+                        defaultValue={defaultCountry}
+                      />
+                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                    </DivColumn>
                   )}
                 </Field>
-                <Field name="country_code">
+
+                {/* <Field name="country_code">
                   {({ input, meta }) => (
                     <InputTextComponent
                       meta={meta}
                       {...input}
+                      disabled
                       placeholder="Country Code"
                       className={styles.input_text}
                     />
                   )}
-                </Field>
+                </Field> */}
+
                 <Field name="pincode">
                   {({ input, meta }) => (
                     <InputTextComponent
@@ -303,7 +318,8 @@ class AddAddressForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    addressReducer: state.addressReducer
+    addressReducer: state.addressReducer,
+    basicReducer: state.basicReducer,
   };
 };
 

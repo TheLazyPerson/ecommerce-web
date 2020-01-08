@@ -11,6 +11,7 @@ import { setUserDataAction } from 'Core/modules/signin/actions/signinActions';
 import { setLanguageAction } from 'Core/modules/language/languageActions';
 import { CookieService } from 'Utils/cookieService';
 import { USER_DATA_COOKIE, LANG } from 'Constants/cookieConstants';
+import { getBasicAllAction } from 'Core/modules/basic/basicActions';
 
 const topContainerHoc  = (WrappedComponent) => {
   class topContainer extends Component {
@@ -21,7 +22,7 @@ const topContainerHoc  = (WrappedComponent) => {
 
     componentDidMount() {
       //Sets user data from cookie to reducer
-      const { setUserDataAction, setBagCount, setLanguageAction } = this.props;
+      const { setUserDataAction, setBagCount, setLanguageAction, getBasicAllAction } = this.props;
       const userData = CookieService.getJSON(USER_DATA_COOKIE);
       const bagCount = CookieService.get('BAG_COUNT');
       const languageCode = CookieService.get(LANG) || 'en';
@@ -31,6 +32,7 @@ const topContainerHoc  = (WrappedComponent) => {
       if (userData) {
         setBagCount(bagCount);
         setUserDataAction(userData);
+        getBasicAllAction();
 
         this.setState({
           isChildReady: true
@@ -101,6 +103,7 @@ const topContainerHoc  = (WrappedComponent) => {
       setUserDataAction: bindActionCreators(setUserDataAction, dispatch),
       setLanguageAction: bindActionCreators(setLanguageAction, dispatch),
       setBagCount: bindActionCreators(setBagCount, dispatch),
+      getBasicAllAction: bindActionCreators(getBasicAllAction, dispatch),
     };
   };
   
