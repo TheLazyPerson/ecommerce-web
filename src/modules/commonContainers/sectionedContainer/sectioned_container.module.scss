@@ -1,4 +1,31 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
+
+
+.drawer_container {
+  background: $primary-color;
+}
+
+.header_container {
+  height: 84px;
+  align-items: center;
+  justify-content: center;      
+
+  .app_icon {
+    height: 20px;
+    cursor: pointer;
+  }
+}
+
+.side_content_container {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.side_footer_container {
+  padding: 36px 0px;
+}
+
 
 .page_container {
   height: 100%;
@@ -10,25 +37,6 @@
 
   .left_container {
     width: 25%;
-
-    .header_container {
-      height: 84px;
-      align-items: center;
-      justify-content: center;
-
-      .app_icon {
-        height: 20px;
-        cursor: pointer;
-      }
-    }
-
-    .side_content_container {
-      flex: 1;
-    }
-
-    .side_footer_container {
-      padding: 36px 0px;
-    }
   }
 
   .right_container {
@@ -37,7 +45,14 @@
 
     .header_container {
       height: 84px;
-      padding: 18px 67px 18px 91px;
+      padding: 18px 60px;
+    
+
+      .hamburger_menu_icon {
+        display: none;
+
+        @include on_click_button;
+      }
     }
 
     .content_container {
@@ -45,3 +60,52 @@
     }
   }
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+
+@include medium {
+  .page_container {
+    .left_container {
+      display: none;
+    }
+
+    .right_container {
+  
+      .header_container {
+        height: 60px;
+        padding: 10px 28px;    
+  
+        .hamburger_menu_icon {
+          display: block;
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+
+  }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+
+@include small {
+  .page_container {
+
+    .right_container {
+  
+      .header_container {
+        height: 50px;
+        padding: 8px 20px;
+    
+        .hamburger_menu_icon {
+          display: block;
+          height: 12px;
+          width: 12px;
+        }
+      }
+    }
+  }
+}
+

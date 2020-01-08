@@ -22,6 +22,7 @@ $bag-count-background: $color-pale;
 
   .sigin_link {
     color: $primary-text-color;
+    font-size: 18px;
   }
 
   .is_white {
@@ -65,6 +66,10 @@ $bag-count-background: $color-pale;
       margin-left: 20px;
     }
 
+    .sigin_link {
+      font-size: 14px;
+    }
+
     .header_icon {
       height: 20px;
     }
@@ -84,6 +89,10 @@ $bag-count-background: $color-pale;
   .header_container {
     .header_item_container {
       margin-left: 10px;
+    }
+
+    .sigin_link {
+      font-size: 12px;
     }
 
     .header_icon {
