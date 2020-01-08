@@ -18,6 +18,7 @@ import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { createAddressAction, editAddressAction } from "Core/modules/address/addressActions";
 import find from 'lodash/find';
+import Select from 'react-select';
 
 class AddAddressForm extends Component {
 
@@ -104,6 +105,24 @@ class AddAddressForm extends Component {
   render() {
     const { onClickCancel, addressReducer: { addressList }, addressId } = this.props;
     const editAddress = find(addressList, address => { return address.id == addressId });
+    const addressTypes = [
+      {
+        value: 'home', label: 'Home'
+      },
+      { 
+        value: 'office', label: 'Office'
+      }
+    ];
+
+    let defaultAddressType = null;
+
+    if (editAddress && editAddress.name) {
+      if(editAddress.name == 'home') {
+        defaultAddressType = addressTypes[0];
+      } else {
+        defaultAddressType = addressTypes[1];
+      }
+    }
 
     return (
       <DivColumn fillParent className={styles.page_container}>
@@ -149,7 +168,8 @@ class AddAddressForm extends Component {
               <HorizontalBorder className={styles.address_divider} />
 
               <DivColumn className={styles.text_input_container}>
-                <Field name="name">
+                
+                {/* <Field name="name">
                   {({ input, meta }) => (
                     <InputTextComponent
                       meta={meta}
@@ -158,7 +178,27 @@ class AddAddressForm extends Component {
                       className={styles.input_text}
                     />
                   )}
+                </Field> */}
+
+                <Field name="name">
+                  {({ input, meta }) => (
+                    <DivColumn className='input_select_container'>
+                      <Select
+                        options={addressTypes}
+                        onChange={value => {
+                          input.onChange(value.value)
+                        }}
+                        className='react-select-container'
+                        classNamePrefix="react-select"
+                        placeholder="Home/Office"
+                        defaultValue={defaultAddressType}
+                      />
+                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                    </DivColumn>
+                  )}
                 </Field>
+
+
                 <Field name="address1">
                   {({ input, meta }) => (
                     <InputTextComponent
