@@ -82,17 +82,16 @@
         }
       }
     }
-
-    .hero_bottom_content {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 120px;
-    }
   }
 }
 
+.hero_bottom_content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+}
 
 .social_container {
   margin-left: 9%;
@@ -141,10 +140,12 @@
     .arrow_left {
       margin-right: 9.5px;
       transform: scaleX(-1);
+      width: 7px;
     }
 
     .arrow_right {
       margin-left: 9.5px;
+      width: 7px;
     }
   }      
 
@@ -221,5 +222,79 @@
   .seller_button {
     font-size: 14px;
     @include on_click_button;
+  }
+}
+
+
+
+@include medium {
+  .share_icon {
+    margin-right: 30px;
+    width: 28px;
+    height: 28px;
+  }
+  .arrow_text {
+    font-size: 16px;
+    line-height: 0.9;
+    .arrow_left {
+      margin-right: 6px;
+      width: 5px;
+    }
+    .arrow_right {
+      margin-left: 6px;
+      width: 5px;
+    }
+  }
+  .arrow_text:first-child {
+    margin-right: 30px;
+  }
+
+  .pagination_count_container {
+    margin-left: 50px;
+
+    .pagination_current_count {
+      font-size: 30px;
+    }
+    .pagination_total_count {
+      font-size: 16px;
+    }
+  }
+
+  .hero_bottom_content {
+    height: 100px;
+  }
+
+}
+
+@include small {
+  .share_icon {
+    margin-right: 25px;
+    width: 24px;
+    height: 24px;
+  }
+  .arrow_text {
+    font-size: 14px;
+    .arrow_left {
+      margin-right: 4px;
+    }
+    .arrow_right {
+      margin-left: 4px;
+    }
+  }
+  .arrow_text:first-child {
+    margin-right: 25px;
+  }
+  .pagination_count_container {      
+    margin-left: 40px;
+    .pagination_current_count {
+      font-size: 28px;
+    }
+    .pagination_total_count {
+      font-size: 14px;
+    }
+  }
+
+  .hero_bottom_content {
+    height: 80px;
   }
 }
