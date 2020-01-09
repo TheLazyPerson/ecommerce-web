@@ -127,7 +127,65 @@
 }
 
 
+@include medium {
+  .component_container {
+    flex-direction: column;
+    height: unset;
+    width: 440px;
+   
+    .image {
+      width: 440px;
+      height: 330px;
+    }
+  }
+}
+
 
 @include small {
+  .component_container {
+    flex-direction: column;
+    height: unset;
+    width: 320px;
+  
+    .content_container {
+      padding: 50px 0px 28px 25px;
 
+      .contents {
+        padding: 0px 0px 30px 20px;
+        max-width: 280px;
+
+        .title {
+          font-size: 22px;
+        }
+        .divider {
+          width: 100px;
+          height: 2px;
+          margin: 30px 0px 18px;
+        }
+        .description {
+          font-size: 12px;
+        }
+        .time_text {
+          font-size: 12px;
+        }
+      }
+    }
+   
+    .image {
+      width: 320px;
+      height: 330px;
+    }
+  
+    .arrow_container {
+      .arrow_left {
+        margin-right: 9.5px;
+        width: 28px;
+      }
+  
+      .arrow_right {
+        width: 28px;
+        margin-left: 16px;
+      }
+    }
+  }
 }
