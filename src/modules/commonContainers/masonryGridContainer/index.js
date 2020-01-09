@@ -34,6 +34,7 @@ class MasonryGridContainer extends Component {
             columnWidth: 39
           }}
           className={styles.masonary} // default ''
+          enableResizableChildren={true}
         >
           {map(exhibitionList, (exhibition, index) => {
             let typeIndex = index;
