@@ -229,13 +229,13 @@ class NewHomePage extends Component {
           />
         </InitialPageLoader>
 
-        {/* <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
           {translate('home_page.upcoming_title')}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
           <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
-        </InitialPageLoader> */}
+        </InitialPageLoader>
 
         <DivColumn
           horizontalCenter

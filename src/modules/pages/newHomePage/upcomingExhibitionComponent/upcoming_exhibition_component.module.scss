@@ -1,27 +1,23 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .component_container {
-  margin: 0px 150px;
-  min-height: 430px;
-  min-width: 980px;
-  margin-bottom: 200px;
+  height: 430px;
+  width: 1024px;
+  margin-bottom: 150px;
   align-self: center;
   align-items: flex-end;
-  position: relative;
+  background: rgba($color-very-light-blue, 0.9);
 
   .content_container {
-    position: absolute;
-    top: 0;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    background: rgba($color-very-light-blue, 0.9);
+    align-self: stretch;
     justify-content: flex-end;
-    padding: 61px 65px 35px 0px;
+    padding: 61px 0px 35px 30px;
 
     .contents {
+      padding: 0px 0px 60px 30px;
       max-width: 320px;
-
+      
       .title {
         font-size: 28px;
         font-weight: bold;
@@ -32,7 +28,7 @@
         width: 100px;
         height: 2px;
         background-color: #d2dce7;
-        margin: 30px 0px 18px;
+        margin: 20px 0px 16px;
       }
 
       .description {
@@ -46,22 +42,21 @@
         font-size: 14px;
         font-weight: bold;
         color: $color-gold;
-        margin-top: 48px;
+        margin-top: auto;
       }
     }
   }
  
   .image {
-    width: 50%;
-    // width: 713px;
-     height: 430px;
-    z-index: 2;
+    width: 560px;
+    height: 430px;
+    //z-index: 2;
     object-fit: cover;
   }
 
   .arrow_container {
-    margin-left: 40px;
-    margin-bottom: 20px;
+    // margin-left: 40px;
+    // margin-bottom: 20px;
     z-index: 10;
 
     .arrow_left {
@@ -81,4 +76,58 @@
 
 .disabled {
   opacity: 0.3;
+}
+
+@include large {
+  .component_container {
+    height: 330px;
+    width: 870px;
+  
+    .content_container {
+      padding: 50px 0px 28px 25px;
+
+      .contents {
+        padding: 0px 0px 30px 20px;
+        max-width: 280px;
+
+        .title {
+          font-size: 22px;
+        }
+        .divider {
+          width: 100px;
+          height: 2px;
+          margin: 30px 0px 18px;
+        }
+        .description {
+          font-size: 12px;
+        }
+        .time_text {
+          font-size: 12px;
+        }
+      }
+    }
+   
+    .image {
+      width: 460px;
+      height: 330px;
+    }
+  
+    .arrow_container {
+      .arrow_left {
+        margin-right: 9.5px;
+        width: 28px;
+      }
+  
+      .arrow_right {
+        width: 28px;
+        margin-left: 16px;
+      }
+    }
+  }
+}
+
+
+
+@include small {
+
 }
