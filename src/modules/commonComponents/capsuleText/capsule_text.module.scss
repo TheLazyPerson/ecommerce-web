@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 $capsule-background-color: $color-pale;
 $capsule-text-color: $color-gold;
@@ -11,4 +12,20 @@ $capsule-text-color: $color-gold;
   background-color: $capsule-background-color;
   color: $capsule-text-color;
   margin-left: 16px;
+  font-size: 16px;
+}
+
+@include medium {
+  .capsule_items {
+    padding: 2px 8px;
+    margin-left: 14px;
+    font-size: 14px;
+  }
+}
+
+@include small {
+  .capsule_items {
+    margin-left: 12px;
+    font-size: 12px;
+  }
 }
