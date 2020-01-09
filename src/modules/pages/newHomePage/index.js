@@ -218,7 +218,7 @@ class NewHomePage extends Component {
           </InitialPageLoader>
         </DivColumn>
 
-        {/* <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
           {translate('home_page.trending_now_title')}
         </DivRow>
 
@@ -229,7 +229,7 @@ class NewHomePage extends Component {
           />
         </InitialPageLoader>
 
-        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
+        {/* <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
           {translate('home_page.upcoming_title')}
         </DivRow>
 

@@ -292,6 +292,12 @@
     }
   }
 
+
+  .header_title {
+    font-size: 34px;
+    margin: 60px 0px 45px;
+  }
+
 }
  /////////////////////////////////////////////////////////////
 @include small {
@@ -349,8 +355,12 @@
     }
   }
 
-
   .social_container {
     display: none;
+  }
+
+  .header_title {
+    font-size: 26px;
+    margin: 40px 0px 30px;
   }
 }
