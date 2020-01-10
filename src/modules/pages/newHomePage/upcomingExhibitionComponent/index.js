@@ -3,6 +3,7 @@ import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./upcoming_exhibition_component.module.scss";
 import arrowRight from "Icons/arrow-right-point-icon-black.svg";
+import transltorHoc from 'Hoc/translatorHoc';
 
 class UpcomingExhibitionComponent extends Component {
   state = {
@@ -24,7 +25,7 @@ class UpcomingExhibitionComponent extends Component {
   }
 
   render() {
-    const { exhibitionList } = this.props;
+    const { exhibitionList, isRTL } = this.props;
     const { currentSlide } = this.state;
     const totalSlide = exhibitionList.length;
 
@@ -33,7 +34,7 @@ class UpcomingExhibitionComponent extends Component {
     const isRightButtonClickable = currentSlide + 1 !== totalSlide;
 
     return (
-      <DivRow fillSelfHorizontal className={styles.component_container}>
+      <DivRow fillSelfHorizontal className={`${isRTL ? styles.rtl : ''} ${styles.component_container}`}>
         <img
           className={styles.image}
           src={`https://source.unsplash.com/500x50${currentSlide}/?product`}
@@ -65,5 +66,6 @@ class UpcomingExhibitionComponent extends Component {
     );
   }
 }
+
 // https://source.unsplash.com/500x500/?product
-export default UpcomingExhibitionComponent;
+export default transltorHoc(UpcomingExhibitionComponent);

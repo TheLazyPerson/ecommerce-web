@@ -12,11 +12,11 @@
   .content_container {
     align-self: stretch;
     justify-content: flex-end;
-    padding: 61px 0px 35px 30px;
+    padding: 61px 30px 35px 30px;
 
     .contents {
-      padding: 0px 0px 60px 30px;
-      max-width: 320px;
+      padding: 0px 60px 60px 30px;
+      max-width: 350px;
       
       .title {
         font-size: 28px;
@@ -74,6 +74,30 @@
   }
 }
 
+.rtl {
+  flex-flow: row-reverse;
+
+  .content_container {
+    .contents {
+      align-items: flex-end;
+
+      .title {
+        text-align: right;
+      }
+      .description {
+        text-align: right;
+      }
+      .time_text {
+        text-align: right;
+      }
+    }
+
+    .arrow_container {
+      justify-content: flex-end;
+    }
+  }
+}
+
 .disabled {
   opacity: 0.3;
 }
@@ -84,10 +108,10 @@
     width: 870px;
   
     .content_container {
-      padding: 50px 0px 28px 25px;
+      padding: 50px 25px 28px 25px;
 
       .contents {
-        padding: 0px 0px 30px 20px;
+        padding: 0px 30px 30px 20px;
         max-width: 280px;
 
         .title {
@@ -148,10 +172,10 @@
     width: 320px;
   
     .content_container {
-      padding: 50px 0px 28px 25px;
+      padding: 50px 25px 28px 25px;
 
       .contents {
-        padding: 0px 0px 30px 20px;
+        padding: 0px 30px 30px 20px;
         max-width: 280px;
 
         .title {
