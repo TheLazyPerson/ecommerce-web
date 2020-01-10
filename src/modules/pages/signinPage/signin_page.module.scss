@@ -1,4 +1,5 @@
 @import "~Styles/colors.module";
+@import '~Styles/mixins.module';
 
 $submit-button-background: $color-gold;
 
@@ -59,5 +60,61 @@ $submit-button-background: $color-gold;
 
   .new_description_text {
     opacity: 0.6;
+  }
+}
+
+@include medium {
+  .page_container {
+    .form_container {    
+      .input_text {
+        margin-bottom: 16px;
+        min-width: 350px;
+      }
+
+      .input_submit {
+        min-height: 46px;
+        min-width: 175px;
+        margin: 30px 0px 34px 0px;
+        font-size: 16px;
+      }
+    }
+
+    .signin_title_text {
+      font-size: 40px;
+      margin-bottom: 42px;  
+    }
+    
+    .hyper_link {
+      font-size: 12px;
+    }
+  
+    .create_account_container {
+      margin-top: 13px;
+      font-size: 12px;
+    }
+  }
+}
+
+@include small {
+  .page_container {
+    .form_container {    
+      .input_text {
+        margin-bottom: 14px;
+        min-width: 300px;
+      }
+
+      .input_submit {
+        min-height: 42px;
+        min-width: 148px;
+        margin: 28px 0px 32px 0px;
+        font-size: 14px;
+      }
+    }
+
+    .signin_title_text {
+      font-size: 36px;
+      margin-bottom: 38px;  
+    }
+    
   }
 }
