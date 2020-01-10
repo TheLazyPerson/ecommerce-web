@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import styles from './input_text_component.module.scss';
 import DivColumn from 'CommonComponents/divColumn';
+import tranlatorHoc from 'Hoc/translatorHoc';
 
-export default class InputTextComponent extends Component {
+class InputTextComponent extends Component {
   constructor(props) {
-        super(props);
+    super(props);
   }
   render() {
-    const { 
+    const {
       className,
       type,
       meta = {},
+      isRTL,
       ...rest
     } = this.props;
-    
+
     return (
-      <DivColumn className={`${className ? className : ''}`}>
+      <DivColumn className={`${isRTL ? styles.rtl : ''} ${className ? className : ''}`}>
         <input
           {...rest}
-          type={type ? type: 'text'}
+          type={type ? type : 'text'}
           className={styles.input_text}
         />
         {meta.error && meta.touched && <span className={styles.error_text}>{meta.error}</span>}
@@ -26,3 +28,5 @@ export default class InputTextComponent extends Component {
     )
   }
 }
+
+export default tranlatorHoc(InputTextComponent);
