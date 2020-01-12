@@ -78,10 +78,6 @@ $bag-count-background: $color-pale;
       width: 26px;
       height: 26px;
     }
-
-    .search_bar_container {
-      display: none;
-    }
   }
 }
 
@@ -101,6 +97,10 @@ $bag-count-background: $color-pale;
     .profile_pic {
       width: 20px;
       height: 20px;
-      }
+    }
+
+    .search_bar_container {
+      display: none;
+   }
   }
 }
