@@ -3,6 +3,31 @@
 
 $search-container-background: $color-dessert-storm;
 
+.rtl {
+  .search_result_container {
+    .search_item {
+      justify-content: flex-end;
+      
+      .title {
+        text-align: right;
+      }
+
+      .description {
+        text-align: right;
+      }
+    }
+  }
+
+  .search_wrapper {
+    flex-flow: row-reverse;
+    .search_form {
+      .search_input {
+        text-align: right;
+      }
+    }
+  }
+}
+
 .search_container {
   flex: 1;
   position: relative;
