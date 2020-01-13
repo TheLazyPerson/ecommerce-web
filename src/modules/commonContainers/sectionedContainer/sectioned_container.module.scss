@@ -1,7 +1,6 @@
 @import '~Styles/colors.module';
 @import '~Styles/mixins.module';
 
-
 .drawer_container {
   background: $primary-color;
 }
@@ -43,15 +42,24 @@
     flex: 1;
     background: white;
 
-    .header_container {
-      height: 84px;
+    .search_bar_container {
+      align-self: stretch;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .top_header_container {
       padding: 18px 60px;
-    
 
-      .hamburger_menu_icon {
-        display: none;
-
-        @include on_click_button;
+      .header_container {
+        // height: 84px;
+      
+        .hamburger_menu_icon {
+          display: none;
+          margin-right: 16px;
+  
+          @include on_click_button;
+        }
       }
     }
 
@@ -72,18 +80,20 @@
 
     .right_container {
   
-      .header_container {
-        height: 60px;
-        padding: 10px 28px;    
-  
-        .hamburger_menu_icon {
-          display: block;
-          height: 16px;
-          width: 16px;
-        }
-      }
-    }
+      .top_header_container {
+        padding: 10px 28px;
 
+        .header_container {
+          // height: 60px;
+    
+          .hamburger_menu_icon {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+        }
+      }  
+    }
   }
 }
 
@@ -91,18 +101,29 @@
 
 
 @include small {
+  .header_container {
+    height: unset;
+  }
+
   .page_container {
 
     .right_container {
-  
-      .header_container {
-        height: 50px;
+
+      .search_bar_container {
+        display: flex;
+      }
+
+      .top_header_container {
         padding: 8px 20px;
-    
-        .hamburger_menu_icon {
-          display: block;
-          height: 12px;
-          width: 12px;
+
+        .header_container {
+          //height: 50px;
+      
+          .hamburger_menu_icon {
+            display: block;
+            height: 12px;
+            width: 12px;
+          }
         }
       }
     }

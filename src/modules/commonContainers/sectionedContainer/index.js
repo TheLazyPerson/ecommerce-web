@@ -9,6 +9,7 @@ import navigatorHoc from 'Hoc/navigatorHoc';
 import Drawer from '@material/react-drawer';
 import "@material/react-drawer/dist/drawer.css";
 import hamburgerIconBlack from 'Icons/hamburger-menu-icon-black.svg';
+import SearchBar from 'CommonContainers/searchBar';
 
 class SectionedContainer extends Component {
 
@@ -85,17 +86,23 @@ class SectionedContainer extends Component {
         </DivColumn>
 
         <DivColumn className={styles.right_container}>
-          <DivRow verticalCenter className={styles.header_container}>
+          <DivColumn fillSelfHorizontal className={styles.top_header_container}>
+            <DivRow verticalCenter className={styles.header_container}>
 
-            {/* only Visible on responive */}
-            <img
-              src={hamburgerIconBlack}
-              className={styles.hamburger_menu_icon}
-              onClick={this.onClickHamburgerMenu}
+              {/* only Visible on responive */}
+              <img
+                src={hamburgerIconBlack}
+                className={styles.hamburger_menu_icon}
+                onClick={this.onClickHamburgerMenu}
+              />
+
+              <SectionedHeader />
+            </DivRow>
+            <SearchBar          
+             className={styles.search_bar_container}
+             // whiteColor={whiteColor}
             />
-
-            <SectionedHeader />
-          </DivRow>
+          </DivColumn>
           {/* children/content */}
           <DivColumn fillParent className={styles.content_container}>
             {!isAbsoluteContent && children}
