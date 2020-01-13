@@ -129,6 +129,7 @@
       .left_content_container {
         .product_image {
           height: 400px; 
+          margin-left: unset;
         }
   
         .product_image_list {
@@ -161,6 +162,8 @@
 
 @include small {
   .product_details_container {
+    padding: 6px 30px;
+
     .product_content_container {
       flex-direction: column;
     
