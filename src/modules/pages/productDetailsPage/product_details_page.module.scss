@@ -1,6 +1,22 @@
 @import '~Styles/colors.module';
 @import '~Styles/mixins.module';
 
+.rtl {
+  .product_content_container {
+    flex-flow: row-reverse;
+
+    .right_content_container {
+      padding-left: 0px;
+      padding-right: 50px;
+      
+      .exhibition_detail_component {
+        align-self: stretch;
+        max-width: unset !important;
+        align-items: flex-end;
+      }
+    }
+  }}
+
 .product_details_container {
   flex: 1;
   align-self: stretch;
@@ -188,6 +204,7 @@
 
       .right_content_container {
         padding-left: 0px;
+        padding-right: 0px;
         
         .exhibition_detail_component {
           align-self: stretch;
