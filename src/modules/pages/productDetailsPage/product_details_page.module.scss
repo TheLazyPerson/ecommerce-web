@@ -41,6 +41,7 @@
         margin-top: 8px;
         margin-left: 10px;
         overflow-x: scroll;
+        height: 200px;
 
         -ms-overflow-style: unset;
         ::-webkit-scrollbar { width: 20px !important }
@@ -118,4 +119,116 @@
 
 .is_disabled {
   opacity: 0.5;
+}
+
+@include medium {
+  .product_details_container {
+    .product_content_container {
+      flex-direction: column;
+    
+      .left_content_container {
+        .product_image {
+          height: 400px; 
+        }
+  
+        .product_image_list {
+          height: 150px;
+  
+          .image_container {
+            margin-right: 10px;
+            
+            .small_product_image {
+              width: 100px;
+              height: 100px;
+            }  
+          }
+        }
+      }
+
+      .right_content_container {
+        padding-left: 0px;
+        
+        .exhibition_detail_component {
+          align-self: stretch;
+          max-width: unset !important;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+
+@include small {
+  .product_details_container {
+    .product_content_container {
+      flex-direction: column;
+    
+      .left_content_container {
+        .product_image {
+          height: 300px; 
+        }
+  
+        .product_image_list {
+          height: 100px;
+  
+          .image_container {
+            margin-right: 10px;
+            
+            .small_product_image {
+              width: 60px;
+              height: 60px;
+            }  
+          }
+        }
+      }
+
+      .right_content_container {
+        padding-left: 0px;
+        
+        .exhibition_detail_component {
+          align-self: stretch;
+          max-width: unset !important;
+          align-items: center;
+        }
+
+        .action_button_container {
+          margin-top: 26px;
+          justify-content: center;
+  
+          .add_to_bag_button {
+            padding: 6px 18px;
+
+            .button_icon {
+              width: 14px;
+              height: 14px;
+            }
+    
+            .button_text {
+              margin-left: 8px;
+              font-size: 12px;
+            }
+          }
+    
+          .wishlist_button {
+            padding: 6px 18px;
+            margin-left: 10px;
+  
+            .button_icon {
+              width: 14px;
+              height: 14px;
+            }
+    
+            .button_text {
+              margin-left: 8px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+
+
+    }
+  }
 }

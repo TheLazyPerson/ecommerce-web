@@ -203,6 +203,7 @@ class ProductDetailsPage extends Component {
                   tags={["watches", "craft", "crafted"]}
                   price={productDetail.formatted_price}
                   description={productDetail.short_description}
+                  className={styles.exhibition_detail_component}
                 >
                   <QuantityComponent
                     quantity={this.state.quantity}
