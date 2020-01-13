@@ -14,6 +14,7 @@ import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
 import OrderSummary from "../placeOrderPage/orderSummary";
 import translatorHoc from 'Hoc/translatorHoc';
+
 class CheckoutPage extends Component {
   navigateToWishlist = () => {
     const { navigateTo } = this.props;
@@ -37,10 +38,10 @@ class CheckoutPage extends Component {
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.table_header}>
               <div className={styles.flex_2}>{translate('checkout_page.header_product')}</div>
-              <div className={styles.flex_1}>{translate('checkout_page.header_exhibition')}</div>
+              <div className={`${styles.flex_1} ${styles.exhibition_header}`}>{translate('checkout_page.header_exhibition')}</div>
               <div className={styles.flex_1}>{translate('checkout_page.header_price')}</div>
               <div className={styles.flex_1}>{translate('checkout_page.header_quantity')}</div>
-              <div className={styles.flex_1}>{translate('checkout_page.header_total_price')}</div>
+              <div className={`${styles.flex_1} ${styles.total_price_header}`}>{translate('checkout_page.header_total_price')}</div>
             </DivRow>
 
             <InitialPageLoader
