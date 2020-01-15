@@ -1,9 +1,12 @@
 @import '~Styles/colors.module';
 @import '~Styles/mixins.module';
 
-.header_container {
-  height: 84px;
+.top_header {
   padding: 18px 60px;
+}
+
+.header_container {
+  //height: 84px;
   align-self: stretch;
 
   .header_icon_container {
@@ -24,15 +27,22 @@
   }
 }
 
+.search_bar_container {
+  display: none;
+  margin-top: 8px;
+}
 
 
 @include medium {
-  .header_container {
-    height: 60px;
+  .top_header {
     padding: 10px 28px;
+  }
+
+  .header_container {
+    // height: 60px;
   
     .header_icon_container {
-      width: unset;
+      width: 30%;
   
       .app_icon {
         height: 15px;
@@ -49,9 +59,12 @@
 
 
 @include small {
+  .top_header {
+    padding: 8px 20px 12px;
+  }
+
   .header_container {
-    height: 50px;
-    padding: 8px 20px;
+    // height: 50px;
   
     .header_icon_container {
       width: unset;
@@ -67,4 +80,9 @@
       }
     }
   }
+
+  .search_bar_container {
+    display: flex;
+  }
 }
+

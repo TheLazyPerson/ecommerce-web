@@ -1,4 +1,5 @@
 @import "~Styles/colors.module";
+@import '~Styles/mixins.module';
 
 .flex_2 {
   flex: 2;
@@ -74,4 +75,36 @@
 
 .empty_page_container {
   margin-top: 24px;
+}
+
+
+@include large {
+  .checkout_container {
+    padding: 20px 40px 0px;
+  }
+
+  .exhibition_header {
+    display: none;
+  }
+}
+
+@include medium{
+  .checkout_container {
+    flex-direction: column;
+    padding: 20px 30px 0px;
+
+    .cart_list_container {
+      padding-right: 0px;
+    }
+  }
+}
+
+@include small {
+  .checkout_container {
+    padding: 10px 10px 0px;
+  }
+
+  .total_price_header {
+    display: none;
+  }
 }

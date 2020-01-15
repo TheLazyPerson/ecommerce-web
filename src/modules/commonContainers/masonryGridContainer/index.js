@@ -25,7 +25,7 @@ class MasonryGridContainer extends Component {
   }
 
   render() {
-    const { exhibitionList, showMoreTitle, translate } = this.props;
+    const { exhibitionList, showMoreTitle, translate, isRTL } = this.props;
 
     return (
       <DivColumn className={styles.masonary_container}>
@@ -34,6 +34,7 @@ class MasonryGridContainer extends Component {
             columnWidth: 39
           }}
           className={styles.masonary} // default ''
+          enableResizableChildren={true}
         >
           {map(exhibitionList, (exhibition, index) => {
             let typeIndex = index;
@@ -64,7 +65,7 @@ class MasonryGridContainer extends Component {
 
             return (
               <DivColumn
-                className={`${styles.grid_image_container} ${styles[`type${this.imageStates[typeIndex]}`]}`}
+                className={`${isRTL ? styles.rtl : ''} ${styles.grid_image_container} ${styles[`type${this.imageStates[typeIndex]}`]}`}
                 style={{ backgroundImage: `url(https://source.unsplash.com/500x50${typeIndex}/?product)` }}
                 onClick={()=> this.onClickExhibitionItem(exhibition.id)}
               >

@@ -52,7 +52,7 @@ class SearchPage extends Component {
     return (
       <FullWidthContainer>
         <DivColumn fillParent className={styles.search_container}>
-          <div className={styles.page_header}>Search: the craft show</div>
+    <div className={styles.page_header}>{`Search: ${query}`}</div>
           <InitialPageLoader 
             ref={this.initialLoaderRef}
             initialPageApi={() => searchAction(this.getSlugBasedOntype(searchType), query)}

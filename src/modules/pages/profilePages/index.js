@@ -12,10 +12,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { CookieService } from "Utils/cookieService";
 import { USER_DATA_COOKIE } from "Constants/cookieConstants";
+import { setBagCount } from 'Core/modules/bag/bagActions';
 
 class ProfileOverview extends Component {
   onClickNavItemClick = slug => {
-    const { navigateTo, logoutAction } = this.props;
+    const { navigateTo, logoutAction, setBagCount } = this.props;
 
     if (slug === "overview") {
       navigateTo("profile");
@@ -25,6 +26,7 @@ class ProfileOverview extends Component {
       logoutAction().then(() => {
         CookieService.delete(USER_DATA_COOKIE);
         CookieService.delete('BAG_COUNT');
+        setBagCount(0);
         navigateTo(""); // ToHomePage
       });
     } else {
@@ -78,7 +80,8 @@ class ProfileOverview extends Component {
 
 const mapDispathToProps = dispatch => {
   return {
-    logoutAction: bindActionCreators(logoutAction, dispatch)
+    logoutAction: bindActionCreators(logoutAction, dispatch),
+    setBagCount: bindActionCreators(setBagCount, dispatch),
   };
 };
 

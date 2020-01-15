@@ -94,11 +94,26 @@ class EditProfile extends Component {
     const {
       profileDetailsReducer: { userDetails }
     } = this.props;
-    const { startDate } = this.state;
+    let startDate = null;
+
+    if (this.state.startDate) {
+      startDate = this.state.startDate;
+    } else if (userDetails.birthday) {
+      startDate = new Date(userDetails.birthday);
+    }
+
     const genderOptions = [
       { value: 'male', label: 'Male' },
       { value: 'female', label: 'Female' }
     ];
+    let defaultGender = null;
+
+    if (userDetails.gender) {
+      if(userDetails.gender == 'male')
+        defaultGender = genderOptions[0];
+      else
+        defaultGender = genderOptions[1];
+    }
 
     const CustomRenderInput = ({ input, value, onClick, meta }) => {
       return (
@@ -169,7 +184,7 @@ class EditProfile extends Component {
                         className='react-select-container'
                         classNamePrefix="react-select"
                         placeholder="Gender"
-                        //defaultValue={genderOptions[1]}
+                        defaultValue={defaultGender}
                       />
                       {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
                     </DivColumn>
@@ -204,7 +219,7 @@ class EditProfile extends Component {
                       selected={startDate}
                       onChange={date => {
                         this.setState({ startDate: date })
-                        input.onChange(date.toString());
+                        input.onChange(date.valueOf());
                       }}
                       maxDate={new Date()}
                       customInput={

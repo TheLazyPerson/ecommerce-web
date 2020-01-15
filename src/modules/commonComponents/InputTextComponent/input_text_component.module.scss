@@ -1,6 +1,17 @@
 @import "~Styles/colors.module";
+@import '~Styles/mixins.module';
 
 $input-text-background: $color-very-light-blue;
+
+.rtl {
+  .input_text {
+    text-align: right;
+  }
+
+  .error_text {
+    text-align: right;
+  }
+}
 
 .input_text {
   border: none;
@@ -23,5 +34,30 @@ $input-text-background: $color-very-light-blue;
 }
 
 .error_text {
+  font-size: 16px;;
   color: red;
+}
+
+@include medium {
+  .input_text {
+    padding: 14px 24px;
+  
+    font-size: 16px;
+  }
+
+  .error_text {
+    font-size: 14px;
+  }
+}
+
+@include small {
+  .input_text {
+    padding: 12px 20px;
+  
+    font-size: 14px;
+  }
+
+  .error_text {
+    font-size: 12px;
+  }
 }

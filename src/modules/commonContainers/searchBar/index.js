@@ -78,10 +78,10 @@ class SearchBar extends Component {
 
   render() {
     const { searchText, showSearchResult } = this.state;
-    const { translate, whiteColor, className } = this.props;
+    const { translate, whiteColor, className, isRTL } = this.props;
 
     return (
-      <div className={`${styles.search_container} ${className}`}>
+      <div className={`${isRTL ? styles.rtl : ''} ${styles.search_container} ${className}`}>
         <DivRow
           className={`${styles.search_wrapper} ${
             searchText && showSearchResult ? styles.search_wrapper_expanded : ""

@@ -7,7 +7,7 @@ import styles from './fullwidth_header.module.scss';
 import LanguageSelect from 'CommonComponents/languageSelect';
 import appIcon from 'Images/logo-image.png';
 import navigatorHoc from 'Hoc/navigatorHoc';
-import PageFooter from 'CommonComponents/pageFooter';
+import SearchBar from 'CommonContainers/searchBar';
 
 class FullwidthHeader extends Component {
 
@@ -19,22 +19,28 @@ class FullwidthHeader extends Component {
   render() {
     const { children, whiteColor, className } = this.props;
 
-     return (
-      <DivRow className={`${styles.header_container} ${className}`}>
-        <DivRow className={styles.header_icon_container}>
-          <img src={appIcon}  className={styles.app_icon} onClick={this.onClickAppIcon} />
-          <div
-           style={whiteColor? {color: 'white'} : null}
-           className={styles.app_name}
-           onClick={this.onClickAppIcon}
-          >
-            MA3RATH
+    return (
+      <DivColumn fillSelfHorizontal className={`${styles.top_header} ${className}`}>
+        <DivRow className={`${styles.header_container}`}>
+          <DivRow className={styles.header_icon_container}>
+            <img src={appIcon} className={styles.app_icon} onClick={this.onClickAppIcon} />
+            <div
+              style={whiteColor ? { color: 'white' } : null}
+              className={styles.app_name}
+              onClick={this.onClickAppIcon}
+            >
+              MA3RATH
           </div>
-          <LanguageSelect blackColor={!whiteColor}/>
+            <LanguageSelect blackColor={!whiteColor} />
+          </DivRow>
+          <SectionedHeader whiteColor={whiteColor} />
         </DivRow>
-        <SectionedHeader whiteColor={whiteColor}/>
-      </DivRow>
-     )
+        <SearchBar
+          className={styles.search_bar_container}
+          whiteColor={whiteColor}
+        />
+      </DivColumn>
+    )
   }
 }
 

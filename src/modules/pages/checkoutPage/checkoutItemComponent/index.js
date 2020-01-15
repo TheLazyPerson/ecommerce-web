@@ -98,7 +98,7 @@ class CheckoutItemComponent extends Component {
           </DivColumn>
         </DivRow>
 
-        <DivColumn className={`${styles.exhibition_column} ${styles.flex_1}`}>
+        <DivColumn className={`${styles.exhibition_column} ${styles.flex_1} ${styles.exhibition_title}`}>
           <div className={styles.title}>{checkoutItem.exhibition.title}</div>
           {/* <div className={styles.description}>Expires in: 2 days</div> */}
         </DivColumn>
@@ -132,9 +132,9 @@ class CheckoutItemComponent extends Component {
 
         <DivRow
           verticalCenter
-          className={`${styles.price_column} ${styles.flex_1}`}
+          className={`${styles.price_column} ${styles.flex_1} ${styles.total_price_header_container}`}
         >
-          <div className={styles.product_price}>
+          <div className={`${styles.product_price} ${styles.total_price_header}`}>
             {checkoutItem.formated_total}
           </div>
           <img

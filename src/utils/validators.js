@@ -47,7 +47,7 @@ export const passwordValidator = (password, confirmPassword) => {
 };
 
 export const isEmptyValidator = value => {
-  if (isEmpty(value))
+  if (!value)
     return {
       result: false,
       error: "Required"

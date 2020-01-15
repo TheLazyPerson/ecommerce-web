@@ -139,6 +139,7 @@ class ProductDetailsPage extends Component {
       productDetailReducer: { productDetail },
       getProductDetailAction,
       translate,
+      isRTL,
     } = this.props;
 
     const params = {
@@ -157,7 +158,7 @@ class ProductDetailsPage extends Component {
             getProductDetailAction(parsed.exhibitionid, parsed.productid)
           }
         >
-          <DivColumn className={styles.product_details_container}>
+          <DivColumn className={`${isRTL ? styles.rtl : ''} ${styles.product_details_container}`}>
             <DivRow className={styles.product_content_container}>
               <DivColumn className={styles.left_content_container}>
                 {/* 
@@ -203,6 +204,7 @@ class ProductDetailsPage extends Component {
                   tags={["watches", "craft", "crafted"]}
                   price={productDetail.formatted_price}
                   description={productDetail.short_description}
+                  className={styles.exhibition_detail_component}
                 >
                   <QuantityComponent
                     quantity={this.state.quantity}
