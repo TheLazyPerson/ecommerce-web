@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .address_item {
   width: 426px;
@@ -47,4 +48,73 @@
 
 .selected_address {
   border: 2px solid $color-gold;
+}
+
+@include medium {
+  .address_item {
+    width: 350px;
+    min-height: 164px;
+    margin: 8px 0px 0px 30px;
+  
+    .item_content_container {
+      padding: 16px 14px 0px 14px;
+  
+      .item_name {
+        font-size: 14px;
+      }
+  
+      .item_address {
+        font-size: 12px;
+        margin: 8px 0px 11px;
+      }
+  
+      .item_phonenumber {
+        font-size: 12px;
+        font-weight: 300;
+        color: $primary-text-color;
+      }
+    }
+  
+    .action_container {  
+      .action_button {
+        padding: 10px 0px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@include small {
+  .address_item {
+    width: unset;
+    align-self: stretch;
+    min-height: 164px;
+    margin: 8px 0px 0px 0px;
+  
+    .item_content_container {
+      padding: 14px 12px 0px 12px;
+  
+      .item_name {
+        font-size: 12px;
+      }
+  
+      .item_address {
+        font-size: 10px;
+        margin: 8px 0px 11px;
+      }
+  
+      .item_phonenumber {
+        font-size: 10px;
+        font-weight: 300;
+        color: $primary-text-color;
+      }
+    }
+  
+    .action_container {  
+      .action_button {
+        padding: 8px 0px;
+        font-size: 10px;
+      }
+    }
+  }
 }
