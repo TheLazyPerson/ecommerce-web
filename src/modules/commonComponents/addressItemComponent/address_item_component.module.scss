@@ -1,6 +1,22 @@
 @import '~Styles/colors.module';
 @import '~Styles/mixins.module';
 
+.rtl {
+  .item_content_container {  
+    .item_name {
+      text-align: right;
+    }
+
+    .item_address {
+      text-align: right;
+    }
+
+    .item_phonenumber {
+      text-align: right;
+    }
+  }
+}
+
 .address_item {
   width: 426px;
   min-height: 164px;

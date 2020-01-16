@@ -12,12 +12,14 @@ class AddressItemComponent extends Component {
       onClickRemove,
       isSelected,
       onClickItem,
-      translate
+      translate,
+      isRTL
     } = this.props;
-    
+    const phoneNumber = isRTL ?`${address.country_code}-${address.phone_number} ${translate('address_item_component.phone_number')}` :`${translate('address_item_component.phone_number')} ${address.country_code}-${address.phone_number}` ;
+
     return (
       <DivColumn 
-        className={`${styles.address_item} ${isSelected ? styles.selected_address: ''}`}
+        className={`${styles.address_item} ${isRTL ? styles.rtl : ''} ${isSelected ? styles.selected_address: ''}`}
         onClick={onClickItem ? () => onClickItem(address) : null}
       >
         <DivColumn fillParent className={styles.item_content_container}>
@@ -29,7 +31,7 @@ class AddressItemComponent extends Component {
             {address.country} - {address.postcode}
           </div>
           <div className={styles.item_phonenumber}>
-            {`${translate('address_item_component.phone_number')} ${address.country_code}-${address.phone_number}`}
+            {phoneNumber}
           </div>
         </DivColumn>
         <DivRow className={styles.action_container}>
