@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class ProfileOrders extends Component {
   onClickProductViewDetails = (orderId) => {
@@ -23,7 +24,8 @@ class ProfileOrders extends Component {
   render() {
     const {
       orderReducer: { orderList },
-      getOrderListAction
+      getOrderListAction,
+      isRTL,
     } = this.props;
 
     return (
@@ -35,7 +37,7 @@ class ProfileOrders extends Component {
           <DivColumn fillParent className={styles.page_container}>
 
             {map(orderList, order => (
-              <DivColumn className={styles.orders_container}>
+              <DivColumn className={`${styles.orders_container} ${isRTL ? styles.rtl : ''}`}>
                 <DivRow className={styles.list_header}>
                   <div className={styles.header_text}>
                     ORDER DATE:{" "}
@@ -94,4 +96,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProfileOrders));
+)(navigatorHoc(translatorHoc(ProfileOrders)));

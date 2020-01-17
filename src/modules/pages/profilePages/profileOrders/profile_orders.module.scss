@@ -85,6 +85,20 @@
   }
 }
 
+.rtl {
+  .order_item_container {   
+    flex-flow: row-reverse;
+
+    .order_detail_container {
+      text-align: right;
+    
+      .view_order_button {
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
 @include medium {
   .orders_container {
     margin: 0px 30px 30px;
