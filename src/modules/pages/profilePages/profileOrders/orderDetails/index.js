@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import isEmpty from 'lodash/isEmpty';
 import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class OrderDetails extends Component {
   onBackPress = () => {
@@ -22,7 +23,12 @@ class OrderDetails extends Component {
   };
 
   render() {
-    const { getOrderDetailsAction, orderReducer: {orderDetails}, match } = this.props;
+    const {
+      getOrderDetailsAction,
+      orderReducer: { orderDetails },
+      match,
+      isRTL
+    } = this.props;
     const {
       shipping_address: shippingAddress,
       items: productItems,
@@ -33,10 +39,10 @@ class OrderDetails extends Component {
       <SectionedContainer sideBarContainer={<SideNav />}>
         <NavHeader title="Order Details" onBackClick={this.onBackPress} />
         <InitialPageLoader
-          initialPageApi={()=>getOrderDetailsAction(orderId)}
+          initialPageApi={() => getOrderDetailsAction(orderId)}
           isEmpty={isEmpty(orderDetails)}
         >
-          <DivColumn fillParent className={styles.page_container}>
+          <DivColumn fillParent className={`${styles.page_container} ${isRTL ? styles.rtl : ''}`}>
             <DivColumn
               verticalCenter
               horizontalCenter
@@ -53,7 +59,6 @@ class OrderDetails extends Component {
 
             <DivRow className={styles.content_container}>
               <DivColumn className={styles.left_container}>
-                {" "}
                 {/*left container*/}
                 <div className={styles.top_header_text}>UPDATES SENT TO</div>
                 <DivColumn className={styles.value_container}>
@@ -97,7 +102,7 @@ class OrderDetails extends Component {
                 <div className={styles.top_header_text}>
                   ITEMS IN THIS ORDER
                 </div>
-                
+
                 {/* <DivRow className={styles.product_item_container}>
                   <img
                     className={styles.product_image}       
@@ -128,10 +133,10 @@ class OrderDetails extends Component {
                         </div>
                         <div className={styles.product_type}>{productItem.type}</div>
                         <div className={styles.product_price}>
-                        {productItem.formated_price}
+                          {productItem.formated_price}
                         </div>
                       </DivColumn>
-                    </DivRow>  
+                    </DivRow>
                   ))
                 }
 
@@ -167,4 +172,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(OrderDetails));
+)(navigatorHoc(translatorHoc(OrderDetails)));

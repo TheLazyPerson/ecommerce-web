@@ -1,4 +1,7 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
+
+
 
 .page_container {
   overflow: scroll;
@@ -148,5 +151,71 @@
       }
 
    }
+  }
+}
+
+
+.rtl {
+  .content_container {
+    text-align: right;
+
+    .left_container {
+
+     .top_header_text {
+       padding: 17px 49px 17px 0px;
+     }
+     
+     .header_text {
+       padding: 9px 49px 9px 0px;
+     }
+ 
+     .value_container {
+      padding: 11px 49px 40px 0px;
+      align-items: flex-end;
+     }
+    }
+ 
+    //-----------------------------------------------rightContainer
+   
+    .right_container {
+ 
+      .top_header_text {
+         padding: 13px 49px 14px 0px;
+       }
+ 
+       .product_item_container {
+         margin: 9px 49px 11px 0px;
+         flex-flow: row-reverse;
+ 
+         .product_content_container {
+          margin-left: 0px;
+          margin-right: 14px;
+         }
+       }
+ 
+       .exhibition_container {
+         padding: 13px 49px 0px 0px;
+ 
+         .exhibition_title {
+           margin-bottom: 11px;
+         }
+ 
+         .exhibition_image {
+           margin-right: 12px;
+         }
+ 
+         .exhibition_name {
+         }
+       }
+ 
+    }
+   }
+}
+
+@include small {
+  .page_container {  
+    .content_container {
+      flex-direction: column;
+    }
   }
 }
