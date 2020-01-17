@@ -17,7 +17,7 @@ import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
 class ProfileOrders extends Component {
   onClickProductViewDetails = (orderId) => {
     const { navigateTo } = this.props;
-    navigateTo("order-details", {orderId});
+    navigateTo("order-details", { orderId });
   };
 
   render() {
@@ -46,8 +46,8 @@ class ProfileOrders extends Component {
                   </div>
                 </DivRow>
 
-                {map(order.items, item => (
-                  <DivRow className={styles.order_item_container}>
+                {map(order.items, (item, index) => (
+                  <DivRow className={styles.order_item_container} style={index == 0 ? { marginTop: 0 } : null}>
                     <img
                       className={styles.order_image}
                       src={exhibitionImage1}
@@ -61,7 +61,7 @@ class ProfileOrders extends Component {
                       <div className={styles.order_state}>{order.status}</div>
                       <div
                         className={styles.view_order_button}
-                        onClick={()=>this.onClickProductViewDetails(order.id)}
+                        onClick={() => this.onClickProductViewDetails(order.id)}
                       >
                         View details
                       </div>

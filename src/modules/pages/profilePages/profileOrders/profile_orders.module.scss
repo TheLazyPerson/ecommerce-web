@@ -26,10 +26,6 @@
     color: $primary-text-color;
   }
 
-  .order_item_container:first-child {
-    margin-top: 0px;
-  }
-
   .order_item_container {
     height: 205px;
     margin-top: 10px;
@@ -87,5 +83,76 @@
   
     }
   }
+}
 
+@include medium {
+  .orders_container {
+    margin: 0px 30px 30px;
+
+    .order_item_container {
+      height: 180px;
+      margin-top: 10px;
+    
+      .order_image {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  }
+}
+
+@include small {
+  .orders_container {
+    margin: 0px 15px 15px;
+  
+    .header_text {
+      font-size: 10px;
+    }
+  
+    .order_item_container {
+      flex-direction: column;
+      align-items: center;
+      height: unset;
+      margin-top: 10px;
+      padding: 10px 0px;
+
+      .order_image {
+        width: 150px;
+        height: 150px;
+      }
+  
+  
+      .order_detail_container {
+        padding: unset;
+        text-align: center;
+  
+        .order_exhibition {
+          font-size: 16px;
+          font-weight: bold;
+          color: $primary-text-color;      
+          margin: 10px 0px 7px;
+        }
+    
+        .order_name {
+          font-size: 12px;
+        }
+    
+        .order_price {
+          font-size: 16px;
+        }
+    
+        .order_state {
+          font-size: 12px;
+          margin-top: 20px;
+        }
+    
+        .view_order_button {
+          font-size: 12px;
+          padding: 4px 15px;
+          margin-top: 8px;
+        }
+    
+      }
+    }
+  }
 }
