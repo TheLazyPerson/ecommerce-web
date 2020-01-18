@@ -109,7 +109,7 @@ class ProfileHelpCenter extends Component {
                 pristine,
                 values
               }) => (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className={styles.form}>
                   <Field name="feedback">
                     {({ input, meta }) => (
                       <textarea
