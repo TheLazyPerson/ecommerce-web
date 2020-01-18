@@ -54,8 +54,18 @@
   }
 }
 
-@include medium {
+.rtl { 
+  text-align: right;
+  flex-flow: row-reverse;
 
+  .exhibition_details_container {
+    .capsule_container {
+      justify-content: flex-end;
+    }
+    .view_exhibition_button {
+      align-self: flex-start;
+    }
+  }
 }
 
 @include small {
