@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .search_container {
   overflow: scroll;
@@ -36,7 +37,16 @@
       }
     }
 
+  }
+}
 
 
+@include medium {
+  .search_container {
+    .search_list_container {
+      .section_list {
+        justify-content: center;
+      }
+    }
   }
 }
