@@ -12,13 +12,12 @@ import { bindActionCreators } from "redux";
 import map from "lodash/map";
 import isEmpty from 'lodash/isEmpty';
 import queryString from "query-string";
-class SearchPage extends Component {
 
+class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.initialLoaderRef = React.createRef()
   }
-
 
   getSlugBasedOntype = (searchType) => {
     switch(searchType) {

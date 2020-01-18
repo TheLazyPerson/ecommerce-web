@@ -13,17 +13,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class ProfileOrders extends Component {
   onClickProductViewDetails = (orderId) => {
     const { navigateTo } = this.props;
-    navigateTo("order-details", {orderId});
+    navigateTo("order-details", { orderId });
   };
 
   render() {
     const {
       orderReducer: { orderList },
-      getOrderListAction
+      getOrderListAction,
+      isRTL,
     } = this.props;
 
     return (
@@ -35,7 +37,7 @@ class ProfileOrders extends Component {
           <DivColumn fillParent className={styles.page_container}>
 
             {map(orderList, order => (
-              <DivColumn className={styles.orders_container}>
+              <DivColumn className={`${styles.orders_container} ${isRTL ? styles.rtl : ''}`}>
                 <DivRow className={styles.list_header}>
                   <div className={styles.header_text}>
                     ORDER DATE:{" "}
@@ -46,8 +48,8 @@ class ProfileOrders extends Component {
                   </div>
                 </DivRow>
 
-                {map(order.items, item => (
-                  <DivRow className={styles.order_item_container}>
+                {map(order.items, (item, index) => (
+                  <DivRow className={styles.order_item_container} style={index == 0 ? { marginTop: 0 } : null}>
                     <img
                       className={styles.order_image}
                       src={exhibitionImage1}
@@ -61,7 +63,7 @@ class ProfileOrders extends Component {
                       <div className={styles.order_state}>{order.status}</div>
                       <div
                         className={styles.view_order_button}
-                        onClick={()=>this.onClickProductViewDetails(order.id)}
+                        onClick={() => this.onClickProductViewDetails(order.id)}
                       >
                         View details
                       </div>
@@ -94,4 +96,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProfileOrders));
+)(navigatorHoc(translatorHoc(ProfileOrders)));

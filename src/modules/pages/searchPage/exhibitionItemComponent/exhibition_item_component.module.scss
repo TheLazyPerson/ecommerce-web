@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .exhibition_item_container {
   width: 426px;
@@ -49,6 +50,62 @@
     .view_exhibition_button {
       margin-top: auto;
       align-self: flex-end;
+    }
+  }
+}
+
+.rtl { 
+  text-align: right;
+  flex-flow: row-reverse;
+
+  .exhibition_details_container {
+    .capsule_container {
+      justify-content: flex-end;
+    }
+    .view_exhibition_button {
+      align-self: flex-start;
+    }
+  }
+}
+
+@include small {
+  .exhibition_item_container {
+    width: unset;
+    flex-direction: column;
+    margin: 10px 0px 0px;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+
+    .exhibition_image {
+      min-width: 164px;
+      width: 164px;
+      height: 164px;
+    }
+  
+    .exhibition_details_container {
+      padding: 9px;
+  
+      .exhibition_name {
+        font-size: 16px;
+      }
+  
+      .exhibition_details {
+        font-size: 10px;
+        margin: 6px 0px;
+      }
+  
+      .capsule_container {
+        justify-content: center;
+        .capsule {
+          font-size: 10px;
+        }
+      }
+  
+      .view_exhibition_button {
+        margin-top: 8px;
+        align-self: center;
+      }
     }
   }
 }

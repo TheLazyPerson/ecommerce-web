@@ -138,3 +138,40 @@
 .selected_delivery {
   border: 1px solid white;
 }
+
+
+@include medium {
+  .order_summary_container {
+    width: unset;
+
+    .order_summary_title {
+      font-size: 30px;
+    }
+  }
+
+  .capsule_button {
+    padding: 10px 0px;
+    font-size: 16px;
+    margin-top: 17px;
+    min-width: 300px;
+
+    align-self: center;
+  }
+}
+
+@include small {
+  .order_summary_container {
+
+    .order_summary_title {
+      font-size: 26px;
+    }
+  }
+
+  .capsule_button {
+    padding: 10px 0px;
+    font-size: 14px;
+    margin-top: 15px;
+    min-width: 250px;
+
+  }
+}

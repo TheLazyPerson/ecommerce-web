@@ -6,6 +6,7 @@ import CapsuleText from "CommonComponents/capsuleText";
 import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import styles from "./exhibition_item_component.module.scss";
 import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class ExhibitionItemComponent extends Component {
   onClickViewExhibition = () => {
@@ -17,10 +18,10 @@ class ExhibitionItemComponent extends Component {
   };
 
   render() {
-    const { exhibition } = this.props;
+    const { exhibition, isRTL } = this.props;
 
     return (
-      <DivRow className={styles.exhibition_item_container}>
+      <DivRow className={`${styles.exhibition_item_container} ${isRTL ? styles.rtl : ''}`}>
         <img src={`https://source.unsplash.com/100x10${exhibition.id}/?product`} className={styles.exhibition_image} />
 
         <DivColumn className={styles.exhibition_details_container}>
@@ -47,4 +48,4 @@ class ExhibitionItemComponent extends Component {
   }
 }
 
-export default navigatorHoc(ExhibitionItemComponent);
+export default navigatorHoc(translatorHoc(ExhibitionItemComponent));

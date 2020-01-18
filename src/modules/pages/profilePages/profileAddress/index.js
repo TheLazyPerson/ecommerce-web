@@ -16,6 +16,7 @@ import CapsuleButton from "CommonComponents/capsuleButton";
 import navigatorHoc from "Hoc/navigatorHoc";
 import AddressItemComponent from 'CommonComponents/addressItemComponent';
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
+import NavHeader from "../components/navHeader";
 
 class ProfileAddress extends Component {
   onClickNewAddress = () => {
@@ -57,16 +58,15 @@ class ProfileAddress extends Component {
       <SectionedContainer sideBarContainer={<SideNav />}>
         <InitialPageLoader initialPageApi={getAddressListAction}>
           <DivColumn fillParent className={styles.address_container}>
-            <DivColumn className={styles.section_container}>
-              <DivRow className={styles.header_container}>
-                <div className={styles.header_title}>DEFAULT ADDRESS</div>
+            <DivColumn className={styles.section_container}>              
+              <NavHeader title="Default Address">
                 <CapsuleButton
-                  className={styles.capsule_button}
                   onClick={() => this.onClickNewAddress()}
                 >
                   + ADD NEW ADDRESS
                 </CapsuleButton>
-              </DivRow>
+              </NavHeader>
+
               {map(default_address, (address, index) => {
                 return (
                   <AddressItemComponent

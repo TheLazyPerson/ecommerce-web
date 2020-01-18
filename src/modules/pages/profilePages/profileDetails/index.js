@@ -13,6 +13,7 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from 'Hoc/translatorHoc';
 
 class ProfileDetails extends Component {
   navigateToChangePass = () => {
@@ -28,14 +29,15 @@ class ProfileDetails extends Component {
   render() {
     const {
       profileDetailsReducer: { userDetails },
-      getProfileDetailsAction
+      getProfileDetailsAction,
+      isRTL,
     } = this.props;
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <DivColumn className={styles.details_container}>
+        <DivColumn className={`${styles.details_container} ${isRTL ? styles.rtl : ''}`}>
           <NavHeader title="profile details">
-            <DivRow>
+            <DivRow className={styles.header_button_container}>
               <SecondaryCapsuleButton
                 className={styles.reset_password_button}
                 onClick={this.navigateToChangePass}
@@ -118,4 +120,4 @@ const mapDispathToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProfileDetails));
+)(navigatorHoc(translatorHoc(ProfileDetails)));

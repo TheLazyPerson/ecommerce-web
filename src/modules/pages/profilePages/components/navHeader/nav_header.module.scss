@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .header_container {
   align-self: stretch;
@@ -18,5 +19,38 @@
     margin-right: 13px;
     height: 10px;
     transform: scaleX(-1);
+  }
+}
+
+
+@include medium {
+  .header_container {
+    padding: 10px 36px;
+    margin-top: 8px;
+    
+    .header_title {
+      font-size: 12px;
+    }
+  
+    .back_icon {
+      margin-right: 10px;
+      height: 10px;
+    }
+  }
+}
+
+@include small {
+  .header_container {
+    padding: 8px 26px;
+    margin-top: 10px;
+    
+    .header_title {
+      font-size: 10px;
+    }
+  
+    .back_icon {
+      margin-right: 10px;
+      height: 8px;
+    }
   }
 }

@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .page_container {
   // overflow: scroll;
@@ -45,4 +46,43 @@
     }
   }
 
+}
+
+
+@include small {
+  .page_container {
+    // overflow: scroll;
+  
+    .form_container {
+      margin-top: 22px;
+  
+      .text_input_container {
+        margin-left: 0px;
+  
+        .input_text {
+          margin-bottom: 10px;
+        }  
+      }
+      
+      .button_divider {
+        margin: 14px 0px;
+        background: #ededed;
+      }
+    
+      .checkbox_container {
+        max-width: 393px;
+        margin-left: 0px;
+  
+        .checkbox_text {
+          font-size: 12px;
+        }
+      }
+  
+      .form_button_container {
+        margin-left: 0px;
+        max-width: 393px;
+      }
+    
+    }
+  }
 }

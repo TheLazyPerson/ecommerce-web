@@ -65,3 +65,92 @@
     }
   }
 }
+
+
+@include medium {
+  .profile_overview_container {
+    padding: 28px;
+  
+    .header_container {
+      height: 180px;
+      min-height: 180px;
+  
+      .header_title {
+        font-size: 16px;
+      }
+  
+      .header_message {
+        font-size: 34px;
+      }
+    }
+  
+    .items_container {
+      margin-top: 20px;
+      justify-content: center;
+  
+      .grid_item {
+        width: 207px;
+        height: 165px;
+        margin: 5px;
+  
+        .item_image {
+          width: 42px;
+          height: 42px;
+        }
+  
+        .item_title {
+          font-size: 14px;
+          margin-top: 16px;
+        }
+  
+        .item_description {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@include small {
+  .profile_overview_container {
+    padding: 20px;
+  
+    .header_container {
+      height: 150px;
+      min-height: 150px;
+  
+      .header_title {
+        font-size: 14px;
+      }
+  
+      .header_message {
+        font-size: 28px;
+      }
+    }
+  
+    .items_container {
+      margin-top: 20px;
+      justify-content: center;
+  
+      .grid_item {
+        width: 207px;
+        height: 165px;
+        margin: 5px;
+  
+        .item_image {
+          width: 42px;
+          height: 42px;
+        }
+  
+        .item_title {
+          font-size: 12px;
+          margin-top: 16px;
+        }
+  
+        .item_description {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

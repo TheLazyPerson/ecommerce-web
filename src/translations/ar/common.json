@@ -1,7 +1,7 @@
 {
 	"address_item_component": {
 		"edit": "تصحيح",
-		"phone_number": "رقم الهاتف:",
+		"phone_number": ":رقم الهاتف",
 		"remove": "إزالة"
 	},
 	"checkout_page": {

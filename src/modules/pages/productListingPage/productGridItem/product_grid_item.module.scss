@@ -75,3 +75,43 @@
 .is_disabled {
   opacity: 0.5;
 }
+
+
+
+@include small {
+  .product_container {
+    width: 256px;
+    height: 300px;
+    margin: 5px;
+  
+    .product_title {
+      font-size: 14px;
+    }
+  
+    .product_description {
+      font-size: 12px;
+    }
+  
+    .product_image {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .product_action_container {
+      height: 38px;
+  
+      .action_text {
+        font-size: 12px;
+        margin-right: 10px;
+      }
+  
+      .heart_icon_container {
+        width: 70px;  
+
+        .wishlist_icon {
+          width: 18px;
+        }
+      }
+    }
+  }
+}
