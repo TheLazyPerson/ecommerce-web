@@ -35,7 +35,7 @@ class ProfileDetails extends Component {
       <SectionedContainer sideBarContainer={<SideNav />}>
         <DivColumn className={styles.details_container}>
           <NavHeader title="profile details">
-            <DivRow>
+            <DivRow className={styles.header_button_container}>
               <SecondaryCapsuleButton
                 className={styles.reset_password_button}
                 onClick={this.navigateToChangePass}

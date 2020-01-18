@@ -1,10 +1,13 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .details_container {
   overflow: scroll;
 
-  .reset_password_button {
-    margin-right: 16px;
+  .header_button_container {
+    .reset_password_button {
+      margin-right: 16px;
+    }  
   }
 
   .field_container:first-child {
@@ -27,6 +30,43 @@
       font-size: 18px;
       font-weight: bold;
       color: $primary-text-color;
+    }
+  }
+}
+
+
+@include medium {
+
+}
+
+@include small {
+  .details_container {
+    .header_button_container {
+      flex-direction: column;
+      
+      .reset_password_button{
+        margin-right: 0px;
+      }
+
+      .reset_password_button:first-child {
+        margin-bottom: 10px;
+      }
+    }
+  
+    .field_container:first-child {
+      border-top: none;
+    }
+  
+    .field_container {
+      padding: 17px 46px;
+  
+      .title {
+        font-size: 18px;
+      }
+  
+      .value {
+        font-size: 18px;
+      }
     }
   }
 }
