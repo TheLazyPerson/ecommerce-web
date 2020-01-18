@@ -1,4 +1,5 @@
 @import '~Styles/colors.module';
+@import '~Styles/mixins.module';
 
 .product_listing_container {
   padding-top: 30px;
@@ -14,20 +15,24 @@
 
   .product_list_container {
     padding: 23px 22px 0px;
-    // flex-flow: wrap;
-    // overflow: scroll;
-    //-ms-overflow-style: none;
-    //overflow: -moz-scrollbars-none;
-    
-    .product {
-      width: 200px;
-      height: 200px;
-    }
 
     .product_list {
       flex-flow: wrap;
     }
   }
+}
 
-  //.product_list_container::-webkit-scrollbar { width: 0 !important }
+@include medium {
+  .product_listing_container {  
+    .product_list_container {
+      .product_list {
+        flex-flow: wrap;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@include small {
+
 }
