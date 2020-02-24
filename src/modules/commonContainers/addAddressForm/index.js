@@ -16,13 +16,15 @@ import {
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { createAddressAction, editAddressAction } from "Core/modules/address/addressActions";
-import find from 'lodash/find';
-import Select from 'react-select';
-import map from 'lodash/map';
+import {
+  createAddressAction,
+  editAddressAction
+} from "Core/modules/address/addressActions";
+import find from "lodash/find";
+import Select from "react-select";
+import map from "lodash/map";
 
 class AddAddressForm extends Component {
-
   validate = values => {
     const errors = {};
     const validators = {
@@ -42,13 +44,13 @@ class AddAddressForm extends Component {
     Object.keys(validators).forEach(key => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
-
+    debugger;
     return errors;
   };
 
   onSubmit = form => {
-    const { 
-      createAddressAction, 
+    const {
+      createAddressAction,
       showSuccessFlashMessage,
       onSubmitComplete,
       addressId,
@@ -69,7 +71,7 @@ class AddAddressForm extends Component {
       default_address: 1,
       name: form.name
     };
-
+    debugger;
     if (addressId) {
       editAddressAction(addressId, formData).then(({ payload }) => {
         if (payload.code === 200 || payload.code === 201) {
@@ -87,7 +89,7 @@ class AddAddressForm extends Component {
     }
   };
 
-  getInitialValuesFromAddress =  (address) => {
+  getInitialValuesFromAddress = address => {
     return {
       firstName: address.first_name ? address.first_name : "",
       lastName: address.last_name ? address.last_name : "",
@@ -101,32 +103,45 @@ class AddAddressForm extends Component {
       country_code: address.country_code ? address.country_code : "",
       pincode: address.postcode ? address.postcode : ""
     };
-  }
+  };
 
-  formatSelectorData = (list) => {
-    return map(list, item => ({ value: item.name, label: item.name }))
-  }
-  
+  formatSelectorData = list => {
+    return map(list, item => ({ value: item.name, label: item.name }));
+  };
+
   render() {
-    const { onClickCancel, addressReducer: { addressList }, addressId, basicReducer: {basicData} } = this.props;
-    const editAddress = find(addressList, address => { return address.id == addressId });
+    const {
+      onClickCancel,
+      addressReducer: { addressList },
+      addressId,
+      basicReducer: { basicData }
+    } = this.props;
+    const editAddress = find(addressList, address => {
+      return address.id == addressId;
+    });
     const addressTypes = [
       {
-        value: 'home', label: 'Home'
+        value: "home",
+        label: "Home"
       },
       {
-        value: 'office', label: 'Office'
+        value: "office",
+        label: "Office"
       }
     ];
     const countries = this.formatSelectorData(basicData.countries);
     const states = this.formatSelectorData(basicData.states);
-    const defaultCountry = find(countries, country => { return (editAddress && country.value == editAddress.country) });
-    const defaultState = find(states, state => { return (editAddress && state.value == editAddress.state) });
+    const defaultCountry = find(countries, country => {
+      return editAddress && country.value == editAddress.country;
+    });
+    const defaultState = find(states, state => {
+      return editAddress && state.value == editAddress.state;
+    });
 
     let defaultAddressType = null;
 
     if (editAddress && editAddress.name) {
-      if(editAddress.name == 'home') {
+      if (editAddress.name == "home") {
         defaultAddressType = addressTypes[0];
       } else {
         defaultAddressType = addressTypes[1];
@@ -138,7 +153,9 @@ class AddAddressForm extends Component {
         <Form
           onSubmit={this.onSubmit}
           validate={this.validate}
-          initialValues={editAddress ? this.getInitialValuesFromAddress(editAddress) : null}
+          initialValues={
+            editAddress ? this.getInitialValuesFromAddress(editAddress) : null
+          }
           render={({ handleSubmit, form, submitting, pristine, values }) => (
             <form className={styles.form_container} onSubmit={handleSubmit}>
               <DivColumn className={styles.text_input_container}>
@@ -177,25 +194,25 @@ class AddAddressForm extends Component {
               <HorizontalBorder className={styles.address_divider} />
 
               <DivColumn className={styles.text_input_container}>
-                
                 <Field name="name">
                   {({ input, meta }) => (
-                    <DivColumn className='input_select_container'>
+                    <DivColumn className="input_select_container">
                       <Select
                         options={addressTypes}
                         onChange={value => {
-                          input.onChange(value.value)
+                          input.onChange(value.value);
                         }}
-                        className='react-select-container'
+                        className="react-select-container"
                         classNamePrefix="react-select"
                         placeholder="Home/Office"
                         defaultValue={defaultAddressType}
                       />
-                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                      {meta.error && meta.touched && (
+                        <span className="error_text">{meta.error}</span>
+                      )}
                     </DivColumn>
                   )}
                 </Field>
-
 
                 <Field name="address1">
                   {({ input, meta }) => (
@@ -231,36 +248,40 @@ class AddAddressForm extends Component {
 
                 <Field name="state">
                   {({ input, meta }) => (
-                    <DivColumn className='input_select_container'>
+                    <DivColumn className="input_select_container">
                       <Select
                         options={states}
                         onChange={value => {
-                          input.onChange(value.value)
+                          input.onChange(value.value);
                         }}
-                        className='react-select-container'
+                        className="react-select-container"
                         classNamePrefix="react-select"
                         placeholder="State"
                         defaultValue={defaultState}
                       />
-                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                      {meta.error && meta.touched && (
+                        <span className="error_text">{meta.error}</span>
+                      )}
                     </DivColumn>
                   )}
                 </Field>
 
                 <Field name="country">
                   {({ input, meta }) => (
-                    <DivColumn className='input_select_container'>
+                    <DivColumn className="input_select_container">
                       <Select
                         options={countries}
                         onChange={value => {
-                          input.onChange(value.value)
+                          input.onChange(value.value);
                         }}
-                        className='react-select-container'
+                        className="react-select-container"
                         classNamePrefix="react-select"
                         placeholder="County"
                         defaultValue={defaultCountry}
                       />
-                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
+                      {meta.error && meta.touched && (
+                        <span className="error_text">{meta.error}</span>
+                      )}
                     </DivColumn>
                   )}
                 </Field>
@@ -304,9 +325,7 @@ class AddAddressForm extends Component {
                 <SecondaryCapsuleButton onClick={onClickCancel}>
                   Cancel
                 </SecondaryCapsuleButton>
-                <CapsuleButton type="submit" disabled={submitting}>
-                  Save Details
-                </CapsuleButton>
+                <CapsuleButton type="submit">Save Details</CapsuleButton>
               </DivRow>
             </form>
           )}
@@ -319,10 +338,9 @@ class AddAddressForm extends Component {
 const mapStateToProps = state => {
   return {
     addressReducer: state.addressReducer,
-    basicReducer: state.basicReducer,
+    basicReducer: state.basicReducer
   };
 };
-
 
 const mapDispathToProps = dispatch => {
   return {
@@ -339,4 +357,3 @@ export default connect(
   mapStateToProps,
   mapDispathToProps
 )(AddAddressForm);
-

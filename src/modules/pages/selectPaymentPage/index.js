@@ -10,13 +10,16 @@ import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { checkoutBagAction, selectPaymentMethodAction } from 'Core/modules/checkout/checkoutActions';
-import checkedIconBlack from 'Icons/checked-icon-black.svg';
-import OrderSummary from '../placeOrderPage/orderSummary';
-import translatorHoc from 'Hoc/translatorHoc';
+import {
+  checkoutBagAction,
+  selectPaymentMethodAction
+} from "Core/modules/checkout/checkoutActions";
+import { getPaymentAction } from "Core/modules/payment/paymentActions";
+import checkedIconBlack from "Icons/checked-icon-black.svg";
+import OrderSummary from "../placeOrderPage/orderSummary";
+import translatorHoc from "Hoc/translatorHoc";
 
 class SelectPaymentPage extends Component {
-
   componentDidMount() {
     const {
       selectPaymentMethodAction,
@@ -25,15 +28,15 @@ class SelectPaymentPage extends Component {
     } = this.props;
     const paymentMethodObject = {
       payment: {
-        method: 'cashondelivery'
+        method: "cashondelivery"
       }
     };
 
-    selectPaymentMethodAction(paymentMethodObject).then(({ payload })=> {
-      if(payload.code == 200 || payload.code == 201) {
-        showSuccessFlashMessage(translate('select_payment.cod_selected'));
+    selectPaymentMethodAction(paymentMethodObject).then(({ payload }) => {
+      if (payload.code == 200 || payload.code == 201) {
+        showSuccessFlashMessage(translate("select_payment.cod_selected"));
       }
-    })
+    });
   }
 
   placeOrder = () => {
@@ -41,16 +44,20 @@ class SelectPaymentPage extends Component {
       navigateTo,
       showSuccessFlashMessage,
       checkoutBagAction,
-      translate,
+      getPaymentAction,
+      translate
     } = this.props;
 
-    checkoutBagAction().then(({payload}) => {
-      if(payload.code ==200 || payload.code == 201) {
-       navigateTo('');
-       showSuccessFlashMessage(translate('select_payment.order_placed'));
+    checkoutBagAction().then(({ payload }) => {
+      if (payload.code == 200 || payload.code == 201) {
+        getPaymentAction(payload.data.id).then(({ payload }) => {
+          if (payload.code == 200 || payload.code == 201) {
+            window.location.href = payload.data.paymentURL;
+          }
+        });
       }
     });
-  }
+  };
 
   render() {
     const { translate } = this.props;
@@ -58,29 +65,35 @@ class SelectPaymentPage extends Component {
     return (
       <FullWidthContainer>
         <DivRow fillParent className={styles.checkout_container}>
-
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.header_container}>
-              <div className={styles.header_title}>{translate('select_payment.choose_payment_method')}</div>
+              <div className={styles.header_title}>
+                {translate("select_payment.choose_payment_method")}
+              </div>
             </DivRow>
 
             <DivColumn fillParent className={styles.payment_method_container}>
-
-              <DivRow verticalCenter className={styles.payment_method_item_container}>
-                <DivColumn style={{flex:1}}>
-                  <div className={styles.title}>{translate('select_payment.cod_title')}</div>
-                  <div className={styles.description}>{translate('select_payment.cod_description')}</div>
+              <DivRow
+                verticalCenter
+                className={styles.payment_method_item_container}
+              >
+                <DivColumn style={{ flex: 1 }}>
+                  <div className={styles.title}>
+                    {translate("select_payment.cod_title")}
+                  </div>
+                  <div className={styles.description}>
+                    {translate("select_payment.cod_description")}
+                  </div>
                 </DivColumn>
-                <img src={checkedIconBlack} className={styles.icon}/>
+                <img src={checkedIconBlack} className={styles.icon} />
               </DivRow>
-
-            </DivColumn>            
+            </DivColumn>
           </DivColumn>
 
           <DivColumn>
-            <OrderSummary 
+            <OrderSummary
               onSubmitButtonClick={this.placeOrder}
-              submitButtonText={translate('select_payment.place_order_button')}
+              submitButtonText={translate("select_payment.place_order_button")}
             />
           </DivColumn>
         </DivRow>
@@ -95,8 +108,12 @@ const mapDispathToProps = dispatch => {
       showSuccessFlashMessage,
       dispatch
     ),
-    checkoutBagAction:  bindActionCreators(checkoutBagAction, dispatch),
-    selectPaymentMethodAction: bindActionCreators(selectPaymentMethodAction, dispatch),
+    checkoutBagAction: bindActionCreators(checkoutBagAction, dispatch),
+    getPaymentAction: bindActionCreators(getPaymentAction, dispatch),
+    selectPaymentMethodAction: bindActionCreators(
+      selectPaymentMethodAction,
+      dispatch
+    )
   };
 };
 
