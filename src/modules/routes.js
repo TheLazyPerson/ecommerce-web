@@ -32,7 +32,9 @@ import EditAddress from "./pages/profilePages/profileAddress/editAddress";
 import orderDetails from "./pages/profilePages/profileOrders/orderDetails";
 import PlaceOrderPage from "./pages/placeOrderPage";
 import SelectPaymentPage from "./pages/selectPaymentPage";
-import TrendingExhibitionsPage from './pages/trendingExhibitionsPage';
+import TrendingExhibitionsPage from "./pages/trendingExhibitionsPage";
+import PaymentSuccessPage from "./pages/paymentSuccessPage";
+import PaymentFailurePage from "./pages/paymentFailurePage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -166,6 +168,20 @@ const App = ({ isUserSignedIn }) => {
         redirectTo="signin"
         validator={() => isUserSignedIn}
       />
+      <ProtectedRoute
+        exact
+        path="/payment/success"
+        component={PaymentSuccessPage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/payment/failure"
+        component={PaymentFailurePage}
+        redirectTo="signin"
+        validator={() => isUserSignedIn}
+      />
       <Route
         exact
         path="/terms-and-condition"
@@ -196,4 +212,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(topContainerHoc(App));
+export default connect(
+  mapStateToProps,
+  null
+)(topContainerHoc(App));
