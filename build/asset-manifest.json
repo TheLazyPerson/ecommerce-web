@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.adfb9904.chunk.css",
-    "main.js": "/static/js/main.bdc705fc.chunk.js",
-    "main.js.map": "/static/js/main.bdc705fc.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e35f0234.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e35f0234.js.map",
-    "static/css/2.269f8690.chunk.css": "/static/css/2.269f8690.chunk.css",
-    "static/js/2.23cb2d2a.chunk.js": "/static/js/2.23cb2d2a.chunk.js",
-    "static/js/2.23cb2d2a.chunk.js.map": "/static/js/2.23cb2d2a.chunk.js.map",
+    "main.css": "/static/css/main.7c23b4e4.chunk.css",
+    "main.js": "/static/js/main.6b853b00.chunk.js",
+    "main.js.map": "/static/js/main.6b853b00.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.95e895f4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.95e895f4.js.map",
+    "static/css/2.c6d8e96b.chunk.css": "/static/css/2.c6d8e96b.chunk.css",
+    "static/js/2.421e66c5.chunk.js": "/static/js/2.421e66c5.chunk.js",
+    "static/js/2.421e66c5.chunk.js.map": "/static/js/2.421e66c5.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.f2bae8f35f84d57fd1bba464f755489d.js": "/precache-manifest.f2bae8f35f84d57fd1bba464f755489d.js",
+    "precache-manifest.240ff85994f8180b15a9b3107ff1ca38.js": "/precache-manifest.240ff85994f8180b15a9b3107ff1ca38.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.269f8690.chunk.css.map": "/static/css/2.269f8690.chunk.css.map",
-    "static/css/main.adfb9904.chunk.css.map": "/static/css/main.adfb9904.chunk.css.map",
+    "static/css/2.c6d8e96b.chunk.css.map": "/static/css/2.c6d8e96b.chunk.css.map",
+    "static/css/main.7c23b4e4.chunk.css.map": "/static/css/main.7c23b4e4.chunk.css.map",
     "static/media/address-icon-black.svg": "/static/media/address-icon-black.e89c5982.svg",
     "static/media/address-icon-white.svg": "/static/media/address-icon-white.76bc8314.svg",
     "static/media/app-store-badge.svg": "/static/media/app-store-badge.2928664f.svg",
@@ -59,10 +59,10 @@
     "static/media/wishlist-icon-white.svg": "/static/media/wishlist-icon-white.74bd6525.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e35f0234.js",
-    "static/css/2.269f8690.chunk.css",
-    "static/js/2.23cb2d2a.chunk.js",
-    "static/css/main.adfb9904.chunk.css",
-    "static/js/main.bdc705fc.chunk.js"
+    "static/js/runtime-main.95e895f4.js",
+    "static/css/2.c6d8e96b.chunk.css",
+    "static/js/2.421e66c5.chunk.js",
+    "static/css/main.7c23b4e4.chunk.css",
+    "static/js/main.6b853b00.chunk.js"
   ]
 }
