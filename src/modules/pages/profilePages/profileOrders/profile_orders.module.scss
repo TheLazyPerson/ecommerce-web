@@ -2,7 +2,7 @@
 @import '~Styles/mixins.module';
 
 .page_container {
-  overflow-y: scroll;
+  overflow-y: auto;
   justify-content: flex-start;
 }
 

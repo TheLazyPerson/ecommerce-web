@@ -13,22 +13,21 @@ class FullWidthContainer extends Component {
   render() {
     const { children } = this.props;
 
-     return (
-       <DivColumn fillParent className={styles.page_container}>
-         <DivColumn fillParent className={styles.content_container}>
+    return (
+      <DivColumn fillParent className={styles.page_container}>
+        <DivColumn fillParent className={styles.content_container}>
 
-        <FullwidthHeader />
+          <FullwidthHeader />
 
           <DivColumn fillParent className={styles.inner_content_container}>
             <DivColumn fillParent className={styles.content}>
-              { children }
+              {children}
             </DivColumn>
-            <PageFooter />
           </DivColumn>
 
-         </DivColumn>
-       </DivColumn>
-     )
+        </DivColumn>
+      </DivColumn>
+    )
   }
 }
 

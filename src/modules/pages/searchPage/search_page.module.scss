@@ -2,7 +2,7 @@
 @import '~Styles/mixins.module';
 
 .search_container {
-  overflow: scroll;
+  overflow: auto;
 
   .page_header {
     margin: 30px 60px 0px 60px;
@@ -14,7 +14,7 @@
 
   .search_list_container {
     padding-top: 20px;
-    // overflow: scroll;
+    // overflow: auto;
 
     .section:first-child {
       margin-top: 0px;
