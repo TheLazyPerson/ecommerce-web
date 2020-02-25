@@ -44,15 +44,15 @@ class NewHomePage extends Component {
     window.removeEventListener('scroll', this.hideNavBar);
   }
 
-  hideNavBar = () =>{
+  hideNavBar = () => {
     const scrollThreshold = 150;
     const { showHeaderShadow } = this.state;
 
-    window.scrollY > scrollThreshold?
-    !showHeaderShadow && this.setState({showHeaderShadow: true})
-    :
-    showHeaderShadow && this.setState({showHeaderShadow: false})
- }
+    window.scrollY > scrollThreshold ?
+      !showHeaderShadow && this.setState({ showHeaderShadow: true })
+      :
+      showHeaderShadow && this.setState({ showHeaderShadow: false })
+  }
 
   onClickExhibitionItem = id => {
     const { navigateTo } = this.props;
@@ -62,7 +62,7 @@ class NewHomePage extends Component {
   };
 
   onClickSellerButton = () => {
-    window.location.href = 'http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/';    
+    window.location.href = 'http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/';
   }
 
   render() {
@@ -88,7 +88,7 @@ class NewHomePage extends Component {
     const isRightButtonClickable = currentSlide + 1 !== totalSlide;
 
     return (
-      <DivColumn fillParent className={styles.page_container}>
+      <div fillParent className={styles.page_container}>
         <DivColumn
           style={{
             backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
@@ -250,7 +250,7 @@ class NewHomePage extends Component {
             Go to seller
           </CapsuleButton>
         </DivColumn>
-        
+
 
         <PageFooter />
 
@@ -260,7 +260,7 @@ class NewHomePage extends Component {
           className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}
         />
 
-      </DivColumn>
+      </div>
     );
   }
 }
