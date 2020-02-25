@@ -19,11 +19,12 @@ class FullWidthContainer extends Component {
 
           <FullwidthHeader />
 
-          <DivColumn fillParent className={styles.inner_content_container}>
-            <DivColumn fillParent className={styles.content}>
+          <div fillParent className={styles.inner_content_container}>
+            <div fillParent className={styles.content}>
               {children}
-            </DivColumn>
-          </DivColumn>
+            </div>
+            <PageFooter />
+          </div>
 
         </DivColumn>
       </DivColumn>
