@@ -1,55 +1,52 @@
-import React, { Component, Fragment } from 'react';
-import SectionedHeader from 'CommonContainers/sectionedHeader';
-import DivRow from 'CommonComponents/divRow';
-import DivColumn from 'CommonComponents/divColumn';
-import styles from './sectioned_container.module.scss';
-import appIcon from 'Images/logo-image.png';
-import LanguageSelect from 'CommonComponents/languageSelect';
-import navigatorHoc from 'Hoc/navigatorHoc';
-import Drawer from '@material/react-drawer';
+import React, { Component, Fragment } from "react";
+import SectionedHeader from "CommonContainers/sectionedHeader";
+import DivRow from "CommonComponents/divRow";
+import DivColumn from "CommonComponents/divColumn";
+import styles from "./sectioned_container.module.scss";
+import appIcon from "Icons/app-icon-white.svg";
+import LanguageSelect from "CommonComponents/languageSelect";
+import navigatorHoc from "Hoc/navigatorHoc";
+import Drawer from "@material/react-drawer";
 import "@material/react-drawer/dist/drawer.css";
-import hamburgerIconBlack from 'Icons/hamburger-menu-icon-black.svg';
-import SearchBar from 'CommonContainers/searchBar';
+import hamburgerIconBlack from "Icons/hamburger-menu-icon-black.svg";
+import SearchBar from "CommonContainers/searchBar";
 
 class SectionedContainer extends Component {
-
   state = {
-    openDrawer: false,
-  }
+    openDrawer: false
+  };
 
   onClickAppIcon = () => {
     const { navigateTo } = this.props;
-    navigateTo('');
-  }
+    navigateTo("");
+  };
 
   onClickHamburgerMenu = () => {
     this.setState({ openDrawer: true });
-  }
+  };
 
   render() {
-    const {
-      isAbsoluteContent,
-      sideBarContainer,
-      children
-    } = this.props;
-    const {
-      openDrawer
-    } = this.state;
+    const { isAbsoluteContent, sideBarContainer, children } = this.props;
+    const { openDrawer } = this.state;
 
     const sideContainer = (
       <Fragment>
         <DivRow className={styles.header_container}>
-          <img
-            src={appIcon}
-            className={styles.app_icon}
+          <div
+            style={{
+              fontWeight: "bold",
+              marginLeft: 6,
+              color: "white",
+              cursor: "pointer"
+            }}
             onClick={this.onClickAppIcon}
-          />
-          <div style={{
-            fontWeight: 'bold',
-            marginLeft: 6,
-            color: 'white',
-            cursor: 'pointer'
-          }} onClick={this.onClickAppIcon}>MA3RATH</div>
+          >
+            <img
+              src={appIcon}
+              className={styles.app_icon}
+              onClick={this.onClickAppIcon}
+            />
+          </div>
         </DivRow>
 
         <DivColumn className={styles.side_content_container}>
@@ -71,7 +68,7 @@ class SectionedContainer extends Component {
           modal
           open={openDrawer}
           onClose={() => {
-            this.setState({ openDrawer: false })
+            this.setState({ openDrawer: false });
           }}
         >
           <DivColumn fillParent className={styles.drawer_container}>
@@ -81,14 +78,11 @@ class SectionedContainer extends Component {
           <a href="#"></a>
         </Drawer>
 
-        <DivColumn className={styles.left_container}>
-          {sideContainer}
-        </DivColumn>
+        <DivColumn className={styles.left_container}>{sideContainer}</DivColumn>
 
         <DivColumn className={styles.right_container}>
           <DivColumn fillSelfHorizontal className={styles.top_header_container}>
             <DivRow verticalCenter className={styles.header_container}>
-
               {/* only Visible on responive */}
               <img
                 src={hamburgerIconBlack}
@@ -98,9 +92,9 @@ class SectionedContainer extends Component {
 
               <SectionedHeader />
             </DivRow>
-            <SearchBar          
-             className={styles.search_bar_container}
-             // whiteColor={whiteColor}
+            <SearchBar
+              className={styles.search_bar_container}
+              // whiteColor={whiteColor}
             />
           </DivColumn>
           {/* children/content */}
@@ -111,7 +105,7 @@ class SectionedContainer extends Component {
 
         {isAbsoluteContent && children}
       </DivRow>
-    )
+    );
   }
 }
 
