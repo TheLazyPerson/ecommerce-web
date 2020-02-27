@@ -2,7 +2,7 @@
 @import '~Styles/mixins.module';
 
 .page_container {
-  // overflow: scroll;
+  // overflow: auto;
 
   .form_container {
     display: flex;
@@ -51,7 +51,7 @@
 
 @include small {
   .page_container {
-    // overflow: scroll;
+    // overflow: auto;
   
     .form_container {
       margin-top: 22px;

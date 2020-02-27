@@ -18,12 +18,12 @@
 
 .checkout_container {
   padding: 20px 60px 0px;
-  overflow: scroll;
+  overflow: auto;
 
   .cart_list_container {
     flex: 1;
     padding-right: 50px;
-    overflow: scroll;
+    overflow: auto;
 
     .table_header {
       padding: 8px;
@@ -35,7 +35,7 @@
     }
 
     .table_content_container {
-      // overflow: scroll;
+      // overflow: auto;
     }
   }
 
