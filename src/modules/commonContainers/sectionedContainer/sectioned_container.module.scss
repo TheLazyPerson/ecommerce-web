@@ -5,6 +5,10 @@
   background: $primary-color;
 }
 
+.page_footer {
+  margin-top: 0px !important;
+}
+
 .header_container {
   height: 84px;
   align-items: center;
@@ -26,8 +30,9 @@
 }
 
 .page_container {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
   // padding: 14px;
   background: $primary-color;
   box-shadow: 0 60px 80px 0 rgba(0, 0, 0, 0.05);

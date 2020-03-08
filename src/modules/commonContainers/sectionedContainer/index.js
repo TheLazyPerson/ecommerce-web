@@ -10,6 +10,7 @@ import Drawer from "@material/react-drawer";
 import "@material/react-drawer/dist/drawer.css";
 import hamburgerIconBlack from "Icons/hamburger-menu-icon-black.svg";
 import SearchBar from "CommonContainers/searchBar";
+import PageFooter from 'CommonComponents/pageFooter';
 
 class SectionedContainer extends Component {
   state = {
@@ -63,48 +64,51 @@ class SectionedContainer extends Component {
     );
 
     return (
-      <DivRow className={styles.page_container}>
-        <Drawer
-          modal
-          open={openDrawer}
-          onClose={() => {
-            this.setState({ openDrawer: false });
-          }}
-        >
-          <DivColumn fillParent className={styles.drawer_container}>
-            {sideContainer}
-          </DivColumn>
-          {/* Required other wise app crashes .. one focusable item required */}
-          <a href="#"></a>
-        </Drawer>
+      <Fragment>
+        <DivRow className={styles.page_container}>
+          <Drawer
+            modal
+            open={openDrawer}
+            onClose={() => {
+              this.setState({ openDrawer: false });
+            }}
+          >
+            <DivColumn fillParent className={styles.drawer_container}>
+              {sideContainer}
+            </DivColumn>
+            {/* Required other wise app crashes .. one focusable item required */}
+            <a href="#"></a>
+          </Drawer>
 
-        <DivColumn className={styles.left_container}>{sideContainer}</DivColumn>
+          <DivColumn className={styles.left_container}>{sideContainer}</DivColumn>
 
-        <DivColumn className={styles.right_container}>
-          <DivColumn fillSelfHorizontal className={styles.top_header_container}>
-            <DivRow verticalCenter className={styles.header_container}>
-              {/* only Visible on responive */}
-              <img
-                src={hamburgerIconBlack}
-                className={styles.hamburger_menu_icon}
-                onClick={this.onClickHamburgerMenu}
-              />
+          <DivColumn className={styles.right_container}>
+            <DivColumn fillSelfHorizontal className={styles.top_header_container}>
+              <DivRow verticalCenter className={styles.header_container}>
+                {/* only Visible on responive */}
+                <img
+                  src={hamburgerIconBlack}
+                  className={styles.hamburger_menu_icon}
+                  onClick={this.onClickHamburgerMenu}
+                />
 
-              <SectionedHeader />
-            </DivRow>
-            <SearchBar
-              className={styles.search_bar_container}
+                <SectionedHeader />
+              </DivRow>
+              <SearchBar
+                className={styles.search_bar_container}
               // whiteColor={whiteColor}
-            />
+              />
+            </DivColumn>
+            {/* children/content */}
+            <DivColumn fillParent className={styles.content_container}>
+              {!isAbsoluteContent && children}
+            </DivColumn>
           </DivColumn>
-          {/* children/content */}
-          <DivColumn fillParent className={styles.content_container}>
-            {!isAbsoluteContent && children}
-          </DivColumn>
-        </DivColumn>
 
-        {isAbsoluteContent && children}
-      </DivRow>
+          {isAbsoluteContent && children}
+        </DivRow>
+        <PageFooter className={styles.page_footer} />
+      </Fragment>
     );
   }
 }
