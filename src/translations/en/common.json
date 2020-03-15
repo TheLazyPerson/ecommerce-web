@@ -63,6 +63,7 @@
   },
   "header": {
     "login": "Login",
+    "logout": "Logout",
     "register": "Register",
     "search": "Search",
     "search_exhibition": "Search Exhibitions",

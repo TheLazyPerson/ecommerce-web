@@ -120,15 +120,15 @@ $bag-count-background: $color-pale;
   border-radius: 10px;
   right: 50px;
   top: 60px;
+  z-index: 10;
 
   .header_item {
     padding: 10px 20px;
     font: 16px;
 
-    @include on_click_button;
-
     &:hover {
       background: rgba(black, 0.2);
+      cursor: pointer;
     }
   }
 

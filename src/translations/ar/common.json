@@ -63,6 +63,7 @@
   },
   "header": {
     "login": "تسجيل الدخول",
+    "logout": "Logout",
     "register": "تسجيل",
     "search": "بحث",
     "search_exhibition": "بحث المعارض",
