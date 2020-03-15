@@ -51,7 +51,7 @@ class SectionedHeader extends Component {
           className={styles.search_bar_container}
           whiteColor={whiteColor}
         />
-        
+
         <DivRow verticalCenter>
           <DivRow
             className={styles.header_item_container}
@@ -78,7 +78,7 @@ class SectionedHeader extends Component {
           {isUserSignedIn ? (
             <div
               style={{ height: "unset" }}
-              className={`${styles.header_icon} ${styles.header_item_container}`}
+              className={`${styles.header_icon} ${styles.header_item_container} ${styles.profile_header_item}`}
               onClick={this.onClickProfile}
             >
               <img
@@ -88,26 +88,41 @@ class SectionedHeader extends Component {
               {/* <img src={arrowDownIcon} className={styles.arrow_down_icon} /> */}
             </div>
           ) : (
-            <a
-              className={`${styles.sigin_link} ${
-                styles.header_item_container
-              } ${whiteColor ? styles.is_white : ""}`}
-              href="/signin"
-            >
-              {translate('header.login')}
-            </a>
-          )}
+              <a
+                className={`${styles.sigin_link} ${
+                  styles.header_item_container
+                  } ${whiteColor ? styles.is_white : ""}`}
+                href="/signin"
+              >
+                {translate('header.login')}
+              </a>
+            )}
           {!isUserSignedIn && (
             <a
               className={`${styles.sigin_link} ${
                 styles.header_item_container
-              } ${whiteColor ? styles.is_white : ""}`}
+                } ${whiteColor ? styles.is_white : ""}`}
               href="/signup"
             >
               {translate('header.register')}
             </a>
           )}
           {/* <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} /> */}
+          <DivColumn className={styles.header_overlay}>
+            <div className={styles.header_item}>My Profile</div>
+            <DivRow style={{ justifyContent: 'space-between' }} className={styles.header_item}>
+              Bag
+              <DivRow
+                verticalCenter
+                horizontalCenter
+                className={styles.bag_count}
+              >
+                2
+              </DivRow>
+            </DivRow>
+            <div className={styles.header_item}>Wishlist</div>
+            <div className={styles.header_item}>Logout/login</div>
+          </DivColumn>
         </DivRow>
       </DivRow>
     );
