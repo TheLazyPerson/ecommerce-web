@@ -104,7 +104,7 @@
     "password": "Password",
     "remember_me": "Remember Me",
     "sign_in_button": "Sign In",
-    "username": "Username"
+    "username": "Email"
   },
   "signup_page": {
     "confirm_password": "Confirm Password",
