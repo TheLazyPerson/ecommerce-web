@@ -96,7 +96,14 @@ class SectionedHeader extends Component {
             src={whiteColor ? bookmarkIconWhite : bookmarkIcon}
             onClick={this.onClickWishlist}
           /> */}
-
+          <a
+            className={`${styles.sigin_link} ${
+              styles.header_item_container
+              } ${whiteColor ? styles.is_white : ""}`}
+            href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/"
+          >
+            Seller
+          </a>
           <div
             style={{ height: "unset" }}
             className={`${styles.header_icon} ${styles.header_item_container} ${styles.profile_header_item}`}
