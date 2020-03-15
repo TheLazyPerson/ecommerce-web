@@ -237,7 +237,7 @@ class NewHomePage extends Component {
           <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
         </InitialPageLoader>
 
-        <DivColumn
+        {/* <DivColumn
           horizontalCenter
           fillSelfHorizontal
           className={`${styles.section_container} ${styles.seller_container}`}
@@ -249,7 +249,7 @@ class NewHomePage extends Component {
           >
             Go to seller
           </CapsuleButton>
-        </DivColumn>
+        </DivColumn> */}
 
 
         <PageFooter />
