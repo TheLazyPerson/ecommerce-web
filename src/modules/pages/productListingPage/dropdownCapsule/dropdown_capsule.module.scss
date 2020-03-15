@@ -3,9 +3,10 @@
 $capsule-background-color: $color-very-light-blue;
 
 .capsule_container {
-  background: rgba($capsule-background-color, 0.4);
-  border-radius: 24px;
-  padding: 3px 10px;
+  // background: rgba($capsule-background-color, 0.4);
+  // border-radius: 24px;
+  // padding: 3px 10px;
+
 
   .capsule_text {
     font-size: 12px;
@@ -15,7 +16,34 @@ $capsule-background-color: $color-very-light-blue;
     margin-right: 6px;
   }
 
-  .close_icon {
+}
 
+
+:global {
+  .dropdown-container {
+    min-width: 120px;
+
+    .dropdown__control {
+      border: none;
+      border-color: rgba(black, 0);
+      background: rgba($color-very-light-blue, 0.4);
+      border-radius: 24px;
+      align-self: stretch;
+      
+
+      .dropdown__value-container {
+        font-size: 14px;
+        color: $primary-text-color;
+        margin-left: 6px;
+      }
+
+      .dropdown__indicator-separator {
+        display: none;
+      }
+
+      .dropdown__value-container::placeholder {
+        color: rgba($primary-text-color, 0.3);
+      }
+    }
   }
 }
