@@ -12,7 +12,9 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getProductListAction } from "Core/modules/productlist/productListActions";
+import {
+  getProductListAction,
+} from "Core/modules/productlist/productListActions";
 
 class ProductListingPage extends Component {
   constructor(props) {
@@ -25,9 +27,7 @@ class ProductListingPage extends Component {
   }
 
   onChange = (data) => {
-    this.setState({
-      sort: data.value
-    });
+    this.setState({ sort: data.value });
     this.productListRef.current.makePageApiCall();
   }
 
@@ -35,11 +35,12 @@ class ProductListingPage extends Component {
     const parsed = queryString.parse(this.props.location.search);
     const { sort } = this.state;
     const {
-      productListReducer: { productList },
+      productListReducer: { productList, filters },
       getProductListAction
     } = this.props;
 
     const parsedBody = {
+      filters,
       sort,
     };
 
@@ -47,7 +48,11 @@ class ProductListingPage extends Component {
       <SectionedContainer sideBarContainer={<SideBarFilter />}>
         <DivColumn className={styles.product_listing_container}>
           <DivRow className={styles.filter_view_container}>
-            <FilterCapsule />
+            {/* <DivRow className={styles.filter_container}>
+              <FilterCapsule className={styles.filter_item} />
+              <FilterCapsule className={styles.filter_item} />
+            </DivRow> */}
+            <div></div>
             <DropdownCapsule
               onChange={this.onChange}
             />
