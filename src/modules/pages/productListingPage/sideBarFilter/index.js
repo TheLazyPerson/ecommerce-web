@@ -16,6 +16,10 @@ import {
 
 class SideBarFilter extends Component {
 
+  onChangeCheckboxFilterItem = (event, facet) => {
+
+  }
+
   render() {
     const { translate, productListReducer: { productList }, filters } = this.props;
     const displayFilters = productList.filters;
@@ -38,9 +42,17 @@ class SideBarFilter extends Component {
                   {displayFilter.title}{/* {translate('filters.categories')} */}
                 </div>
                 <DivColumn className={styles.filters_list_container}>
-                  <InputCheckbox text="Shirt" textStyle={styles.checkbox_text} />
-                  <InputCheckbox text="T-Shirt" textStyle={styles.checkbox_text} />
-                  <InputCheckbox text="Trousers" textStyle={styles.checkbox_text} />
+                  {
+                    displayFilter.type == 'category-filter' && (
+                      map(displayFilter.facets, facet => (
+                        <InputCheckbox
+                          text={facet.name}
+                          textStyle={styles.checkbox_text}
+                          onChange={(event) => this.onChangeCheckboxFilterItem(event, facet)}
+                        />
+                      ))
+                    )
+                  }
                 </DivColumn>
               </DivColumn>
             );
