@@ -8,20 +8,18 @@ export default class DropdownCapsule extends Component {
 
   getDropdownValue = () => ([
     {
-      value: 'Name',
-      label: 'Name'
+      value: 'price_low_to_high',
+      label: 'price low to high'
     },
     {
-      value: 'Price',
-      label: 'Price'
-    },
-    {
-      value: 'Discount',
-      label: 'Discount'
+      value: 'price_high_to_low',
+      label: 'price high to low'
     }
-  ])
+  ]);
 
   render() {
+    const { onChange } = this.props;
+
     return (
       <DivRow
         className={styles.capsule_container}
@@ -32,6 +30,7 @@ export default class DropdownCapsule extends Component {
           classNamePrefix="dropdown"
           name="sort"
           placeholder="Sort"
+          onChange={onChange}
           options={this.getDropdownValue()}
         />
         {/* <div className={styles.capsule_text}>Sort by</div>

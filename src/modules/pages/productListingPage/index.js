@@ -15,26 +15,50 @@ import { bindActionCreators } from "redux";
 import { getProductListAction } from "Core/modules/productlist/productListActions";
 
 class ProductListingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.productListRef = React.createRef();
+
+    this.state = {
+      sort: '',
+    }
+  }
+
+  onChange = (data) => {
+    this.setState({
+      sort: data.value
+    });
+    this.productListRef.current.makePageApiCall();
+  }
+
   render() {
     const parsed = queryString.parse(this.props.location.search);
+    const { sort } = this.state;
     const {
       productListReducer: { productList },
       getProductListAction
     } = this.props;
+
+    const parsedBody = {
+      sort,
+    };
 
     return (
       <SectionedContainer sideBarContainer={<SideBarFilter />}>
         <DivColumn className={styles.product_listing_container}>
           <DivRow className={styles.filter_view_container}>
             <FilterCapsule />
-            <DropdownCapsule />
+            <DropdownCapsule
+              onChange={this.onChange}
+            />
           </DivRow>
           <DivRow fillParent className={styles.product_list_container}>
             <InitialPageLoader
-              initialPageApi={() => getProductListAction(parsed.id)}
+              ref={this.productListRef}
+              initialPageApi={() => getProductListAction(parsed.id, parsedBody)}
             >
               <DivRow fillParent className={styles.product_list}>
-                {map(productList, (product, index) => {
+                {map(productList.products, (product, index) => {
                   return (
                     <ProductGridItem
                       exhibitionId={parsed.id}
