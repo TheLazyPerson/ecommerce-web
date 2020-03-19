@@ -1,34 +1,38 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .drawer_container {
   background: $primary-color;
 }
 
+.page_footer {
+  margin-top: 0px !important;
+}
+
 .header_container {
   height: 84px;
   align-items: center;
-  justify-content: center;      
+  justify-content: center;
 
   .app_icon {
-    height: 20px;
+    height: 16px;
     cursor: pointer;
   }
 }
 
 .side_content_container {
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .side_footer_container {
   padding: 36px 0px;
 }
 
-
 .page_container {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
   // padding: 14px;
   background: $primary-color;
   box-shadow: 0 60px 80px 0 rgba(0, 0, 0, 0.05);
@@ -53,24 +57,23 @@
 
       .header_container {
         // height: 84px;
-      
+
         .hamburger_menu_icon {
           display: none;
           margin-right: 16px;
-  
+
           @include on_click_button;
         }
       }
     }
 
     .content_container {
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 
 @include medium {
   .page_container {
@@ -79,26 +82,24 @@
     }
 
     .right_container {
-  
       .top_header_container {
         padding: 10px 28px;
 
         .header_container {
           // height: 60px;
-    
+
           .hamburger_menu_icon {
             display: block;
             height: 16px;
             width: 16px;
           }
         }
-      }  
+      }
     }
   }
 }
 
 ////////////////////////////////////////////////////////////////////////
-
 
 @include small {
   .header_container {
@@ -106,9 +107,7 @@
   }
 
   .page_container {
-
     .right_container {
-
       .search_bar_container {
         display: flex;
       }
@@ -118,7 +117,7 @@
 
         .header_container {
           //height: 50px;
-      
+
           .hamburger_menu_icon {
             display: block;
             height: 12px;
@@ -129,4 +128,3 @@
     }
   }
 }
-

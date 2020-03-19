@@ -34,7 +34,7 @@ class ProfileOrders extends Component {
           initialPageApi={getOrderListAction}
           isEmpty={isEmpty(orderList)}
         >
-          <DivColumn fillParent className={styles.page_container}>
+          <div fillParent className={styles.page_container}>
 
             {map(orderList, order => (
               <DivColumn className={`${styles.orders_container} ${isRTL ? styles.rtl : ''}`}>
@@ -74,7 +74,7 @@ class ProfileOrders extends Component {
               </DivColumn>
             ))}
 
-          </DivColumn>
+          </div>
         </InitialPageLoader>
       </SectionedContainer>
     );

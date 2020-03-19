@@ -108,7 +108,7 @@ class ProductGridItem extends Component {
   render() {
     const { exhibitionId, product, translate } = this.props;
     const { isWishlistLoading } = this.state;
-
+    console.log(product);
     return (
       <DivColumn
         className={styles.product_container}
@@ -118,14 +118,14 @@ class ProductGridItem extends Component {
         <div className={styles.product_description}>
           {product.short_description}
         </div>
-        <img className={styles.product_image} src={product.base_image.path} />
+        <img className={styles.product_image} src={product.base_image ? product.base_image.path : null} />
         <DivRow className={styles.product_action_container}>
           <DivRow
             verticalCenter
             horizontalCenter
             className={`${styles.heart_icon_container} ${
               isWishlistLoading ? styles.is_disabled : ""
-            }`}
+              }`}
             onClick={this.onClickWishlist}
           >
             <img

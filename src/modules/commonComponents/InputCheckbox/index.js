@@ -5,18 +5,19 @@ import translatorHoc from 'Hoc/translatorHoc';
 
 class InputCheckbox extends Component {
   render() {
-   const {
-     text,
-     textStyle,
-     isRTL,
+    const {
+      text,
+      textStyle,
+      onChange,
+      isRTL,
     } = this.props;
 
-     return (
-       <DivRow className={isRTL? styles.rtl : ''} verticalCenter>
-         <input type="checkbox" className={styles.input_checkbox}/>
-         <div className={`${styles.checkbox_text} ${textStyle}`}>{text}</div>
-       </DivRow>
-     )
+    return (
+      <DivRow className={isRTL ? styles.rtl : ''} verticalCenter>
+        <input type="checkbox" className={styles.input_checkbox} onChange={onChange} />
+        <div className={`${styles.checkbox_text} ${textStyle}`}>{text}</div>
+      </DivRow>
+    )
   }
 }
 

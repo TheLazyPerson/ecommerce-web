@@ -81,10 +81,18 @@ class SignInPage extends Component {
           </a> */}
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>
-            {translate('signin_page.new')}&nbsp;
+              {translate('signin_page.new')}&nbsp;
             </span>
             <a className={styles.hyper_link} href="/signup">
-            {translate('signin_page.create')}
+              {translate('signin_page.create')}
+            </a>
+          </div>
+          <div style={{ marginTop: 26 }} className={styles.create_account_container}>
+            <span className={styles.new_description_text}>
+              Are you a seller?&nbsp;
+            </span>
+            <a className={styles.hyper_link} href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/">
+              Create a seller account
             </a>
           </div>
         </DivColumn>

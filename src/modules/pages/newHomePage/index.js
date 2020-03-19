@@ -92,7 +92,7 @@ class NewHomePage extends Component {
     const isRightButtonClickable = currentSlide + 1 !== totalSlide;
 
     return (
-      <DivColumn fillParent className={styles.page_container}>
+      <div fillParent className={styles.page_container}>
         <DivColumn
           style={{
             backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`
@@ -251,7 +251,7 @@ class NewHomePage extends Component {
           />
         </InitialPageLoader>
 
-        <DivColumn
+        {/* <DivColumn
           horizontalCenter
           fillSelfHorizontal
           className={`${styles.section_container} ${styles.seller_container}`}
@@ -265,7 +265,7 @@ class NewHomePage extends Component {
           >
             Go to seller
           </CapsuleButton>
-        </DivColumn>
+        </DivColumn> */}
 
         <PageFooter />
 
@@ -276,7 +276,7 @@ class NewHomePage extends Component {
             showHeaderShadow ? styles.header_background : ""
           }`}
         />
-      </DivColumn>
+      </div>
     );
   }
 }
