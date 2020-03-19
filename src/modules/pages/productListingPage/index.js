@@ -12,9 +12,7 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  getProductListAction,
-} from "Core/modules/productlist/productListActions";
+import { getProductListAction } from "Core/modules/productlist/productListActions";
 
 class ProductListingPage extends Component {
   constructor(props) {
@@ -22,14 +20,18 @@ class ProductListingPage extends Component {
     this.productListRef = React.createRef();
 
     this.state = {
-      sort: '',
-    }
+      sort: ""
+    };
   }
 
-  onChange = (data) => {
+  onChange = data => {
     this.setState({ sort: data.value });
+    this.makeApiCall();
+  };
+
+  makeApiCall = () => {
     this.productListRef.current.makePageApiCall();
-  }
+  };
 
   render() {
     const parsed = queryString.parse(this.props.location.search);
@@ -41,11 +43,13 @@ class ProductListingPage extends Component {
 
     const parsedBody = {
       filters,
-      sort,
+      sort
     };
 
     return (
-      <SectionedContainer sideBarContainer={<SideBarFilter />}>
+      <SectionedContainer
+        sideBarContainer={<SideBarFilter makeApiCall={this.makeApiCall} />}
+      >
         <DivColumn className={styles.product_listing_container}>
           <DivRow className={styles.filter_view_container}>
             {/* <DivRow className={styles.filter_container}>
@@ -53,9 +57,7 @@ class ProductListingPage extends Component {
               <FilterCapsule className={styles.filter_item} />
             </DivRow> */}
             <div></div>
-            <DropdownCapsule
-              onChange={this.onChange}
-            />
+            <DropdownCapsule onChange={this.onChange} />
           </DivRow>
           <DivRow fillParent className={styles.product_list_container}>
             <InitialPageLoader
@@ -93,4 +95,7 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(ProductListingPage);
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(ProductListingPage);
