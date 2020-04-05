@@ -35,7 +35,8 @@ import SelectPaymentPage from "./pages/selectPaymentPage";
 import TrendingExhibitionsPage from "./pages/trendingExhibitionsPage";
 import PaymentSuccessPage from "./pages/paymentSuccessPage";
 import PaymentFailurePage from "./pages/paymentFailurePage";
-
+import RestPassword from "./pages/resetPassword";
+import RestPasswordSuccess from "./pages/resetPassword/resetPasswordSucess";
 const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
@@ -50,8 +51,20 @@ const App = ({ isUserSignedIn }) => {
       />
       <ProtectedRoute
         exact
+        path="/reset-password/:token?"
+        component={RestPassword}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
         path="/signup"
         component={SignUpPage}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/reset-password-sucess"
+        component={RestPasswordSuccess}
         validator={() => !isUserSignedIn}
       />
       <ProtectedRoute
@@ -206,13 +219,10 @@ const App = ({ isUserSignedIn }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isUserSignedIn: state.signInReducer.isUserSignedIn
+    isUserSignedIn: state.signInReducer.isUserSignedIn,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(topContainerHoc(App));
+export default connect(mapStateToProps, null)(topContainerHoc(App));

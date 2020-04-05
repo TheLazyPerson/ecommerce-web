@@ -10,11 +10,11 @@ import Drawer from "@material/react-drawer";
 import "@material/react-drawer/dist/drawer.css";
 import hamburgerIconBlack from "Icons/hamburger-menu-icon-black.svg";
 import SearchBar from "CommonContainers/searchBar";
-import PageFooter from 'CommonComponents/pageFooter';
+import PageFooter from "CommonComponents/pageFooter";
 
 class SectionedContainer extends Component {
   state = {
-    openDrawer: false
+    openDrawer: false,
   };
 
   onClickAppIcon = () => {
@@ -38,7 +38,7 @@ class SectionedContainer extends Component {
               fontWeight: "bold",
               marginLeft: 6,
               color: "white",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
             onClick={this.onClickAppIcon}
           >
@@ -80,10 +80,15 @@ class SectionedContainer extends Component {
             <a href="#"></a>
           </Drawer>
 
-          <DivColumn className={styles.left_container}>{sideContainer}</DivColumn>
+          <DivColumn className={styles.left_container}>
+            {sideContainer}
+          </DivColumn>
 
           <DivColumn className={styles.right_container}>
-            <DivColumn fillSelfHorizontal className={styles.top_header_container}>
+            <DivColumn
+              fillSelfHorizontal
+              className={styles.top_header_container}
+            >
               <DivRow verticalCenter className={styles.header_container}>
                 {/* only Visible on responive */}
                 <img
@@ -96,7 +101,7 @@ class SectionedContainer extends Component {
               </DivRow>
               <SearchBar
                 className={styles.search_bar_container}
-              // whiteColor={whiteColor}
+                // whiteColor={whiteColor}
               />
             </DivColumn>
             {/* children/content */}
