@@ -17,6 +17,7 @@ import checkoutReducer from "Core/modules/checkout/checkoutReducer";
 import languageReducer from "Core/modules/language/languageReducer";
 import basicReducer from "Core/modules/basic/basicReducer";
 import resetPasswordReducer from "Core/modules/resetpassword/resetPasswordReducer";
+import settingsReducer from "Core/modules/settings/settingsReducer";
 
 const appReducer = (history) =>
   combineReducers({
@@ -38,6 +39,7 @@ const appReducer = (history) =>
     languageReducer,
     basicReducer,
     resetPasswordReducer,
+    settingsReducer,
   });
 
 /* const rootReducer = ( state, action ) => {
