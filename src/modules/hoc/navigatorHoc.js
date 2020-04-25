@@ -41,6 +41,9 @@ const navigatorHoc = (WrappedComponent) => {
         case "signin":
           return navigationFunction("/signin");
 
+        case "/marketplace-detail":
+          return navigationFunction("/marketplace-detail");
+
         case "reset-password":
           return navigationFunction("/reset-password?token={data}");
 

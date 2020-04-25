@@ -37,6 +37,8 @@ import PaymentSuccessPage from "./pages/paymentSuccessPage";
 import PaymentFailurePage from "./pages/paymentFailurePage";
 import RestPassword from "./pages/resetPassword";
 import RestPasswordSuccess from "./pages/resetPassword/resetPasswordSucess";
+import MarketplaceDetail from "./pages/marketplaceDetails";
+
 const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
@@ -59,6 +61,12 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/signup"
         component={SignUpPage}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/marketplace-detail"
+        component={MarketplaceDetail}
         validator={() => !isUserSignedIn}
       />
       <ProtectedRoute
