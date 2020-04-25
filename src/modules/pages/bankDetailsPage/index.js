@@ -4,7 +4,7 @@ import DivColumn from "CommonComponents/divColumn";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DivRow from "CommonComponents/divRow";
-import styles from "./marketplace_details.module.scss";
+import styles from "./bank_details.module.scss";
 import InputTextComponent from "CommonComponents/InputTextComponent";
 import InputCheckbox from "CommonComponents/InputCheckbox";
 import { Form, Field } from "react-final-form";
@@ -19,7 +19,7 @@ import {
 } from "Utils/validators";
 import translatorHoc from "Hoc/translatorHoc";
 
-class MarketplaceDetail extends Component {
+class BankDetails extends Component {
   onSubmit = (form) => {
     const {
       postSignupAction,
@@ -28,9 +28,9 @@ class MarketplaceDetail extends Component {
     } = this.props;
 
     postSignupAction({
-      shopp_name: form.shopp_name,
-      shop_contact_number: form.shop_contact_number,
-      shop_email_addres: form.shop_email_addres,
+      acount_holder: form.acount_holder,
+      bank_name: form.bank_name,
+      iban: form.iban,
     }).then(({ payload }) => {
       if (payload.code == 200 || payload.code == 201) {
         navigateTo("signin");
@@ -68,57 +68,51 @@ class MarketplaceDetail extends Component {
           className={styles.page_container}
         >
           <div className={styles.signin_title_text}>
-            {translate("marketplace_detail_page.page_title")}
+            {translate("bank_detail_page.page_title")}
           </div>
           <Form
             onSubmit={this.onSubmit}
             // validate={this.validate}
             render={({ handleSubmit, form, submitting, pristine, values }) => (
               <form className={styles.form_container} onSubmit={handleSubmit}>
-                <Field name="shopp_name">
+                <Field name="acount_holder">
                   {({ input, meta }) => (
                     <InputTextComponent
                       meta={meta}
                       type="text"
                       {...input}
-                      placeholder={translate(
-                        "marketplace_detail_page.shop_name"
-                      )}
+                      placeholder={translate("bank_detail_page.acount_holder")}
                       className={styles.input_text}
                     />
                   )}
                 </Field>
 
-                <Field name="shop_contact_number">
+                <Field name="bank_name">
                   {({ input, meta }) => (
                     <InputTextComponent
                       meta={meta}
                       type="text"
                       {...input}
-                      placeholder={translate(
-                        "marketplace_detail_page.shop_contact_number"
-                      )}
+                      placeholder={translate("bank_detail_page.bank_name")}
                       className={styles.input_text}
                     />
                   )}
                 </Field>
 
-                <Field name="shop_email_addres">
+                <Field name="iban">
                   {({ input, meta }) => (
                     <InputTextComponent
                       meta={meta}
-                      type="email"
+                      type="text"
                       {...input}
-                      placeholder={translate(
-                        "marketplace_detail_page.shop_email_addres"
-                      )}
+                      placeholder={translate("bank_detail_page.iban")}
                       className={styles.input_text}
                     />
                   )}
                 </Field>
                 <input
                   type="submit"
-                  value={translate("marketplace_detail_page.create")}
+                  value={translate("bank_detail_page.create")}
                   className={styles.input_submit}
                   disabled={submitting}
                 />
@@ -151,4 +145,4 @@ const mapDispathToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(translatorHoc(navigatorHoc(MarketplaceDetail)));
+)(translatorHoc(navigatorHoc(BankDetails)));
