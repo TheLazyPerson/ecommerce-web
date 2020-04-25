@@ -39,6 +39,7 @@ import RestPassword from "./pages/resetPassword";
 import RestPasswordSuccess from "./pages/resetPassword/resetPasswordSucess";
 import MarketplaceDetail from "./pages/marketplaceDetails";
 import BankDetails from "./pages/bankDetailsPage";
+import LocationDetails from "./pages/locationDetailsPage";
 
 const App = ({ isUserSignedIn }) => {
   return (
@@ -74,6 +75,12 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/bank-details"
         component={BankDetails}
+        validator={() => !isUserSignedIn}
+      />
+      <ProtectedRoute
+        exact
+        path="/location-details"
+        component={LocationDetails}
         validator={() => !isUserSignedIn}
       />
       <ProtectedRoute
