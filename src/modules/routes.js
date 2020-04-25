@@ -37,10 +37,8 @@ import PaymentSuccessPage from "./pages/paymentSuccessPage";
 import PaymentFailurePage from "./pages/paymentFailurePage";
 import RestPassword from "./pages/resetPassword";
 import RestPasswordSuccess from "./pages/resetPassword/resetPasswordSucess";
-import MarketplaceDetail from "./pages/marketplaceDetails";
-import BankDetails from "./pages/bankDetailsPage";
-import LocationDetails from "./pages/locationDetailsPage";
 
+// TODO:: remove bank details , location details, marketplace details folders
 const App = ({ isUserSignedIn }) => {
   return (
     <Switch>
@@ -63,24 +61,6 @@ const App = ({ isUserSignedIn }) => {
         exact
         path="/signup"
         component={SignUpPage}
-        validator={() => !isUserSignedIn}
-      />
-      <ProtectedRoute
-        exact
-        path="/marketplace-detail"
-        component={MarketplaceDetail}
-        validator={() => !isUserSignedIn}
-      />
-      <ProtectedRoute
-        exact
-        path="/bank-details"
-        component={BankDetails}
-        validator={() => !isUserSignedIn}
-      />
-      <ProtectedRoute
-        exact
-        path="/location-details"
-        component={LocationDetails}
         validator={() => !isUserSignedIn}
       />
       <ProtectedRoute
