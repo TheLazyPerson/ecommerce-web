@@ -15,26 +15,57 @@ import { bindActionCreators } from "redux";
 import { getProductListAction } from "Core/modules/productlist/productListActions";
 
 class ProductListingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.productListRef = React.createRef();
+
+    this.state = {
+      sort: ""
+    };
+  }
+
+  onChange = data => {
+    this.setState({ sort: data.value });
+    this.makeApiCall();
+  };
+
+  makeApiCall = () => {
+    this.productListRef.current.makePageApiCall();
+  };
+
   render() {
     const parsed = queryString.parse(this.props.location.search);
+    const { sort } = this.state;
     const {
-      productListReducer: { productList },
+      productListReducer: { productList, filters },
       getProductListAction
     } = this.props;
 
+    const parsedBody = {
+      filters,
+      sort
+    };
+
     return (
-      <SectionedContainer sideBarContainer={<SideBarFilter />}>
+      <SectionedContainer
+        sideBarContainer={<SideBarFilter makeApiCall={this.makeApiCall} />}
+      >
         <DivColumn className={styles.product_listing_container}>
           <DivRow className={styles.filter_view_container}>
-            <FilterCapsule />
-            <DropdownCapsule />
+            {/* <DivRow className={styles.filter_container}>
+              <FilterCapsule className={styles.filter_item} />
+              <FilterCapsule className={styles.filter_item} />
+            </DivRow> */}
+            <div></div>
+            <DropdownCapsule onChange={this.onChange} />
           </DivRow>
           <DivRow fillParent className={styles.product_list_container}>
             <InitialPageLoader
-              initialPageApi={() => getProductListAction(parsed.id)}
+              ref={this.productListRef}
+              initialPageApi={() => getProductListAction(parsed.id, parsedBody)}
             >
               <DivRow fillParent className={styles.product_list}>
-                {map(productList, (product, index) => {
+                {map(productList.products, (product, index) => {
                   return (
                     <ProductGridItem
                       exhibitionId={parsed.id}
@@ -64,4 +95,7 @@ const mapDispathToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(ProductListingPage);
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(ProductListingPage);

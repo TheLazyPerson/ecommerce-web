@@ -16,7 +16,7 @@ import "swiper/css/swiper.css";
 import {
   getExhibitionListAction,
   getUpcomingExhibitionListAction,
-  getTrendingExhibitionListAction,
+  getTrendingExhibitionListAction
 } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
@@ -25,34 +25,33 @@ import appIcon from "Images/logo-image.png";
 import navigatorHoc from "Hoc/navigatorHoc";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
-import MasonryGridContainer from 'CommonContainers/masonryGridContainer';
+import MasonryGridContainer from "CommonContainers/masonryGridContainer";
 import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 import translatorHoc from "Hoc/translatorHoc";
-import FullwidthHeader from 'CommonContainers/fullwidthHeader';
-import CapsuleButton from 'CommonComponents/capsuleButton';
+import FullwidthHeader from "CommonContainers/fullwidthHeader";
+import CapsuleButton from "CommonComponents/capsuleButton";
 
 class NewHomePage extends Component {
   state = {
     currentSlide: 0,
-    showHeaderShadow: false,
+    showHeaderShadow: false
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.hideNavBar);
+    window.addEventListener("scroll", this.hideNavBar);
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.hideNavBar);
+    window.removeEventListener("scroll", this.hideNavBar);
   }
 
   hideNavBar = () => {
     const scrollThreshold = 150;
     const { showHeaderShadow } = this.state;
 
-    window.scrollY > scrollThreshold ?
-      !showHeaderShadow && this.setState({ showHeaderShadow: true })
-      :
-      showHeaderShadow && this.setState({ showHeaderShadow: false })
-  }
+    window.scrollY > scrollThreshold
+      ? !showHeaderShadow && this.setState({ showHeaderShadow: true })
+      : showHeaderShadow && this.setState({ showHeaderShadow: false });
+  };
 
   onClickExhibitionItem = id => {
     const { navigateTo } = this.props;
@@ -62,8 +61,9 @@ class NewHomePage extends Component {
   };
 
   onClickSellerButton = () => {
-    window.location.href = 'http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/';
-  }
+    window.location.href =
+      "http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/";
+  };
 
   render() {
     const params = {
@@ -76,11 +76,15 @@ class NewHomePage extends Component {
 
     const { currentSlide, showHeaderShadow } = this.state;
     const {
-      homePageReducer: { exhibitionList, trendingExhibitionList, upcomingExhibitionList },
+      homePageReducer: {
+        exhibitionList,
+        trendingExhibitionList,
+        upcomingExhibitionList
+      },
       getExhibitionListAction,
       getTrendingExhibitionListAction,
       getUpcomingExhibitionListAction,
-      translate,
+      translate
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -91,7 +95,7 @@ class NewHomePage extends Component {
       <div fillParent className={styles.page_container}>
         <DivColumn
           style={{
-            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
+            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`
           }}
           fillSelfHorizontal
           className={styles.hero_section_container}
@@ -155,7 +159,7 @@ class NewHomePage extends Component {
                                 this.onClickExhibitionItem(exhibition.id)
                               }
                             >
-                              {translate('common.explore_button')}
+                              {translate("common.explore_button")}
                             </DivRow>
                           </ExhibitionDetailComponent>
                         </div>
@@ -174,7 +178,7 @@ class NewHomePage extends Component {
                   <div
                     className={`${
                       !isLeftButtonClickable ? styles.non_clickable : ""
-                      } ${styles.arrow_text}`}
+                    } ${styles.arrow_text}`}
                     onClick={() => this.swiper.slidePrev()}
                   >
                     <img
@@ -182,16 +186,16 @@ class NewHomePage extends Component {
                       className={styles.arrow_left}
                       alt="Arrow"
                     />
-                    {translate('common.prev_button')}
+                    {translate("common.prev_button")}
                   </div>
 
                   <div
                     className={`${
                       !isRightButtonClickable ? styles.non_clickable : ""
-                      } ${styles.arrow_text}`}
+                    } ${styles.arrow_text}`}
                     onClick={() => this.swiper.slideNext()}
                   >
-                    {translate('common.next_button')}
+                    {translate("common.next_button")}
                     <img
                       src={arrowRightIcon}
                       className={styles.arrow_right}
@@ -218,8 +222,12 @@ class NewHomePage extends Component {
           </InitialPageLoader>
         </DivColumn>
 
-        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          {translate('home_page.trending_now_title')}
+        <DivRow
+          horizontalCenter
+          fillSelfHorizontal
+          className={styles.header_title}
+        >
+          {translate("home_page.trending_now_title")}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
@@ -229,37 +237,45 @@ class NewHomePage extends Component {
           />
         </InitialPageLoader>
 
-        <DivRow horizontalCenter fillSelfHorizontal className={styles.header_title}>
-          {translate('home_page.upcoming_title')}
+        <DivRow
+          horizontalCenter
+          fillSelfHorizontal
+          className={styles.header_title}
+        >
+          {translate("home_page.upcoming_title")}
         </DivRow>
 
         <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
-          <UpcomingExhibitionComponent exhibitionList={upcomingExhibitionList} />
+          <UpcomingExhibitionComponent
+            exhibitionList={upcomingExhibitionList}
+          />
         </InitialPageLoader>
 
-        <DivColumn
+        {/* <DivColumn
           horizontalCenter
           fillSelfHorizontal
           className={`${styles.section_container} ${styles.seller_container}`}
         >
-          <div className={styles.description}>Looking to sell on this platform?</div>
+          <div className={styles.description}>
+            Looking to sell on this platform?
+          </div>
           <CapsuleButton
             className={styles.seller_button}
             onClick={this.onClickSellerButton}
           >
             Go to seller
           </CapsuleButton>
-        </DivColumn>
-
+        </DivColumn> */}
 
         <PageFooter />
 
         {/* Absolute position */}
         <FullwidthHeader
           whiteColor
-          className={`${styles.header_container} ${showHeaderShadow ? styles.header_background : ''}`}
+          className={`${styles.header_container} ${
+            showHeaderShadow ? styles.header_background : ""
+          }`}
         />
-
       </div>
     );
   }

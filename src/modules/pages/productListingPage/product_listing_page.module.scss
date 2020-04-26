@@ -11,6 +11,14 @@
     justify-content: space-between;
     border-bottom: 0.5px solid $color-very-light-blue;
     padding: 4px 22px;
+
+    .filter_container {
+      flex-wrap: wrap;
+
+      .filter_item {
+        margin-right: 10px;
+      }
+    }
   }
 
   .product_list_container {

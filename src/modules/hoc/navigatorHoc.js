@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 
-const navigatorHoc = WrappedComponent => {
+const navigatorHoc = (WrappedComponent) => {
   class navigator extends Component {
     navigateTo = (pageName, data = null) => {
       const { push } = this.props.history;
@@ -41,6 +41,12 @@ const navigatorHoc = WrappedComponent => {
         case "signin":
           return navigationFunction("/signin");
 
+        case "reset-password":
+          return navigationFunction("/reset-password?token={data}");
+
+        case "reset-password-sucess":
+          return navigationFunction("/reset-password-sucess");
+
         case "profile":
           return navigationFunction("/profile");
 
@@ -76,7 +82,7 @@ const navigatorHoc = WrappedComponent => {
 
         case "edit-profile":
           return navigationFunction("/profile/details/edit-profile");
-        
+
         case "trending-exhibitions":
           return navigationFunction("/trending-exhibitions");
 

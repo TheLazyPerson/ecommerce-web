@@ -104,3 +104,35 @@ $bag-count-background: $color-pale;
    }
   }
 }
+
+.profile_header_item:hover + .header_overlay {
+    visibility: visible;
+  }
+
+
+.header_overlay {
+  visibility: hidden;
+  position: absolute;
+  min-width: 200px;
+  padding: 20px 0px;
+  background: white;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  right: 50px;
+  top: 60px;
+  z-index: 10;
+
+  .header_item {
+    padding: 10px 20px;
+    font: 16px;
+
+    &:hover {
+      background: rgba(black, 0.2);
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    visibility: visible;
+  }
+}

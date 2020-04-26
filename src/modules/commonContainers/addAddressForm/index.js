@@ -23,6 +23,7 @@ import {
 import find from "lodash/find";
 import Select from "react-select";
 import map from "lodash/map";
+import isEmpty from 'lodash/isEmpty';
 
 class AddAddressForm extends Component {
   validate = values => {
@@ -36,7 +37,7 @@ class AddAddressForm extends Component {
       city: isEmptyValidator(values.city),
       state: isEmptyValidator(values.state),
       country: isEmptyValidator(values.country),
-      country_code: isEmptyValidator(values.country_code),
+      // country_code: isEmptyValidator(values.country_code),
       pincode: isEmptyValidator(values.pincode),
       name: isEmptyValidator(values.name)
     };
@@ -44,7 +45,6 @@ class AddAddressForm extends Component {
     Object.keys(validators).forEach(key => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
-    debugger;
     return errors;
   };
 
@@ -67,11 +67,11 @@ class AddAddressForm extends Component {
       city: form.city,
       state: form.state,
       country: form.country,
-      country_code: form.country_code,
+      // country_code: form.country_code,
       default_address: 1,
       name: form.name
     };
-    debugger;
+
     if (addressId) {
       editAddressAction(addressId, formData).then(({ payload }) => {
         if (payload.code === 200 || payload.code === 201) {
@@ -87,6 +87,7 @@ class AddAddressForm extends Component {
         }
       });
     }
+
   };
 
   getInitialValuesFromAddress = address => {
@@ -100,7 +101,7 @@ class AddAddressForm extends Component {
       city: address.city ? address.city : "",
       state: address.state ? address.state : "",
       country: address.country ? address.country : "",
-      country_code: address.country_code ? address.country_code : "",
+      // country_code: address.country_code ? address.country_code : "",
       pincode: address.postcode ? address.postcode : ""
     };
   };
@@ -156,7 +157,7 @@ class AddAddressForm extends Component {
           initialValues={
             editAddress ? this.getInitialValuesFromAddress(editAddress) : null
           }
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
+          render={({ handleSubmit, submitting, values }) => (
             <form className={styles.form_container} onSubmit={handleSubmit}>
               <DivColumn className={styles.text_input_container}>
                 <Field name="firstName">

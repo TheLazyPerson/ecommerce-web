@@ -11,13 +11,15 @@ import productDetailReducer from "Core/modules/productdetail/productDetailReduce
 import changePasswordReducer from "Core/modules/changepassword/changePasswordReducer";
 import wishlistReducer from "Core/modules/wishlist/wishlistReducer";
 import bagReducer from "Core/modules/bag/bagReducer";
-import searchReducer from 'Core/modules/search/searchReducer';
-import orderReducer from 'Core/modules/order/orderReducer';
-import checkoutReducer from 'Core/modules/checkout/checkoutReducer';
-import languageReducer from 'Core/modules/language/languageReducer';
-import basicReducer from 'Core/modules/basic/basicReducer';
+import searchReducer from "Core/modules/search/searchReducer";
+import orderReducer from "Core/modules/order/orderReducer";
+import checkoutReducer from "Core/modules/checkout/checkoutReducer";
+import languageReducer from "Core/modules/language/languageReducer";
+import basicReducer from "Core/modules/basic/basicReducer";
+import resetPasswordReducer from "Core/modules/resetpassword/resetPasswordReducer";
+import settingsReducer from "Core/modules/settings/settingsReducer";
 
-const appReducer = history =>
+const appReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     wishlistReducer,
@@ -36,6 +38,8 @@ const appReducer = history =>
     checkoutReducer,
     languageReducer,
     basicReducer,
+    resetPasswordReducer,
+    settingsReducer,
   });
 
 /* const rootReducer = ( state, action ) => {
