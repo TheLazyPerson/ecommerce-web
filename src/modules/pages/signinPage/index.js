@@ -104,9 +104,9 @@ class SignInPage extends Component {
               </form>
             )}
           />
-          {/* <a className={styles.hyper_link} href="/forgot-password">
-            Forgot password
-          </a> */}
+          <a className={styles.hyper_link} href="/forgot-password">
+            {translate("signin_page.forgot_password")}
+          </a>
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>
               {translate("signin_page.new")}&nbsp;
