@@ -15,19 +15,18 @@ import HorizontalBorder from "CommonComponents/horizontalBorder";
 import {
   isPhoneNumber,
   nameValidator,
-  isEmptyValidator
+  isEmptyValidator,
 } from "Utils/validators";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { createAddressAction } from "Core/modules/address/addressActions";
 import AddAddressForm from "CommonContainers/addAddressForm";
-
+import translatorHoc from "Hoc/translatorHoc";
 class AddAddress extends Component {
-
   onSubmitComplete = () => {
     this.onBackPress();
-  }
+  };
 
   onBackPress = () => {
     const { pop } = this.props;
@@ -39,11 +38,15 @@ class AddAddress extends Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <DivColumn fillParent className={styles.page_container}>
-          <NavHeader title="Add Address" onBackClick={this.onBackPress} />
-          <AddAddressForm 
+          <NavHeader
+            title={translate("place_order_page.title_add_address")}
+            onBackClick={this.onBackPress}
+          />
+          <AddAddressForm
             onSubmitComplete={this.onSubmitComplete}
             onClickCancel={this.onClickCancel}
           />
@@ -53,23 +56,23 @@ class AddAddress extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    addressReducer: state.addressReducer
+    addressReducer: state.addressReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     createAddressAction: bindActionCreators(createAddressAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(AddAddress));
+)(translatorHoc(navigatorHoc(AddAddress)));

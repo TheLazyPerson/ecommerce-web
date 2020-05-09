@@ -187,5 +187,20 @@
   "profile_address_page": {
     "default_address": "Default Address",
     "add_new_address": "+ ADD NEW ADDRESS"
+  },
+  "address_form_page": {
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "mobile_number": "Mobile Number",
+    "address1": "Address Line 1",
+    "address2": "Address Line 2",
+    "city": "City",
+    "pincode": "Pincode",
+    "make_this_default_address": "Make this my default address.",
+    "home_office": "Home/Office",
+    "state": "State",
+    "cancel": "CANCEL",
+    "save_details": "SAVE DETAILS",
+    "country": "Country"
   }
 }

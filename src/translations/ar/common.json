@@ -162,5 +162,20 @@
   "profile_address_page": {
     "default_address": "العنوان الافتراضي",
     "add_new_address": "+ أضف عنوان جديد"
+  },
+  "address_form_page": {
+    "first_name": "الاسم الاول",
+    "last_name": "الكنية",
+    "mobile_number": "رقم الهاتف المحمول",
+    "address1": "العنوان السطر 1",
+    "address2": "2 العنوان السطر ",
+    "city": "مدينة",
+    "pincode": "الرقم السري",
+    "make_this_default_address": "اجعل هذا عنواني الافتراضي",
+    "home_office": "مكتب البيت",
+    "state": "حالة",
+    "cancel": "إلغاء",
+    "save_details": "حفظ التفاصيل",
+    "country": "بلد"
   }
 }
