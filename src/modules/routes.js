@@ -35,8 +35,8 @@ import SelectPaymentPage from "./pages/selectPaymentPage";
 import TrendingExhibitionsPage from "./pages/trendingExhibitionsPage";
 import PaymentSuccessPage from "./pages/paymentSuccessPage";
 import PaymentFailurePage from "./pages/paymentFailurePage";
-import RestPassword from "./pages/resetPassword";
-import RestPasswordSuccess from "./pages/resetPassword/resetPasswordSucess";
+import ResetPassword from "./pages/resetPassword";
+import ResetPasswordSuccess from "./pages/resetPassword/resetPasswordSucess";
 
 // TODO:: remove bank details , location details, marketplace details folders
 const App = ({ isUserSignedIn }) => {
@@ -54,7 +54,7 @@ const App = ({ isUserSignedIn }) => {
       <ProtectedRoute
         exact
         path="/reset-password/:token?"
-        component={RestPassword}
+        component={ResetPassword}
         validator={() => !isUserSignedIn}
       />
       <ProtectedRoute
@@ -66,7 +66,7 @@ const App = ({ isUserSignedIn }) => {
       <ProtectedRoute
         exact
         path="/reset-password-sucess"
-        component={RestPasswordSuccess}
+        component={ResetPasswordSuccess}
         validator={() => !isUserSignedIn}
       />
       <ProtectedRoute

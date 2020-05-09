@@ -14,7 +14,7 @@ import translatorHoc from "Hoc/translatorHoc";
 // import InitialPageLoader from "CommonContainers/initialPageLoader";
 // import resetPasswordAction from "Core/modules/resetpassword";
 
-class RestPasswordSuccess extends Component {
+class ResetPasswordSuccess extends Component {
   state = {
     // password: "",
     // confirm_passowrd: ""
@@ -61,6 +61,6 @@ class RestPasswordSuccess extends Component {
 //   };
 // };
 
-export default connect()(translatorHoc(navigatorHoc(RestPasswordSuccess)));
+export default connect()(translatorHoc(navigatorHoc(ResetPasswordSuccess)));
 //   mapStateToProps,
 //   mapDispathToProps

@@ -8,26 +8,26 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   verifyPasswordTokenAction,
-  resetPasswordAction
+  resetPasswordAction,
 } from "Core/modules/resetpassword/resetPasswordActions";
 import translatorHoc from "Hoc/translatorHoc";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import queryString from "query-string";
 // import resetPasswordAction from "Core/modules/resetpassword";
 
-class RestPassword extends Component {
+class ResetPassword extends Component {
   state = {
     password: "",
     confirm_passowrd: "",
-    params: queryString.parse(this.props.location.search)
+    params: queryString.parse(this.props.location.search),
   };
 
-  onSubmit = form => {
+  onSubmit = (form) => {
     form.preventDefault();
     const {
       resetPasswordAction,
       navigateTo,
-      resetPasswordReducer: { tokenInformation }
+      resetPasswordReducer: { tokenInformation },
     } = this.props;
     const { confirm_passowrd, password } = this.state;
     if (confirm_passowrd && password) {
@@ -35,10 +35,10 @@ class RestPassword extends Component {
         email: tokenInformation.data["token-information"].email,
         password_confirmation: confirm_passowrd, // "buisness@gmail.com",
         password: password,
-        token: tokenInformation.data["token-information"].token
+        token: tokenInformation.data["token-information"].token,
       };
 
-      resetPasswordAction(formData).then(response => {
+      resetPasswordAction(formData).then((response) => {
         const { data, code } = response.payload;
         if (code === 200 || code === 201) {
           navigateTo("reset-password-sucess");
@@ -54,7 +54,7 @@ class RestPassword extends Component {
     const {
       translate,
       verifyPasswordTokenAction,
-      resetPasswordReducer: { tokenInformation }
+      resetPasswordReducer: { tokenInformation },
     } = this.props;
     return (
       <FullWidthContainer>
@@ -94,7 +94,7 @@ class RestPassword extends Component {
                   placeholder={translate("update_password_page.password")}
                   className={styles.input_text}
                   value={password}
-                  onChange={event =>
+                  onChange={(event) =>
                     this.setState({ password: event.target.value })
                   }
                 />
@@ -105,7 +105,7 @@ class RestPassword extends Component {
                   )}
                   className={styles.input_text}
                   value={confirm_passowrd}
-                  onChange={event =>
+                  onChange={(event) =>
                     this.setState({ confirm_passowrd: event.target.value })
                   }
                 />
@@ -126,23 +126,23 @@ class RestPassword extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    resetPasswordReducer: state.resetPasswordReducer
+    resetPasswordReducer: state.resetPasswordReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     verifyPasswordTokenAction: bindActionCreators(
       verifyPasswordTokenAction,
       dispatch
     ),
-    resetPasswordAction: bindActionCreators(resetPasswordAction, dispatch)
+    resetPasswordAction: bindActionCreators(resetPasswordAction, dispatch),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(translatorHoc(navigatorHoc(RestPassword)));
+)(translatorHoc(navigatorHoc(ResetPassword)));
