@@ -152,5 +152,11 @@
   "overview_page": {
     "welcome": "أهلا بك",
     "my_account": "حسابي"
+  },
+  "help_center": {
+    "header_title": "مركز المساعدة",
+    "more_help": "بحاجة إلى مزيد من المساعدة منا",
+    "your_concern": "موجز عن قلقك؟",
+    "callback": "احصل على رد"
   }
 }

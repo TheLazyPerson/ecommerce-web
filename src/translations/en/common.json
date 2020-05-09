@@ -177,5 +177,11 @@
   "overview_page": {
     "welcome": "Welcome",
     "my_account": "MY ACCOUNT"
+  },
+  "help_center": {
+    "header_title": "HELP CENTER",
+    "more_help": "NEED MORE HELP FROM US",
+    "your_concern": "Brief about your concern?",
+    "callback": "Get Callback"
   }
 }

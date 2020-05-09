@@ -15,8 +15,8 @@ import { bindActionCreators } from "redux";
 import { sendFeedbackAction } from "Core/modules/support/supportActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import map from "lodash/map";
-import navigatorHoc from 'Hoc/navigatorHoc';
-
+import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from "Hoc/translatorHoc";
 class ProfileHelpCenter extends Component {
   state = {
     helpCenterList: [
@@ -24,35 +24,35 @@ class ProfileHelpCenter extends Component {
         title: "TRACK, CANCEL, RETURN/EXCHANGE",
         description: "Check your order status",
         image: cartIcon,
-        redirectTo: "orders"
+        redirectTo: "orders",
       },
       {
         title: "FREQUENTLY ASKED QUESTIONS",
         description: "More queries related to your experience",
         image: faqIcon,
-        redirectTo: "faq"
-      }
-    ]
+        redirectTo: "faq",
+      },
+    ],
   };
 
-  validate = values => {
+  validate = (values) => {
     const errors = {};
     const validators = {
-      feedback: isEmptyValidator(values.oldPassword)
+      feedback: isEmptyValidator(values.oldPassword),
     };
 
-    Object.keys(validators).forEach(key => {
+    Object.keys(validators).forEach((key) => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
 
     return errors;
   };
 
-  onSubmit = form => {
+  onSubmit = (form) => {
     const { sendFeedbackAction, showSuccessFlashMessage } = this.props;
 
     sendFeedbackAction({
-      issue_summary: form.feedback
+      issue_summary: form.feedback,
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         showSuccessFlashMessage("Feedback sent successfuly");
@@ -65,21 +65,21 @@ class ProfileHelpCenter extends Component {
     pop();
   };
 
-  onHelpCenterItemSelect = redirectTo => {
+  onHelpCenterItemSelect = (redirectTo) => {
     const { navigateTo } = this.props;
     navigateTo(redirectTo);
   };
 
   render() {
     const { helpCenterList } = this.state;
-
+    const { translate } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <NavHeader title="Help Center" />
+        <NavHeader title={translate("help_center.header_title")} />
 
         <DivColumn fillParent className={styles.help_center_container}>
           <DivRow className={styles.list_container}>
-            {map(helpCenterList, helpCenterItem => (
+            {map(helpCenterList, (helpCenterItem) => (
               <DivColumn
                 verticalCenter
                 horizontalCenter
@@ -96,7 +96,9 @@ class ProfileHelpCenter extends Component {
               </DivColumn>
             ))}
           </DivRow>
-          <div className={styles.form_header}>NEED MORE HELP FROM US</div>
+          <div className={styles.form_header}>
+            {translate("help_center.more_help")}
+          </div>
 
           <DivColumn className={styles.form_container}>
             <Form
@@ -107,7 +109,7 @@ class ProfileHelpCenter extends Component {
                 form,
                 submitting,
                 pristine,
-                values
+                values,
               }) => (
                 <form onSubmit={handleSubmit} className={styles.form}>
                   <Field name="feedback">
@@ -115,7 +117,7 @@ class ProfileHelpCenter extends Component {
                       <textarea
                         meta={meta}
                         {...input}
-                        placeholder="Brief about your concern?"
+                        placeholder={translate("help_center.your_concern")}
                         className={styles.text_area}
                       />
                     )}
@@ -126,7 +128,7 @@ class ProfileHelpCenter extends Component {
                       disabled={submitting}
                       onClick={() => this.onSubmit(values)}
                     >
-                      Get Callback
+                      {translate("help_center.callback")}
                     </CapsuleButton>
                   </DivRow>
                 </form>
@@ -139,23 +141,23 @@ class ProfileHelpCenter extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    supportReducer: state.supportReducer
+    supportReducer: state.supportReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     sendFeedbackAction: bindActionCreators(sendFeedbackAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProfileHelpCenter));
+)(translatorHoc(navigatorHoc(ProfileHelpCenter)));
