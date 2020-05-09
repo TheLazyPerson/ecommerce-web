@@ -15,20 +15,20 @@ import { bindActionCreators } from "redux";
 import { getProductDetailAction } from "Core/modules/productdetail/productDetailActions";
 import {
   addToWishlistAction,
-  removeFromWishlistAction
+  removeFromWishlistAction,
 } from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { addToBagAction } from "Core/modules/bag/bagActions";
 import map from "lodash/map";
 import "swiper/css/swiper.css";
 import bagWhiteIcon from "Icons/cart-bag-icon-white.svg";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class ProductDetailsPage extends Component {
   state = {
     selectedImage: 0,
     isWishlistLoading: false,
-    quantity: 1
+    quantity: 1,
   };
 
   onClickWishlist = () => {
@@ -36,7 +36,7 @@ class ProductDetailsPage extends Component {
     const {
       removeFromWishlistAction,
       addToWishlistAction,
-      productDetailReducer: { productDetail }
+      productDetailReducer: { productDetail },
     } = this.props;
 
     if (!isWishlistLoading) {
@@ -55,7 +55,7 @@ class ProductDetailsPage extends Component {
       showSuccessFlashMessage,
       productDetailReducer: { productDetail },
       isUserSignedIn,
-      navigateTo
+      navigateTo,
     } = this.props;
     const parsed = queryString.parse(this.props.location.search);
 
@@ -63,7 +63,7 @@ class ProductDetailsPage extends Component {
       this.setState({ isWishlistLoading: true });
       action({
         product_id: productDetail.id,
-        exhibition_id: parsed.exhibitionid
+        exhibition_id: parsed.exhibitionid,
       })
         .then(({ payload }) => {
           if (payload.code == 200 || payload.code == 201) {
@@ -71,7 +71,7 @@ class ProductDetailsPage extends Component {
           }
           this.setState({ isWishlistLoading: false });
         })
-        .catch(error => {
+        .catch((error) => {
           this.setState({ isWishlistLoading: false });
         });
     } else {
@@ -84,7 +84,8 @@ class ProductDetailsPage extends Component {
       addToBagAction,
       showSuccessFlashMessage,
       isUserSignedIn,
-      navigateTo
+      navigateTo,
+      translate,
     } = this.props;
 
     if (isUserSignedIn) {
@@ -92,10 +93,10 @@ class ProductDetailsPage extends Component {
         exhibition_id: exhibitionId,
         product_id: productId,
         quantity: quantity,
-        is_configurable: is_configurable
+        is_configurable: is_configurable,
       }).then(({ payload }) => {
         if (payload.code === 200 || payload.code === 201) {
-          showSuccessFlashMessage("Added to Bag");
+          showSuccessFlashMessage(translate("common.added_to_bag"));
         }
       });
     } else {
@@ -103,17 +104,17 @@ class ProductDetailsPage extends Component {
     }
   };
 
-  onClickImageItem = index => {
+  onClickImageItem = (index) => {
     this.setState({
-      selectedImage: index
+      selectedImage: index,
     });
   };
 
   incrementItem = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (prevState.quantity < 9) {
         return {
-          quantity: prevState.quantity + 1
+          quantity: prevState.quantity + 1,
         };
       } else {
         return null;
@@ -121,10 +122,10 @@ class ProductDetailsPage extends Component {
     });
   };
   decreaseItem = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (prevState.quantity > 1) {
         return {
-          quantity: prevState.quantity - 1
+          quantity: prevState.quantity - 1,
         };
       } else {
         return null;
@@ -147,8 +148,8 @@ class ProductDetailsPage extends Component {
       freeMode: true,
       containerClass: "custom_container",
       on: {
-        slideChange: () => {}
-      }
+        slideChange: () => {},
+      },
     };
 
     return (
@@ -158,7 +159,11 @@ class ProductDetailsPage extends Component {
             getProductDetailAction(parsed.exhibitionid, parsed.productid)
           }
         >
-          <DivColumn className={`${isRTL ? styles.rtl : ''} ${styles.product_details_container}`}>
+          <DivColumn
+            className={`${isRTL ? styles.rtl : ""} ${
+              styles.product_details_container
+            }`}
+          >
             <DivRow className={styles.product_content_container}>
               <DivColumn className={styles.left_content_container}>
                 {/* 
@@ -227,7 +232,9 @@ class ProductDetailsPage extends Component {
                       }
                     >
                       <img src={bagWhiteIcon} className={styles.button_icon} />
-                      <div className={styles.button_text}>{translate('common.add_to_bag')}</div>
+                      <div className={styles.button_text}>
+                        {translate("common.add_to_bag")}
+                      </div>
                     </DivRow>
                     <DivRow
                       verticalCenter
@@ -245,7 +252,9 @@ class ProductDetailsPage extends Component {
                         }
                         className={styles.button_icon}
                       />
-                      <div className={styles.button_text}>{translate('common.wishlist')}</div>
+                      <div className={styles.button_text}>
+                        {translate("common.wishlist")}
+                      </div>
                     </DivRow>
                   </DivRow>
                 </ExhibitionDetailComponent>
@@ -258,15 +267,15 @@ class ProductDetailsPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     productDetailReducer: state.productDetailReducer,
     bagReducer: state.bagReducer,
-    isUserSignedIn: state.signInReducer.isUserSignedIn
+    isUserSignedIn: state.signInReducer.isUserSignedIn,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     getProductDetailAction: bindActionCreators(
       getProductDetailAction,
@@ -281,7 +290,7 @@ const mapDispathToProps = dispatch => {
       removeFromWishlistAction,
       dispatch
     ),
-    addToBagAction: bindActionCreators(addToBagAction, dispatch)
+    addToBagAction: bindActionCreators(addToBagAction, dispatch),
   };
 };
 
