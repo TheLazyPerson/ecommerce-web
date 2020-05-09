@@ -34,6 +34,7 @@ class ProductDetailsPage extends Component {
   onClickWishlist = () => {
     const { isWishlistLoading } = this.state;
     const {
+      translate,
       removeFromWishlistAction,
       addToWishlistAction,
       productDetailReducer: { productDetail },
@@ -43,10 +44,14 @@ class ProductDetailsPage extends Component {
       if (productDetail.is_wishlisted)
         this.wishlistAction(
           removeFromWishlistAction,
-          "Product removed from Wishlist"
+          translate("common.removed_from_wishlist")
         );
+      // this.wishlistAction(addToWishlistAction, "Product added to wishlist");
       else
-        this.wishlistAction(addToWishlistAction, "Product added to wishlist");
+        this.wishlistAction(
+          addToWishlistAction,
+          translate("common.added_to_wishlist")
+        );
     }
   };
 
