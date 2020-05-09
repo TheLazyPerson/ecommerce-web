@@ -173,5 +173,9 @@
     "landmark": "Landmark",
     "home_office": "Home/Office",
     "city": "City"
+  },
+  "overview_page": {
+    "welcome": "Welcome",
+    "my_account": "MY ACCOUNT"
   }
 }

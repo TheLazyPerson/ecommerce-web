@@ -148,5 +148,9 @@
     "confirmed_password": "كلمة المرور المؤكدة",
     "reset_password_button": "إعادة تعيين كلمة المرور",
     "sub_title1": "انتهت صلاحية الرمز المميز الخاص بك أو تم تحديث كلمة المرور بالفعل"
+  },
+  "overview_page": {
+    "welcome": "أهلا بك",
+    "my_account": "حسابي"
   }
 }
