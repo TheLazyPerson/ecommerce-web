@@ -6,7 +6,7 @@ import SideNav from "../components/sideNav";
 import styles from "./profile_address.module.scss";
 import {
   getAddressListAction,
-  removeAddressAction
+  removeAddressAction,
 } from "Core/modules/address/addressActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { connect } from "react-redux";
@@ -14,24 +14,24 @@ import { bindActionCreators } from "redux";
 import map from "lodash/map";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import navigatorHoc from "Hoc/navigatorHoc";
-import AddressItemComponent from 'CommonComponents/addressItemComponent';
+import AddressItemComponent from "CommonComponents/addressItemComponent";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import NavHeader from "../components/navHeader";
-
+import translatorHoc from "Hoc/translatorHoc";
 class ProfileAddress extends Component {
   onClickNewAddress = () => {
     const { navigateTo } = this.props;
     navigateTo("add-address");
   };
 
-  handleEdit = id => {
+  handleEdit = (id) => {
     const { navigateTo } = this.props;
     navigateTo("edit-address", {
-      id
+      id,
     });
   };
 
-  handleRemove = id => {
+  handleRemove = (id) => {
     const { removeAddressAction, showSuccessFlashMessage } = this.props;
     removeAddressAction(id).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
@@ -42,28 +42,29 @@ class ProfileAddress extends Component {
   };
   render() {
     const {
+      translate,
       addressReducer: { addressList },
-      getAddressListAction
+      getAddressListAction,
     } = this.props;
 
     const default_address = addressList.filter(
-      address => address.default_address === 1
+      (address) => address.default_address === 1
     );
 
     const other_address = addressList.filter(
-      address => address.default_address === 0
+      (address) => address.default_address === 0
     );
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <InitialPageLoader initialPageApi={getAddressListAction}>
           <DivColumn fillParent className={styles.address_container}>
-            <DivColumn className={styles.section_container}>              
-              <NavHeader title="Default Address">
-                <CapsuleButton
-                  onClick={() => this.onClickNewAddress()}
-                >
-                  + ADD NEW ADDRESS
+            <DivColumn className={styles.section_container}>
+              <NavHeader
+                title={translate("profile_address_page.default_address")}
+              >
+                <CapsuleButton onClick={() => this.onClickNewAddress()}>
+                  {translate("profile_address_page.add_new_address")}
                 </CapsuleButton>
               </NavHeader>
 
@@ -101,24 +102,24 @@ class ProfileAddress extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    addressReducer: state.addressReducer
+    addressReducer: state.addressReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     getAddressListAction: bindActionCreators(getAddressListAction, dispatch),
     removeAddressAction: bindActionCreators(removeAddressAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProfileAddress));
+)(translatorHoc(navigatorHoc(ProfileAddress)));

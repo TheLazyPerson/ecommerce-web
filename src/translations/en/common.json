@@ -183,5 +183,9 @@
     "more_help": "NEED MORE HELP FROM US",
     "your_concern": "Brief about your concern?",
     "callback": "Get Callback"
+  },
+  "profile_address_page": {
+    "default_address": "Default Address",
+    "add_new_address": "+ ADD NEW ADDRESS"
   }
 }

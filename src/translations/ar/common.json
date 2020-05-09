@@ -158,5 +158,9 @@
     "more_help": "بحاجة إلى مزيد من المساعدة منا",
     "your_concern": "موجز عن قلقك؟",
     "callback": "احصل على رد"
+  },
+  "profile_address_page": {
+    "default_address": "العنوان الافتراضي",
+    "add_new_address": "+ أضف عنوان جديد"
   }
 }
