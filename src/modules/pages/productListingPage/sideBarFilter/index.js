@@ -7,10 +7,8 @@ import translatorHoc from "Hoc/translatorHoc";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import map from "lodash/map";
-import filter from 'lodash/filter';
-import {
-  setFilters,
-} from "Core/modules/productlist/productListActions";
+import filter from "lodash/filter";
+import { setFilters } from "Core/modules/productlist/productListActions";
 import "rc-slider/assets/index.css";
 import "rc-tooltip/assets/bootstrap.css";
 import Slider from "rc-slider";
@@ -24,12 +22,17 @@ class SideBarFilter extends Component {
     const checkBoxValue = event.target.checked;
     const reducerFilter = productListReducer.filters;
 
-    const filters = checkBoxValue ? new Set(reducerFilter[facet.key] ? [...reducerFilter[facet.key], facet.id] : [facet.id])
-      : filter(reducerFilter[facet.key], facetId => facetId != facet.id)
+    const filters = checkBoxValue
+      ? new Set(
+          reducerFilter[facet.key]
+            ? [...reducerFilter[facet.key], facet.id]
+            : [facet.id]
+        )
+      : filter(reducerFilter[facet.key], (facetId) => facetId != facet.id);
 
     let updatedFilter = {
       ...reducerFilter,
-      [facet.key]: [...filters] // converting set to array    
+      [facet.key]: [...filters], // converting set to array
     };
 
     setFilters(updatedFilter);
@@ -44,7 +47,7 @@ class SideBarFilter extends Component {
       [facet.key]: {
         min_price: event[0],
         max_price: event[1],
-      }
+      },
     };
 
     setFilters(updatedFilter);
@@ -55,7 +58,8 @@ class SideBarFilter extends Component {
     const {
       translate,
       productListReducer: { productList },
-      filters
+      filters,
+      languageReducer: { languageCode },
     } = this.props;
     const displayFilters = productList.filters;
 
@@ -69,7 +73,7 @@ class SideBarFilter extends Component {
             {translate("filters.clear_all")}
           </div>
         </DivRow>
-        {map(displayFilters, displayFilter => {
+        {map(displayFilters, (displayFilter) => {
           return (
             <DivColumn className={styles.filters_container}>
               <div className={styles.filter_sub_header}>
@@ -78,27 +82,33 @@ class SideBarFilter extends Component {
               </div>
               <DivColumn className={styles.filters_list_container}>
                 {displayFilter.type == "category-filter" &&
-                  map(displayFilter.facets, facet => (
+                  map(displayFilter.facets, (facet) => (
                     <InputCheckbox
-                      text={facet.name}
+                      text={facet.translations[languageCode].name}
                       textStyle={styles.checkbox_text}
-                      onChange={event =>
-                        this.onChangeCheckboxFilterItem(event, { ...facet, key: displayFilter.key })
+                      onChange={(event) =>
+                        this.onChangeCheckboxFilterItem(event, {
+                          ...facet,
+                          key: displayFilter.key,
+                        })
                       }
                     />
                   ))}
                 {displayFilter.type == "multi-select" && displayFilter.facets && (
                   <Fragment>
                     <Range
-                      onAfterChange={event =>
-                        this.onChangeRange(event, { ...displayFilter.facets, key: displayFilter.key })
+                      onAfterChange={(event) =>
+                        this.onChangeRange(event, {
+                          ...displayFilter.facets,
+                          key: displayFilter.key,
+                        })
                       }
                       min={displayFilter.facets.min_price}
                       max={displayFilter.facets.max_price}
-                      tipFormatter={value => `${value}`}
+                      tipFormatter={(value) => `${value}`}
                       defaultValue={[
                         displayFilter.facets.min_price,
-                        displayFilter.facets.max_price
+                        displayFilter.facets.max_price,
                       ]}
                     />
                     <DivRow className={styles.filter_range_container}>
@@ -120,15 +130,15 @@ class SideBarFilter extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    productListReducer: state.productListReducer
+    productListReducer: state.productListReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    setFilters: bindActionCreators(setFilters, dispatch)
+    setFilters: bindActionCreators(setFilters, dispatch),
   };
 };
 
