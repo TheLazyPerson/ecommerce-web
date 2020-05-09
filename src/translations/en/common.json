@@ -203,7 +203,7 @@
     "save_details": "SAVE DETAILS",
     "country": "Country"
   },
-  "profile_details_list": {
+  "profile_details": {
     "header_title": "PROFILE DETAILS",
     "change_password": "CHANGE PASSWORD",
     "edit_details": "EDIT PROFILE",
@@ -212,6 +212,8 @@
     "email": "Email",
     "phone_number": "Phone Number",
     "gender": "Gender",
-    "birthday": "Birthday"
+    "birthday": "Birthday",
+    "cancel": "CANCEL",
+    "save_details": "SAVE DETAILS"
   }
 }

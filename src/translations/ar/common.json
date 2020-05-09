@@ -178,7 +178,7 @@
     "save_details": "حفظ التفاصيل",
     "country": "بلد"
   },
-  "profile_details_list": {
+  "profile_details": {
     "header_title": "تفاصيل الملف الشخصي",
     "change_password": "تغيير كلمة المرور",
     "edit_details": "تعديل الملف الشخصي",
@@ -187,6 +187,8 @@
     "email": "البريد الإلكتروني",
     "phone_number": "رقم الهاتف",
     "gender": "جنس",
-    "birthday": "عيد الميلاد"
+    "birthday": "عيد الميلاد",
+    "cancel": "إلغاء",
+    "save_details": "حفظ التفاصيل"
   }
 }

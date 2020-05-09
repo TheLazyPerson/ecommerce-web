@@ -39,16 +39,16 @@ class ProfileDetails extends Component {
         <DivColumn
           className={`${styles.details_container} ${isRTL ? styles.rtl : ""}`}
         >
-          <NavHeader title={translate("profile_details_list.header_title")}>
+          <NavHeader title={translate("profile_details.header_title")}>
             <DivRow className={styles.header_button_container}>
               <SecondaryCapsuleButton
                 className={styles.reset_password_button}
                 onClick={this.navigateToChangePass}
               >
-                {translate("profile_details_list.change_password")}
+                {translate("profile_details.change_password")}
               </SecondaryCapsuleButton>
               <CapsuleButton onClick={this.navigateToEditProfile}>
-                {translate("profile_details_list.edit_details")}
+                {translate("profile_details.edit_details")}
               </CapsuleButton>
             </DivRow>
           </NavHeader>
@@ -57,7 +57,7 @@ class ProfileDetails extends Component {
             <DivColumn fillParent>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>
-                  {translate("profile_details_list.first_name")}
+                  {translate("profile_details.first_name")}
                 </div>
                 <div className={styles.value}>
                   {userDetails.first_name
@@ -67,7 +67,7 @@ class ProfileDetails extends Component {
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>
-                  {translate("profile_details_list.last_name")}
+                  {translate("profile_details.last_name")}
                 </div>
                 <div className={styles.value}>
                   {userDetails.last_name
@@ -77,7 +77,7 @@ class ProfileDetails extends Component {
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>
-                  {translate("profile_details_list.email")}
+                  {translate("profile_details.email")}
                 </div>
                 <div className={styles.value}>
                   {userDetails.email ? userDetails.email : "Not Available"}
@@ -85,7 +85,7 @@ class ProfileDetails extends Component {
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>
-                  {translate("profile_details_list.phone_number")}
+                  {translate("profile_details.phone_number")}
                 </div>
                 <div className={styles.value}>
                   {userDetails.phone ? userDetails.phone : "Not Available"}
@@ -93,7 +93,7 @@ class ProfileDetails extends Component {
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>
-                  {translate("profile_details_list.gender")}
+                  {translate("profile_details.gender")}
                 </div>
                 <div className={styles.value}>
                   {userDetails.gender ? userDetails.gender : "Not Available"}
@@ -101,7 +101,7 @@ class ProfileDetails extends Component {
               </DivColumn>
               <DivColumn className={styles.field_container}>
                 <div className={styles.title}>
-                  {translate("profile_details_list.birthday")}
+                  {translate("profile_details.birthday")}
                 </div>
                 <div className={styles.value}>
                   {userDetails.birthday

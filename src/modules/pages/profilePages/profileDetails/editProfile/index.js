@@ -12,7 +12,7 @@ import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import {
   getProfileDetailsAction,
-  editProfileDetailsAction
+  editProfileDetailsAction,
 } from "Core/modules/profiledetails/profileDetailsActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -20,16 +20,16 @@ import {
   isPhoneNumber,
   nameValidator,
   isEmptyValidator,
-  emailValidator
+  emailValidator,
 } from "Utils/validators";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Select from 'react-select';
-import DivColumn from 'CommonComponents/divColumn';
-
+import Select from "react-select";
+import DivColumn from "CommonComponents/divColumn";
+import translatorHoc from "Hoc/translatorHoc";
 class EditProfile extends Component {
   state = {
-    startDate: null
+    startDate: null,
   };
 
   onBackPress = () => {
@@ -37,11 +37,11 @@ class EditProfile extends Component {
     pop();
   };
 
-  onSubmit = form => {
+  onSubmit = (form) => {
     const {
       editProfileDetailsAction,
       navigateTo,
-      showSuccessFlashMessage
+      showSuccessFlashMessage,
     } = this.props;
 
     editProfileDetailsAction({
@@ -50,7 +50,7 @@ class EditProfile extends Component {
       gender: form.gender,
       phone: form.phone,
       email: form.email,
-      birthday: form.birthday
+      birthday: form.birthday,
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         navigateTo("profile");
@@ -68,7 +68,7 @@ class EditProfile extends Component {
     // });
   }
 
-  validate = values => {
+  validate = (values) => {
     const errors = {};
     const validators = {
       firstName: nameValidator(values.firstName),
@@ -76,10 +76,10 @@ class EditProfile extends Component {
       gender: isEmptyValidator(values.gender),
       mobileNumber: isPhoneNumber(values.mobileNumber),
       email: emailValidator(values.email),
-      birthday: isEmptyValidator(values.birthday)
+      birthday: isEmptyValidator(values.birthday),
     };
 
-    Object.keys(validators).forEach(key => {
+    Object.keys(validators).forEach((key) => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
 
@@ -92,7 +92,8 @@ class EditProfile extends Component {
 
   render() {
     const {
-      profileDetailsReducer: { userDetails }
+      translate,
+      profileDetailsReducer: { userDetails },
     } = this.props;
     let startDate = null;
 
@@ -103,16 +104,14 @@ class EditProfile extends Component {
     }
 
     const genderOptions = [
-      { value: 'male', label: 'Male' },
-      { value: 'female', label: 'Female' }
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
     ];
     let defaultGender = null;
 
     if (userDetails.gender) {
-      if(userDetails.gender == 'male')
-        defaultGender = genderOptions[0];
-      else
-        defaultGender = genderOptions[1];
+      if (userDetails.gender == "male") defaultGender = genderOptions[0];
+      else defaultGender = genderOptions[1];
     }
 
     const CustomRenderInput = ({ input, value, onClick, meta }) => {
@@ -120,17 +119,20 @@ class EditProfile extends Component {
         <InputTextComponent
           {...input}
           meta={meta}
-          placeholder="Birthday"
           value={value}
           className={styles.input_text}
           onClick={onClick}
+          placeholder={translate("profile_details.birthday")}
         />
       );
     };
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <NavHeader title="Profile details" onBackClick={this.onBackPress} />
+        <NavHeader
+          title={translate("profile_details.header_title")}
+          onBackClick={this.onBackPress}
+        />
         <Form
           onSubmit={this.onSubmit}
           validate={this.validate}
@@ -140,118 +142,120 @@ class EditProfile extends Component {
             gender: userDetails.gender ? userDetails.gender : "",
             mobileNumber: userDetails.phone ? userDetails.phone : "",
             email: userDetails.email ? userDetails.email : "",
-            birthday: userDetails.birthday ? userDetails.birthday : ""
+            birthday: userDetails.birthday ? userDetails.birthday : "",
           }}
           render={({
             handleSubmit,
             form: {
-              mutators: { mutateValue }
+              mutators: { mutateValue },
             },
             submitting,
             pristine,
-            values
+            values,
           }) => (
-              <form className={styles.form_container} onSubmit={handleSubmit}>
-                <Field name="firstName">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="First Name"
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
-                <Field name="lastName">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="Last Name"
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
+            <form className={styles.form_container} onSubmit={handleSubmit}>
+              <Field name="firstName">
+                {({ input, meta }) => (
+                  <InputTextComponent
+                    meta={meta}
+                    {...input}
+                    placeholder={translate("profile_details.first_name")}
+                    className={styles.input_text}
+                  />
+                )}
+              </Field>
+              <Field name="lastName">
+                {({ input, meta }) => (
+                  <InputTextComponent
+                    meta={meta}
+                    {...input}
+                    placeholder={translate("profile_details.last_name")}
+                    className={styles.input_text}
+                  />
+                )}
+              </Field>
 
-                <Field name="gender">
-                  {({ input, meta }) => (
-                    <DivColumn className='input_select_container'>
-                      <Select
-                        options={genderOptions}
-                        onChange={value => {
-                          input.onChange(value.value)
-                        }}
-                        className='react-select-container'
-                        classNamePrefix="react-select"
-                        placeholder="Gender"
-                        defaultValue={defaultGender}
-                      />
-                      {meta.error && meta.touched && <span className='error_text'>{meta.error}</span>}
-                    </DivColumn>
-                  )}
-                </Field>
-
-                <Field name="mobileNumber">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="Mobile Number"
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
-
-                <Field name="email">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder="Email Address"
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
-
-                <Field name="birthday">
-                  {({ input, meta }) => (
-                    <DatePicker
-                      selected={startDate}
-                      onChange={date => {
-                        this.setState({ startDate: date })
-                        input.onChange(date.valueOf());
+              <Field name="gender">
+                {({ input, meta }) => (
+                  <DivColumn className="input_select_container">
+                    <Select
+                      options={genderOptions}
+                      onChange={(value) => {
+                        input.onChange(value.value);
                       }}
-                      maxDate={new Date()}
-                      customInput={
-                        <CustomRenderInput meta={meta} input={input} />
-                      }
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      placeholder={translate("profile_details.gender")}
+                      defaultValue={defaultGender}
                     />
-                  )}
-                </Field>
+                    {meta.error && meta.touched && (
+                      <span className="error_text">{meta.error}</span>
+                    )}
+                  </DivColumn>
+                )}
+              </Field>
 
-                <DivRow className={styles.form_button_container}>
-                  <SecondaryCapsuleButton onClick={this.onClickCancel}>
-                    Cancel
+              <Field name="mobileNumber">
+                {({ input, meta }) => (
+                  <InputTextComponent
+                    meta={meta}
+                    {...input}
+                    placeholder={translate("profile_details.phone_number")}
+                    className={styles.input_text}
+                  />
+                )}
+              </Field>
+
+              <Field name="email">
+                {({ input, meta }) => (
+                  <InputTextComponent
+                    meta={meta}
+                    {...input}
+                    placeholder={translate("profile_details.email")}
+                    className={styles.input_text}
+                  />
+                )}
+              </Field>
+
+              <Field name="birthday">
+                {({ input, meta }) => (
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => {
+                      this.setState({ startDate: date });
+                      input.onChange(date.valueOf());
+                    }}
+                    maxDate={new Date()}
+                    customInput={
+                      <CustomRenderInput meta={meta} input={input} />
+                    }
+                  />
+                )}
+              </Field>
+
+              <DivRow className={styles.form_button_container}>
+                <SecondaryCapsuleButton onClick={this.onClickCancel}>
+                  {translate("profile_details.cancel")}
                 </SecondaryCapsuleButton>
-                  <CapsuleButton type="submit" disabled={submitting}>
-                    Save Details
+                <CapsuleButton type="submit" disabled={submitting}>
+                  {translate("profile_details.save_details")}
                 </CapsuleButton>
-                </DivRow>
-              </form>
-            )}
+              </DivRow>
+            </form>
+          )}
         />
       </SectionedContainer>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    profileDetailsReducer: state.profileDetailsReducer
+    profileDetailsReducer: state.profileDetailsReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     getProfileDetailsAction: bindActionCreators(
       getProfileDetailsAction,
@@ -264,11 +268,11 @@ const mapDispathToProps = dispatch => {
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(EditProfile));
+)(translatorHoc(navigatorHoc(EditProfile)));
