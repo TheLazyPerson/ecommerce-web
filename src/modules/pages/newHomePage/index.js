@@ -16,7 +16,7 @@ import "swiper/css/swiper.css";
 import {
   getExhibitionListAction,
   getUpcomingExhibitionListAction,
-  getTrendingExhibitionListAction
+  getTrendingExhibitionListAction,
 } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
@@ -34,7 +34,7 @@ import CapsuleButton from "CommonComponents/capsuleButton";
 class NewHomePage extends Component {
   state = {
     currentSlide: 0,
-    showHeaderShadow: false
+    showHeaderShadow: false,
   };
 
   componentDidMount() {
@@ -53,10 +53,10 @@ class NewHomePage extends Component {
       : showHeaderShadow && this.setState({ showHeaderShadow: false });
   };
 
-  onClickExhibitionItem = id => {
+  onClickExhibitionItem = (id) => {
     const { navigateTo } = this.props;
     navigateTo("plp", {
-      id
+      id,
     });
   };
 
@@ -70,8 +70,8 @@ class NewHomePage extends Component {
       containerClass: "custom_container",
       on: {
         slideChange: () =>
-          this.setState({ currentSlide: this.swiper.realIndex })
-      }
+          this.setState({ currentSlide: this.swiper.realIndex }),
+      },
     };
 
     const { currentSlide, showHeaderShadow } = this.state;
@@ -79,12 +79,13 @@ class NewHomePage extends Component {
       homePageReducer: {
         exhibitionList,
         trendingExhibitionList,
-        upcomingExhibitionList
+        upcomingExhibitionList,
       },
       getExhibitionListAction,
       getTrendingExhibitionListAction,
       getUpcomingExhibitionListAction,
-      translate
+      translate,
+      languageReducer: { languageCode },
     } = this.props;
     const totalSlide = exhibitionList ? exhibitionList.length : 0;
 
@@ -95,7 +96,7 @@ class NewHomePage extends Component {
       <div fillParent className={styles.page_container}>
         <DivColumn
           style={{
-            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`
+            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
           }}
           fillSelfHorizontal
           className={styles.hero_section_container}
@@ -137,7 +138,7 @@ class NewHomePage extends Component {
                 <div className={styles.swiper_container}>
                   <Swiper
                     {...params}
-                    getSwiper={swiper => {
+                    getSwiper={(swiper) => {
                       this.swiper = swiper;
                     }}
                   >
@@ -145,9 +146,11 @@ class NewHomePage extends Component {
                       return (
                         <div className={styles.swiper_item} key={index}>
                           <ExhibitionDetailComponent
-                            name={exhibition.title}
-                            tags={["watches", "craft", "crafted"]}
-                            description={exhibition.description}
+                            name={exhibition.translations[languageCode].title}
+                            tags={exhibition.tags}
+                            description={
+                              exhibition.translations[languageCode].description
+                            }
                             className={styles.details_container}
                             setCenter
                           >
@@ -281,13 +284,13 @@ class NewHomePage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    homePageReducer: state.homePageReducer
+    homePageReducer: state.homePageReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     getExhibitionListAction: bindActionCreators(
       getExhibitionListAction,
@@ -300,7 +303,7 @@ const mapDispathToProps = dispatch => {
     getUpcomingExhibitionListAction: bindActionCreators(
       getUpcomingExhibitionListAction,
       dispatch
-    )
+    ),
   };
 };
 
