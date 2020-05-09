@@ -38,7 +38,10 @@
     "prev_button": "السابق",
     "removed_from_bag": "تمت إزالة العنصر من الحقيبة",
     "removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
-    "wishlist": "الأماني"
+    "wishlist": "الأماني",
+    "my_profile": "ملفي",
+    "bag": "كيس",
+    "seller": "تاجر"
   },
   "filters": {
     "categories": "الاقسام",
@@ -63,7 +66,7 @@
   },
   "header": {
     "login": "تسجيل الدخول",
-    "logout": "Logout",
+    "logout": "تسجيل خروج",
     "register": "تسجيل",
     "search": "بحث",
     "search_exhibition": "بحث المعارض",
@@ -105,7 +108,9 @@
     "remember_me": "تذكرنى",
     "sign_in_button": "تسجيل الدخول",
     "username": "اسم المستخدم",
-    "forgot_password": "هل نسيت كلمة المرور"
+    "forgot_password": "هل نسيت كلمة المرور",
+    "are_you_a_seller": "هل أنت بائع?",
+    "seller_account": "إنشاء حساب بائعt"
   },
   "signup_page": {
     "confirm_password": "تأكيد كلمة المرور",

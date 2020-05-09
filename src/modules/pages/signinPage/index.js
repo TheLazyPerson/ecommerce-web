@@ -120,13 +120,13 @@ class SignInPage extends Component {
             className={styles.create_account_container}
           >
             <span className={styles.new_description_text}>
-              Are you a seller?&nbsp;
+              {translate("signin_page.are_you_a_seller")}&nbsp;
             </span>
             <a
               className={styles.hyper_link}
               href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/"
             >
-              Create a seller account
+              {translate("signin_page.seller_account")}
             </a>
           </div>
         </DivColumn>

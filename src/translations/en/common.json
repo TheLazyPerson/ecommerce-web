@@ -38,7 +38,10 @@
     "prev_button": "Prev",
     "removed_from_bag": "Item Removed from Bag",
     "removed_from_wishlist": "Product removed from Wishlist",
-    "wishlist": "Wishlist"
+    "wishlist": "Wishlist",
+    "my_profile": "My Profile",
+    "bag": "Bag",
+    "seller": "Seller"
   },
   "filters": {
     "categories": "CATEGORIES",
@@ -105,7 +108,9 @@
     "remember_me": "Remember Me",
     "sign_in_button": "Sign In",
     "username": "Email",
-    "forgot_password": "Forgot password"
+    "forgot_password": "Forgot password",
+    "are_you_a_seller": "Are you a seller?",
+    "seller_account": "Create a seller account"
   },
   "signup_page": {
     "confirm_password": "Confirm Password",
