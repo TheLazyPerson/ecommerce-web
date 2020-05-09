@@ -100,11 +100,12 @@
   "signin_page": {
     "create": "Create an account",
     "new": "New to Home Expo?",
-    "page_title": "SignIn",
+    "page_title": "Sign In",
     "password": "Password",
     "remember_me": "Remember Me",
     "sign_in_button": "Sign In",
-    "username": "Email"
+    "username": "Email",
+    "forgot_password": "Forgot password"
   },
   "signup_page": {
     "confirm_password": "Confirm Password",
@@ -126,7 +127,7 @@
   },
   "reset_password_page": {
     "new": "Already have an account?",
-    "create": "SignIn",
+    "create": "Sign In",
     "page_title": "Reset Password",
     "sub_title": "We will send you an email to reset your password.",
     "password": "Password",
@@ -134,7 +135,7 @@
     "username": "Email"
   },
   "update_password_page": {
-    "create": "SignIn",
+    "create": "Sign In",
     "page_title": "Reset Password",
     "sub_title": "Enter the password to update.",
     "password": "Password",

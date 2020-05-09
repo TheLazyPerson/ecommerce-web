@@ -104,7 +104,8 @@
     "password": "كلمه السر",
     "remember_me": "تذكرنى",
     "sign_in_button": "تسجيل الدخول",
-    "username": "اسم المستخدم"
+    "username": "اسم المستخدم",
+    "forgot_password": "هل نسيت كلمة المرور"
   },
   "signup_page": {
     "confirm_password": "تأكيد كلمة المرور",
@@ -123,5 +124,24 @@
     "move_bag": "الانتقال إلى حقيبة",
     "my_wishlist": "قائمة امنياتي",
     "start_shopping": "ابدأ التسوق"
+  },
+  "reset_password_page": {
+    "new": "هل لديك حساب؟",
+    "create": "تسجيل الدخول",
+    "page_title": "إعادة تعيين كلمة المرور",
+    "sub_title": "سنرسل لك بريدًا إلكترونيًا لإعادة تعيين كلمة المرور الخاصة بك.",
+    "password": "كلمه السر",
+    "reset_password_button": "إعادة تعيين كلمة المرور",
+    "username": "البريد الإلكتروني"
+  },
+
+  "update_password_page": {
+    "create": "تسجيل الدخول",
+    "page_title": "إعادة تعيين كلمة المرور",
+    "sub_title": "أدخل كلمة المرور للتحديث.",
+    "password": "كلمه السر",
+    "confirmed_password": "كلمة المرور المؤكدة",
+    "reset_password_button": "إعادة تعيين كلمة المرور",
+    "sub_title1": "انتهت صلاحية الرمز المميز الخاص بك أو تم تحديث كلمة المرور بالفعل"
   }
 }
