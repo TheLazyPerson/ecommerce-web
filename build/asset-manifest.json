@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.09fe4099.chunk.css",
-    "main.js": "/static/js/main.1289d5aa.chunk.js",
-    "main.js.map": "/static/js/main.1289d5aa.chunk.js.map",
+    "main.css": "/static/css/main.d5e85738.chunk.css",
+    "main.js": "/static/js/main.5f24a5f1.chunk.js",
+    "main.js.map": "/static/js/main.5f24a5f1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.95e895f4.js",
     "runtime-main.js.map": "/static/js/runtime-main.95e895f4.js.map",
-    "static/css/2.6a814f20.chunk.css": "/static/css/2.6a814f20.chunk.css",
-    "static/js/2.089000ca.chunk.js": "/static/js/2.089000ca.chunk.js",
-    "static/js/2.089000ca.chunk.js.map": "/static/js/2.089000ca.chunk.js.map",
+    "static/css/2.e8b88b3f.chunk.css": "/static/css/2.e8b88b3f.chunk.css",
+    "static/js/2.8161a77d.chunk.js": "/static/js/2.8161a77d.chunk.js",
+    "static/js/2.8161a77d.chunk.js.map": "/static/js/2.8161a77d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.923acd3ec28ac931eda1c25577ef587d.js": "/precache-manifest.923acd3ec28ac931eda1c25577ef587d.js",
+    "precache-manifest.080facb783b41df5fa6d14e0dfb70f93.js": "/precache-manifest.080facb783b41df5fa6d14e0dfb70f93.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.6a814f20.chunk.css.map": "/static/css/2.6a814f20.chunk.css.map",
-    "static/css/main.09fe4099.chunk.css.map": "/static/css/main.09fe4099.chunk.css.map",
+    "static/css/2.e8b88b3f.chunk.css.map": "/static/css/2.e8b88b3f.chunk.css.map",
+    "static/css/main.d5e85738.chunk.css.map": "/static/css/main.d5e85738.chunk.css.map",
     "static/media/address-icon-black.svg": "/static/media/address-icon-black.e89c5982.svg",
     "static/media/address-icon-white.svg": "/static/media/address-icon-white.76bc8314.svg",
     "static/media/app-icon-black.svg": "/static/media/app-icon-black.5e0a51b2.svg",
@@ -27,6 +27,7 @@
     "static/media/cart-bag-icon-black.svg": "/static/media/cart-bag-icon-black.c6014af6.svg",
     "static/media/cart-bag-icon-white.svg": "/static/media/cart-bag-icon-white.e34039f6.svg",
     "static/media/checked-icon-black.svg": "/static/media/checked-icon-black.2f7966a2.svg",
+    "static/media/checked.svg": "/static/media/checked.8510cd38.svg",
     "static/media/circular-loader.gif": "/static/media/circular-loader.5fe0e55f.gif",
     "static/media/close-icon-black.svg": "/static/media/close-icon-black.1bf44a0b.svg",
     "static/media/exhibition-item-1.jpg": "/static/media/exhibition-item-1.bcbb085c.jpg",
@@ -62,9 +63,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.95e895f4.js",
-    "static/css/2.6a814f20.chunk.css",
-    "static/js/2.089000ca.chunk.js",
-    "static/css/main.09fe4099.chunk.css",
-    "static/js/main.1289d5aa.chunk.js"
+    "static/css/2.e8b88b3f.chunk.css",
+    "static/js/2.8161a77d.chunk.js",
+    "static/css/main.d5e85738.chunk.css",
+    "static/js/main.5f24a5f1.chunk.js"
   ]
 }
