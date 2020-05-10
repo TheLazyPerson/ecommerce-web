@@ -40,6 +40,7 @@ class ProfileOverview extends Component {
     const {
       translate,
       signInReducer: { userDetails },
+      languageReducer: { languageCode },
     } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
@@ -74,9 +75,11 @@ class ProfileOverview extends Component {
                       src={listItem.blackImage}
                       alt="item"
                     />
-                    <div className={styles.item_title}>{listItem.title}</div>
+                    <div className={styles.item_title}>
+                      {listItem[languageCode].title}
+                    </div>
                     <div className={styles.item_description}>
-                      {listItem.description}
+                      {listItem[languageCode].description}
                     </div>
                   </DivColumn>
                 );
@@ -93,6 +96,7 @@ class ProfileOverview extends Component {
 const mapStateToProps = (state) => {
   return {
     signInReducer: state.signInReducer,
+    languageReducer: state.languageReducer,
   };
 };
 
