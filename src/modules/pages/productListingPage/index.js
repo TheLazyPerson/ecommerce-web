@@ -1,18 +1,17 @@
-import React, { Component } from "react";
-import SectionedContainer from "CommonContainers/sectionedContainer";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { getProductListAction } from "Core/modules/productlist/productListActions";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
-import styles from "./product_listing_page.module.scss";
-import FilterCapsule from "./filterCapsule";
 import DropdownCapsule from "./dropdownCapsule";
-import ProductGridItem from "./productGridItem";
-import SideBarFilter from "./sideBarFilter";
-import queryString from "query-string";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getProductListAction } from "Core/modules/productlist/productListActions";
+import ProductGridItem from "./productGridItem";
+import queryString from "query-string";
+import React, { Component } from "react";
+import SectionedContainer from "CommonContainers/sectionedContainer";
+import SideBarFilter from "./sideBarFilter";
+import styles from "./product_listing_page.module.scss";
 
 class ProductListingPage extends Component {
   constructor(props) {
@@ -20,13 +19,31 @@ class ProductListingPage extends Component {
     this.productListRef = React.createRef();
 
     this.state = {
-      sort: ""
+      sort: "",
+      filters: {},
     };
   }
 
-  onChange = data => {
-    this.setState({ sort: data.value });
-    this.makeApiCall();
+  onChangeFilter = (data) => {
+    this.setState(
+      {
+        filters: data,
+      },
+      () => {
+        this.makeApiCall();
+      }
+    );
+  };
+
+  onChangeSort = (data) => {
+    this.setState(
+      {
+        sort: data.value,
+      },
+      () => {
+        this.makeApiCall();
+      }
+    );
   };
 
   makeApiCall = () => {
@@ -35,20 +52,25 @@ class ProductListingPage extends Component {
 
   render() {
     const parsed = queryString.parse(this.props.location.search);
-    const { sort } = this.state;
+    const { sort, filters } = this.state;
     const {
-      productListReducer: { productList, filters },
-      getProductListAction
+      productListReducer: { productList },
+      getProductListAction,
     } = this.props;
 
     const parsedBody = {
       filters,
-      sort
+      sort,
     };
 
     return (
       <SectionedContainer
-        sideBarContainer={<SideBarFilter makeApiCall={this.makeApiCall} />}
+        sideBarContainer={
+          <SideBarFilter
+            filters={this.state.filters}
+            onChangeFilter={this.onChangeFilter}
+          />
+        }
       >
         <DivColumn className={styles.product_listing_container}>
           <DivRow className={styles.filter_view_container}>
@@ -57,7 +79,7 @@ class ProductListingPage extends Component {
               <FilterCapsule className={styles.filter_item} />
             </DivRow> */}
             <div></div>
-            <DropdownCapsule onChange={this.onChange} />
+            <DropdownCapsule onChange={this.onChangeSort} />
           </DivRow>
           <DivRow fillParent className={styles.product_list_container}>
             <InitialPageLoader
@@ -83,19 +105,16 @@ class ProductListingPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    productListReducer: state.productListReducer
+    productListReducer: state.productListReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    getProductListAction: bindActionCreators(getProductListAction, dispatch)
+    getProductListAction: bindActionCreators(getProductListAction, dispatch),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispathToProps
-)(ProductListingPage);
+export default connect(mapStateToProps, mapDispathToProps)(ProductListingPage);
