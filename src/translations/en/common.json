@@ -1,4 +1,21 @@
 {
+  "common": {
+    "add_to_bag": "Add to Bag",
+    "added_to_bag": "Added to Bag",
+    "added_to_wishlist": "Product added to Wishlist",
+    "address_deleted": "Address Deleted",
+    "explore_button": "Explore",
+    "next_button": "Next",
+    "prev_button": "Prev",
+    "removed_from_bag": "Item Removed from Bag",
+    "removed_from_wishlist": "Product removed from Wishlist",
+    "wishlist": "Wishlist",
+    "my_profile": "My Profile",
+    "bag": "Bag",
+    "seller": "Seller",
+    "cancel": "CANCEL",
+    "confirm": "CONFIRM"
+  },
   "address_item_component": {
     "edit": "Edit",
     "phone_number": "Phone Number:",
@@ -27,21 +44,6 @@
     "select_delivery_address": "Select Delivery Address",
     "standard_delivery": "Standard Delivery",
     "total": "Total"
-  },
-  "common": {
-    "add_to_bag": "Add to Bag",
-    "added_to_bag": "Added to Bag",
-    "added_to_wishlist": "Product added to Wishlist",
-    "address_deleted": "Address Deleted",
-    "explore_button": "Explore",
-    "next_button": "Next",
-    "prev_button": "Prev",
-    "removed_from_bag": "Item Removed from Bag",
-    "removed_from_wishlist": "Product removed from Wishlist",
-    "wishlist": "Wishlist",
-    "my_profile": "My Profile",
-    "bag": "Bag",
-    "seller": "Seller"
   },
   "filters": {
     "categories": "CATEGORIES",
@@ -215,5 +217,11 @@
     "birthday": "Birthday",
     "cancel": "CANCEL",
     "save_details": "SAVE DETAILS"
+  },
+  "change_password": {
+    "header_title": "CHANGE PASSWORD",
+    "old_password": "Old Password",
+    "new_password": "New Password",
+    "confirm_passowrd": "Confirm Password"
   }
 }

@@ -1,4 +1,21 @@
 {
+  "common": {
+    "add_to_bag": "أضف الى الحقيبة",
+    "added_to_bag": "أضيفت إلى الحقيبة",
+    "added_to_wishlist": "تم اضافة المنتج الى قائمة الامنيات",
+    "address_deleted": "تم حذف العنوان",
+    "explore_button": "يكتشف",
+    "next_button": "التالى",
+    "prev_button": "السابق",
+    "removed_from_bag": "تمت إزالة العنصر من الحقيبة",
+    "removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
+    "wishlist": "الأماني",
+    "my_profile": "ملفي",
+    "bag": "كيس",
+    "seller": "تاجر",
+    "cancel": "إلغاء",
+    "confirm": "تؤكد"
+  },
   "address_item_component": {
     "edit": "تصحيح",
     "phone_number": ":رقم الهاتف",
@@ -27,21 +44,6 @@
     "select_delivery_address": "حدد عنوان التسليم",
     "standard_delivery": "التسليم القياسية",
     "total": "مجموع"
-  },
-  "common": {
-    "add_to_bag": "أضف الى الحقيبة",
-    "added_to_bag": "أضيفت إلى الحقيبة",
-    "added_to_wishlist": "تم اضافة المنتج الى قائمة الامنيات",
-    "address_deleted": "تم حذف العنوان",
-    "explore_button": "يكتشف",
-    "next_button": "التالى",
-    "prev_button": "السابق",
-    "removed_from_bag": "تمت إزالة العنصر من الحقيبة",
-    "removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
-    "wishlist": "الأماني",
-    "my_profile": "ملفي",
-    "bag": "كيس",
-    "seller": "تاجر"
   },
   "filters": {
     "categories": "الاقسام",
@@ -190,5 +192,11 @@
     "birthday": "عيد الميلاد",
     "cancel": "إلغاء",
     "save_details": "حفظ التفاصيل"
+  },
+  "change_password": {
+    "header_title": "تغيير كلمة المرور",
+    "old_password": "كلمة سر قديمة",
+    "new_password": "كلمة السر الجديدة",
+    "confirm_passowrd": "تأكيد كلمة المرور"
   }
 }
