@@ -159,7 +159,8 @@
     "header_title": "مركز المساعدة",
     "more_help": "بحاجة إلى مزيد من المساعدة منا",
     "your_concern": "موجز عن قلقك؟",
-    "callback": "احصل على رد"
+    "callback": "احصل على رد",
+    "response_message": "تم إرسال التعليقات بنجاح"
   },
   "profile_address_page": {
     "default_address": "العنوان الافتراضي",

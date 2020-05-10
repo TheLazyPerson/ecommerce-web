@@ -49,13 +49,17 @@ class ProfileHelpCenter extends Component {
   };
 
   onSubmit = (form) => {
-    const { sendFeedbackAction, showSuccessFlashMessage } = this.props;
+    const {
+      sendFeedbackAction,
+      showSuccessFlashMessage,
+      translate,
+    } = this.props;
 
     sendFeedbackAction({
       issue_summary: form.feedback,
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
-        showSuccessFlashMessage("Feedback sent successfuly");
+        showSuccessFlashMessage(translate("help_center.response_message"));
       }
     });
   };
