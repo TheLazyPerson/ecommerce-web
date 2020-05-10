@@ -219,9 +219,14 @@
     "save_details": "SAVE DETAILS"
   },
   "change_password": {
-    "header_title": "CHANGE PASSWORD",
+    "header_title": "Change Password",
     "old_password": "Old Password",
     "new_password": "New Password",
     "confirm_passowrd": "Confirm Password"
+  },
+  "setting_page": {
+    "header_title": "Settings",
+    "notification": "Notification",
+    "subtitile": "This will not affect order updates."
   }
 }

@@ -198,5 +198,10 @@
     "old_password": "كلمة سر قديمة",
     "new_password": "كلمة السر الجديدة",
     "confirm_passowrd": "تأكيد كلمة المرور"
+  },
+  "setting_page": {
+    "header_title": "الإعدادات",
+    "notification": "تنبيه",
+    "subtitile": "هذا لن يؤثر على تحديثات الطلب."
   }
 }
