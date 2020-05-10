@@ -204,5 +204,11 @@
     "header_title": "الإعدادات",
     "notification": "تنبيه",
     "subtitile": "هذا لن يؤثر على تحديثات الطلب."
+  },
+  "profile_order": {
+    "order_date": "تاريخ الطلب:",
+    "order_id": "رقم التعريف الخاص بالطلب:",
+    "view_details": "عرض التفاصيل",
+    "exhibition_name": "اسم المعرض"
   }
 }

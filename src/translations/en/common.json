@@ -229,5 +229,11 @@
     "header_title": "Settings",
     "notification": "Notification",
     "subtitile": "This will not affect order updates."
+  },
+  "profile_order": {
+    "order_date": "Order Date:",
+    "order_id": "Order ID:",
+    "view_details": "View Details",
+    "exhibition_name": "Exhibition Name"
   }
 }
