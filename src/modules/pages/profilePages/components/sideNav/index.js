@@ -5,10 +5,11 @@ import DivRow from "CommonComponents/divRow";
 import styles from "./side_nav.module.scss";
 import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
-
+import { connect } from "react-redux";
+import translatorHoc from "Hoc/translatorHoc";
 class SideNav extends Component {
   state = {
-    selectedRoute: ""
+    selectedRoute: "",
   };
 
   componentDidMount() {
@@ -19,9 +20,9 @@ class SideNav extends Component {
     this.validateAndSelectRoute(nextProps);
   }
 
-  validateAndSelectRoute = props => {
+  validateAndSelectRoute = (props) => {
     const {
-      location: { pathname }
+      location: { pathname },
     } = props;
     const { selectedRoute } = this.state;
 
@@ -57,12 +58,12 @@ class SideNav extends Component {
 
     if (setRoute !== selectedRoute) {
       this.setState({
-        selectedRoute: setRoute
+        selectedRoute: setRoute,
       });
     }
   };
 
-  onClickNavItemClick = slug => {
+  onClickNavItemClick = (slug) => {
     const { navigateTo } = this.props;
     if (slug === "overview") {
       navigateTo("profile");
@@ -75,10 +76,12 @@ class SideNav extends Component {
 
   render() {
     const { selectedRoute } = this.state;
-
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     return (
       <DivColumn verticalCenter className={styles.side_nav_container}>
-        {map(profileListItem, listItem => {
+        {map(profileListItem, (listItem) => {
           if (listItem.title !== "Logout") {
             const isSelected = selectedRoute === listItem.slug;
 
@@ -95,9 +98,11 @@ class SideNav extends Component {
                   alt="nav"
                 />
                 <DivColumn>
-                  <div className={styles.nav_title}>{listItem.title}</div>
+                  <div className={styles.nav_title}>
+                    {listItem[languageCode].title}
+                  </div>
                   <div className={styles.nav_description}>
-                    {listItem.description}
+                    {listItem[languageCode].description}
                   </div>
                 </DivColumn>
                 <div className={styles.nav_indicator}>></div>
@@ -111,4 +116,19 @@ class SideNav extends Component {
   }
 }
 
-export default navigatorHoc(SideNav);
+// export default navigatorHoc(SideNav);
+
+const mapStateToProps = (state) => {
+  return {
+    languageReducer: state.languageReducer,
+  };
+};
+
+const mapDispathToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(translatorHoc(navigatorHoc(SideNav)));
