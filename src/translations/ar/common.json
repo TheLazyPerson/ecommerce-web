@@ -210,5 +210,17 @@
     "order_id": "رقم التعريف الخاص بالطلب:",
     "view_details": "عرض التفاصيل",
     "exhibition_name": "اسم المعرض"
+  },
+  "order_details_page": {
+    "header_title": "تفاصيل الطلب",
+    "order_id": "رقم التعريف الخاص بالطلب",
+    "placed_on": "موضوع على:",
+    "update_sent_to": "التحديثات المرسلة إلى",
+    "item_in_order": "عناصر في هذا الطلب",
+    "shipping_address": "عنوان الشحن",
+    "pricing_summery": "ملخص التسعير",
+    "mrp": "MRP:",
+    "discount": "خصم:",
+    "total": "مجموع:"
   }
 }

@@ -235,5 +235,17 @@
     "order_id": "Order ID:",
     "view_details": "View Details",
     "exhibition_name": "Exhibition Name"
+  },
+  "order_details_page": {
+    "header_title": "ORDER DETAILS",
+    "order_id": "ORDER ID",
+    "placed_on": "Placed On:",
+    "update_sent_to": "UPDATES SENT TO",
+    "item_in_order": "ITEMS IN THIS ORDER",
+    "shipping_address": "SHIPPING ADDRESS",
+    "pricing_summery": "PRICING SUMMARY",
+    "mrp": "MRP:",
+    "discount": "Discount:",
+    "total": "Total:"
   }
 }

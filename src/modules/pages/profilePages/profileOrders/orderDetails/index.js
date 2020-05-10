@@ -9,12 +9,12 @@ import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
 import HorizontalBorder from "CommonComponents/horizontalBorder";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
-import { getOrderDetailsAction } from 'Core/modules/order/orderActions';
+import { getOrderDetailsAction } from "Core/modules/order/orderActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from "lodash/isEmpty";
 import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class OrderDetails extends Component {
   onBackPress = () => {
@@ -24,10 +24,11 @@ class OrderDetails extends Component {
 
   render() {
     const {
+      translate,
       getOrderDetailsAction,
       orderReducer: { orderDetails },
       match,
-      isRTL
+      isRTL,
     } = this.props;
     const {
       shipping_address: shippingAddress,
@@ -37,30 +38,44 @@ class OrderDetails extends Component {
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <NavHeader title="Order Details" onBackClick={this.onBackPress} />
+        <NavHeader
+          title={translate("order_details_page.header_title")}
+          onBackClick={this.onBackPress}
+        />
         <InitialPageLoader
           initialPageApi={() => getOrderDetailsAction(orderId)}
           isEmpty={isEmpty(orderDetails)}
         >
-          <DivColumn fillParent className={`${styles.page_container} ${isRTL ? styles.rtl : ''}`}>
+          <DivColumn
+            fillParent
+            className={`${styles.page_container} ${isRTL ? styles.rtl : ""}`}
+          >
             <DivColumn
               verticalCenter
               horizontalCenter
               className={styles.order_details_container}
             >
               <div className={styles.order_id_text}>
-                ORDER ID: <b>{orderDetails.id}</b>
+                {translate("order_details_page.order_id")}{" "}
+                <b>{orderDetails.id}</b>
               </div>
-              <div className={styles.order_status_text}>{orderDetails.status}</div>
+              <div className={styles.order_status_text}>
+                {orderDetails.status}
+              </div>
               <div className={styles.order_placed_text}>
-                {`Placed On: ${formatTimeStamp(orderDetails.created_at, timeFormats.dayMonthComaYear)}`}
+                {`Placed On: ${formatTimeStamp(
+                  orderDetails.created_at,
+                  timeFormats.dayMonthComaYear
+                )}`}
               </div>
             </DivColumn>
 
             <DivRow className={styles.content_container}>
               <DivColumn className={styles.left_container}>
                 {/*left container*/}
-                <div className={styles.top_header_text}>UPDATES SENT TO</div>
+                <div className={styles.top_header_text}>
+                  {translate("order_details_page.update_sent_to")}
+                </div>
                 <DivColumn className={styles.value_container}>
                   <div
                     className={styles.contact_text}
@@ -69,30 +84,48 @@ class OrderDetails extends Component {
                     className={styles.contact_text}
                   >{`Email: ${orderDetails.customer_email}`}</div>
                 </DivColumn>
-                <div className={styles.header_text}>SHIPPING ADDRESS</div>
+                <div className={styles.header_text}>
+                  {translate("order_details_page.shipping_address")}
+                </div>
                 <DivColumn className={styles.value_container}>
-                  <div className={styles.name_text}>{`${shippingAddress.first_name} ${shippingAddress.last_name}`}</div>
+                  <div
+                    className={styles.name_text}
+                  >{`${shippingAddress.first_name} ${shippingAddress.last_name}`}</div>
                   <div className={styles.address_text}>
                     {shippingAddress.address1}
                   </div>
                 </DivColumn>
-                <div className={styles.header_text}>PRICING SUMMARY</div>
+                <div className={styles.header_text}>
+                  {translate("order_details_page.pricing_summery")}
+                </div>
                 <DivColumn className={styles.value_container}>
                   <DivRow>
-                    <div className={styles.price_title}>MRP:</div>
-                    <div className={styles.value}>{orderDetails.formated_sub_total}</div>
+                    <div className={styles.price_title}>
+                      {translate("order_details_page.mrp")}
+                    </div>
+                    <div className={styles.value}>
+                      {orderDetails.formated_sub_total}
+                    </div>
                   </DivRow>
                   <DivRow>
-                    <div className={styles.price_title}>Discount:</div>
-                    <div className={styles.value}>{orderDetails.formated_discount_amount}</div>
+                    <div className={styles.price_title}>
+                      {translate("order_details_page.discount")}
+                    </div>
+                    <div className={styles.value}>
+                      {orderDetails.formated_discount_amount}
+                    </div>
                   </DivRow>
                   {/* <DivRow>
                     <div className={styles.price_title}>Item Discount:</div>
                     <div className={styles.value}></div>
                   </DivRow> */}
                   <DivRow>
-                    <div className={styles.price_title}>Total:</div>
-                    <div className={styles.value}>{orderDetails.formated_grand_total}</div>
+                    <div className={styles.price_title}>
+                      {translate("order_details_page.total")}:
+                    </div>
+                    <div className={styles.value}>
+                      {orderDetails.formated_grand_total}
+                    </div>
                   </DivRow>
                 </DivColumn>
               </DivColumn>
@@ -100,7 +133,7 @@ class OrderDetails extends Component {
               <DivColumn className={styles.right_container}>
                 {/*right container*/}
                 <div className={styles.top_header_text}>
-                  ITEMS IN THIS ORDER
+                  {translate("order_details_page.item_in_order")}
                 </div>
 
                 {/* <DivRow className={styles.product_item_container}>
@@ -118,27 +151,27 @@ class OrderDetails extends Component {
                   </DivColumn>
                 </DivRow> */}
 
-                {
-                  map(productItems, (productItem, index) => (
-                    <DivRow className={styles.product_item_container}>
-                      <img
-                        className={styles.product_image}
-                        style={{
-                          backgroundImage: `url(https://source.unsplash.com/200x20${index}/?product)`,
-                        }}
-                      />
-                      <DivColumn className={styles.product_content_container}>
-                        <div className={styles.product_name}>
-                          {productItem.name}
-                        </div>
-                        <div className={styles.product_type}>{productItem.type}</div>
-                        <div className={styles.product_price}>
-                          {productItem.formated_price}
-                        </div>
-                      </DivColumn>
-                    </DivRow>
-                  ))
-                }
+                {map(productItems, (productItem, index) => (
+                  <DivRow className={styles.product_item_container}>
+                    <img
+                      className={styles.product_image}
+                      style={{
+                        backgroundImage: `url(https://source.unsplash.com/200x20${index}/?product)`,
+                      }}
+                    />
+                    <DivColumn className={styles.product_content_container}>
+                      <div className={styles.product_name}>
+                        {productItem.name}
+                      </div>
+                      <div className={styles.product_type}>
+                        {productItem.type}
+                      </div>
+                      <div className={styles.product_price}>
+                        {productItem.formated_price}
+                      </div>
+                    </DivColumn>
+                  </DivRow>
+                ))}
 
                 {/* <DivColumn className={styles.exhibition_container}>
                   <div className={styles.exhibition_title}>EXHIBITION</div>
@@ -147,7 +180,6 @@ class OrderDetails extends Component {
                     <div className={styles.exhibition_name}>The Craft Show</div>
                   </DivRow>
                 </DivColumn> */}
-
               </DivColumn>
             </DivRow>
           </DivColumn>
@@ -157,15 +189,15 @@ class OrderDetails extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    orderReducer: state.orderReducer
+    orderReducer: state.orderReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    getOrderDetailsAction: bindActionCreators(getOrderDetailsAction, dispatch)
+    getOrderDetailsAction: bindActionCreators(getOrderDetailsAction, dispatch),
   };
 };
 
