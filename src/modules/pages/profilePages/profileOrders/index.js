@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { formatTimeStamp, timeFormats } from "Utils/formatHelper";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class ProfileOrders extends Component {
   onClickProductViewDetails = (orderId) => {
@@ -23,6 +23,7 @@ class ProfileOrders extends Component {
 
   render() {
     const {
+      translate,
       orderReducer: { orderList },
       getOrderListAction,
       isRTL,
@@ -35,45 +36,56 @@ class ProfileOrders extends Component {
           isEmpty={isEmpty(orderList)}
         >
           <div fillParent className={styles.page_container}>
-
-            {map(orderList, order => (
-              <DivColumn className={`${styles.orders_container} ${isRTL ? styles.rtl : ''}`}>
+            {map(orderList, (order) => (
+              <DivColumn
+                className={`${styles.orders_container} ${
+                  isRTL ? styles.rtl : ""
+                }`}
+              >
                 <DivRow className={styles.list_header}>
                   <div className={styles.header_text}>
-                    ORDER DATE:{" "}
-                    <b>{formatTimeStamp(order.created_at, timeFormats.dayMonthComaYear)}</b>
+                    {translate("profile_order.order_date")}
+                    <b>
+                      {formatTimeStamp(
+                        order.created_at,
+                        timeFormats.dayMonthComaYear
+                      )}
+                    </b>
                   </div>
                   <div className={styles.header_text}>
-                    ORDER ID: <b>{order.id}</b>
+                    {translate("profile_order.order_id")} <b>{order.id}</b>
                   </div>
                 </DivRow>
 
                 {map(order.items, (item, index) => (
-                  <DivRow className={styles.order_item_container} style={index == 0 ? { marginTop: 0 } : null}>
+                  <DivRow
+                    className={styles.order_item_container}
+                    style={index == 0 ? { marginTop: 0 } : null}
+                  >
                     <img
                       className={styles.order_image}
                       src={exhibitionImage1}
                     />
                     <DivColumn className={styles.order_detail_container}>
-                      <div className={styles.order_exhibition}>
-                        {item.type}
+                      <div className={styles.order_exhibition}>{item.type}</div>
+                      <div className={styles.order_name}>
+                        {translate("profile_order.exhibition_name")}
                       </div>
-                      <div className={styles.order_name}>Exhibition Name</div>
-                      <div className={styles.order_price}>{item.formated_price}</div>
+                      <div className={styles.order_price}>
+                        {item.formated_price}
+                      </div>
                       <div className={styles.order_state}>{order.status}</div>
                       <div
                         className={styles.view_order_button}
                         onClick={() => this.onClickProductViewDetails(order.id)}
                       >
-                        View details
+                        {translate("profile_order.view_details")}
                       </div>
                     </DivColumn>
                   </DivRow>
                 ))}
-
               </DivColumn>
             ))}
-
           </div>
         </InitialPageLoader>
       </SectionedContainer>
@@ -81,15 +93,15 @@ class ProfileOrders extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    orderReducer: state.orderReducer
+    orderReducer: state.orderReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    getOrderListAction: bindActionCreators(getOrderListAction, dispatch)
+    getOrderListAction: bindActionCreators(getOrderListAction, dispatch),
   };
 };
 

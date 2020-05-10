@@ -1,4 +1,21 @@
 {
+  "common": {
+    "add_to_bag": "أضف الى الحقيبة",
+    "added_to_bag": "أضيفت إلى الحقيبة",
+    "added_to_wishlist": "تم اضافة المنتج الى قائمة الامنيات",
+    "address_deleted": "تم حذف العنوان",
+    "explore_button": "يكتشف",
+    "next_button": "التالى",
+    "prev_button": "السابق",
+    "removed_from_bag": "تمت إزالة العنصر من الحقيبة",
+    "removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
+    "wishlist": "الأماني",
+    "my_profile": "ملفي",
+    "bag": "كيس",
+    "seller": "تاجر",
+    "cancel": "إلغاء",
+    "confirm": "تؤكد"
+  },
   "address_item_component": {
     "edit": "تصحيح",
     "phone_number": ":رقم الهاتف",
@@ -28,18 +45,6 @@
     "standard_delivery": "التسليم القياسية",
     "total": "مجموع"
   },
-  "common": {
-    "add_to_bag": "أضف الى الحقيبة",
-    "added_to_bag": "أضيفت إلى الحقيبة",
-    "added_to_wishlist": "تم اضافة المنتج الى قائمة الامنيات",
-    "address_deleted": "تم حذف العنوان",
-    "explore_button": "يكتشف",
-    "next_button": "التالى",
-    "prev_button": "السابق",
-    "removed_from_bag": "تمت إزالة العنصر من الحقيبة",
-    "removed_from_wishlist": "تمت إزالة المنتج من قائمة الأمنيات",
-    "wishlist": "الأماني"
-  },
   "filters": {
     "categories": "الاقسام",
     "clear_all": "امسح الكل",
@@ -63,7 +68,7 @@
   },
   "header": {
     "login": "تسجيل الدخول",
-    "logout": "Logout",
+    "logout": "تسجيل خروج",
     "register": "تسجيل",
     "search": "بحث",
     "search_exhibition": "بحث المعارض",
@@ -105,7 +110,9 @@
     "remember_me": "تذكرنى",
     "sign_in_button": "تسجيل الدخول",
     "username": "اسم المستخدم",
-    "forgot_password": "هل نسيت كلمة المرور"
+    "forgot_password": "هل نسيت كلمة المرور",
+    "are_you_a_seller": "هل أنت بائع?",
+    "seller_account": "إنشاء حساب بائعt"
   },
   "signup_page": {
     "confirm_password": "تأكيد كلمة المرور",
@@ -143,5 +150,77 @@
     "confirmed_password": "كلمة المرور المؤكدة",
     "reset_password_button": "إعادة تعيين كلمة المرور",
     "sub_title1": "انتهت صلاحية الرمز المميز الخاص بك أو تم تحديث كلمة المرور بالفعل"
+  },
+  "overview_page": {
+    "welcome": "أهلا بك",
+    "my_account": "حسابي"
+  },
+  "help_center": {
+    "header_title": "مركز المساعدة",
+    "more_help": "بحاجة إلى مزيد من المساعدة منا",
+    "your_concern": "موجز عن قلقك؟",
+    "callback": "احصل على رد",
+    "response_message": "تم إرسال التعليقات بنجاح"
+  },
+  "profile_address_page": {
+    "default_address": "العنوان الافتراضي",
+    "add_new_address": "+ أضف عنوان جديد"
+  },
+  "address_form_page": {
+    "first_name": "الاسم الاول",
+    "last_name": "الكنية",
+    "mobile_number": "رقم الهاتف المحمول",
+    "address1": "العنوان السطر 1",
+    "address2": "2 العنوان السطر ",
+    "city": "مدينة",
+    "pincode": "الرقم السري",
+    "make_this_default_address": "اجعل هذا عنواني الافتراضي",
+    "home_office": "مكتب البيت",
+    "state": "حالة",
+    "cancel": "إلغاء",
+    "save_details": "حفظ التفاصيل",
+    "country": "بلد"
+  },
+  "profile_details": {
+    "header_title": "تفاصيل الملف الشخصي",
+    "change_password": "تغيير كلمة المرور",
+    "edit_details": "تعديل الملف الشخصي",
+    "first_name": "الاسم الاول",
+    "last_name": "الكنية",
+    "email": "البريد الإلكتروني",
+    "phone_number": "رقم الهاتف",
+    "gender": "جنس",
+    "birthday": "عيد الميلاد",
+    "cancel": "إلغاء",
+    "save_details": "حفظ التفاصيل"
+  },
+  "change_password": {
+    "header_title": "تغيير كلمة المرور",
+    "old_password": "كلمة سر قديمة",
+    "new_password": "كلمة السر الجديدة",
+    "confirm_passowrd": "تأكيد كلمة المرور"
+  },
+  "setting_page": {
+    "header_title": "الإعدادات",
+    "notification": "تنبيه",
+    "subtitile": "هذا لن يؤثر على تحديثات الطلب."
+  },
+  "profile_order": {
+    "order_date": "تاريخ الطلب:",
+    "order_id": "رقم التعريف الخاص بالطلب:",
+    "view_details": "عرض التفاصيل",
+    "exhibition_name": "اسم المعرض"
+  },
+  "order_details_page": {
+    "header_title": "تفاصيل الطلب",
+    "order_id": "رقم التعريف الخاص بالطلب",
+    "placed_on": "موضوع على:",
+    "update_sent_to": "التحديثات المرسلة إلى",
+    "item_in_order": "عناصر في هذا الطلب",
+    "shipping_address": "عنوان الشحن",
+    "pricing_summery": "ملخص التسعير",
+    "mrp": "MRP:",
+    "discount": "خصم:",
+    "total": "مجموع:"
   }
 }

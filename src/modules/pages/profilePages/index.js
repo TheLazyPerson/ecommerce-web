@@ -13,10 +13,11 @@ import { bindActionCreators } from "redux";
 import { CookieService } from "Utils/cookieService";
 import { USER_DATA_COOKIE } from "Constants/cookieConstants";
 import { setBagCount } from "Core/modules/bag/bagActions";
+import translatorHoc from "Hoc/translatorHoc";
 import isEmpty from "lodash/isEmpty";
 
 class ProfileOverview extends Component {
-  onClickNavItemClick = slug => {
+  onClickNavItemClick = (slug) => {
     const { navigateTo, logoutAction, setBagCount } = this.props;
 
     if (slug === "overview") {
@@ -37,7 +38,8 @@ class ProfileOverview extends Component {
 
   render() {
     const {
-      signInReducer: { userDetails }
+      translate,
+      signInReducer: { userDetails },
     } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
@@ -47,14 +49,18 @@ class ProfileOverview extends Component {
             horizontalCenter
             className={styles.header_container}
           >
-            <div className={styles.header_title}>MY ACCOUNT</div>
+            <div className={styles.header_title}>
+              {" "}
+              {translate("overview_page.my_account")}
+            </div>
             <div className={styles.header_message}>
-              Welcome, {!isEmpty(userDetails) && userDetails.first_name}.
+              {translate("overview_page.welcome")},
+              {!isEmpty(userDetails) && userDetails.first_name}.
             </div>
           </DivColumn>
 
           <DivRow className={styles.items_container}>
-            {map(profileListItem, listItem => {
+            {map(profileListItem, (listItem) => {
               if (listItem.title !== "Overview") {
                 return (
                   <DivColumn
@@ -84,20 +90,20 @@ class ProfileOverview extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    signInReducer: state.signInReducer
+    signInReducer: state.signInReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     logoutAction: bindActionCreators(logoutAction, dispatch),
-    setBagCount: bindActionCreators(setBagCount, dispatch)
+    setBagCount: bindActionCreators(setBagCount, dispatch),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProfileOverview));
+)(translatorHoc(navigatorHoc(ProfileOverview)));

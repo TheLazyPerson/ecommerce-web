@@ -13,7 +13,7 @@ import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import navigatorHoc from "Hoc/navigatorHoc";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class ProfileDetails extends Component {
   navigateToChangePass = () => {
@@ -31,21 +31,24 @@ class ProfileDetails extends Component {
       profileDetailsReducer: { userDetails },
       getProfileDetailsAction,
       isRTL,
+      translate,
     } = this.props;
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <DivColumn className={`${styles.details_container} ${isRTL ? styles.rtl : ''}`}>
-          <NavHeader title="profile details">
+        <DivColumn
+          className={`${styles.details_container} ${isRTL ? styles.rtl : ""}`}
+        >
+          <NavHeader title={translate("profile_details.header_title")}>
             <DivRow className={styles.header_button_container}>
               <SecondaryCapsuleButton
                 className={styles.reset_password_button}
                 onClick={this.navigateToChangePass}
               >
-                Change Password
+                {translate("profile_details.change_password")}
               </SecondaryCapsuleButton>
               <CapsuleButton onClick={this.navigateToEditProfile}>
-                Edit Profile
+                {translate("profile_details.edit_details")}
               </CapsuleButton>
             </DivRow>
           </NavHeader>
@@ -53,7 +56,9 @@ class ProfileDetails extends Component {
           <InitialPageLoader initialPageApi={getProfileDetailsAction}>
             <DivColumn fillParent>
               <DivColumn className={styles.field_container}>
-                <div className={styles.title}>First Name</div>
+                <div className={styles.title}>
+                  {translate("profile_details.first_name")}
+                </div>
                 <div className={styles.value}>
                   {userDetails.first_name
                     ? userDetails.first_name
@@ -61,7 +66,9 @@ class ProfileDetails extends Component {
                 </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
-                <div className={styles.title}>Last Name</div>
+                <div className={styles.title}>
+                  {translate("profile_details.last_name")}
+                </div>
                 <div className={styles.value}>
                   {userDetails.last_name
                     ? userDetails.last_name
@@ -69,25 +76,33 @@ class ProfileDetails extends Component {
                 </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
-                <div className={styles.title}>Email</div>
+                <div className={styles.title}>
+                  {translate("profile_details.email")}
+                </div>
                 <div className={styles.value}>
                   {userDetails.email ? userDetails.email : "Not Available"}
                 </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
-                <div className={styles.title}>Phone Number</div>
+                <div className={styles.title}>
+                  {translate("profile_details.phone_number")}
+                </div>
                 <div className={styles.value}>
                   {userDetails.phone ? userDetails.phone : "Not Available"}
                 </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
-                <div className={styles.title}>Gender</div>
+                <div className={styles.title}>
+                  {translate("profile_details.gender")}
+                </div>
                 <div className={styles.value}>
                   {userDetails.gender ? userDetails.gender : "Not Available"}
                 </div>
               </DivColumn>
               <DivColumn className={styles.field_container}>
-                <div className={styles.title}>Birthday</div>
+                <div className={styles.title}>
+                  {translate("profile_details.birthday")}
+                </div>
                 <div className={styles.value}>
                   {userDetails.birthday
                     ? userDetails.birthday
@@ -102,18 +117,18 @@ class ProfileDetails extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    profileDetailsReducer: state.profileDetailsReducer
+    profileDetailsReducer: state.profileDetailsReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     getProfileDetailsAction: bindActionCreators(
       getProfileDetailsAction,
       dispatch
-    )
+    ),
   };
 };
 

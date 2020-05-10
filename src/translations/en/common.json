@@ -1,4 +1,21 @@
 {
+  "common": {
+    "add_to_bag": "Add to Bag",
+    "added_to_bag": "Added to Bag",
+    "added_to_wishlist": "Product added to Wishlist",
+    "address_deleted": "Address Deleted",
+    "explore_button": "Explore",
+    "next_button": "Next",
+    "prev_button": "Prev",
+    "removed_from_bag": "Item Removed from Bag",
+    "removed_from_wishlist": "Product removed from Wishlist",
+    "wishlist": "Wishlist",
+    "my_profile": "My Profile",
+    "bag": "Bag",
+    "seller": "Seller",
+    "cancel": "CANCEL",
+    "confirm": "CONFIRM"
+  },
   "address_item_component": {
     "edit": "Edit",
     "phone_number": "Phone Number:",
@@ -27,18 +44,6 @@
     "select_delivery_address": "Select Delivery Address",
     "standard_delivery": "Standard Delivery",
     "total": "Total"
-  },
-  "common": {
-    "add_to_bag": "Add to Bag",
-    "added_to_bag": "Added to Bag",
-    "added_to_wishlist": "Product added to Wishlist",
-    "address_deleted": "Address Deleted",
-    "explore_button": "Explore",
-    "next_button": "Next",
-    "prev_button": "Prev",
-    "removed_from_bag": "Item Removed from Bag",
-    "removed_from_wishlist": "Product removed from Wishlist",
-    "wishlist": "Wishlist"
   },
   "filters": {
     "categories": "CATEGORIES",
@@ -105,7 +110,9 @@
     "remember_me": "Remember Me",
     "sign_in_button": "Sign In",
     "username": "Email",
-    "forgot_password": "Forgot password"
+    "forgot_password": "Forgot password",
+    "are_you_a_seller": "Are you a seller?",
+    "seller_account": "Create a seller account"
   },
   "signup_page": {
     "confirm_password": "Confirm Password",
@@ -168,5 +175,77 @@
     "landmark": "Landmark",
     "home_office": "Home/Office",
     "city": "City"
+  },
+  "overview_page": {
+    "welcome": "Welcome",
+    "my_account": "MY ACCOUNT"
+  },
+  "help_center": {
+    "header_title": "HELP CENTER",
+    "more_help": "NEED MORE HELP FROM US",
+    "your_concern": "Brief about your concern?",
+    "callback": "Get Callback",
+    "response_message": "Feedback sent successfuly"
+  },
+  "profile_address_page": {
+    "default_address": "Default Address",
+    "add_new_address": "+ ADD NEW ADDRESS"
+  },
+  "address_form_page": {
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "mobile_number": "Mobile Number",
+    "address1": "Address Line 1",
+    "address2": "Address Line 2",
+    "city": "City",
+    "pincode": "Pincode",
+    "make_this_default_address": "Make this my default address.",
+    "home_office": "Home/Office",
+    "state": "State",
+    "cancel": "CANCEL",
+    "save_details": "SAVE DETAILS",
+    "country": "Country"
+  },
+  "profile_details": {
+    "header_title": "PROFILE DETAILS",
+    "change_password": "CHANGE PASSWORD",
+    "edit_details": "EDIT PROFILE",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "gender": "Gender",
+    "birthday": "Birthday",
+    "cancel": "CANCEL",
+    "save_details": "SAVE DETAILS"
+  },
+  "change_password": {
+    "header_title": "Change Password",
+    "old_password": "Old Password",
+    "new_password": "New Password",
+    "confirm_passowrd": "Confirm Password"
+  },
+  "setting_page": {
+    "header_title": "Settings",
+    "notification": "Notification",
+    "subtitile": "This will not affect order updates."
+  },
+  "profile_order": {
+    "order_date": "Order Date:",
+    "order_id": "Order ID:",
+    "view_details": "View Details",
+    "exhibition_name": "Exhibition Name"
+  },
+  "order_details_page": {
+    "header_title": "ORDER DETAILS",
+    "order_id": "ORDER ID",
+    "placed_on": "Placed On:",
+    "update_sent_to": "UPDATES SENT TO",
+    "item_in_order": "ITEMS IN THIS ORDER",
+    "shipping_address": "SHIPPING ADDRESS",
+    "pricing_summery": "PRICING SUMMARY",
+    "mrp": "MRP:",
+    "discount": "Discount:",
+    "total": "Total:"
   }
 }

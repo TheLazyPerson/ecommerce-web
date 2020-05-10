@@ -11,22 +11,22 @@ import HorizontalBorder from "CommonComponents/horizontalBorder";
 import {
   isPhoneNumber,
   nameValidator,
-  isEmptyValidator
+  isEmptyValidator,
 } from "Utils/validators";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import {
   createAddressAction,
-  editAddressAction
+  editAddressAction,
 } from "Core/modules/address/addressActions";
 import find from "lodash/find";
 import Select from "react-select";
 import map from "lodash/map";
-import isEmpty from 'lodash/isEmpty';
-
+import isEmpty from "lodash/isEmpty";
+import translatorHoc from "Hoc/translatorHoc";
 class AddAddressForm extends Component {
-  validate = values => {
+  validate = (values) => {
     const errors = {};
     const validators = {
       firstName: nameValidator(values.firstName),
@@ -39,22 +39,22 @@ class AddAddressForm extends Component {
       country: isEmptyValidator(values.country),
       // country_code: isEmptyValidator(values.country_code),
       pincode: isEmptyValidator(values.pincode),
-      name: isEmptyValidator(values.name)
+      name: isEmptyValidator(values.name),
     };
 
-    Object.keys(validators).forEach(key => {
+    Object.keys(validators).forEach((key) => {
       if (!validators[key].result) errors[key] = validators[key].error;
     });
     return errors;
   };
 
-  onSubmit = form => {
+  onSubmit = (form) => {
     const {
       createAddressAction,
       showSuccessFlashMessage,
       onSubmitComplete,
       addressId,
-      editAddressAction
+      editAddressAction,
     } = this.props;
 
     const formData = {
@@ -69,7 +69,7 @@ class AddAddressForm extends Component {
       country: form.country,
       // country_code: form.country_code,
       default_address: 1,
-      name: form.name
+      name: form.name,
     };
 
     if (addressId) {
@@ -87,10 +87,9 @@ class AddAddressForm extends Component {
         }
       });
     }
-
   };
 
-  getInitialValuesFromAddress = address => {
+  getInitialValuesFromAddress = (address) => {
     return {
       firstName: address.first_name ? address.first_name : "",
       lastName: address.last_name ? address.last_name : "",
@@ -102,12 +101,12 @@ class AddAddressForm extends Component {
       state: address.state ? address.state : "",
       country: address.country ? address.country : "",
       // country_code: address.country_code ? address.country_code : "",
-      pincode: address.postcode ? address.postcode : ""
+      pincode: address.postcode ? address.postcode : "",
     };
   };
 
-  formatSelectorData = list => {
-    return map(list, item => ({ value: item.name, label: item.name }));
+  formatSelectorData = (list) => {
+    return map(list, (item) => ({ value: item.name, label: item.name }));
   };
 
   render() {
@@ -115,27 +114,28 @@ class AddAddressForm extends Component {
       onClickCancel,
       addressReducer: { addressList },
       addressId,
-      basicReducer: { basicData }
+      basicReducer: { basicData },
+      translate,
     } = this.props;
-    const editAddress = find(addressList, address => {
+    const editAddress = find(addressList, (address) => {
       return address.id == addressId;
     });
     const addressTypes = [
       {
         value: "home",
-        label: "Home"
+        label: "Home",
       },
       {
         value: "office",
-        label: "Office"
-      }
+        label: "Office",
+      },
     ];
     const countries = this.formatSelectorData(basicData.countries);
     const states = this.formatSelectorData(basicData.states);
-    const defaultCountry = find(countries, country => {
+    const defaultCountry = find(countries, (country) => {
       return editAddress && country.value == editAddress.country;
     });
-    const defaultState = find(states, state => {
+    const defaultState = find(states, (state) => {
       return editAddress && state.value == editAddress.state;
     });
 
@@ -165,7 +165,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="First Name"
+                      placeholder={translate("address_form_page.first_name")}
                       className={styles.input_text}
                     />
                   )}
@@ -175,7 +175,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Last Name"
+                      placeholder={translate("address_form_page.last_name")}
                       className={styles.input_text}
                     />
                   )}
@@ -185,7 +185,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Mobile Number"
+                      placeholder={translate("address_form_page.mobile_number")}
                       className={styles.input_text}
                     />
                   )}
@@ -200,12 +200,12 @@ class AddAddressForm extends Component {
                     <DivColumn className="input_select_container">
                       <Select
                         options={addressTypes}
-                        onChange={value => {
+                        onChange={(value) => {
                           input.onChange(value.value);
                         }}
                         className="react-select-container"
                         classNamePrefix="react-select"
-                        placeholder="Home/Office"
+                        placeholder={translate("address_form_page.home_office")}
                         defaultValue={defaultAddressType}
                       />
                       {meta.error && meta.touched && (
@@ -220,7 +220,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Address Line 1"
+                      placeholder={translate("address_form_page.address1")}
                       className={styles.input_text}
                     />
                   )}
@@ -230,7 +230,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Address Line 2"
+                      placeholder={translate("address_form_page.address2")}
                       className={styles.input_text}
                     />
                   )}
@@ -241,7 +241,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="City"
+                      placeholder={translate("address_form_page.city")}
                       className={styles.input_text}
                     />
                   )}
@@ -252,12 +252,12 @@ class AddAddressForm extends Component {
                     <DivColumn className="input_select_container">
                       <Select
                         options={states}
-                        onChange={value => {
+                        onChange={(value) => {
                           input.onChange(value.value);
                         }}
                         className="react-select-container"
                         classNamePrefix="react-select"
-                        placeholder="State"
+                        placeholder={translate("address_form_page.state")}
                         defaultValue={defaultState}
                       />
                       {meta.error && meta.touched && (
@@ -272,12 +272,12 @@ class AddAddressForm extends Component {
                     <DivColumn className="input_select_container">
                       <Select
                         options={countries}
-                        onChange={value => {
+                        onChange={(value) => {
                           input.onChange(value.value);
                         }}
                         className="react-select-container"
                         classNamePrefix="react-select"
-                        placeholder="County"
+                        placeholder={translate("address_form_page.country")}
                         defaultValue={defaultCountry}
                       />
                       {meta.error && meta.touched && (
@@ -304,7 +304,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Pincode"
+                      placeholder={translate("address_form_page.pincode")}
                       className={styles.input_text}
                     />
                   )}
@@ -318,15 +318,19 @@ class AddAddressForm extends Component {
                 className={styles.checkbox_container}
               >
                 <InputCheckbox
-                  text="Make this my default address."
+                  text={translate(
+                    "address_form_page.make_this_default_address"
+                  )}
                   textStyle={styles.checkbox_text}
                 />
               </DivColumn>
               <DivRow className={styles.form_button_container}>
                 <SecondaryCapsuleButton onClick={onClickCancel}>
-                  Cancel
+                  {translate("address_form_page.cancel")}
                 </SecondaryCapsuleButton>
-                <CapsuleButton type="submit">Save Details</CapsuleButton>
+                <CapsuleButton type="submit">
+                  {translate("address_form_page.save_details")}
+                </CapsuleButton>
               </DivRow>
             </form>
           )}
@@ -336,25 +340,25 @@ class AddAddressForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     addressReducer: state.addressReducer,
-    basicReducer: state.basicReducer
+    basicReducer: state.basicReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     createAddressAction: bindActionCreators(createAddressAction, dispatch),
     editAddressAction: bindActionCreators(editAddressAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(AddAddressForm);
+)(translatorHoc(AddAddressForm));

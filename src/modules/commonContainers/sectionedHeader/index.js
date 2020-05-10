@@ -20,17 +20,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { CookieService } from "Utils/cookieService";
 import { USER_DATA_COOKIE } from "Constants/cookieConstants";
-import translatorHoc from 'Hoc/translatorHoc';
-import { setBagCount } from 'Core/modules/bag/bagActions';
+import translatorHoc from "Hoc/translatorHoc";
+import { setBagCount } from "Core/modules/bag/bagActions";
 import SearchBar from "../searchBar";
-
 
 class SectionedHeader extends Component {
   clickedOnSearchItem = false;
 
   state = {
     searchText: "",
-    showSearchResult: false
+    showSearchResult: false,
   };
 
   onClickProfile = () => {
@@ -49,19 +48,24 @@ class SectionedHeader extends Component {
   };
 
   onClickLoginOrLogoutHandler = () => {
-    const { logoutAction, isUserSignedIn, navigateTo, setBagCount } = this.props;
+    const {
+      logoutAction,
+      isUserSignedIn,
+      navigateTo,
+      setBagCount,
+    } = this.props;
 
     if (isUserSignedIn) {
       logoutAction().then(() => {
         CookieService.delete(USER_DATA_COOKIE);
-        CookieService.delete('BAG_COUNT');
+        CookieService.delete("BAG_COUNT");
         setBagCount(0);
         navigateTo(""); // ToHomePage
       });
     } else {
-      navigateTo('signin')
+      navigateTo("signin");
     }
-  }
+  };
 
   render() {
     const { isUserSignedIn, bagCount, whiteColor, translate } = this.props;
@@ -97,12 +101,12 @@ class SectionedHeader extends Component {
             onClick={this.onClickWishlist}
           /> */}
           <a
-            className={`${styles.sigin_link} ${
-              styles.header_item_container
-              } ${whiteColor ? styles.is_white : ""}`}
+            className={`${styles.sigin_link} ${styles.header_item_container} ${
+              whiteColor ? styles.is_white : ""
+            }`}
             href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/"
           >
-            Seller
+            {translate("common.seller")}
           </a>
           <div
             style={{ height: "unset" }}
@@ -148,19 +152,17 @@ class SectionedHeader extends Component {
           )} */}
           {/* <img src={hamburgerMenuIcon} className={`${styles.hamburger_icon} ${styles.header_item_container}`} /> */}
           <DivColumn className={styles.header_overlay}>
-            <div
-              className={styles.header_item}
-              onClick={this.onClickProfile}
-            >
-              <div className={styles.text}>My Profile</div>
-
+            <div className={styles.header_item} onClick={this.onClickProfile}>
+              <div className={styles.text}>
+                {translate("common.my_profile")}
+              </div>
             </div>
             <DivRow
-              style={{ justifyContent: 'space-between' }}
+              style={{ justifyContent: "space-between" }}
               className={styles.header_item}
               onClick={this.onClickBag}
             >
-              <div className={styles.text}>Bag</div>
+              <div className={styles.text}>{translate("common.bag")}</div>
 
               <DivRow
                 verticalCenter
@@ -170,20 +172,18 @@ class SectionedHeader extends Component {
                 {bagCount != null ? bagCount : 0}
               </DivRow>
             </DivRow>
-            <div
-              className={styles.header_item}
-              onClick={this.onClickWishlist}
-            >
-              <div className={styles.text}>{translate('common.wishlist')}</div>
-
+            <div className={styles.header_item} onClick={this.onClickWishlist}>
+              <div className={styles.text}>{translate("common.wishlist")}</div>
             </div>
             <div
               className={styles.header_item}
               onClick={this.onClickLoginOrLogoutHandler}
             >
-              <div className={styles.text}>{
-                isUserSignedIn ? translate('header.logout') : translate('header.login')
-              }</div>
+              <div className={styles.text}>
+                {isUserSignedIn
+                  ? translate("header.logout")
+                  : translate("header.login")}
+              </div>
             </div>
           </DivColumn>
         </DivRow>
@@ -192,18 +192,21 @@ class SectionedHeader extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isUserSignedIn: state.signInReducer.isUserSignedIn,
-    bagCount: state.bagReducer.bagCount
+    bagCount: state.bagReducer.bagCount,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     logoutAction: bindActionCreators(logoutAction, dispatch),
     setBagCount: bindActionCreators(setBagCount, dispatch),
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(translatorHoc(navigatorHoc(SectionedHeader)));
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(translatorHoc(navigatorHoc(SectionedHeader)));
