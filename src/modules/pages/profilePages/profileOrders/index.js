@@ -27,6 +27,7 @@ class ProfileOrders extends Component {
       orderReducer: { orderList },
       getOrderListAction,
       isRTL,
+      languageReducer: { languageCode },
     } = this.props;
 
     return (
@@ -64,17 +65,19 @@ class ProfileOrders extends Component {
                   >
                     <img
                       className={styles.order_image}
-                      src={exhibitionImage1}
+                      src={item.exhibition.base_image}
                     />
                     <DivColumn className={styles.order_detail_container}>
-                      <div className={styles.order_exhibition}>{item.type}</div>
+                      <div className={styles.order_exhibition}>{item.name}</div>
                       <div className={styles.order_name}>
-                        {translate("profile_order.exhibition_name")}
+                        {item.exhibition.translations[languageCode].title}
                       </div>
                       <div className={styles.order_price}>
                         {item.formated_price}
                       </div>
-                      <div className={styles.order_state}>{order.status}</div>
+                      <div className={styles.order_state}>
+                        {order.status_label}
+                      </div>
                       <div
                         className={styles.view_order_button}
                         onClick={() => this.onClickProductViewDetails(order.id)}
@@ -96,6 +99,7 @@ class ProfileOrders extends Component {
 const mapStateToProps = (state) => {
   return {
     orderReducer: state.orderReducer,
+    languageReducer: state.languageReducer,
   };
 };
 
