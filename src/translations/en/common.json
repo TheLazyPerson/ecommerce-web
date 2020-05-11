@@ -99,6 +99,9 @@
     "cod_description": "Pay cash during delivery",
     "cod_selected": "Cash on delivery selected",
     "cod_title": "Cash on delivery",
+    "payment_gateway_description": "Pay online using your bank account",
+    "payment_gateway_selected": "Pay using KNET selected",
+    "payment_gateway_title": "Pay using KNET",
     "order_placed": "Your Order has been successfuly placed",
     "place_order_button": "Place Order"
   },

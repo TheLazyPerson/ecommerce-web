@@ -99,6 +99,9 @@
     "cod_description": "دفع نقدا أثناء الولادة",
     "cod_selected": "نقدا عند التسليم المحدد",
     "cod_title": "الدفع عن الاستلام",
+    "payment_gateway_description": "الدفع عبر الإنترنت باستخدام حسابك المصرفي",
+    "payment_gateway_selected": "الدفع باستخدام KNET المحدد",
+    "payment_gateway_title": "ادفع باستخدام KNET",
     "order_placed": "تم وضع طلبك بنجاح",
     "place_order_button": "مكان الامر"
   },

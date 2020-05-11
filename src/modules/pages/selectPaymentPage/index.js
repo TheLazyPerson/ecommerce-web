@@ -12,7 +12,7 @@ import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import {
   checkoutBagAction,
-  selectPaymentMethodAction
+  selectPaymentMethodAction,
 } from "Core/modules/checkout/checkoutActions";
 import { getPaymentAction } from "Core/modules/payment/paymentActions";
 import checkedIconBlack from "Icons/checked-icon-black.svg";
@@ -24,17 +24,19 @@ class SelectPaymentPage extends Component {
     const {
       selectPaymentMethodAction,
       showSuccessFlashMessage,
-      translate
+      translate,
     } = this.props;
     const paymentMethodObject = {
       payment: {
-        method: "cashondelivery"
-      }
+        method: "knet",
+      },
     };
 
     selectPaymentMethodAction(paymentMethodObject).then(({ payload }) => {
       if (payload.code == 200 || payload.code == 201) {
-        showSuccessFlashMessage(translate("select_payment.cod_selected"));
+        showSuccessFlashMessage(
+          translate("select_payment.payment_gateway_selected")
+        );
       }
     });
   }
@@ -45,7 +47,7 @@ class SelectPaymentPage extends Component {
       showSuccessFlashMessage,
       checkoutBagAction,
       getPaymentAction,
-      translate
+      translate,
     } = this.props;
 
     checkoutBagAction().then(({ payload }) => {
@@ -79,10 +81,10 @@ class SelectPaymentPage extends Component {
               >
                 <DivColumn style={{ flex: 1 }}>
                   <div className={styles.title}>
-                    {translate("select_payment.cod_title")}
+                    {translate("select_payment.payment_gateway_title")}
                   </div>
                   <div className={styles.description}>
-                    {translate("select_payment.cod_description")}
+                    {translate("select_payment.payment_gateway_description")}
                   </div>
                 </DivColumn>
                 <img src={checkedIconBlack} className={styles.icon} />
@@ -102,7 +104,7 @@ class SelectPaymentPage extends Component {
   }
 }
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
@@ -113,7 +115,7 @@ const mapDispathToProps = dispatch => {
     selectPaymentMethodAction: bindActionCreators(
       selectPaymentMethodAction,
       dispatch
-    )
+    ),
   };
 };
 
