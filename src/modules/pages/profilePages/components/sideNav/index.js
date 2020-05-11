@@ -7,6 +7,8 @@ import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { connect } from "react-redux";
 import translatorHoc from "Hoc/translatorHoc";
+import includes from "lodash/includes";
+
 class SideNav extends Component {
   state = {
     selectedRoute: "",
@@ -33,7 +35,9 @@ class SideNav extends Component {
         setRoute = "overview";
         break;
       case "/profile/orders":
-      case "/profile/orders/details":
+      case includes(pathname, "/profile/orders/details/")
+        ? pathname
+        : "/profile/order/details":
         setRoute = "orders";
         break;
       case "/profile/address":
