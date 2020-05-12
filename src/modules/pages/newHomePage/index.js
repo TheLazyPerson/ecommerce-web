@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useEffect } from "react";
 import styles from "./new_home_page.module.scss";
 import SectionedContainer from "CommonContainers/sectionedContainer";
 import DivColumn from "CommonComponents/divColumn";
@@ -65,6 +65,10 @@ class NewHomePage extends Component {
     window.location.href =
       "http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/";
   };
+
+  onScrollDownClick() {
+    window.scrollTo(0, 800);
+  }
 
   render() {
     const params = {
@@ -220,8 +224,12 @@ class NewHomePage extends Component {
                       </span>
                     </div>
                   </DivRow>
-
-                  <img src={scrollDown} alt="Share" />
+                  <span
+                    className={styles.scrollDown}
+                    onClick={() => this.onScrollDownClick()}
+                  >
+                    <img src={scrollDown} alt="Share" />
+                  </span>
                 </DivRow>
 
                 <img
