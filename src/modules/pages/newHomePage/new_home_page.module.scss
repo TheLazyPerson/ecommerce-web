@@ -37,7 +37,6 @@
         rgba(20, 20, 20, 0)
       );
     }
-
     .overlay_gradient {
       position: absolute;
       top: 0;
@@ -129,6 +128,10 @@
 
 .non_clickable {
   opacity: 0.23;
+}
+
+.arrow_container {
+  flex: 0 0 30em;
 }
 
 .arrow_text {
@@ -254,6 +257,10 @@
     margin-right: 30px;
   }
 
+  .arrow_container {
+    flex: 0 0 15em;
+  }
+
   .pagination_count_container {
     margin-left: 50px;
 
@@ -298,6 +305,9 @@
 }
 /////////////////////////////////////////////////////////////
 @include small {
+  .arrow_container {
+    flex: 0 0 12em;
+  }
   .share_icon {
     margin-right: 25px;
     width: 24px;

@@ -8,6 +8,7 @@ import socialInstagramIcon from "Icons/social-instagram-icon-white.svg";
 import socialTwitterIcon from "Icons/social-twitter-icon-white.svg";
 import arrowRightIcon from "Icons/arrow-right-icon-white.svg";
 import shareIcon from "Icons/share-icon-black.svg";
+import scrollDown from "Icons/scroll-down-icon-white.svg";
 import LanguageSelect from "CommonComponents/languageSelect";
 import Swiper from "react-id-swiper";
 import { connect } from "react-redux";
@@ -178,41 +179,49 @@ class NewHomePage extends Component {
                 className={styles.hero_bottom_content}
               >
                 <DivRow fillParent verticalCenter horizontalCenter>
-                  <div
-                    className={`${
-                      !isLeftButtonClickable ? styles.non_clickable : ""
-                    } ${styles.arrow_text}`}
-                    onClick={() => this.swiper.slidePrev()}
+                  <DivRow
+                    verticalCenter
+                    horizontalCenter
+                    className={styles.arrow_container}
                   >
-                    <img
-                      src={arrowRightIcon}
-                      className={styles.arrow_left}
-                      alt="Arrow"
-                    />
-                    {translate("common.prev_button")}
-                  </div>
+                    <div
+                      className={`${
+                        !isLeftButtonClickable ? styles.non_clickable : ""
+                      } ${styles.arrow_text}`}
+                      onClick={() => this.swiper.slidePrev()}
+                    >
+                      <img
+                        src={arrowRightIcon}
+                        className={styles.arrow_left}
+                        alt="Arrow"
+                      />
+                      {translate("common.prev_button")}
+                    </div>
 
-                  <div
-                    className={`${
-                      !isRightButtonClickable ? styles.non_clickable : ""
-                    } ${styles.arrow_text}`}
-                    onClick={() => this.swiper.slideNext()}
-                  >
-                    {translate("common.next_button")}
-                    <img
-                      src={arrowRightIcon}
-                      className={styles.arrow_right}
-                      alt="Arrow"
-                    />
-                  </div>
-                  <div className={styles.pagination_count_container}>
-                    <span className={styles.pagination_current_count}>
-                      {currentSlide + 1}
-                    </span>
-                    <span className={styles.pagination_total_count}>
-                      /{totalSlide}
-                    </span>
-                  </div>
+                    <div
+                      className={`${
+                        !isRightButtonClickable ? styles.non_clickable : ""
+                      } ${styles.arrow_text}`}
+                      onClick={() => this.swiper.slideNext()}
+                    >
+                      {translate("common.next_button")}
+                      <img
+                        src={arrowRightIcon}
+                        className={styles.arrow_right}
+                        alt="Arrow"
+                      />
+                    </div>
+                    <div className={styles.pagination_count_container}>
+                      <span className={styles.pagination_current_count}>
+                        {currentSlide + 1}
+                      </span>
+                      <span className={styles.pagination_total_count}>
+                        /{totalSlide}
+                      </span>
+                    </div>
+                  </DivRow>
+
+                  <img src={scrollDown} alt="Share" />
                 </DivRow>
 
                 <img
