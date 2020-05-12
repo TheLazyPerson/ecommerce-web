@@ -61,8 +61,7 @@ class NewHomePage extends Component {
   };
 
   onClickSellerButton = () => {
-    window.location.href =
-      "http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/";
+    window.location.href = "http://seller.homeexpoworld.com/";
   };
 
   render() {

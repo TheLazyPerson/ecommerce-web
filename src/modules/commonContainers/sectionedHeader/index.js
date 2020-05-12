@@ -104,7 +104,7 @@ class SectionedHeader extends Component {
             className={`${styles.sigin_link} ${styles.header_item_container} ${
               whiteColor ? styles.is_white : ""
             }`}
-            href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/"
+            href="http://seller.homeexpoworld.com/"
           >
             {translate("common.seller")}
           </a>

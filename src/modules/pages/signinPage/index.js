@@ -124,7 +124,7 @@ class SignInPage extends Component {
             </span>
             <a
               className={styles.hyper_link}
-              href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/"
+              href="http://seller.homeexpoworld.com/"
             >
               {translate("signin_page.seller_account")}
             </a>
