@@ -9,19 +9,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectShippingMethod } from "Core/modules/checkout/checkoutActions";
 import { getBagListAction } from "Core/modules/bag/bagActions";
-import isEmpty from 'lodash/isEmpty';
-import translatorHoc from 'Hoc/translatorHoc';
+import isEmpty from "lodash/isEmpty";
+import translatorHoc from "Hoc/translatorHoc";
 
 class OrderSummary extends Component {
-
   componentDidMount() {
     const {
       getBagDetailsWhenEmpty,
       getBagListAction,
       bagReducer: { bagData },
-     } = this.props;
+    } = this.props;
 
-    if(getBagDetailsWhenEmpty && isEmpty(bagData)) {
+    if (getBagDetailsWhenEmpty && isEmpty(bagData)) {
       getBagListAction();
     }
   }
@@ -40,22 +39,18 @@ class OrderSummary extends Component {
     const deliveryTypes = [
       {
         type: "standard",
-        name: translate('checkout_page.standard_delivery'),
-        priceType: translate('checkout_page.free_delivery'),
-        deliveryDate: "22 Dec"
+        name: translate("checkout_page.standard_delivery"),
+        priceType: translate("checkout_page.free_delivery"),
+        deliveryDate: "22 Dec",
       },
-      {
-        type: "express",
-        name: translate('checkout_page.express_delivery'),
-        priceType: translate('checkout_page.paid_delivery'),
-        deliveryDate: "18 Dec"
-      }
     ];
 
     return (
       <DivColumn>
         <DivColumn className={styles.order_summary_container}>
-          <div className={styles.order_summary_title}>{translate('checkout_page.order_summary')}</div>
+          <div className={styles.order_summary_title}>
+            {translate("checkout_page.order_summary")}
+          </div>
           {/* <HorizontalBorder />
               <DivRow verticalCenter className={styles.coupon_input}>
                 <img src={couponIcon} className={styles.icon} />
@@ -87,7 +82,7 @@ class OrderSummary extends Component {
             <Fragment>
               <HorizontalBorder />
               <div className={styles.coupon_header_text}>
-                {translate('checkout_page.delivery_speed')}
+                {translate("checkout_page.delivery_speed")}
               </div>
               {map(deliveryTypes, (delivery, index) => {
                 return (
@@ -102,7 +97,10 @@ class OrderSummary extends Component {
                     <DivColumn className={styles.coupon_content_container}>
                       <div className={styles.coupon_title}>{delivery.name}</div>
                       <div className={styles.coupon_description}>
-                       {`${translate('checkout_page.get_by')} ${delivery.deliveryDate} | ${delivery.priceType}`}
+                        {delivery.priceType}
+                        {/* {`${translate("checkout_page.get_by")} ${
+                          delivery.deliveryDate
+                        } | ${delivery.priceType}`} */}
                       </div>
                     </DivColumn>
                   </DivColumn>
@@ -114,17 +112,27 @@ class OrderSummary extends Component {
           <HorizontalBorder />
 
           <DivColumn>
-            <div className={styles.coupon_header_text}>{translate('checkout_page.price_details')}</div>
+            <div className={styles.coupon_header_text}>
+              {translate("checkout_page.price_details")}
+            </div>
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>{translate('checkout_page.bag_total')}</div>
+              <div className={styles.title}>
+                {translate("checkout_page.bag_total")}
+              </div>
               <div className={styles.value}>{bagData.formated_grand_total}</div>
             </DivRow>
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>{translate('checkout_page.coupon_discount')}</div>
-              <div className={styles.value}>{translate('checkout_page.apply_discount')}</div>
+              <div className={styles.title}>
+                {translate("checkout_page.coupon_discount")}
+              </div>
+              <div className={styles.value}>
+                {translate("checkout_page.apply_discount")}
+              </div>
             </DivRow>
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>{translate('checkout_page.order_total')}</div>
+              <div className={styles.title}>
+                {translate("checkout_page.order_total")}
+              </div>
               <div className={styles.value}>{bagData.formated_sub_total}</div>
             </DivRow>
             {/* <DivRow className={styles.price_details_container}>
@@ -135,7 +143,9 @@ class OrderSummary extends Component {
             <HorizontalBorder className={styles.price_divider} />
 
             <DivRow className={styles.price_details_container}>
-              <div className={styles.title}>{translate('checkout_page.total')}</div>
+              <div className={styles.title}>
+                {translate("checkout_page.total")}
+              </div>
               <div className={styles.value}>{bagData.formated_sub_total}</div>
             </DivRow>
           </DivColumn>
@@ -156,17 +166,17 @@ OrderSummary.defaultProps = {
   getBagDetailsWhenEmpty: true,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     checkoutReducer: state.checkoutReducer,
     bagReducer: state.bagReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     selectShippingMethod: bindActionCreators(selectShippingMethod, dispatch),
-    getBagListAction: bindActionCreators(getBagListAction, dispatch)
+    getBagListAction: bindActionCreators(getBagListAction, dispatch),
   };
 };
 
