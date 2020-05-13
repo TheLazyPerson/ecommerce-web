@@ -54,7 +54,7 @@ class ProductListingPage extends Component {
     const parsed = queryString.parse(this.props.location.search);
     const { sort, filters } = this.state;
     const {
-      productListReducer: { productList },
+      productListReducer: { productList, products },
       getProductListAction,
     } = this.props;
 
@@ -87,7 +87,7 @@ class ProductListingPage extends Component {
               initialPageApi={() => getProductListAction(parsed.id, parsedBody)}
             >
               <DivRow fillParent className={styles.product_list}>
-                {map(productList.products, (product, index) => {
+                {map(products, (product, index) => {
                   return (
                     <ProductGridItem
                       exhibitionId={parsed.id}
