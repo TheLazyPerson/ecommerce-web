@@ -42,6 +42,9 @@ class SideNav extends Component {
         break;
       case "/profile/address":
       case "/profile/address/add":
+      case includes(pathname, "profile/address/edit/")
+        ? pathname
+        : "profile/address/edit":
         setRoute = "address";
         break;
       case "/profile/settings":
