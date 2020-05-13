@@ -92,7 +92,10 @@ class OrderDetails extends Component {
                     className={styles.name_text}
                   >{`${shippingAddress.first_name} ${shippingAddress.last_name}`}</div>
                   <div className={styles.address_text}>
-                    {shippingAddress.address1}
+                    {shippingAddress.area}, {shippingAddress.block_number},{" "}
+                    {shippingAddress.house_number},{" "}
+                    {shippingAddress.street_number}, {shippingAddress.avenue} ,{" "}
+                    {shippingAddress.landmark}- {shippingAddress.city}
                   </div>
                 </DivColumn>
                 <div className={styles.header_text}>

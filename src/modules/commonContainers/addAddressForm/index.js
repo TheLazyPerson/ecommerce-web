@@ -32,14 +32,13 @@ class AddAddressForm extends Component {
       firstName: nameValidator(values.firstName),
       lastName: nameValidator(values.lastName),
       mobileNumber: isPhoneNumber(values.mobileNumber),
-      address1: isEmptyValidator(values.address1),
-      address2: isEmptyValidator(values.address2),
-      city: isEmptyValidator(values.city),
-      state: isEmptyValidator(values.state),
-      country: isEmptyValidator(values.country),
+      area: isEmptyValidator(values.area),
+      blockNumber: isEmptyValidator(values.blockNumber),
+      houseNumber: isEmptyValidator(values.houseNumber),
+      streetNumber: isEmptyValidator(values.streetNumber),
       // country_code: isEmptyValidator(values.country_code),
-      pincode: isEmptyValidator(values.pincode),
-      name: isEmptyValidator(values.name),
+      landmark: isEmptyValidator(values.landmark),
+      city: isEmptyValidator(values.city),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -61,13 +60,14 @@ class AddAddressForm extends Component {
       first_name: form.firstName,
       last_name: form.lastName,
       phone_number: form.mobileNumber,
-      address1: form.address1,
-      address2: form.address2,
-      postcode: form.pincode,
+      area: form.area,
+      block_number: form.blockNumber,
+      house_number: form.houseNumber,
+      street_number: form.streetNumber,
+      avenue: form.avenue,
+      landmark: form.landmark,
+      address_type: form.addressType,
       city: form.city,
-      state: form.state,
-      country: form.country,
-      // country_code: form.country_code,
       default_address: 1,
       name: form.name,
     };
@@ -94,14 +94,14 @@ class AddAddressForm extends Component {
       firstName: address.first_name ? address.first_name : "",
       lastName: address.last_name ? address.last_name : "",
       mobileNumber: address.phone_number ? address.phone_number : "",
-      name: address.name ? address.name : "",
-      address1: address.address1 ? address.address1 : "",
-      address2: address.address2 ? address.address2 : "",
+      area: address.area ? address.area : "",
+      blockNumber: address.block_number ? address.block_number : "",
+      houseNumber: address.house_number ? address.house_number : "",
+      streetNumber: address.street_number ? address.street_number : "",
+      avenue: address.avenue ? address.avenue : "",
+      landmark: address.landmark ? address.landmark : "",
+      addressType: address.address_type ? address.address_type : "",
       city: address.city ? address.city : "",
-      state: address.state ? address.state : "",
-      country: address.country ? address.country : "",
-      // country_code: address.country_code ? address.country_code : "",
-      pincode: address.postcode ? address.postcode : "",
     };
   };
 
@@ -195,6 +195,80 @@ class AddAddressForm extends Component {
               <HorizontalBorder className={styles.address_divider} />
 
               <DivColumn className={styles.text_input_container}>
+                <Field name="area">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Area*"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+                <Field name="blockNumber">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Block Number*"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+
+                <Field name="houseNumber">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="House Number*"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+
+                <Field name="streetNumber">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Street Number*"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+                <Field name="avenue">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Avenue"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+
+                <Field name="landmark">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="Landmark*"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+
+                <Field name="city">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder="City*"
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
                 <Field name="name">
                   {({ input, meta }) => (
                     <DivColumn className="input_select_container">
@@ -212,101 +286,6 @@ class AddAddressForm extends Component {
                         <span className="error_text">{meta.error}</span>
                       )}
                     </DivColumn>
-                  )}
-                </Field>
-
-                <Field name="address1">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder={translate("address_form_page.address1")}
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
-                <Field name="address2">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder={translate("address_form_page.address2")}
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
-
-                <Field name="city">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder={translate("address_form_page.city")}
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field>
-
-                <Field name="state">
-                  {({ input, meta }) => (
-                    <DivColumn className="input_select_container">
-                      <Select
-                        options={states}
-                        onChange={(value) => {
-                          input.onChange(value.value);
-                        }}
-                        className="react-select-container"
-                        classNamePrefix="react-select"
-                        placeholder={translate("address_form_page.state")}
-                        defaultValue={defaultState}
-                      />
-                      {meta.error && meta.touched && (
-                        <span className="error_text">{meta.error}</span>
-                      )}
-                    </DivColumn>
-                  )}
-                </Field>
-
-                <Field name="country">
-                  {({ input, meta }) => (
-                    <DivColumn className="input_select_container">
-                      <Select
-                        options={countries}
-                        onChange={(value) => {
-                          input.onChange(value.value);
-                        }}
-                        className="react-select-container"
-                        classNamePrefix="react-select"
-                        placeholder={translate("address_form_page.country")}
-                        defaultValue={defaultCountry}
-                      />
-                      {meta.error && meta.touched && (
-                        <span className="error_text">{meta.error}</span>
-                      )}
-                    </DivColumn>
-                  )}
-                </Field>
-
-                {/* <Field name="country_code">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      disabled
-                      placeholder="Country Code"
-                      className={styles.input_text}
-                    />
-                  )}
-                </Field> */}
-
-                <Field name="pincode">
-                  {({ input, meta }) => (
-                    <InputTextComponent
-                      meta={meta}
-                      {...input}
-                      placeholder={translate("address_form_page.pincode")}
-                      className={styles.input_text}
-                    />
                   )}
                 </Field>
               </DivColumn>
