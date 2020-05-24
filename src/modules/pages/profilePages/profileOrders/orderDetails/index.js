@@ -79,7 +79,7 @@ class OrderDetails extends Component {
                 <DivColumn className={styles.value_container}>
                   <div
                     className={styles.contact_text}
-                  >{`Phone: +91 9584758695`}</div>
+                  >{`Phone: ${shippingAddress.phone}`}</div>
                   <div
                     className={styles.contact_text}
                   >{`Email: ${orderDetails.customer_email}`}</div>
