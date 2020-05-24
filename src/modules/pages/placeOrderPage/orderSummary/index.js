@@ -121,14 +121,14 @@ class OrderSummary extends Component {
               </div>
               <div className={styles.value}>{bagData.formated_grand_total}</div>
             </DivRow>
-            <DivRow className={styles.price_details_container}>
+            {/* <DivRow className={styles.price_details_container}>
               <div className={styles.title}>
                 {translate("checkout_page.coupon_discount")}
               </div>
               <div className={styles.value}>
                 {translate("checkout_page.apply_discount")}
               </div>
-            </DivRow>
+            </DivRow> */}
             <DivRow className={styles.price_details_container}>
               <div className={styles.title}>
                 {translate("checkout_page.order_total")}
