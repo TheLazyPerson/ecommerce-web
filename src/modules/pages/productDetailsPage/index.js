@@ -211,7 +211,6 @@ class ProductDetailsPage extends Component {
               <DivColumn className={styles.right_content_container}>
                 <ExhibitionDetailComponent
                   name={productDetail.name}
-                  tags={["watches", "craft", "crafted"]}
                   price={productDetail.formatted_price}
                   description={productDetail.short_description}
                   className={styles.exhibition_detail_component}
