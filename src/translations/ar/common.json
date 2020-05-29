@@ -51,6 +51,11 @@
     "filters": "مرشحات",
     "prices": "الأسعار"
   },
+  "sort": {
+    "sort_title": "فرز",
+    "price_low_to_high": "السعر من الارخص للاعلى",
+    "price_high_to_low": "السعر الاعلى الى الادنى"
+  },
   "footer": {
     "experience": "تجربة  Home Expo APP على الهاتف المحمول",
     "faq": "التعليمات",
@@ -173,16 +178,17 @@
     "first_name": "الاسم الاول",
     "last_name": "الكنية",
     "mobile_number": "رقم الهاتف المحمول",
-    "address1": "العنوان السطر 1",
-    "address2": "2 العنوان السطر ",
-    "city": "مدينة",
-    "pincode": "الرقم السري",
-    "make_this_default_address": "اجعل هذا عنواني الافتراضي",
+    "area": "منطقة",
+    "block_number": "حظر الرقم",
+    "house_number": "رقم الدار",
+    "street_number": "رقم الشارع",
+    "avenue": "السبيل",
+    "landmark": "معلم معروف",
     "home_office": "مكتب البيت",
-    "state": "حالة",
+    "city": "مدينة",
     "cancel": "إلغاء",
     "save_details": "حفظ التفاصيل",
-    "country": "بلد"
+    "make_this_default_address": "اجعل هذا عنواني الافتراضي"
   },
   "profile_details": {
     "header_title": "تفاصيل الملف الشخصي",
@@ -222,8 +228,17 @@
     "item_in_order": "عناصر في هذا الطلب",
     "shipping_address": "عنوان الشحن",
     "pricing_summery": "ملخص التسعير",
-    "mrp": "MRP:",
+    "mrp": "المجموع الفرعي:",
     "discount": "خصم:",
     "total": "مجموع:"
+  },
+  "search_page": {
+    "view_product": "عرض المنتج",
+    "view_exhibition": "مشاهدة المعرض",
+    "search_exhibition_title": "المعارض",
+    "search_product_title": "منتجات",
+    "search_title": "بحث",
+    "explore_exhibition": "يكتشف",
+    "product_item_exhibition": "معرض"
   }
 }

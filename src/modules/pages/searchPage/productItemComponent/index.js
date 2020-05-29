@@ -8,21 +8,22 @@ import heartEmptyIcon from "Icons/heart-empty-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
 import {
   addToWishlistAction,
-  removeFromWishlistAction
+  removeFromWishlistAction,
 } from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import translatorHoc from "Hoc/translatorHoc";
 
 class ProductItemComponent extends Component {
   state = {
-    isWishlistLoading: false
+    isWishlistLoading: false,
   };
 
   onClickExhibition = () => {
     const { navigateTo, product } = this.props;
     navigateTo("plp", {
-      id: product.exhibition.id
+      id: product.exhibition.id,
     });
   };
 
@@ -30,7 +31,7 @@ class ProductItemComponent extends Component {
     const { navigateTo, product } = this.props;
     navigateTo("pdp", {
       exhibitionId: product.exhibition.id,
-      productId: product.id
+      productId: product.id,
     });
   };
 
@@ -38,7 +39,7 @@ class ProductItemComponent extends Component {
     const {
       product,
       addToWishlistAction,
-      removeFromWishlistAction
+      removeFromWishlistAction,
     } = this.props;
     const { isWishlistLoading } = this.state;
 
@@ -58,14 +59,14 @@ class ProductItemComponent extends Component {
       product,
       showSuccessFlashMessage,
       isUserSignedIn,
-      navigateTo
+      navigateTo,
     } = this.props;
 
     if (isUserSignedIn) {
       this.setState({ isWishlistLoading: true });
       action({
         product_id: product.id,
-        exhibition_id: product.exhibition.id
+        exhibition_id: product.exhibition.id,
       })
         .then(({ payload }) => {
           if (payload.code == 200 || payload.code == 201) {
@@ -73,7 +74,7 @@ class ProductItemComponent extends Component {
           }
           this.setState({ isWishlistLoading: false });
         })
-        .catch(error => {
+        .catch((error) => {
           this.setState({ isWishlistLoading: false });
         });
     } else {
@@ -82,17 +83,26 @@ class ProductItemComponent extends Component {
   };
 
   render() {
-    const { product } = this.props;
+    const {
+      product,
+      languageReducer: { languageCode },
+      translate,
+    } = this.props;
     const { isWishlistLoading } = this.state;
 
     return (
       <DivColumn className={styles.product_container}>
         <DivColumn className={styles.product_details_container}>
-          <div className={styles.product_name}>{product.name}</div>
-          <div className={styles.product_description}>
-            {product.short_description}
+          <div className={styles.product_name}>
+            {product.translations[languageCode].name}
           </div>
-          <img src={exhibitionImage1} className={styles.product_image} />
+          <div className={styles.product_description}>
+            {product.translations[languageCode].short_description}
+          </div>
+          <img
+            src={product.base_image ? product.base_image.path : ""}
+            className={styles.product_image}
+          />
         </DivColumn>
 
         {product.exhibition && (
@@ -101,7 +111,9 @@ class ProductItemComponent extends Component {
             horizontalCenter
             className={styles.exhibition_details_container}
           >
-            <div className={styles.exhibition_title}>EXHIBITION</div>
+            <div className={styles.exhibition_title}>
+              {translate("search_page.product_item_exhibition")}
+            </div>
             <DivRow verticalCenter>
               <img src={exhibitionImage1} className={styles.exhibition_image} />
               <div className={styles.exhibition_name}>
@@ -126,7 +138,7 @@ class ProductItemComponent extends Component {
               className={styles.action_button}
               onClick={this.onClickProduct}
             >
-              View Product
+              {translate("search_page.view_product")}
             </DivRow>
             {product.exhibition && (
               <DivRow
@@ -135,7 +147,7 @@ class ProductItemComponent extends Component {
                 className={`${styles.action_button} ${styles.primary}`}
                 onClick={this.onClickExhibition}
               >
-                View Exhibition
+                {translate("search_page.explore_exhibition")}
               </DivRow>
             )}
           </DivRow>
@@ -145,13 +157,14 @@ class ProductItemComponent extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isUserSignedIn: state.signInReducer.isUserSignedIn
+    isUserSignedIn: state.signInReducer.isUserSignedIn,
+    languageReducer: state.languageReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
     removeFromWishlistAction: bindActionCreators(
@@ -161,11 +174,11 @@ const mapDispathToProps = dispatch => {
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(navigatorHoc(ProductItemComponent));
+)(navigatorHoc(translatorHoc(ProductItemComponent)));

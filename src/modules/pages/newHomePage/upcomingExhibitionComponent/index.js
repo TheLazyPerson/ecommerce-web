@@ -42,10 +42,7 @@ class UpcomingExhibitionComponent extends Component {
         fillSelfHorizontal
         className={`${isRTL ? styles.rtl : ""} ${styles.component_container}`}
       >
-        <img
-          className={styles.image}
-          src={`https://source.unsplash.com/500x50${currentSlide}/?product`}
-        />
+        <img className={styles.image} src={`${exhibition.base_image}`} />
 
         <DivColumn fillSelfHorizontal className={styles.content_container}>
           <DivColumn fillParent className={styles.contents}>
@@ -80,5 +77,4 @@ class UpcomingExhibitionComponent extends Component {
   }
 }
 
-// https://source.unsplash.com/500x500/?product
 export default transltorHoc(UpcomingExhibitionComponent);

@@ -9,6 +9,9 @@ import map from "lodash/map";
 import size from "lodash/size";
 import navigatorHoc from "Hoc/navigatorHoc";
 import translatorHoc from "Hoc/translatorHoc";
+import isEmpty from "lodash/isEmpty";
+import CapsuleText from "CommonComponents/capsuleText";
+
 class MasonryGridContainer extends Component {
   imageStates = [2, 1, 2, 1, 2, 1, 2];
 
@@ -79,7 +82,7 @@ class MasonryGridContainer extends Component {
                   styles.grid_image_container
                 } ${styles[`type${this.imageStates[typeIndex]}`]}`}
                 style={{
-                  backgroundImage: `url(https://source.unsplash.com/500x50${typeIndex}/?product)`,
+                  backgroundImage: `url(${exhibition.base_image})`,
                 }}
                 onClick={() => this.onClickExhibitionItem(exhibition.id)}
               >
@@ -90,30 +93,24 @@ class MasonryGridContainer extends Component {
                   <div className={styles.description}>
                     {exhibition.translations[languageCode].description}
                   </div>
-                  <div className={styles.remaining}>ONLY 2 DAYS LEFT</div>
+                  <div className={styles.remaining}>
+                    ONLY{" "}
+                    {!isEmpty(exhibition.days_left) ? exhibition.days_left : ""}{" "}
+                    DAYS LEFT
+                  </div>
 
                   <DivRow className={styles.capsule_container}>
-                    <DivRow
-                      verticalCenter
-                      horizontalCenter
-                      className={styles.capsule}
-                    >
-                      #shoes
-                    </DivRow>
-                    <DivRow
-                      verticalCenter
-                      horizontalCenter
-                      className={styles.capsule}
-                    >
-                      #nike
-                    </DivRow>
-                    <DivRow
-                      verticalCenter
-                      horizontalCenter
-                      className={styles.capsule}
-                    >
-                      #adidas
-                    </DivRow>
+                    {map(exhibition.tags, (tag, index) =>
+                      index === 0 ? (
+                        <CapsuleText
+                          className={styles.capsule}
+                          noMargin
+                          text={tag}
+                        />
+                      ) : (
+                        <CapsuleText className={styles.capsule} text={tag} />
+                      )
+                    )}
                   </DivRow>
                 </DivColumn>
               </DivColumn>

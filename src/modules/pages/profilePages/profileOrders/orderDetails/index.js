@@ -29,6 +29,7 @@ class OrderDetails extends Component {
       orderReducer: { orderDetails },
       match,
       isRTL,
+      languageReducer: { languageCode },
     } = this.props;
     const {
       shipping_address: shippingAddress,
@@ -60,7 +61,7 @@ class OrderDetails extends Component {
                 <b>{orderDetails.id}</b>
               </div>
               <div className={styles.order_status_text}>
-                {orderDetails.status}
+                {orderDetails.status_label}
               </div>
               <div className={styles.order_placed_text}>
                 {`Placed On: ${formatTimeStamp(
@@ -79,7 +80,7 @@ class OrderDetails extends Component {
                 <DivColumn className={styles.value_container}>
                   <div
                     className={styles.contact_text}
-                  >{`Phone: +91 9584758695`}</div>
+                  >{`Phone: ${shippingAddress.phone}`}</div>
                   <div
                     className={styles.contact_text}
                   >{`Email: ${orderDetails.customer_email}`}</div>
@@ -158,17 +159,26 @@ class OrderDetails extends Component {
                   <DivRow className={styles.product_item_container}>
                     <img
                       className={styles.product_image}
-                      style={{
-                        backgroundImage: `url(https://source.unsplash.com/200x20${index}/?product)`,
-                      }}
+                      src={
+                        productItem.product.base_image
+                          ? productItem.product.base_image.path
+                          : null
+                      }
+                      // style={{
+                      //   backgroundImage: `${
+                      //     productItem.product.base_image
+                      //       ? productItem.product.base_image.path
+                      //       : null
+                      //   }`,
+                      // }}
                     />
                     <DivColumn className={styles.product_content_container}>
                       <div className={styles.product_name}>
-                        {productItem.name}
+                        {productItem.product.translations[languageCode].name}
                       </div>
-                      <div className={styles.product_type}>
+                      {/* <div className={styles.product_type}>
                         {productItem.type}
-                      </div>
+                      </div> */}
                       <div className={styles.product_price}>
                         {productItem.formated_price}
                       </div>
@@ -195,6 +205,7 @@ class OrderDetails extends Component {
 const mapStateToProps = (state) => {
   return {
     orderReducer: state.orderReducer,
+    languageReducer: state.languageReducer,
   };
 };
 

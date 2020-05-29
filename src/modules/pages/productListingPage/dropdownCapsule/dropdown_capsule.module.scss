@@ -1,4 +1,4 @@
-@import '~Styles/colors.module';
+@import "~Styles/colors.module";
 
 $capsule-background-color: $color-very-light-blue;
 
@@ -7,7 +7,6 @@ $capsule-background-color: $color-very-light-blue;
   // border-radius: 24px;
   // padding: 3px 10px;
 
-
   .capsule_text {
     font-size: 12px;
     line-height: 2;
@@ -15,9 +14,7 @@ $capsule-background-color: $color-very-light-blue;
 
     margin-right: 6px;
   }
-
 }
-
 
 :global {
   .dropdown-container {
@@ -29,7 +26,6 @@ $capsule-background-color: $color-very-light-blue;
       background: rgba($color-very-light-blue, 0.4);
       border-radius: 24px;
       align-self: stretch;
-      
 
       .dropdown__value-container {
         font-size: 14px;
@@ -43,6 +39,17 @@ $capsule-background-color: $color-very-light-blue;
 
       .dropdown__value-container::placeholder {
         color: rgba($primary-text-color, 0.3);
+      }
+    }
+    .dropdown__menu {
+      .dropdown__menu-list {
+        .dropdown__option {
+          font-size: 12px;
+          color: $primary-text-color;
+        }
+        .dropdown__option--is-selected {
+          background-color: $color-very-light-blue;
+        }
       }
     }
   }

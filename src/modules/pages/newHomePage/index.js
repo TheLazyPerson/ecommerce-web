@@ -31,11 +31,15 @@ import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 import translatorHoc from "Hoc/translatorHoc";
 import FullwidthHeader from "CommonContainers/fullwidthHeader";
 import CapsuleButton from "CommonComponents/capsuleButton";
+import isEmpty from "lodash/isEmpty";
+import size from "lodash/size";
+import { SELLER_LINK } from "Constants/applicationLinksConstansts";
 
 class NewHomePage extends Component {
   state = {
     currentSlide: 0,
     showHeaderShadow: false,
+    currentSliderExhibitionImage: "",
   };
 
   componentDidMount() {
@@ -61,8 +65,12 @@ class NewHomePage extends Component {
     });
   };
 
+  setCurrentSlideExhibitionImage = ($url) => {
+    this.setState({ currentSliderExhibitionImage: $url });
+  };
+
   onClickSellerButton = () => {
-    window.location.href = "http://seller.homeexpoworld.com/";
+    window.location.href = SELLER_LINK;
   };
 
   onScrollDownClick() {
@@ -78,7 +86,11 @@ class NewHomePage extends Component {
       },
     };
 
-    const { currentSlide, showHeaderShadow } = this.state;
+    const {
+      currentSlide,
+      showHeaderShadow,
+      currentSliderExhibitionImage,
+    } = this.state;
     const {
       homePageReducer: {
         exhibitionList,
@@ -98,14 +110,21 @@ class NewHomePage extends Component {
 
     return (
       <div fillParent className={styles.page_container}>
-        <DivColumn
-          style={{
-            backgroundImage: `url(https://source.unsplash.com/1024x102${currentSlide}/?product)`,
-          }}
-          fillSelfHorizontal
-          className={styles.hero_section_container}
+        <InitialPageLoader
+          isEmpty={!size(trendingExhibitionList)}
+          initialPageApi={getExhibitionListAction}
         >
-          <InitialPageLoader initialPageApi={getExhibitionListAction}>
+          <DivColumn
+            style={{
+              backgroundImage: `url(${
+                !isEmpty(exhibitionList)
+                  ? exhibitionList[currentSlide].base_image
+                  : ""
+              })`,
+            }}
+            fillSelfHorizontal
+            className={styles.hero_section_container}
+          >
             <Fragment>
               <div className={styles.top_gradient}></div>
               <div className={styles.overlay_gradient}></div>
@@ -116,7 +135,7 @@ class NewHomePage extends Component {
                 verticalCenter
                 className={styles.hero_main_content}
               >
-                <DivColumn className={styles.social_container}>
+                {/* TODO: <DivColumn className={styles.social_container}>
                   <div className={styles.social_item_container}>
                     <img
                       src={socialFacebookIcon}
@@ -138,7 +157,7 @@ class NewHomePage extends Component {
                       alt="Instagram"
                     />
                   </div>
-                </DivColumn>
+                </DivColumn> */}
                 <div className={styles.swiper_container}>
                   <Swiper
                     {...params}
@@ -238,18 +257,20 @@ class NewHomePage extends Component {
                 />
               </DivRow>
             </Fragment>
-          </InitialPageLoader>
-        </DivColumn>
+          </DivColumn>
+        </InitialPageLoader>
 
-        <DivRow
-          horizontalCenter
-          fillSelfHorizontal
-          className={styles.header_title}
+        <InitialPageLoader
+          isEmpty={!size(trendingExhibitionList)}
+          initialPageApi={getTrendingExhibitionListAction}
         >
-          {translate("home_page.trending_now_title")}
-        </DivRow>
-
-        <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
+          <DivRow
+            horizontalCenter
+            fillSelfHorizontal
+            className={styles.header_title}
+          >
+            {translate("home_page.trending_now_title")}
+          </DivRow>
           <MasonryGridContainer
             exhibitionList={trendingExhibitionList}
             showMoreTitle
@@ -264,7 +285,10 @@ class NewHomePage extends Component {
           {translate("home_page.upcoming_title")}
         </DivRow>
 
-        <InitialPageLoader initialPageApi={getUpcomingExhibitionListAction}>
+        <InitialPageLoader
+          isEmpty={!size(upcomingExhibitionList)}
+          initialPageApi={getUpcomingExhibitionListAction}
+        >
           <UpcomingExhibitionComponent
             exhibitionList={upcomingExhibitionList}
           />

@@ -226,6 +226,10 @@ class EditProfile extends Component {
                       input.onChange(date.valueOf());
                     }}
                     maxDate={new Date()}
+                    peekNextMonth
+                    showMonthDropdown
+                    showYearDropdown
+                    openToDate={new Date("1993/09/28")}
                     customInput={
                       <CustomRenderInput meta={meta} input={input} />
                     }

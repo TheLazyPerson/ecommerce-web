@@ -13,6 +13,7 @@ import { USER_DATA_COOKIE } from "Constants/cookieConstants";
 import translatorHoc from "Hoc/translatorHoc";
 import { emailValidator, isEmptyValidator } from "Utils/validators";
 import { Form, Field } from "react-final-form";
+import { SELLER_LINK } from "Constants/applicationLinksConstansts";
 
 class SignInPage extends Component {
   onSubmit = (form) => {
@@ -105,7 +106,7 @@ class SignInPage extends Component {
             )}
           />
           <a className={styles.hyper_link} href="/forgot-password">
-            {translate("signin_page.forgot_password")}
+            {translate("signin_page.forgot_password")}?
           </a>
           <div className={styles.create_account_container}>
             <span className={styles.new_description_text}>
@@ -122,10 +123,7 @@ class SignInPage extends Component {
             <span className={styles.new_description_text}>
               {translate("signin_page.are_you_a_seller")}&nbsp;
             </span>
-            <a
-              className={styles.hyper_link}
-              href="http://seller.homeexpoworld.com/"
-            >
+            <a className={styles.hyper_link} href={SELLER_LINK}>
               {translate("signin_page.seller_account")}
             </a>
           </div>

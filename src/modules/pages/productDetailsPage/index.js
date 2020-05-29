@@ -23,6 +23,7 @@ import map from "lodash/map";
 import "swiper/css/swiper.css";
 import bagWhiteIcon from "Icons/cart-bag-icon-white.svg";
 import translatorHoc from "Hoc/translatorHoc";
+import isEmpty from "lodash/isEmpty";
 
 class ProductDetailsPage extends Component {
   state = {
@@ -146,6 +147,7 @@ class ProductDetailsPage extends Component {
       getProductDetailAction,
       translate,
       isRTL,
+      languageReducer: { languageCode },
     } = this.props;
 
     const params = {
@@ -209,60 +211,66 @@ class ProductDetailsPage extends Component {
               </DivColumn>
 
               <DivColumn className={styles.right_content_container}>
-                <ExhibitionDetailComponent
-                  name={productDetail.name}
-                  tags={["watches", "craft", "crafted"]}
-                  price={productDetail.formatted_price}
-                  description={productDetail.short_description}
-                  className={styles.exhibition_detail_component}
-                >
-                  <QuantityComponent
-                    quantity={this.state.quantity}
-                    incrementItem={this.incrementItem}
-                    decreaseItem={this.decreaseItem}
-                  />
+                {!isEmpty(productDetail) && (
+                  <ExhibitionDetailComponent
+                    name={productDetail.translations[languageCode].name}
+                    price={productDetail.formatted_price}
+                    description={
+                      productDetail.translations[languageCode].short_description
+                    }
+                    className={styles.exhibition_detail_component}
+                  >
+                    <QuantityComponent
+                      quantity={this.state.quantity}
+                      incrementItem={this.incrementItem}
+                      decreaseItem={this.decreaseItem}
+                    />
 
-                  <DivRow className={styles.action_button_container}>
-                    <DivRow
-                      verticalCenter
-                      horizontalCenter
-                      className={styles.add_to_bag_button}
-                      onClick={() =>
-                        this.onClickAddToBag(
-                          parsed.exhibitionid,
-                          parsed.productid,
-                          this.state.quantity,
-                          false
-                        )
-                      }
-                    >
-                      <img src={bagWhiteIcon} className={styles.button_icon} />
-                      <div className={styles.button_text}>
-                        {translate("common.add_to_bag")}
-                      </div>
-                    </DivRow>
-                    <DivRow
-                      verticalCenter
-                      horizontalCenter
-                      className={`${styles.wishlist_button} ${
-                        isWishlistLoading ? styles.is_disabled : ""
-                      }`}
-                      onClick={this.onClickWishlist}
-                    >
-                      <img
-                        src={
-                          productDetail.is_wishlisted
-                            ? heartFilledIcon
-                            : heartEmptyIcon
+                    <DivRow className={styles.action_button_container}>
+                      <DivRow
+                        verticalCenter
+                        horizontalCenter
+                        className={styles.add_to_bag_button}
+                        onClick={() =>
+                          this.onClickAddToBag(
+                            parsed.exhibitionid,
+                            parsed.productid,
+                            this.state.quantity,
+                            false
+                          )
                         }
-                        className={styles.button_icon}
-                      />
-                      <div className={styles.button_text}>
-                        {translate("common.wishlist")}
-                      </div>
+                      >
+                        <img
+                          src={bagWhiteIcon}
+                          className={styles.button_icon}
+                        />
+                        <div className={styles.button_text}>
+                          {translate("common.add_to_bag")}
+                        </div>
+                      </DivRow>
+                      <DivRow
+                        verticalCenter
+                        horizontalCenter
+                        className={`${styles.wishlist_button} ${
+                          isWishlistLoading ? styles.is_disabled : ""
+                        }`}
+                        onClick={this.onClickWishlist}
+                      >
+                        <img
+                          src={
+                            productDetail.is_wishlisted
+                              ? heartFilledIcon
+                              : heartEmptyIcon
+                          }
+                          className={styles.button_icon}
+                        />
+                        <div className={styles.button_text}>
+                          {translate("common.wishlist")}
+                        </div>
+                      </DivRow>
                     </DivRow>
-                  </DivRow>
-                </ExhibitionDetailComponent>
+                  </ExhibitionDetailComponent>
+                )}
               </DivColumn>
             </DivRow>
           </DivColumn>
@@ -277,6 +285,7 @@ const mapStateToProps = (state) => {
     productDetailReducer: state.productDetailReducer,
     bagReducer: state.bagReducer,
     isUserSignedIn: state.signInReducer.isUserSignedIn,
+    languageReducer: state.languageReducer,
   };
 };
 
