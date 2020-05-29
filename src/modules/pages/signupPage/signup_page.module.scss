@@ -1,5 +1,5 @@
 @import "~Styles/colors.module";
-@import '~Styles/mixins.module';
+@import "~Styles/mixins.module";
 
 $submit-button-background: $color-gold;
 
@@ -24,7 +24,7 @@ $submit-button-background: $color-gold;
         min-width: unset;
         width: 30px;
       }
-      
+
       .input_text:first-child {
         margin-right: 17px;
       }
@@ -64,12 +64,16 @@ $submit-button-background: $color-gold;
   }
 
   .hyper_link {
-    text-decoration: underline !important;
+    border-bottom: 2px solid var(--dark) !important;
     color: $primary-text-color;
     text-transform: uppercase;
-    
+
     opacity: 0.6;
     font-size: 14px;
+    &:hover {
+      text-decoration: none;
+      opacity: 1;
+    }
   }
 
   .create_account_container {
@@ -83,22 +87,20 @@ $submit-button-background: $color-gold;
   }
 }
 
-
-
 @include medium {
   .page_container {
-    .form_container {    
+    .form_container {
       .name_container {
         margin-bottom: 16px;
         min-width: 350px;
-  
+
         .input_text {
           flex: 1;
           margin-bottom: unset;
           min-width: unset;
           width: 28px;
         }
-        
+
         .input_text:first-child {
           margin-right: 15px;
         }
@@ -119,13 +121,13 @@ $submit-button-background: $color-gold;
 
     .signin_title_text {
       font-size: 40px;
-      margin-bottom: 42px;  
+      margin-bottom: 42px;
     }
-    
+
     .hyper_link {
       font-size: 12px;
     }
-  
+
     .create_account_container {
       margin-top: 13px;
       font-size: 12px;
@@ -135,18 +137,18 @@ $submit-button-background: $color-gold;
 
 @include small {
   .page_container {
-    .form_container {    
+    .form_container {
       .name_container {
         margin-bottom: 14px;
         min-width: 300px;
-  
+
         .input_text {
           flex: 1;
           margin-bottom: unset;
           min-width: unset;
           width: 28px;
         }
-        
+
         .input_text:first-child {
           margin-right: 13px;
         }
@@ -167,8 +169,7 @@ $submit-button-background: $color-gold;
 
     .signin_title_text {
       font-size: 36px;
-      margin-bottom: 38px;  
+      margin-bottom: 38px;
     }
-    
   }
 }
