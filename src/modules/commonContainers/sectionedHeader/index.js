@@ -23,6 +23,7 @@ import { USER_DATA_COOKIE } from "Constants/cookieConstants";
 import translatorHoc from "Hoc/translatorHoc";
 import { setBagCount } from "Core/modules/bag/bagActions";
 import SearchBar from "../searchBar";
+import { SELLER_LINK } from "Constants/applicationLinksConstansts";
 
 class SectionedHeader extends Component {
   clickedOnSearchItem = false;
@@ -78,7 +79,17 @@ class SectionedHeader extends Component {
         />
 
         <DivRow verticalCenter>
-          {/* <DivRow
+          {!isUserSignedIn && (
+            <a
+              className={`${styles.sigin_link} ${
+                styles.header_item_container
+              } ${whiteColor ? styles.is_white : ""}`}
+              href={SELLER_LINK}
+            >
+              {translate("common.seller")}
+            </a>
+          )}
+          <DivRow
             className={styles.header_item_container}
             verticalCenter
             onClick={this.onClickBag}
@@ -94,20 +105,13 @@ class SectionedHeader extends Component {
             >
               {bagCount != null ? bagCount : 0}
             </DivRow>
-          </DivRow> */}
-          {/* <img
+          </DivRow>
+          <img
             className={`${styles.header_icon} ${styles.header_item_container}`}
             src={whiteColor ? bookmarkIconWhite : bookmarkIcon}
             onClick={this.onClickWishlist}
-          /> */}
-          <a
-            className={`${styles.sigin_link} ${styles.header_item_container} ${
-              whiteColor ? styles.is_white : ""
-            }`}
-            href="http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/"
-          >
-            {translate("common.seller")}
-          </a>
+          />
+
           <div
             style={{ height: "unset" }}
             className={`${styles.header_icon} ${styles.header_item_container} ${styles.profile_header_item}`}

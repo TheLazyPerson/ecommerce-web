@@ -51,6 +51,11 @@
     "filters": "FILTERS",
     "prices": "PRICES"
   },
+  "sort": {
+    "sort_title": "Sort",
+    "price_low_to_high": "Price low to high",
+    "price_high_to_low": "Price high to low"
+  },
   "footer": {
     "experience": "EXPERIENCE HOME EXPO APP ON MOBILE",
     "faq": "Faq",
@@ -198,16 +203,17 @@
     "first_name": "First Name",
     "last_name": "Last Name",
     "mobile_number": "Mobile Number",
-    "address1": "Address Line 1",
-    "address2": "Address Line 2",
+    "area": "Area",
+    "block_number": "Block Number",
+    "house_number": "House Number",
+    "street_number": "Street Number",
+    "avenue": "Avenue",
+    "landmark": "Landmark",
     "city": "City",
-    "pincode": "Pincode",
     "make_this_default_address": "Make this my default address.",
     "home_office": "Home/Office",
-    "state": "State",
     "cancel": "CANCEL",
-    "save_details": "SAVE DETAILS",
-    "country": "Country"
+    "save_details": "SAVE DETAILS"
   },
   "profile_details": {
     "header_title": "PROFILE DETAILS",
@@ -247,8 +253,17 @@
     "item_in_order": "ITEMS IN THIS ORDER",
     "shipping_address": "SHIPPING ADDRESS",
     "pricing_summery": "PRICING SUMMARY",
-    "mrp": "MRP:",
+    "mrp": "Sub Total:",
     "discount": "Discount:",
     "total": "Total:"
+  },
+  "search_page": {
+    "view_product": "View Product",
+    "view_exhibition": "View Exhibition",
+    "search_exhibition_title": "EXHIBITIONS",
+    "search_product_title": "PRODUCTS",
+    "search_title": "Search",
+    "explore_exhibition": "Explore",
+    "product_item_exhibition": "EXHIBITION"
   }
 }

@@ -68,7 +68,9 @@ class ProfileOrders extends Component {
                       src={item.exhibition.base_image}
                     />
                     <DivColumn className={styles.order_detail_container}>
-                      <div className={styles.order_exhibition}>{item.name}</div>
+                      <div className={styles.order_exhibition}>
+                        {item.product.translations[languageCode].name}
+                      </div>
                       <div className={styles.order_name}>
                         {item.exhibition.translations[languageCode].title}
                       </div>

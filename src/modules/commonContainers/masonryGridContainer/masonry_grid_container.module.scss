@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .rtl {
   .content_container {
@@ -86,7 +86,7 @@
         border-radius: 24px;
         padding: 3px 12px;
         border: solid 1px rgba(#979797, 0.6);
-
+        background-color: transparent !important;
         font-size: 10px;
         font-weight: bold;
         color: white;
@@ -96,7 +96,6 @@
     }
   }
 }
-
 
 .grid_load_more_container {
   margin-top: 3px;
@@ -110,10 +109,9 @@
       font-size: 24px;
       font-weight: bold;
       color: white;
-    }  
+    }
   }
 }
-
 
 .type2:hover {
   .content_container {
@@ -138,7 +136,7 @@
 .type1:hover {
   .content_container {
     background: rgba($primary-text-color, 0.7);
-    
+
     .description {
       max-height: 200px;
       opacity: 1;
@@ -155,18 +153,18 @@
   }
 }
 
-@include large{
+@include large {
   .masonary_container {
     .masonary {
       min-width: 625px;
     }
   }
-  
+
   .type1 {
     width: 310px;
     height: 380px;
   }
-  
+
   .type2 {
     width: 310px;
     height: 380px;
@@ -175,17 +173,17 @@
   .type2:hover {
     .content_container {
       background: rgba($primary-text-color, 0.7);
-  
+
       .capsule_container {
         margin-top: 140px;
       }
     }
   }
-  
+
   .type1:hover {
     .content_container {
       background: rgba($primary-text-color, 0.7);
-        
+
       .capsule_container {
         margin-top: 140px;
       }
@@ -197,12 +195,12 @@
       .title {
         font-size: 20px;
       }
-  
+
       .description {
         font-size: 12px;
         margin-top: 6px;
       }
-  
+
       .remaining {
         margin-top: 2px;
         font-size: 10px;
@@ -211,61 +209,58 @@
   }
 }
 
-@media only screen and (max-width : 670px) {
+@media only screen and (max-width: 670px) {
   .masonary_container {
     .masonary {
       min-width: 312px;
     }
   }
-  
+
   .type1 {
     width: 310px;
     height: 310px;
   }
-  
+
   .type2 {
     width: 310px;
     height: 310px;
   }
 
-
   .type2:hover {
     .content_container {
       background: rgba($primary-text-color, 0.7);
-  
-      .capsule_container {
-        margin-top: 80px;
-      }
-    }
-  }
-  
-  .type1:hover {
-    .content_container {
-      background: rgba($primary-text-color, 0.7);
-        
+
       .capsule_container {
         margin-top: 80px;
       }
     }
   }
 
+  .type1:hover {
+    .content_container {
+      background: rgba($primary-text-color, 0.7);
+
+      .capsule_container {
+        margin-top: 80px;
+      }
+    }
+  }
 
   .grid_image_container {
     .content_container {
       .title {
         font-size: 18px;
       }
-  
+
       .description {
         font-size: 10px;
         margin-top: 6px;
       }
-  
+
       .remaining {
         margin-top: 2px;
         font-size: 8px;
       }
     }
   }
-
 }

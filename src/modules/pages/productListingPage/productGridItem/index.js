@@ -7,29 +7,29 @@ import heartEmptyIcon from "Icons/heart-empty-icon.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
 import {
   addToWishlistAction,
-  removeFromWishlistAction
+  removeFromWishlistAction,
 } from "Core/modules/wishlist/wishlistActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addToBagAction } from "Core/modules/bag/bagActions";
 import longRightArrow from "Icons/long-right-arrow-white.svg";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class ProductGridItem extends Component {
   state = {
-    isWishlistLoading: false
+    isWishlistLoading: false,
   };
 
   onClickViewProduct = (exhibitionId, productId) => {
     const { navigateTo } = this.props;
     navigateTo("pdp", {
       exhibitionId,
-      productId
+      productId,
     });
   };
 
-  onClickWishlist = e => {
+  onClickWishlist = (e) => {
     e.stopPropagation();
 
     const { isWishlistLoading } = this.state;
@@ -37,17 +37,20 @@ class ProductGridItem extends Component {
       product,
       addToWishlistAction,
       removeFromWishlistAction,
-      translate
+      translate,
     } = this.props;
 
     if (!isWishlistLoading) {
       if (product.is_wishlisted)
         this.wishlistAction(
           removeFromWishlistAction,
-          translate('common.removed_from_wishlist')
+          translate("common.removed_from_wishlist")
         );
       else
-        this.wishlistAction(addToWishlistAction, translate('common.added_to_wishlist'));
+        this.wishlistAction(
+          addToWishlistAction,
+          translate("common.added_to_wishlist")
+        );
     }
   };
 
@@ -57,14 +60,14 @@ class ProductGridItem extends Component {
       showSuccessFlashMessage,
       exhibitionId,
       isUserSignedIn,
-      navigateTo
+      navigateTo,
     } = this.props;
 
     if (isUserSignedIn) {
       this.setState({ isWishlistLoading: true });
       action({
         product_id: product.id,
-        exhibition_id: exhibitionId
+        exhibition_id: exhibitionId,
       })
         .then(({ payload }) => {
           if (payload.code == 200 || payload.code == 201) {
@@ -72,7 +75,7 @@ class ProductGridItem extends Component {
           }
           this.setState({ isWishlistLoading: false });
         })
-        .catch(error => {
+        .catch((error) => {
           this.setState({ isWishlistLoading: false });
         });
     } else {
@@ -94,10 +97,10 @@ class ProductGridItem extends Component {
         exhibition_id: exhibitionId,
         product_id: productId,
         quantity: quantity,
-        is_configurable: is_configurable
+        is_configurable: is_configurable,
       }).then(({ payload }) => {
         if (payload.code === 200 || payload.code === 201) {
-          showSuccessFlashMessage(translate('common.added_to_bag'));
+          showSuccessFlashMessage(translate("common.added_to_bag"));
         }
       });
     } else {
@@ -106,26 +109,35 @@ class ProductGridItem extends Component {
   };
 
   render() {
-    const { exhibitionId, product, translate } = this.props;
+    const {
+      exhibitionId,
+      product,
+      translate,
+      languageReducer: { languageCode },
+    } = this.props;
     const { isWishlistLoading } = this.state;
-    console.log(product);
     return (
       <DivColumn
         className={styles.product_container}
         onClick={() => this.onClickViewProduct(exhibitionId, product.id)}
       >
-        <div className={styles.product_title}>{product.name}</div>
-        <div className={styles.product_description}>
-          {product.short_description}
+        <div className={styles.product_title}>
+          {product.translations[languageCode].name}
         </div>
-        <img className={styles.product_image} src={product.base_image ? product.base_image.path : null} />
+        <div className={styles.product_description}>
+          {product.translations[languageCode].short_description}
+        </div>
+        <img
+          className={styles.product_image}
+          src={product.base_image ? product.base_image.path : null}
+        />
         <DivRow className={styles.product_action_container}>
           <DivRow
             verticalCenter
             horizontalCenter
             className={`${styles.heart_icon_container} ${
               isWishlistLoading ? styles.is_disabled : ""
-              }`}
+            }`}
             onClick={this.onClickWishlist}
           >
             <img
@@ -142,14 +154,14 @@ class ProductGridItem extends Component {
             <div
               className={styles.action_text}
               style={{
-                color: "white"
+                color: "white",
               }}
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation();
                 this.onClickAddToBag(exhibitionId, product.id, 1, false);
               }}
             >
-              {`${translate('common.add_to_bag')} | ${product.formatted_price}`}
+              {`${translate("common.add_to_bag")} | ${product.formatted_price}`}
             </div>
             <img src={longRightArrow} />
           </DivRow>
@@ -159,13 +171,14 @@ class ProductGridItem extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isUserSignedIn: state.signInReducer.isUserSignedIn
+    isUserSignedIn: state.signInReducer.isUserSignedIn,
+    languageReducer: state.languageReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     addToWishlistAction: bindActionCreators(addToWishlistAction, dispatch),
     removeFromWishlistAction: bindActionCreators(
@@ -176,7 +189,7 @@ const mapDispathToProps = dispatch => {
       showSuccessFlashMessage,
       dispatch
     ),
-    addToBagAction: bindActionCreators(addToBagAction, dispatch)
+    addToBagAction: bindActionCreators(addToBagAction, dispatch),
   };
 };
 

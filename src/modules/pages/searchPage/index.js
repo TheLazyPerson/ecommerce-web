@@ -10,33 +10,34 @@ import { searchAction } from "Core/modules/search/searchActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import map from "lodash/map";
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from "lodash/isEmpty";
 import queryString from "query-string";
+import translatorHoc from "Hoc/translatorHoc";
 
 class SearchPage extends Component {
   constructor(props) {
     super(props);
-    this.initialLoaderRef = React.createRef()
+    this.initialLoaderRef = React.createRef();
   }
 
   getSlugBasedOntype = (searchType) => {
-    switch(searchType) {
-      case 'products':
-        return 'p';
-      case 'exhibitions':
-        return 'e';
+    switch (searchType) {
+      case "products":
+        return "p";
+      case "exhibitions":
+        return "e";
       default:
-        return 'all'
+        return "all";
+    }
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.location !== nextProps.location) {
+      setTimeout(() => {
+        this.initialLoaderRef.current.reload();
+      }, 200);
     }
   }
-
-   componentWillReceiveProps(nextProps) {
-     if (this.props.location !== nextProps.location) {
-      setTimeout(()=>{
-        this.initialLoaderRef.current.reload();
-      }, 200)
-     }
-   }
 
   render() {
     const {
@@ -44,6 +45,7 @@ class SearchPage extends Component {
       searchAction,
       match,
       location,
+      translate,
     } = this.props;
     const { searchType } = match.params;
     const { query } = queryString.parse(location.search);
@@ -51,24 +53,26 @@ class SearchPage extends Component {
     return (
       <FullWidthContainer>
         <DivColumn fillParent className={styles.search_container}>
-    <div className={styles.page_header}>{`Search: ${query}`}</div>
-          <InitialPageLoader 
+          <div className={styles.page_header}>{`${translate(
+            "search_page.search_title"
+          )}: ${query}`}</div>
+          <InitialPageLoader
             ref={this.initialLoaderRef}
-            initialPageApi={() => searchAction(this.getSlugBasedOntype(searchType), query)}
-            isEmpty={(isEmpty(productList) && isEmpty(exhibitionList))}
+            initialPageApi={() =>
+              searchAction(this.getSlugBasedOntype(searchType), query)
+            }
+            isEmpty={isEmpty(productList) && isEmpty(exhibitionList)}
             emptyScreenMessage="Can't find any exhibition or product"
           >
-            
             <DivColumn fillParent className={styles.search_list_container}>
-
               {!isEmpty(exhibitionList) && (
                 <DivColumn className={styles.section}>
-                  <div className={styles.section_header}>EXHIBITIONS</div>
+                  <div className={styles.section_header}>
+                    {translate("search_page.search_exhibition_title")}
+                  </div>
                   <DivRow className={styles.section_list}>
-                    {map(exhibitionList, exhibition => (
-                      <ExhibitionItemComponent 
-                        exhibition={exhibition}
-                      />
+                    {map(exhibitionList, (exhibition) => (
+                      <ExhibitionItemComponent exhibition={exhibition} />
                     ))}
                   </DivRow>
                 </DivColumn>
@@ -76,12 +80,12 @@ class SearchPage extends Component {
 
               {!isEmpty(productList) && (
                 <DivColumn className={styles.section}>
-                  <div className={styles.section_header}>PRODUCTS</div>
+                  <div className={styles.section_header}>
+                    {translate("search_page.search_product_title")}
+                  </div>
                   <DivRow className={styles.section_list}>
-                    {map(productList, product => (
-                      <ProductItemComponent 
-                        product={product}
-                      />
+                    {map(productList, (product) => (
+                      <ProductItemComponent product={product} />
                     ))}
                   </DivRow>
                 </DivColumn>
@@ -94,19 +98,20 @@ class SearchPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    searchReducer: state.searchReducer
+    searchReducer: state.searchReducer,
+    languageReducer: state.languageReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    searchAction: bindActionCreators(searchAction, dispatch)
+    searchAction: bindActionCreators(searchAction, dispatch),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(SearchPage);
+)(translatorHoc(SearchPage));

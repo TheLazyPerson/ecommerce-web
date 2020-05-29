@@ -21,7 +21,7 @@ class ProfileHelpCenter extends Component {
   state = {
     helpCenterList: [
       {
-        title: "TRACK, CANCEL, RETURN/EXCHANGE",
+        title: "TRACK ORDERS",
         description: "Check your order status",
         image: cartIcon,
         redirectTo: "orders",
