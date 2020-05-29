@@ -200,7 +200,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Area*"
+                      placeholder={translate("address_form_page.area")}
                       className={styles.input_text}
                     />
                   )}
@@ -210,7 +210,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Block Number*"
+                      placeholder={translate("address_form_page.block_number")}
                       className={styles.input_text}
                     />
                   )}
@@ -221,7 +221,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="House Number*"
+                      placeholder={translate("address_form_page.house_number")}
                       className={styles.input_text}
                     />
                   )}
@@ -232,7 +232,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Street Number*"
+                      placeholder={translate("address_form_page.street_number")}
                       className={styles.input_text}
                     />
                   )}
@@ -242,7 +242,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Avenue"
+                      placeholder={translate("address_form_page.avenue")}
                       className={styles.input_text}
                     />
                   )}
@@ -253,7 +253,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="Landmark*"
+                      placeholder={translate("address_form_page.landmark")}
                       className={styles.input_text}
                     />
                   )}
@@ -264,7 +264,7 @@ class AddAddressForm extends Component {
                     <InputTextComponent
                       meta={meta}
                       {...input}
-                      placeholder="City*"
+                      placeholder={translate("address_form_page.city")}
                       className={styles.input_text}
                     />
                   )}
