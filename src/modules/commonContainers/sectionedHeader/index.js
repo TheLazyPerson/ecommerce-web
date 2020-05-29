@@ -79,14 +79,16 @@ class SectionedHeader extends Component {
         />
 
         <DivRow verticalCenter>
-          <a
-            className={`${styles.sigin_link} ${styles.header_item_container} ${
-              whiteColor ? styles.is_white : ""
-            }`}
-            href={SELLER_LINK}
-          >
-            {translate("common.seller")}
-          </a>
+          {!isUserSignedIn && (
+            <a
+              className={`${styles.sigin_link} ${
+                styles.header_item_container
+              } ${whiteColor ? styles.is_white : ""}`}
+              href={SELLER_LINK}
+            >
+              {translate("common.seller")}
+            </a>
+          )}
           <DivRow
             className={styles.header_item_container}
             verticalCenter
