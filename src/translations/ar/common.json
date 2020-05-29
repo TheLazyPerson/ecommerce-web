@@ -51,6 +51,11 @@
     "filters": "مرشحات",
     "prices": "الأسعار"
   },
+  "sort": {
+    "sort_title": "فرز",
+    "price_low_to_high": "السعر من الارخص للاعلى",
+    "price_high_to_low": "السعر الاعلى الى الادنى"
+  },
   "footer": {
     "experience": "تجربة  Home Expo APP على الهاتف المحمول",
     "faq": "التعليمات",
