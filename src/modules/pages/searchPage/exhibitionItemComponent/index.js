@@ -6,23 +6,30 @@ import CapsuleText from "CommonComponents/capsuleText";
 import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import styles from "./exhibition_item_component.module.scss";
 import navigatorHoc from "Hoc/navigatorHoc";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 class ExhibitionItemComponent extends Component {
   onClickViewExhibition = () => {
     const { navigateTo, exhibition } = this.props;
 
     navigateTo("plp", {
-      id: exhibition.id
+      id: exhibition.id,
     });
   };
 
   render() {
-    const { exhibition, isRTL } = this.props;
+    const { exhibition, isRTL, translate } = this.props;
 
     return (
-      <DivRow className={`${styles.exhibition_item_container} ${isRTL ? styles.rtl : ''}`}>
-        <img src={`https://source.unsplash.com/100x10${exhibition.id}/?product`} className={styles.exhibition_image} />
+      <DivRow
+        className={`${styles.exhibition_item_container} ${
+          isRTL ? styles.rtl : ""
+        }`}
+      >
+        <img src={exhibition.base_image} className={styles.exhibition_image} />
 
         <DivColumn className={styles.exhibition_details_container}>
           <div className={styles.exhibition_name}>{exhibition.title}</div>
@@ -40,7 +47,7 @@ class ExhibitionItemComponent extends Component {
             className={styles.view_exhibition_button}
             onClick={this.onClickViewExhibition}
           >
-            View Exhibition
+            {translate("search_page.explore_exhibition")}
           </CapsuleButton>
         </DivColumn>
       </DivRow>
@@ -48,4 +55,14 @@ class ExhibitionItemComponent extends Component {
   }
 }
 
-export default navigatorHoc(translatorHoc(ExhibitionItemComponent));
+const mapStateToProps = (state) => {
+  return {
+    isUserSignedIn: state.signInReducer.isUserSignedIn,
+    languageReducer: state.languageReducer,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(navigatorHoc(translatorHoc(ExhibitionItemComponent)));
