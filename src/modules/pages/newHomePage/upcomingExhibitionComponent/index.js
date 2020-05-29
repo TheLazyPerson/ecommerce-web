@@ -77,5 +77,4 @@ class UpcomingExhibitionComponent extends Component {
   }
 }
 
-// https://source.unsplash.com/500x500/?product
 export default transltorHoc(UpcomingExhibitionComponent);

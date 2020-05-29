@@ -33,6 +33,7 @@ import FullwidthHeader from "CommonContainers/fullwidthHeader";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import isEmpty from "lodash/isEmpty";
 import size from "lodash/size";
+import { SELLER_LINK } from "Constants/applicationLinksConstansts";
 
 class NewHomePage extends Component {
   state = {
@@ -69,8 +70,7 @@ class NewHomePage extends Component {
   };
 
   onClickSellerButton = () => {
-    window.location.href =
-      "http://ec2-15-206-82-110.ap-south-1.compute.amazonaws.com/";
+    window.location.href = SELLER_LINK;
   };
 
   onScrollDownClick() {
