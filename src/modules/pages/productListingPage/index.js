@@ -51,11 +51,20 @@ class ProductListingPage extends Component {
     this.productListRef.current.makePageApiCall();
   };
 
+  onRemoveCapsule = (id) => {
+    const arr = this.state.filters.category_filter.filter(
+      (item) => item !== id
+    );
+    this.setState({
+      filters: { category_filter: arr },
+    });
+  };
+
   render() {
     const parsed = queryString.parse(this.props.location.search);
     const { sort, filters } = this.state;
     const {
-      productListReducer: { productList, products },
+      productListReducer: { products },
       getProductListAction,
     } = this.props;
 
@@ -63,6 +72,8 @@ class ProductListingPage extends Component {
       filters,
       sort,
     };
+
+    const { category_filter } = this.state.filters;
 
     return (
       <SectionedContainer
@@ -75,10 +86,19 @@ class ProductListingPage extends Component {
       >
         <DivColumn className={styles.product_listing_container}>
           <DivRow className={styles.filter_view_container}>
-            <DivRow className={styles.filter_container}>
-              <FilterCapsule className={styles.filter_item} />
-              <FilterCapsule className={styles.filter_item} />
-            </DivRow>
+            {category_filter && (
+              <DivRow className={styles.filter_container}>
+                {map(category_filter, (filters, index) => {
+                  return (
+                    <FilterCapsule
+                      className={styles.filter_item}
+                      onRemoveCapsule={this.onRemoveCapsule}
+                    />
+                  );
+                })}
+              </DivRow>
+            )}
+
             <div></div>
             <DropdownCapsule onChange={this.onChangeSort} />
           </DivRow>
