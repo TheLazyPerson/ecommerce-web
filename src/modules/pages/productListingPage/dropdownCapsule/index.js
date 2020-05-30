@@ -3,31 +3,30 @@ import styles from "./dropdown_capsule.module.scss";
 import DivRow from "CommonComponents/divRow";
 // import arrowDownIcon from 'Icons/arrow-down-icon-black.svg';
 import Select from "react-select";
+import translatorHoc from "Hoc/translatorHoc";
 
-export default class DropdownCapsule extends Component {
-  getDropdownValue = () => [
-    {
-      value: "price_low_to_high",
-      label: "Price Low To High",
-    },
-    {
-      value: "price_high_to_low",
-      label: "Price High To Low",
-    },
-  ];
-
+class DropdownCapsule extends Component {
   render() {
-    const { onChange } = this.props;
-
+    const { onChange, translate } = this.props;
+    const dropdownValues = [
+      {
+        value: "price_low_to_high",
+        label: translate("sort.price_low_to_high"),
+      },
+      {
+        value: "price_high_to_low",
+        label: translate("sort.price_high_to_low"),
+      },
+    ];
     return (
       <DivRow className={styles.capsule_container}>
         <Select
           className="dropdown-container"
           classNamePrefix="dropdown"
           name="sort"
-          placeholder="Sort"
+          placeholder={translate("sort.sort_title")}
           onChange={onChange}
-          options={this.getDropdownValue()}
+          options={dropdownValues}
         />
         {/* <div className={styles.capsule_text}>Sort by</div>
         <img
@@ -38,3 +37,5 @@ export default class DropdownCapsule extends Component {
     );
   }
 }
+
+export default translatorHoc(DropdownCapsule);
