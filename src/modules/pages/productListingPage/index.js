@@ -66,6 +66,7 @@ class ProductListingPage extends Component {
     const {
       productListReducer: { products },
       getProductListAction,
+      isRTL,
     } = this.props;
 
     const parsedBody = {
@@ -84,7 +85,11 @@ class ProductListingPage extends Component {
           />
         }
       >
-        <DivColumn className={styles.product_listing_container}>
+        <DivColumn
+          className={`${styles.product_listing_container}  ${
+            isRTL ? styles.rtl : ""
+          }`}
+        >
           <DivRow className={styles.filter_view_container}>
             {category_filter && (
               <DivRow className={styles.filter_container}>
@@ -129,6 +134,7 @@ class ProductListingPage extends Component {
 const mapStateToProps = (state) => {
   return {
     productListReducer: state.productListReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 

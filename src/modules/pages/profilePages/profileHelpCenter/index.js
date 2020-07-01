@@ -21,14 +21,26 @@ class ProfileHelpCenter extends Component {
   state = {
     helpCenterList: [
       {
-        title: "TRACK ORDERS",
-        description: "Check your order status",
+        en: {
+          title: "TRACK, CANCEL, RETURN/EXCHANGE",
+          description: "Check your order status",
+        },
+        ar: {
+          title: "المسار ، الإلغاء ، العودة / التبادل",
+          description: "تحقق من حالة طلبك",
+        },
         image: cartIcon,
         redirectTo: "orders",
       },
       {
-        title: "FREQUENTLY ASKED QUESTIONS",
-        description: "More queries related to your experience",
+        en: {
+          title: "FREQUENTLY ASKED QUESTIONS",
+          description: "More queries related to your experience",
+        },
+        ar: {
+          title: "أسئلة مكررة",
+          description: "المزيد من الاستفسارات المتعلقة بتجربتك",
+        },
         image: faqIcon,
         redirectTo: "faq",
       },
@@ -76,12 +88,21 @@ class ProfileHelpCenter extends Component {
 
   render() {
     const { helpCenterList } = this.state;
-    const { translate } = this.props;
+    const {
+      translate,
+      languageReducer: { languageCode },
+      isRTL,
+    } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <NavHeader title={translate("help_center.header_title")} />
 
-        <DivColumn fillParent className={styles.help_center_container}>
+        <DivColumn
+          fillParent
+          className={` ${styles.help_center_container} ${
+            isRTL ? styles.rtl : ""
+          }`}
+        >
           <DivRow className={styles.list_container}>
             {map(helpCenterList, (helpCenterItem) => (
               <DivColumn
@@ -93,9 +114,11 @@ class ProfileHelpCenter extends Component {
                 }
               >
                 <img src={helpCenterItem.image} className={styles.item_icon} />
-                <div className={styles.item_title}>{helpCenterItem.title}</div>
+                <div className={styles.item_title}>
+                  {helpCenterItem[languageCode].title}
+                </div>
                 <div className={styles.item_description}>
-                  {helpCenterItem.description}
+                  {helpCenterItem[languageCode].description}
                 </div>
               </DivColumn>
             ))}
@@ -148,6 +171,7 @@ class ProfileHelpCenter extends Component {
 const mapStateToProps = (state) => {
   return {
     supportReducer: state.supportReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
