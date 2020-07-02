@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .product_listing_container {
   padding-top: 30px;
@@ -31,7 +31,7 @@
 }
 
 @include medium {
-  .product_listing_container {  
+  .product_listing_container {
     .product_list_container {
       .product_list {
         flex-flow: wrap;
@@ -42,5 +42,12 @@
 }
 
 @include small {
+}
 
+.rtl {
+  .product_list_container {
+    .product_list {
+      flex-direction: row-reverse;
+    }
+  }
 }

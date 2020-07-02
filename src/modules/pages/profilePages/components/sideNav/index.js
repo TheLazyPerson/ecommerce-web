@@ -85,9 +85,13 @@ class SideNav extends Component {
     const { selectedRoute } = this.state;
     const {
       languageReducer: { languageCode },
+      isRTL,
     } = this.props;
     return (
-      <DivColumn verticalCenter className={styles.side_nav_container}>
+      <DivColumn
+        verticalCenter
+        className={`${styles.side_nav_container}  ${isRTL ? styles.rtl : ""}`}
+      >
         {map(profileListItem, (listItem) => {
           if (listItem.title !== "Logout") {
             const isSelected = selectedRoute === listItem.slug;
@@ -128,6 +132,7 @@ class SideNav extends Component {
 const mapStateToProps = (state) => {
   return {
     languageReducer: state.languageReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 

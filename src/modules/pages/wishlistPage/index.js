@@ -12,7 +12,7 @@ import map from "lodash/map";
 import size from "lodash/size";
 import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class WishlistPage extends Component {
   navigateToHome = () => {
@@ -24,27 +24,33 @@ class WishlistPage extends Component {
     const {
       getWishlistAction,
       wishlistReducer: { wishlist },
-      translate
+      translate,
+      isRTL,
     } = this.props;
 
     return (
       <FullWidthContainer>
-        <DivColumn fillParent className={styles.wishlist_container}>
-          <div className={styles.page_header}>{translate('wishlist_page.my_wishlist')}</div>
+        <DivColumn
+          fillParent
+          className={`${styles.wishlist_container}  ${isRTL ? styles.rtl : ""}`}
+        >
+          <div className={styles.page_header}>
+            {translate("wishlist_page.my_wishlist")}
+          </div>
           <InitialPageLoader
             isEmpty={!size(wishlist)}
             initialPageApi={getWishlistAction}
             customEmptyScreen={
               <EmptyScreenComponent
-                description={translate('wishlist_page.empty_message')}
-                buttonTitle={translate('wishlist_page.start_shopping')}
+                description={translate("wishlist_page.empty_message")}
+                buttonTitle={translate("wishlist_page.start_shopping")}
                 buttonOnClick={this.navigateToHome}
                 className={styles.empty_screen_container}
               />
             }
           >
             <DivRow className={styles.wishlist_list_container}>
-              {map(wishlist, wishlistItem => (
+              {map(wishlist, (wishlistItem) => (
                 <WishlistItemComponent wishlistItem={wishlistItem} />
               ))}
             </DivRow>
@@ -55,15 +61,16 @@ class WishlistPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    wishlistReducer: state.wishlistReducer
+    wishlistReducer: state.wishlistReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    getWishlistAction: bindActionCreators(getWishlistAction, dispatch)
+    getWishlistAction: bindActionCreators(getWishlistAction, dispatch),
   };
 };
 

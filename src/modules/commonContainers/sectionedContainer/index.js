@@ -11,6 +11,7 @@ import "@material/react-drawer/dist/drawer.css";
 import hamburgerIconBlack from "Icons/hamburger-menu-icon-black.svg";
 import SearchBar from "CommonContainers/searchBar";
 import PageFooter from "CommonComponents/pageFooter";
+import { connect } from "react-redux";
 
 class SectionedContainer extends Component {
   state = {
@@ -27,7 +28,7 @@ class SectionedContainer extends Component {
   };
 
   render() {
-    const { isAbsoluteContent, sideBarContainer, children } = this.props;
+    const { isAbsoluteContent, sideBarContainer, children, isRTL } = this.props;
     const { openDrawer } = this.state;
 
     const sideContainer = (
@@ -65,7 +66,9 @@ class SectionedContainer extends Component {
 
     return (
       <Fragment>
-        <DivRow className={styles.page_container}>
+        <DivRow
+          className={`${styles.page_container} ${isRTL ? styles.rtl : ""}`}
+        >
           <Drawer
             modal
             open={openDrawer}
@@ -118,4 +121,10 @@ class SectionedContainer extends Component {
   }
 }
 
-export default navigatorHoc(SectionedContainer);
+const mapStateToProps = (state) => {
+  return {
+    isRTL: state.languageReducer.isRTL,
+  };
+};
+
+export default connect(mapStateToProps, null)(navigatorHoc(SectionedContainer));
