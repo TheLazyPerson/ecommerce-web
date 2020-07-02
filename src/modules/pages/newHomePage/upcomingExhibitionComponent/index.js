@@ -4,6 +4,7 @@ import DivRow from "CommonComponents/divRow";
 import styles from "./upcoming_exhibition_component.module.scss";
 import arrowRight from "Icons/arrow-right-point-icon-black.svg";
 import transltorHoc from "Hoc/translatorHoc";
+import { connect } from "react-redux";
 
 class UpcomingExhibitionComponent extends Component {
   state = {
@@ -40,7 +41,7 @@ class UpcomingExhibitionComponent extends Component {
     return (
       <DivRow
         fillSelfHorizontal
-        className={`${isRTL ? styles.rtl : ""} ${styles.component_container}`}
+        className={` ${styles.component_container} ${isRTL ? styles.rtl : ""} `}
       >
         <img className={styles.image} src={`${exhibition.base_image}`} />
 
@@ -77,4 +78,13 @@ class UpcomingExhibitionComponent extends Component {
   }
 }
 
-export default transltorHoc(UpcomingExhibitionComponent);
+const mapStateToProps = (state) => {
+  return {
+    isRTL: state.languageReducer.isRTL,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(transltorHoc(UpcomingExhibitionComponent));
