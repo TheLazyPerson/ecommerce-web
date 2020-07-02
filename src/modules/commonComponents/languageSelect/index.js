@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import styles from "./language_select.module.scss";
-import DivRow from 'CommonComponents/divRow';
+import DivRow from "CommonComponents/divRow";
 import { withTranslation } from "react-i18next";
 import { LANG } from "Constants/cookieConstants";
 import { CookieService } from "Utils/cookieService";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { setLanguageAction } from 'Core/modules/language/languageActions';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setLanguageAction } from "Core/modules/language/languageActions";
 
 class LanguageSelect extends Component {
-
-  changeLanguage = languageCode => {
+  changeLanguage = (languageCode) => {
     const { i18n, setLanguageAction } = this.props;
 
     i18n.changeLanguage(languageCode);
@@ -19,14 +18,17 @@ class LanguageSelect extends Component {
   };
 
   render() {
-    const { blackColor, languageReducer: { languageCode } } = this.props;
-    const arSelected = languageCode == "ar";
-    const enSelected = languageCode == "en";
+    const {
+      blackColor,
+      languageReducer: { languageCode },
+    } = this.props;
+    const arSelected = languageCode === "ar";
+    const enSelected = languageCode === "en";
 
     return (
       <DivRow
-       className={`${blackColor ? styles.black : styles.white}`}
-       verticalCenter
+        className={`${blackColor ? styles.black : styles.white}`}
+        verticalCenter
       >
         <span
           className={`${styles.language_item_text} ${
@@ -51,18 +53,19 @@ class LanguageSelect extends Component {
   }
 }
 
-
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     languageReducer: state.languageReducer,
-  }
-}
+  };
+};
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     setLanguageAction: bindActionCreators(setLanguageAction, dispatch),
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(withTranslation()(LanguageSelect));
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(withTranslation()(LanguageSelect));

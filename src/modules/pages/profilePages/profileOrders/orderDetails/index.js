@@ -7,7 +7,6 @@ import styles from "./order_details.module.scss";
 import NavHeader from "../../components/navHeader";
 import map from "lodash/map";
 import navigatorHoc from "Hoc/navigatorHoc";
-import HorizontalBorder from "CommonComponents/horizontalBorder";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import { getOrderDetailsAction } from "Core/modules/order/orderActions";
 import { connect } from "react-redux";
@@ -158,6 +157,7 @@ class OrderDetails extends Component {
                 {map(productItems, (productItem, index) => (
                   <DivRow className={styles.product_item_container}>
                     <img
+                      alt={productItem.product.translations[languageCode].name}
                       className={styles.product_image}
                       src={
                         productItem.product.base_image

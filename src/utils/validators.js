@@ -1,5 +1,3 @@
-import isEmpty from "lodash/isEmpty";
-
 export const nameValidator = (value) => {
   const nameRegex = /^[A-Za-z]+$/;
   let error = "";

@@ -26,7 +26,7 @@ class ResetPasswordSuccess extends Component {
           className={styles.page_container}
         >
           <div className={styles.circle}>
-            <img className={styles.image} src={Checked} />
+            <img alt="Success" className={styles.image} src={Checked} />
           </div>
           <div className={styles.signin_title_text}>
             Password Change Successful!

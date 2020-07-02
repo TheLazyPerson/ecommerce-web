@@ -23,7 +23,6 @@ import {
 import find from "lodash/find";
 import Select from "react-select";
 import map from "lodash/map";
-import isEmpty from "lodash/isEmpty";
 import translatorHoc from "Hoc/translatorHoc";
 class AddAddressForm extends Component {
   validate = (values) => {
@@ -118,7 +117,7 @@ class AddAddressForm extends Component {
       translate,
     } = this.props;
     const editAddress = find(addressList, (address) => {
-      return address.id == addressId;
+      return address.id === addressId;
     });
     const addressTypes = [
       {
@@ -133,16 +132,16 @@ class AddAddressForm extends Component {
     const countries = this.formatSelectorData(basicData.countries);
     const states = this.formatSelectorData(basicData.states);
     const defaultCountry = find(countries, (country) => {
-      return editAddress && country.value == editAddress.country;
+      return editAddress && country.value === editAddress.country;
     });
     const defaultState = find(states, (state) => {
-      return editAddress && state.value == editAddress.state;
+      return editAddress && state.value === editAddress.state;
     });
 
     let defaultAddressType = null;
 
     if (editAddress && editAddress.name) {
-      if (editAddress.name == "home") {
+      if (editAddress.name === "home") {
         defaultAddressType = addressTypes[0];
       } else {
         defaultAddressType = addressTypes[1];
