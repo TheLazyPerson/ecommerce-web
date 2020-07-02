@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .side_nav_container {
   flex: 1;
@@ -48,9 +48,29 @@
     .nav_title {
       color: $primary-text-color;
     }
-    
+
     .nav_description {
       color: $primary-text-color;
     }
+  }
+}
+
+.rtl {
+  direction: rtl;
+  text-align: right;
+
+  .nav_item {
+    .nav_image {
+      margin-left: 10px;
+    }
+
+    .nav_indicator {
+      margin-left: 0px !important;
+      margin-right: auto;
+    }
+  }
+
+  .list_header {
+    margin: 31px 20px 5px 0px !important;
   }
 }

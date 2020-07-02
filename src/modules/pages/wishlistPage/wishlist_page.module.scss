@@ -1,4 +1,4 @@
-@import '~Styles/colors.module';
+@import "~Styles/colors.module";
 
 .wishlist_container {
   padding: 30px 60px 0px 60px;
@@ -19,4 +19,11 @@
 
 .empty_screen_container {
   margin-top: 50px;
+}
+
+.rtl {
+  text-align: right;
+  .wishlist_list_container {
+    flex-direction: row-reverse;
+  }
 }

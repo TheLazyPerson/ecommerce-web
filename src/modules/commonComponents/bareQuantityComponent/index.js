@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import DivRow from "CommonComponents/divRow";
-import DivColumn from "CommonComponents/divColumn";
 import styles from "./bare_quantity_component.module.scss";
 import minusIcon from "Icons/minus-icon.svg";
 import plusIcon from "Icons/plus-icon.svg";
