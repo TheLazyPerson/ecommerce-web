@@ -113,7 +113,11 @@ class ProfileHelpCenter extends Component {
                   this.onHelpCenterItemSelect(helpCenterItem.redirectTo)
                 }
               >
-                <img src={helpCenterItem.image} className={styles.item_icon} />
+                <img
+                  alt={helpCenterItem[languageCode].title}
+                  src={helpCenterItem.image}
+                  className={styles.item_icon}
+                />
                 <div className={styles.item_title}>
                   {helpCenterItem[languageCode].title}
                 </div>

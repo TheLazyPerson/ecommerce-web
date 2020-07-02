@@ -1,15 +1,13 @@
-import React, { Component, Fragment, useEffect } from "react";
+import React, { Component, Fragment } from "react";
 import styles from "./new_home_page.module.scss";
-import SectionedContainer from "CommonContainers/sectionedContainer";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
-import socialFacebookIcon from "Icons/social-facebook-icon-white.svg";
-import socialInstagramIcon from "Icons/social-instagram-icon-white.svg";
-import socialTwitterIcon from "Icons/social-twitter-icon-white.svg";
+// import socialFacebookIcon from "Icons/social-facebook-icon-white.svg";
+// import socialInstagramIcon from "Icons/social-instagram-icon-white.svg";
+// import socialTwitterIcon from "Icons/social-twitter-icon-white.svg";
 import arrowRightIcon from "Icons/arrow-right-icon-white.svg";
 import shareIcon from "Icons/share-icon-black.svg";
 import scrollDown from "Icons/scroll-down-icon-white.svg";
-import LanguageSelect from "CommonComponents/languageSelect";
 import Swiper from "react-id-swiper";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -21,8 +19,6 @@ import {
 } from "Core/modules/homepage/homePageActions";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
 import map from "lodash/map";
-import SectionedHeader from "CommonContainers/sectionedHeader";
-import appIcon from "Images/logo-image.png";
 import navigatorHoc from "Hoc/navigatorHoc";
 import PageFooter from "CommonComponents/pageFooter";
 import ExhibitionDetailComponent from "CommonComponents/exhibitionDetailComponent";
@@ -30,7 +26,6 @@ import MasonryGridContainer from "CommonContainers/masonryGridContainer";
 import UpcomingExhibitionComponent from "./upcomingExhibitionComponent";
 import translatorHoc from "Hoc/translatorHoc";
 import FullwidthHeader from "CommonContainers/fullwidthHeader";
-import CapsuleButton from "CommonComponents/capsuleButton";
 import isEmpty from "lodash/isEmpty";
 import size from "lodash/size";
 import { SELLER_LINK } from "Constants/applicationLinksConstansts";
@@ -89,7 +84,7 @@ class NewHomePage extends Component {
     const {
       currentSlide,
       showHeaderShadow,
-      currentSliderExhibitionImage,
+      //currentSliderExhibitionImage,
     } = this.state;
     const {
       homePageReducer: {

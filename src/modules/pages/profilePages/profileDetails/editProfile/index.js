@@ -110,7 +110,7 @@ class EditProfile extends Component {
     let defaultGender = null;
 
     if (userDetails.gender) {
-      if (userDetails.gender == "male") defaultGender = genderOptions[0];
+      if (userDetails.gender === "male") defaultGender = genderOptions[0];
       else defaultGender = genderOptions[1];
     }
 
