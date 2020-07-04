@@ -13,7 +13,7 @@ import size from "lodash/size";
 import EmptyScreenComponent from "CommonComponents/emptyScreenComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
 import OrderSummary from "../placeOrderPage/orderSummary";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class CheckoutPage extends Component {
   navigateToWishlist = () => {
@@ -30,18 +30,32 @@ class CheckoutPage extends Component {
     const {
       bagReducer: { bagData },
       getBagListAction,
-      translate
+      translate,
+      isRTL,
     } = this.props;
     return (
       <FullWidthContainer>
-        <DivRow fillParent className={styles.checkout_container}>
+        <DivRow
+          fillParent
+          className={`${styles.checkout_container} ${isRTL ? styles.rtl : ""}`}
+        >
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.table_header}>
-              <div className={styles.flex_2}>{translate('checkout_page.header_product')}</div>
-              <div className={`${styles.flex_1} ${styles.exhibition_header}`}>{translate('checkout_page.header_exhibition')}</div>
-              <div className={styles.flex_1}>{translate('checkout_page.header_price')}</div>
-              <div className={styles.flex_1}>{translate('checkout_page.header_quantity')}</div>
-              <div className={`${styles.flex_1} ${styles.total_price_header}`}>{translate('checkout_page.header_total_price')}</div>
+              <div className={styles.flex_2}>
+                {translate("checkout_page.header_product")}
+              </div>
+              <div className={`${styles.flex_1} ${styles.exhibition_header}`}>
+                {translate("checkout_page.header_exhibition")}
+              </div>
+              <div className={styles.flex_1}>
+                {translate("checkout_page.header_price")}
+              </div>
+              <div className={styles.flex_1}>
+                {translate("checkout_page.header_quantity")}
+              </div>
+              <div className={`${styles.flex_1} ${styles.total_price_header}`}>
+                {translate("checkout_page.header_total_price")}
+              </div>
             </DivRow>
 
             <InitialPageLoader
@@ -49,9 +63,9 @@ class CheckoutPage extends Component {
               initialPageApi={getBagListAction}
               customEmptyScreen={
                 <EmptyScreenComponent
-                  title={translate('checkout_page.empty_title')}
-                  description={translate('checkout_page.empty_description')}
-                  buttonTitle={translate('checkout_page.go_to_wishlist')}
+                  title={translate("checkout_page.empty_title")}
+                  description={translate("checkout_page.empty_description")}
+                  buttonTitle={translate("checkout_page.go_to_wishlist")}
                   className={styles.empty_page_container}
                   buttonOnClick={this.navigateToWishlist}
                 />
@@ -66,9 +80,11 @@ class CheckoutPage extends Component {
           </DivColumn>
 
           <DivColumn>
-            <OrderSummary 
+            <OrderSummary
               onSubmitButtonClick={this.navigateToPlaceOrder}
-              submitButtonText={translate('checkout_page.select_delivery_address')}
+              submitButtonText={translate(
+                "checkout_page.select_delivery_address"
+              )}
             />
           </DivColumn>
         </DivRow>
@@ -77,15 +93,16 @@ class CheckoutPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    bagReducer: state.bagReducer
+    bagReducer: state.bagReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
-    getBagListAction: bindActionCreators(getBagListAction, dispatch)
+    getBagListAction: bindActionCreators(getBagListAction, dispatch),
   };
 };
 

@@ -97,6 +97,15 @@
       }
     }
   }
+  .rtl {
+    flex-direction: row-reverse;
+    .top_header_container {
+      .header_container {
+        //height: 50px;
+        direction: rtl;
+      }
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -127,8 +136,23 @@
       }
     }
   }
+  .rtl {
+    flex-direction: row-reverse;
+    .top_header_container {
+      .header_container {
+        //height: 50px;
+        direction: rtl;
+      }
+    }
+  }
 }
 
 .rtl {
   flex-direction: row-reverse;
+  .top_header_container {
+    .header_container {
+      //height: 50px;
+      direction: rtl;
+    }
+  }
 }
