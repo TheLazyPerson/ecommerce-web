@@ -8,6 +8,7 @@ import appIcon from "Icons/app-icon-black.svg";
 import appIconWhite from "Icons/app-icon-white.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
 import SearchBar from "CommonContainers/searchBar";
+import { connect } from "react-redux";
 
 class FullwidthHeader extends Component {
   onClickAppIcon = () => {
@@ -16,10 +17,15 @@ class FullwidthHeader extends Component {
   };
 
   render() {
-    const { children, whiteColor, className } = this.props;
+    const { children, whiteColor, className, isRTL } = this.props;
 
     return (
-      <div fillSelfHorizontal className={`${styles.top_header} ${className}`}>
+      <div
+        fillSelfHorizontal
+        className={`${styles.top_header} ${className}  ${
+          isRTL ? styles.rtl : ""
+        }`}
+      >
         <DivRow className={`${styles.header_container}`}>
           <DivRow className={styles.header_icon_container}>
             <div
@@ -47,7 +53,13 @@ class FullwidthHeader extends Component {
 }
 
 FullwidthHeader.defaultProps = {
-  whiteColor: false
+  whiteColor: false,
 };
 
-export default navigatorHoc(FullwidthHeader);
+const mapStateToProps = (state) => {
+  return {
+    isRTL: state.languageReducer.isRTL,
+  };
+};
+
+export default connect(mapStateToProps, null)(navigatorHoc(FullwidthHeader));

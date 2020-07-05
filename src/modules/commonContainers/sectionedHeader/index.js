@@ -69,10 +69,18 @@ class SectionedHeader extends Component {
   };
 
   render() {
-    const { isUserSignedIn, bagCount, whiteColor, translate } = this.props;
+    const {
+      isUserSignedIn,
+      bagCount,
+      whiteColor,
+      translate,
+      isRTL,
+    } = this.props;
 
     return (
-      <DivRow className={styles.header_container}>
+      <DivRow
+        className={`${styles.header_container}  ${isRTL ? styles.rtl : ""}`}
+      >
         <SearchBar
           className={styles.search_bar_container}
           whiteColor={whiteColor}
@@ -200,6 +208,7 @@ const mapStateToProps = (state) => {
   return {
     isUserSignedIn: state.signInReducer.isUserSignedIn,
     bagCount: state.bagReducer.bagCount,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
