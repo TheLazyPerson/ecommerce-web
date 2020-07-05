@@ -54,6 +54,19 @@
       }
     }
   }
+  .rtl {
+    .header_container {
+      direction: rtl;
+      .header_icon_container {
+        .app_name {
+          font-weight: bold;
+          margin-left: 18px !important;
+          margin-right: 6px !important;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
 
 @include small {
@@ -81,5 +94,33 @@
 
   .search_bar_container {
     display: flex;
+  }
+
+  .rtl {
+    .header_container {
+      direction: rtl;
+      .header_icon_container {
+        .app_name {
+          font-weight: bold;
+          margin-left: 12px !important;
+          margin-right: 4px !important;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.rtl {
+  direction: rtl;
+  .header_container {
+    .header_icon_container {
+      .app_name {
+        font-weight: bold;
+        margin-left: 32px;
+        margin-right: 6px;
+        cursor: pointer;
+      }
+    }
   }
 }
