@@ -116,7 +116,8 @@ class AddAddressForm extends Component {
       translate,
     } = this.props;
     const editAddress = find(addressList, (address) => {
-      return address.id === addressId;
+      // eslint-disable-next-line
+      return address.id == addressId;
     });
     const addressTypes = [
       {
