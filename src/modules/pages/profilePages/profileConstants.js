@@ -4,7 +4,6 @@ import wishlistBlackIcon from "Icons/wishlist-icon-black.svg";
 import addressBlackIcon from "Icons/address-icon-black.svg";
 import profileBlackIcon from "Icons/profile-icon-black.svg";
 import settingsBlackIcon from "Icons/settings-icon-black.svg";
-import logoutBlackIcon from "Icons/logout-icon-black.svg";
 import overviewBlackIcon from "Icons/overview-icon-black.svg";
 
 import orderWhiteIcon from "Icons/orders-icon-white.svg";

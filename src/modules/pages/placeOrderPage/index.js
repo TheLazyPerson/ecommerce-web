@@ -3,7 +3,6 @@ import FullWidthContainer from "CommonContainers/fullwidthContainer";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./place_order_page.module.scss";
-import HorizontalBorder from "CommonComponents/horizontalBorder";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -98,9 +97,9 @@ class PlaceOrderPage extends Component {
       };
 
       selectAddressAction(selectAddressObject).then(({ payload }) => {
-        if (payload.code == 200 || payload.code == 201) {
+        if (payload.code === 200 || payload.code === 201) {
           selectShippingMethodAction(shippingObject).then(({ payload }) => {
-            if (payload.code == 200 || payload.code == 201) {
+            if (payload.code === 200 || payload.code === 201) {
               navigateTo("select-payment");
             }
           });
@@ -111,7 +110,7 @@ class PlaceOrderPage extends Component {
 
   onClickHeaderBack = () => {
     const { currentScreen } = this.state;
-    if (currentScreen != pageStates.SELECT_ADDRESS) {
+    if (currentScreen !== pageStates.SELECT_ADDRESS) {
       return () => this.changePageState(pageStates.SELECT_ADDRESS);
     }
     return null;
@@ -129,9 +128,9 @@ class PlaceOrderPage extends Component {
     const { currentScreen, editAddressId } = this.state;
     let navHeaderTitle = translate("place_order_page.title_select_address");
 
-    if (currentScreen == pageStates.ADD_ADDRESS)
+    if (currentScreen === pageStates.ADD_ADDRESS)
       navHeaderTitle = translate("place_order_page.title_add_address");
-    else if (currentScreen == pageStates.ADD_ADDRESS)
+    else if (currentScreen === pageStates.ADD_ADDRESS)
       navHeaderTitle = translate("place_order_page.title_edit_address");
 
     return (
@@ -145,7 +144,7 @@ class PlaceOrderPage extends Component {
               title={navHeaderTitle}
               onBackClick={this.onClickHeaderBack()}
             >
-              {currentScreen == pageStates.SELECT_ADDRESS && (
+              {currentScreen === pageStates.SELECT_ADDRESS && (
                 <CapsuleButton
                   onClick={() => this.changePageState(pageStates.ADD_ADDRESS)}
                 >
@@ -154,7 +153,7 @@ class PlaceOrderPage extends Component {
               )}
             </NavHeader>
 
-            {currentScreen == pageStates.SELECT_ADDRESS && (
+            {currentScreen === pageStates.SELECT_ADDRESS && (
               <InitialPageLoader
                 initialPageApi={getAddressListAction}
                 isEmpty={isEmpty(addressList)}
@@ -167,7 +166,7 @@ class PlaceOrderPage extends Component {
                     return (
                       <AddressItemComponent
                         address={address}
-                        isSelected={address.id == deliveryAddress.id}
+                        isSelected={address.id === deliveryAddress.id}
                         onClickEdit={this.handleEdit}
                         onClickRemove={this.handleAddressRemove}
                         onClickItem={() => selectDeliveryAddress(address)}
@@ -177,7 +176,7 @@ class PlaceOrderPage extends Component {
                 </DivColumn>
               </InitialPageLoader>
             )}
-            {currentScreen == pageStates.EDIT_ADDRESS && (
+            {currentScreen === pageStates.EDIT_ADDRESS && (
               <AddAddressForm
                 addressId={editAddressId}
                 onSubmitComplete={() =>
@@ -188,7 +187,7 @@ class PlaceOrderPage extends Component {
                 }
               />
             )}
-            {currentScreen == pageStates.ADD_ADDRESS && (
+            {currentScreen === pageStates.ADD_ADDRESS && (
               <AddAddressForm
                 onSubmitComplete={() =>
                   this.changePageState(pageStates.SELECT_ADDRESS)

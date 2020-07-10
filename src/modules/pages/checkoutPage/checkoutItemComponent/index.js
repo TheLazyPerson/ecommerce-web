@@ -2,30 +2,33 @@ import React, { Component } from "react";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./checkout_item_component.module.scss";
-import BareQuantityComponent from "CommonComponents/bareQuantityComponent";
 import closeIcon from "Icons/close-icon-black.svg";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   removeFromBagAction,
-  editQuantityAction
+  editQuantityAction,
 } from "Core/modules/bag/bagActions";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import navigatorHoc from "Hoc/navigatorHoc";
 import minusIcon from "Icons/minus-icon.svg";
 import plusIcon from "Icons/plus-icon.svg";
-import translatorHoc from 'Hoc/translatorHoc';
+import translatorHoc from "Hoc/translatorHoc";
 
 class CheckoutItemComponent extends Component {
   state = {
-    quantity: this.props.checkoutItem.quantity
+    quantity: this.props.checkoutItem.quantity,
   };
 
-  handleRemove = id => {
-    const { removeFromBagAction, showSuccessFlashMessage, translate } = this.props;
+  handleRemove = (id) => {
+    const {
+      removeFromBagAction,
+      showSuccessFlashMessage,
+      translate,
+    } = this.props;
     removeFromBagAction(id).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
-        showSuccessFlashMessage(translate('common.removed_from_bag'));
+        showSuccessFlashMessage(translate("common.removed_from_bag"));
       }
     });
   };
@@ -34,24 +37,24 @@ class CheckoutItemComponent extends Component {
     const { navigateTo } = this.props;
     navigateTo("pdp", {
       exhibitionId,
-      productId
+      productId,
     });
   };
 
   incrementItem = async () => {
-    await this.setState(prevState => {
+    await this.setState((prevState) => {
       return {
-        quantity: prevState.quantity + 1
+        quantity: prevState.quantity + 1,
       };
     });
     this.onEditQuanity();
   };
 
   decreaseItem = async () => {
-    await this.setState(prevState => {
+    await this.setState((prevState) => {
       if (prevState.quantity > 1) {
         return {
-          quantity: prevState.quantity - 1
+          quantity: prevState.quantity - 1,
         };
       } else {
         return null;
@@ -65,8 +68,8 @@ class CheckoutItemComponent extends Component {
     const id = checkoutItem.id;
     editQuantityAction({
       quantity: {
-        [id]: this.state.quantity
-      }
+        [id]: this.state.quantity,
+      },
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
       }
@@ -87,6 +90,7 @@ class CheckoutItemComponent extends Component {
           }
         >
           <img
+            alt={checkoutItem.product.name}
             src={checkoutItem.product.base_image.path}
             className={styles.product_image}
           />
@@ -98,7 +102,9 @@ class CheckoutItemComponent extends Component {
           </DivColumn>
         </DivRow>
 
-        <DivColumn className={`${styles.exhibition_column} ${styles.flex_1} ${styles.exhibition_title}`}>
+        <DivColumn
+          className={`${styles.exhibition_column} ${styles.flex_1} ${styles.exhibition_title}`}
+        >
           <div className={styles.title}>{checkoutItem.exhibition.title}</div>
           {/* <div className={styles.description}>Expires in: 2 days</div> */}
         </DivColumn>
@@ -134,10 +140,13 @@ class CheckoutItemComponent extends Component {
           verticalCenter
           className={`${styles.price_column} ${styles.flex_1} ${styles.total_price_header_container}`}
         >
-          <div className={`${styles.product_price} ${styles.total_price_header}`}>
+          <div
+            className={`${styles.product_price} ${styles.total_price_header}`}
+          >
             {checkoutItem.formated_total}
           </div>
           <img
+            alt="Remove"
             src={closeIcon}
             onClick={() => this.handleRemove(checkoutItem.id)}
           />
@@ -147,20 +156,20 @@ class CheckoutItemComponent extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    bagReducer: state.bagReducer
+    bagReducer: state.bagReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     removeFromBagAction: bindActionCreators(removeFromBagAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
     ),
-    editQuantityAction: bindActionCreators(editQuantityAction, dispatch)
+    editQuantityAction: bindActionCreators(editQuantityAction, dispatch),
   };
 };
 

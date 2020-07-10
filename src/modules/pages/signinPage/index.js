@@ -3,7 +3,6 @@ import FullWidthContainer from "CommonContainers/fullwidthContainer";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./signin_page.module.scss";
 import InputTextComponent from "CommonComponents/InputTextComponent";
-import InputCheckbox from "CommonComponents/InputCheckbox";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

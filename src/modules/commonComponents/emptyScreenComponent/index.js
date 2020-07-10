@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
-import CapsuleText from "CommonComponents/capsuleText";
-import map from "lodash/map";
 import styles from "./empty_screen_component.module.scss";
 
 export default class EmptyScreenComponent extends Component {
@@ -12,26 +10,28 @@ export default class EmptyScreenComponent extends Component {
       description,
       buttonTitle,
       buttonOnClick,
-      className
+      className,
     } = this.props;
 
     return (
-      <DivColumn horizontalCenter fillSelfHorizontal className={`${styles.component_container} ${className}`}>
-        {
-          title ? (<div className={styles.title}>{title}</div>): null
-        }
+      <DivColumn
+        horizontalCenter
+        fillSelfHorizontal
+        className={`${styles.component_container} ${className}`}
+      >
+        {title ? <div className={styles.title}>{title}</div> : null}
 
-        {
-          description ? (<div className={styles.description}>{description}</div>): null
-        }
-        
+        {description ? (
+          <div className={styles.description}>{description}</div>
+        ) : null}
+
         <DivRow
-         verticalCenter
-         horizontalCenter
-         className={styles.capsule_button}
-         onClick={buttonOnClick}
+          verticalCenter
+          horizontalCenter
+          className={styles.capsule_button}
+          onClick={buttonOnClick}
         >
-          {buttonTitle}          
+          {buttonTitle}
         </DivRow>
       </DivColumn>
     );

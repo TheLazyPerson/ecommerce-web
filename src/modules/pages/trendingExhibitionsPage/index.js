@@ -5,7 +5,6 @@ import translatorHoc from "Hoc/translatorHoc";
 import MasonryGridContainer from "CommonContainers/masonryGridContainer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import PageFooter from "CommonComponents/pageFooter";
 import FullWidthContainer from "CommonContainers/fullwidthContainer";
 import styles from "./trending_exhibitions_page.module.scss";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
@@ -15,12 +14,8 @@ class TrendingExhibitionsPage extends Component {
   render() {
     const {
       translate,
-      homePageReducer: {
-        exhibitionList,
-        trendingExhibitionList,
-        upcomingExhibitionList
-      },
-      getTrendingExhibitionListAction
+      homePageReducer: { trendingExhibitionList },
+      getTrendingExhibitionListAction,
     } = this.props;
 
     return (
@@ -35,9 +30,7 @@ class TrendingExhibitionsPage extends Component {
           </DivRow>
 
           <InitialPageLoader initialPageApi={getTrendingExhibitionListAction}>
-            <MasonryGridContainer
-              exhibitionList={trendingExhibitionList}
-            />
+            <MasonryGridContainer exhibitionList={trendingExhibitionList} />
           </InitialPageLoader>
         </DivColumn>
       </FullWidthContainer>
@@ -45,18 +38,18 @@ class TrendingExhibitionsPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    homePageReducer: state.homePageReducer
+    homePageReducer: state.homePageReducer,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     getTrendingExhibitionListAction: bindActionCreators(
       getTrendingExhibitionListAction,
       dispatch
-    )
+    ),
   };
 };
 

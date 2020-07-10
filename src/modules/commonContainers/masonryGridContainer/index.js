@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Masonry from "react-masonry-component";
 import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
-import exhibitionImage from "Images/exhibition-item-3.png";
 import styles from "./masonry_grid_container.module.scss";
 import map from "lodash/map";
-import size from "lodash/size";
 import navigatorHoc from "Hoc/navigatorHoc";
 import translatorHoc from "Hoc/translatorHoc";
 import isEmpty from "lodash/isEmpty";
@@ -54,7 +51,7 @@ class MasonryGridContainer extends Component {
 
             if (showMoreTitle && index > 6) {
               return null;
-            } else if (showMoreTitle && index == 6) {
+            } else if (showMoreTitle && index === 6) {
               return (
                 <DivColumn
                   className={`${styles.grid_load_more_container} ${

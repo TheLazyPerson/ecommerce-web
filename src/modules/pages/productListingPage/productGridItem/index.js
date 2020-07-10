@@ -70,7 +70,7 @@ class ProductGridItem extends Component {
         exhibition_id: exhibitionId,
       })
         .then(({ payload }) => {
-          if (payload.code == 200 || payload.code == 201) {
+          if (payload.code === 200 || payload.code === 201) {
             showSuccessFlashMessage(successMessage);
           }
           this.setState({ isWishlistLoading: false });
@@ -128,6 +128,7 @@ class ProductGridItem extends Component {
           {product.translations[languageCode].short_description}
         </div>
         <img
+          alt={product.translations[languageCode].name}
           className={styles.product_image}
           src={product.base_image ? product.base_image.path : null}
         />
@@ -141,6 +142,7 @@ class ProductGridItem extends Component {
             onClick={this.onClickWishlist}
           >
             <img
+              alt="wishlist"
               src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon}
               className={styles.wishlist_icon}
             />
@@ -163,7 +165,7 @@ class ProductGridItem extends Component {
             >
               {`${translate("common.add_to_bag")} | ${product.formatted_price}`}
             </div>
-            <img src={longRightArrow} />
+            <img alt="right arrow" src={longRightArrow} />
           </DivRow>
         </DivRow>
       </DivColumn>

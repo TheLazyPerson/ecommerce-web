@@ -113,7 +113,6 @@ class AddAddressForm extends Component {
       onClickCancel,
       addressReducer: { addressList },
       addressId,
-      basicReducer: { basicData },
       translate,
     } = this.props;
     const editAddress = find(addressList, (address) => {
@@ -129,14 +128,14 @@ class AddAddressForm extends Component {
         label: "Office",
       },
     ];
-    const countries = this.formatSelectorData(basicData.countries);
-    const states = this.formatSelectorData(basicData.states);
-    const defaultCountry = find(countries, (country) => {
-      return editAddress && country.value === editAddress.country;
-    });
-    const defaultState = find(states, (state) => {
-      return editAddress && state.value === editAddress.state;
-    });
+    // const countries = this.formatSelectorData(basicData.countries);
+    // const states = this.formatSelectorData(basicData.states);
+    // // const defaultCountry = find(countries, (country) => {
+    //   return editAddress && country.value === editAddress.country;
+    // });
+    // const defaultState = find(states, (state) => {
+    //   return editAddress && state.value === editAddress.state;
+    // });
 
     let defaultAddressType = null;
 

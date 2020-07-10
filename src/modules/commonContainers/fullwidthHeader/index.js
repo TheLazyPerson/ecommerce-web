@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SectionedHeader from "CommonContainers/sectionedHeader";
 import DivRow from "CommonComponents/divRow";
-import DivColumn from "CommonComponents/divColumn";
 import styles from "./fullwidth_header.module.scss";
 import LanguageSelect from "CommonComponents/languageSelect";
 import appIcon from "Icons/app-icon-black.svg";
@@ -17,7 +16,7 @@ class FullwidthHeader extends Component {
   };
 
   render() {
-    const { children, whiteColor, className, isRTL } = this.props;
+    const { whiteColor, className, isRTL } = this.props;
 
     return (
       <div
@@ -34,6 +33,7 @@ class FullwidthHeader extends Component {
               onClick={this.onClickAppIcon}
             >
               <img
+                alt="Home Expo"
                 src={whiteColor ? appIconWhite : appIcon}
                 className={styles.app_icon}
                 onClick={this.onClickAppIcon}

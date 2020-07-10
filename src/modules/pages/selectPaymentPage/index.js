@@ -3,11 +3,8 @@ import FullWidthContainer from "CommonContainers/fullwidthContainer";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./select_payment_page.module.scss";
-import HorizontalBorder from "CommonComponents/horizontalBorder";
-import CapsuleButton from "CommonComponents/capsuleButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InitialPageLoader from "CommonContainers/initialPageLoader";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import {
@@ -33,7 +30,7 @@ class SelectPaymentPage extends Component {
     };
 
     selectPaymentMethodAction(paymentMethodObject).then(({ payload }) => {
-      if (payload.code == 200 || payload.code == 201) {
+      if (payload.code === 200 || payload.code === 201) {
         showSuccessFlashMessage(
           translate("select_payment.payment_gateway_selected")
         );
@@ -42,18 +39,12 @@ class SelectPaymentPage extends Component {
   }
 
   placeOrder = () => {
-    const {
-      navigateTo,
-      showSuccessFlashMessage,
-      checkoutBagAction,
-      getPaymentAction,
-      translate,
-    } = this.props;
+    const { checkoutBagAction, getPaymentAction } = this.props;
 
     checkoutBagAction().then(({ payload }) => {
-      if (payload.code == 200 || payload.code == 201) {
+      if (payload.code === 200 || payload.code === 201) {
         getPaymentAction(payload.data.id).then(({ payload }) => {
-          if (payload.code == 200 || payload.code == 201) {
+          if (payload.code === 200 || payload.code === 201) {
             window.location.href = payload.data.paymentURL;
           }
         });
@@ -87,7 +78,11 @@ class SelectPaymentPage extends Component {
                     {translate("select_payment.payment_gateway_description")}
                   </div>
                 </DivColumn>
-                <img src={checkedIconBlack} className={styles.icon} />
+                <img
+                  alt="checkbox icon"
+                  src={checkedIconBlack}
+                  className={styles.icon}
+                />
               </DivRow>
             </DivColumn>
           </DivColumn>

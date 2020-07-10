@@ -72,7 +72,7 @@ class ProductDetailsPage extends Component {
         exhibition_id: parsed.exhibitionid,
       })
         .then(({ payload }) => {
-          if (payload.code == 200 || payload.code == 201) {
+          if (payload.code === 200 || payload.code === 201) {
             showSuccessFlashMessage(successMessage);
           }
           this.setState({ isWishlistLoading: false });
@@ -141,7 +141,7 @@ class ProductDetailsPage extends Component {
 
   render() {
     const parsed = queryString.parse(this.props.location.search);
-    const { imageList, selectedImage, isWishlistLoading } = this.state;
+    const { selectedImage, isWishlistLoading } = this.state;
     const {
       productDetailReducer: { productDetail },
       getProductDetailAction,
@@ -149,15 +149,6 @@ class ProductDetailsPage extends Component {
       isRTL,
       languageReducer: { languageCode },
     } = this.props;
-
-    const params = {
-      slidesPerView: 5,
-      freeMode: true,
-      containerClass: "custom_container",
-      on: {
-        slideChange: () => {},
-      },
-    };
 
     return (
       <FullWidthContainer>
@@ -180,6 +171,11 @@ class ProductDetailsPage extends Component {
                 */}
 
                 <img
+                  alt={
+                    !isEmpty(productDetail)
+                      ? productDetail.translations[languageCode].name
+                      : ""
+                  }
                   src={
                     productDetail.images
                       ? productDetail.images[selectedImage].path
@@ -188,20 +184,19 @@ class ProductDetailsPage extends Component {
                   className={styles.product_image}
                 />
                 <DivRow className={styles.product_image_list}>
-                  {/* <Swiper
-                   {...params}
-                   getSwiper={swiper => {
-                    this.swiper = swiper;
-                   }}
-                  >
-                    
-                  </Swiper> */}
                   {map(productDetail.images, (image, index) => (
                     <div className={styles.image_container}>
                       <img
+                        alt={
+                          !isEmpty(productDetail)
+                            ? productDetail.translations[languageCode].name
+                            : ""
+                        }
                         src={image.path}
                         className={`${styles.small_product_image} ${
-                          index == selectedImage ? styles.is_image_selected : ""
+                          index === selectedImage
+                            ? styles.is_image_selected
+                            : ""
                         }`}
                         onClick={() => this.onClickImageItem(index)}
                       />
@@ -241,6 +236,7 @@ class ProductDetailsPage extends Component {
                         }
                       >
                         <img
+                          alt="Add to Bag"
                           src={bagWhiteIcon}
                           className={styles.button_icon}
                         />
@@ -257,6 +253,7 @@ class ProductDetailsPage extends Component {
                         onClick={this.onClickWishlist}
                       >
                         <img
+                          alt="Add to Wishlist"
                           src={
                             productDetail.is_wishlisted
                               ? heartFilledIcon
