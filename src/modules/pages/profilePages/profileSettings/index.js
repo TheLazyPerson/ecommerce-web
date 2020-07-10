@@ -21,7 +21,7 @@ class ProfileSettings extends Component {
   };
 
   updateNotificationStatus = (isInputChecked) => {
-    console.log("isInputChecked", isInputChecked);
+    // console.log("isInputChecked", isInputChecked);
     const { updateSettingsAction } = this.props;
     const formData = {
       wants_updates: isInputChecked ? 1 : 0,
@@ -31,7 +31,7 @@ class ProfileSettings extends Component {
       const { code } = response.payload;
       if (code === 200 || code === 201) {
       } else if (code === 400 || code === 404) {
-        console.log("error");
+        // console.log("error");
       }
     });
   };
