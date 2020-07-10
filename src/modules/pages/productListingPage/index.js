@@ -47,6 +47,18 @@ class ProductListingPage extends Component {
     );
   };
 
+  onClearFilter = () => {
+    this.setState(
+      {
+        sort: "",
+        filters: {},
+      },
+      () => {
+        this.makeApiCall();
+      }
+    );
+  };
+
   makeApiCall = () => {
     this.productListRef.current.makePageApiCall();
   };
@@ -82,6 +94,7 @@ class ProductListingPage extends Component {
           <SideBarFilter
             filters={this.state.filters}
             onChangeFilter={this.onChangeFilter}
+            onClearFilter={this.onClearFilter}
           />
         }
       >
