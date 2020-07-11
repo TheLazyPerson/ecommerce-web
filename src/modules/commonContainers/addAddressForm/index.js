@@ -38,6 +38,7 @@ class AddAddressForm extends Component {
       // country_code: isEmptyValidator(values.country_code),
       landmark: isEmptyValidator(values.landmark),
       city: isEmptyValidator(values.city),
+      name: isEmptyValidator(values.name),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -65,7 +66,6 @@ class AddAddressForm extends Component {
       street_number: form.streetNumber,
       avenue: form.avenue,
       landmark: form.landmark,
-      address_type: form.addressType,
       city: form.city,
       default_address: 1,
       name: form.name,
