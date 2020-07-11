@@ -26,19 +26,22 @@ import map from "lodash/map";
 import translatorHoc from "Hoc/translatorHoc";
 class AddAddressForm extends Component {
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      firstName: nameValidator(values.firstName),
-      lastName: nameValidator(values.lastName),
-      mobileNumber: isPhoneNumber(values.mobileNumber),
-      area: isEmptyValidator(values.area),
-      blockNumber: isEmptyValidator(values.blockNumber),
-      houseNumber: isEmptyValidator(values.houseNumber),
-      streetNumber: isEmptyValidator(values.streetNumber),
+      firstName: nameValidator(values.firstName, languageCode),
+      lastName: nameValidator(values.lastName, languageCode),
+      mobileNumber: isPhoneNumber(values.mobileNumber, languageCode),
+      area: isEmptyValidator(values.area, languageCode),
+      blockNumber: isEmptyValidator(values.blockNumber, languageCode),
+      houseNumber: isEmptyValidator(values.houseNumber, languageCode),
+      streetNumber: isEmptyValidator(values.streetNumber, languageCode),
       // country_code: isEmptyValidator(values.country_code),
-      landmark: isEmptyValidator(values.landmark),
-      city: isEmptyValidator(values.city),
-      name: isEmptyValidator(values.name),
+      landmark: isEmptyValidator(values.landmark, languageCode),
+      city: isEmptyValidator(values.city, languageCode),
+      name: isEmptyValidator(values.name, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -114,6 +117,7 @@ class AddAddressForm extends Component {
       addressReducer: { addressList },
       addressId,
       translate,
+      languageReducer,
     } = this.props;
     const editAddress = find(addressList, (address) => {
       // eslint-disable-next-line
@@ -322,6 +326,7 @@ const mapStateToProps = (state) => {
   return {
     addressReducer: state.addressReducer,
     basicReducer: state.basicReducer,
+    languageReducer: state.languageReducer,
   };
 };
 

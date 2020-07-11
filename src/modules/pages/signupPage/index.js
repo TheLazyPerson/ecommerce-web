@@ -41,15 +41,19 @@ class SignUpPage extends Component {
   };
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      firstName: nameValidator(values.firstName),
-      lastName: nameValidator(values.lastName),
-      email: emailValidator(values.email),
-      password: isEmptyValidator(values.password),
+      firstName: nameValidator(values.firstName, languageCode),
+      lastName: nameValidator(values.lastName, languageCode),
+      email: emailValidator(values.email, languageCode),
+      password: isEmptyValidator(values.password, languageCode),
       confirmPassword: passwordValidator(
         values.password,
-        values.confirmPassword
+        values.confirmPassword,
+        languageCode
       ),
     };
 
@@ -61,7 +65,7 @@ class SignUpPage extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, languageReducer } = this.props;
 
     return (
       <FullWidthContainer>
@@ -162,6 +166,7 @@ const mapStateToProps = (state) => {
   return {
     signupReducer: state.signupReducer,
     signInReducer: state.signInReducer,
+    languageReducer: state.languageReducer,
   };
 };
 

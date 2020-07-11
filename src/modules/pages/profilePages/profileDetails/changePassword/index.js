@@ -18,13 +18,17 @@ import translatorHoc from "Hoc/translatorHoc";
 
 class ChangePassword extends Component {
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      oldPassword: isEmptyValidator(values.oldPassword),
-      newPassword: isEmptyValidator(values.newPassword),
+      oldPassword: isEmptyValidator(values.oldPassword, languageCode),
+      newPassword: isEmptyValidator(values.newPassword, languageCode),
       confirmPassword: passwordValidator(
         values.newPassword,
-        values.confirmPassword
+        values.confirmPassword,
+        languageCode
       ),
     };
 
@@ -133,6 +137,7 @@ const mapStateToProps = (state) => {
   return {
     changePasswordReducer: state.changePasswordReducer,
     isRTL: state.languageReducer.isRTL,
+    languageReducer: state.languageReducer,
   };
 };
 

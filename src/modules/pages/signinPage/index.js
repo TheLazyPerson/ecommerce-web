@@ -32,10 +32,13 @@ class SignInPage extends Component {
   };
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      userName: emailValidator(values.userName),
-      password: isEmptyValidator(values.password),
+      userName: emailValidator(values.userName, languageCode),
+      password: isEmptyValidator(values.password, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -46,7 +49,7 @@ class SignInPage extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, languageReducer } = this.props;
 
     return (
       <FullWidthContainer>
@@ -135,6 +138,7 @@ class SignInPage extends Component {
 const mapStateToProps = (state) => {
   return {
     signInReducer: state.signInReducer,
+    languageReducer: state.languageReducer,
   };
 };
 

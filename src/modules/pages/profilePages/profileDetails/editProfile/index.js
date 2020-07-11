@@ -69,14 +69,17 @@ class EditProfile extends Component {
   }
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      firstName: nameValidator(values.firstName),
-      lastName: nameValidator(values.lastName),
-      gender: isEmptyValidator(values.gender),
-      mobileNumber: isPhoneNumber(values.mobileNumber),
-      email: emailValidator(values.email),
-      birthday: isEmptyValidator(values.birthday),
+      firstName: nameValidator(values.firstName, languageCode),
+      lastName: nameValidator(values.lastName, languageCode),
+      gender: isEmptyValidator(values.gender, languageCode),
+      mobileNumber: isPhoneNumber(values.mobileNumber, languageCode),
+      email: emailValidator(values.email, languageCode),
+      birthday: isEmptyValidator(values.birthday, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -94,6 +97,7 @@ class EditProfile extends Component {
     const {
       translate,
       profileDetailsReducer: { userDetails },
+      languageReducer,
       isRTL,
     } = this.props;
     let startDate = null;
@@ -260,6 +264,7 @@ const mapStateToProps = (state) => {
   return {
     profileDetailsReducer: state.profileDetailsReducer,
     isRTL: state.languageReducer.isRTL,
+    languageReducer: state.languageReducer,
   };
 };
 

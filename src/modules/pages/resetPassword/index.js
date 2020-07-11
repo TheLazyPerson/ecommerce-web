@@ -44,12 +44,16 @@ class ResetPassword extends Component {
   };
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      password: isEmptyValidator(values.password),
+      password: isEmptyValidator(values.password, languageCode),
       confirmPassword: passwordValidator(
         values.password,
-        values.confirmPassword
+        values.confirmPassword,
+        languageCode
       ),
     };
 
@@ -65,6 +69,7 @@ class ResetPassword extends Component {
       translate,
       verifyPasswordTokenAction,
       resetPasswordReducer: { tokenInformation },
+      languageReducer,
     } = this.props;
     return (
       <FullWidthContainer>
@@ -161,6 +166,7 @@ class ResetPassword extends Component {
 const mapStateToProps = (state) => {
   return {
     resetPasswordReducer: state.resetPasswordReducer,
+    languageReducer: state.languageReducer,
   };
 };
 
