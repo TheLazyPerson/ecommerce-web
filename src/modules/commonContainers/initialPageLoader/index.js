@@ -5,6 +5,9 @@ import DivColumn from "CommonComponents/divColumn";
 import { isTypeSuccess } from "Core/utils/validationHelper";
 import styles from "./initial_page_loader.module.scss";
 import CapsuleButton from "CommonComponents/capsuleButton";
+import { connect } from "react-redux";
+import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from "Hoc/translatorHoc";
 
 class InitialPageLoader extends Component {
   state = {
@@ -51,8 +54,12 @@ class InitialPageLoader extends Component {
   };
 
   emptyScreen = () => {
-    const { emptyScreenMessage, emptyScreenTitle } = this.props;
-
+    const {
+      // emptyScreenMessage,
+      emptyScreenTitle,
+      languageReducer: { languageCode },
+    } = this.props;
+    console.log(this.props);
     return (
       <DivColumn
         fillParent
@@ -60,8 +67,12 @@ class InitialPageLoader extends Component {
         horizontalCenter
         className={styles.error_container}
       >
-        <div className={styles.error_title_text}>{emptyScreenTitle}</div>
-        <div className={styles.error_message_text}>{emptyScreenMessage}</div>
+        <div className={styles.error_title_text}>
+          {emptyScreenTitle[languageCode].title}
+        </div>
+        <div className={styles.error_message_text}>
+          {emptyScreenTitle[languageCode].subtitle}
+        </div>
       </DivColumn>
     );
   };
@@ -75,6 +86,7 @@ class InitialPageLoader extends Component {
       headingErrorMessage,
       customEmptyScreen,
       isEmpty,
+      languageReducer,
     } = this.props;
 
     const { loading, isError, isComponentReady } = this.state;
@@ -128,8 +140,24 @@ InitialPageLoader.defaultProps = {
   customEmptyScreen: null,
   isEmpty: false,
 
-  emptyScreenTitle: "No Result",
-  emptyScreenMessage: "Looks like its Empty",
+  emptyScreenTitle: {
+    en: {
+      title: "No Result",
+      subtitle: "Looks like its Empty",
+    },
+    ar: {
+      title: "لا نتيجة",
+      subtitle: "تبدو فارغة",
+    },
+  },
+  // emptyScreenMessage: {
+  //   en: {
+  //     subtitle: "Looks like its Empty",
+  //   },
+  //   ar: {
+  //     subtitle: "تبدو فارغة",
+  //   },
+  // },
 };
 
 InitialPageLoader.propTypes = {
@@ -149,4 +177,14 @@ InitialPageLoader.propTypes = {
   className: PropTypes.any,
 };
 
-export default InitialPageLoader;
+// export default InitialPageLoader;
+const mapStateToProps = (state) => {
+  return {
+    languageReducer: state.languageReducer,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(translatorHoc(navigatorHoc(InitialPageLoader)));

@@ -4,7 +4,7 @@ import DivColumn from "CommonComponents/divColumn";
 import SideNav from "../../components/sideNav";
 import styles from "./add_address.module.scss";
 import NavHeader from "../../components/navHeader";
-
+import DivRow from "CommonComponents/divRow";
 import navigatorHoc from "Hoc/navigatorHoc";
 
 import { connect } from "react-redux";
@@ -28,19 +28,21 @@ class AddAddress extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, isRTL } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <DivColumn fillParent className={styles.page_container}>
-          <NavHeader
-            title={translate("place_order_page.title_add_address")}
-            onBackClick={this.onBackPress}
-          />
-          <AddAddressForm
-            onSubmitComplete={this.onSubmitComplete}
-            onClickCancel={this.onClickCancel}
-          />
-        </DivColumn>
+        <DivRow className={` ${isRTL ? styles.rtl : ""}`}>
+          <DivColumn fillParent className={styles.page_container}>
+            <NavHeader
+              title={translate("place_order_page.title_add_address")}
+              onBackClick={this.onBackPress}
+            />
+            <AddAddressForm
+              onSubmitComplete={this.onSubmitComplete}
+              onClickCancel={this.onClickCancel}
+            />
+          </DivColumn>
+        </DivRow>
       </SectionedContainer>
     );
   }
@@ -49,6 +51,7 @@ class AddAddress extends Component {
 const mapStateToProps = (state) => {
   return {
     addressReducer: state.addressReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 

@@ -45,6 +45,7 @@ class ProfileAddress extends Component {
       translate,
       addressReducer: { addressList },
       getAddressListAction,
+      isRTL,
     } = this.props;
 
     const default_address = addressList.filter(
@@ -58,7 +59,10 @@ class ProfileAddress extends Component {
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <InitialPageLoader initialPageApi={getAddressListAction}>
-          <DivColumn fillParent className={styles.address_container}>
+          <DivColumn
+            fillParent
+            className={`${styles.address_container} ${isRTL ? styles.rtl : ""}`}
+          >
             <DivColumn className={styles.section_container}>
               <NavHeader
                 title={translate("profile_address_page.default_address")}
@@ -105,6 +109,7 @@ class ProfileAddress extends Component {
 const mapStateToProps = (state) => {
   return {
     addressReducer: state.addressReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
