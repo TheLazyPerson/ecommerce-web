@@ -53,11 +53,14 @@ class SelectPaymentPage extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, isRTL } = this.props;
 
     return (
       <FullWidthContainer>
-        <DivRow fillParent className={styles.checkout_container}>
+        <DivRow
+          fillParent
+          className={`${styles.checkout_container} ${isRTL ? styles.rtl : ""}`}
+        >
           <DivColumn className={styles.cart_list_container}>
             <DivRow className={styles.header_container}>
               <div className={styles.header_title}>
@@ -99,6 +102,13 @@ class SelectPaymentPage extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    isRTL: state.languageReducer.isRTL,
+    languageReducer: state.languageReducer,
+  };
+};
+
 const mapDispathToProps = (dispatch) => {
   return {
     showSuccessFlashMessage: bindActionCreators(
@@ -115,6 +125,6 @@ const mapDispathToProps = (dispatch) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispathToProps
 )(navigatorHoc(translatorHoc(SelectPaymentPage)));
