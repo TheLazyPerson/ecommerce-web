@@ -72,5 +72,9 @@ label {
   .cart_list_container {
     padding-right: 0px;
     padding-left: 50px;
+
+    .table_content_container {
+      direction: rtl;
+    }
   }
 }
