@@ -201,7 +201,9 @@
     "gender": "جنس",
     "birthday": "عيد الميلاد",
     "cancel": "إلغاء",
-    "save_details": "حفظ التفاصيل"
+    "save_details": "حفظ التفاصيل",
+    "male": "الذكر",
+    "female": "أنثى"
   },
   "change_password": {
     "header_title": "تغيير كلمة المرور",
@@ -240,5 +242,15 @@
     "search_title": "بحث",
     "explore_exhibition": "يكتشف",
     "product_item_exhibition": "معرض"
+  },
+  "payment_success_page": {
+    "title": "تم تاكيد الطلب",
+    "description": "شكرا لك على الطلب معنا.",
+    "action_text": "مواصلة التسوق"
+  },
+  "payment_failure_page": {
+    "title": "عملية الدفع فشلت",
+    "description": "حدثت مشكلة أثناء قبول دفعتك.",
+    "action_text": "أعد المحاولة"
   }
 }
