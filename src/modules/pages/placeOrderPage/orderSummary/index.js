@@ -34,6 +34,7 @@ class OrderSummary extends Component {
       showChooseDelivery,
       submitButtonText,
       translate,
+      isRTL,
     } = this.props;
 
     const deliveryTypes = [
@@ -47,7 +48,11 @@ class OrderSummary extends Component {
 
     return (
       <DivColumn>
-        <DivColumn className={styles.order_summary_container}>
+        <DivColumn
+          className={`${styles.order_summary_container} ${
+            isRTL ? styles.rtl : ""
+          }`}
+        >
           <div className={styles.order_summary_title}>
             {translate("checkout_page.order_summary")}
           </div>
@@ -170,6 +175,7 @@ const mapStateToProps = (state) => {
   return {
     checkoutReducer: state.checkoutReducer,
     bagReducer: state.bagReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
