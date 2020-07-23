@@ -108,9 +108,12 @@ class EditProfile extends Component {
       startDate = new Date(userDetails.birthday);
     }
 
+    const male = translate("edit_profile.male");
+    const female = translate("edit_profile.female");
+
     const genderOptions = [
-      { value: "male", label: "Male" },
-      { value: "female", label: "Female" },
+      { value: "male", label: male },
+      { value: "female", label: female },
     ];
     let defaultGender = null;
 

@@ -14,6 +14,7 @@ import {
 } from "Core/modules/settings/settingsActions";
 import translatorHoc from "Hoc/translatorHoc";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
+import NavHeader from "../components/navHeader";
 class ProfileSettings extends Component {
   state = {
     isGoing: true,
@@ -47,11 +48,7 @@ class ProfileSettings extends Component {
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <DivColumn fillParent>
-          <DivRow className={styles.header}>
-            <div className={styles.header_text}>
-              {translate("setting_page.header_title")}
-            </div>
-          </DivRow>
+          <NavHeader title={translate("setting_page.header_title")}></NavHeader>
           <InitialPageLoader initialPageApi={() => getSettingsAction()}>
             <DivRow className={`${isRTL ? styles.rtl : ""}`}>
               <DivRow verticalCenter className={styles.settings_item_container}>
