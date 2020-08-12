@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component, Fragment } from "react";
 import SectionedHeader from "CommonContainers/sectionedHeader";
 import DivRow from "CommonComponents/divRow";
@@ -44,6 +46,7 @@ class SectionedContainer extends Component {
             onClick={this.onClickAppIcon}
           >
             <img
+              alt="Home Expo"
               src={appIcon}
               className={styles.app_icon}
               onClick={this.onClickAppIcon}
@@ -95,6 +98,7 @@ class SectionedContainer extends Component {
               <DivRow verticalCenter className={styles.header_container}>
                 {/* only Visible on responive */}
                 <img
+                  alt="Hamburger Icon"
                   src={hamburgerIconBlack}
                   className={styles.hamburger_menu_icon}
                   onClick={this.onClickHamburgerMenu}

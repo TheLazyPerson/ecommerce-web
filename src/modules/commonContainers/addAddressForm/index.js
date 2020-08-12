@@ -26,18 +26,22 @@ import map from "lodash/map";
 import translatorHoc from "Hoc/translatorHoc";
 class AddAddressForm extends Component {
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      firstName: nameValidator(values.firstName),
-      lastName: nameValidator(values.lastName),
-      mobileNumber: isPhoneNumber(values.mobileNumber),
-      area: isEmptyValidator(values.area),
-      blockNumber: isEmptyValidator(values.blockNumber),
-      houseNumber: isEmptyValidator(values.houseNumber),
-      streetNumber: isEmptyValidator(values.streetNumber),
+      firstName: nameValidator(values.firstName, languageCode),
+      lastName: nameValidator(values.lastName, languageCode),
+      mobileNumber: isPhoneNumber(values.mobileNumber, languageCode),
+      area: isEmptyValidator(values.area, languageCode),
+      blockNumber: isEmptyValidator(values.blockNumber, languageCode),
+      houseNumber: isEmptyValidator(values.houseNumber, languageCode),
+      streetNumber: isEmptyValidator(values.streetNumber, languageCode),
       // country_code: isEmptyValidator(values.country_code),
-      landmark: isEmptyValidator(values.landmark),
-      city: isEmptyValidator(values.city),
+      landmark: isEmptyValidator(values.landmark, languageCode),
+      city: isEmptyValidator(values.city, languageCode),
+      name: isEmptyValidator(values.name, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -65,7 +69,6 @@ class AddAddressForm extends Component {
       street_number: form.streetNumber,
       avenue: form.avenue,
       landmark: form.landmark,
-      address_type: form.addressType,
       city: form.city,
       default_address: 1,
       name: form.name,
@@ -113,11 +116,12 @@ class AddAddressForm extends Component {
       onClickCancel,
       addressReducer: { addressList },
       addressId,
-      basicReducer: { basicData },
       translate,
+      languageReducer,
     } = this.props;
     const editAddress = find(addressList, (address) => {
-      return address.id === addressId;
+      // eslint-disable-next-line
+      return address.id == addressId;
     });
     const addressTypes = [
       {
@@ -129,14 +133,14 @@ class AddAddressForm extends Component {
         label: "Office",
       },
     ];
-    const countries = this.formatSelectorData(basicData.countries);
-    const states = this.formatSelectorData(basicData.states);
-    const defaultCountry = find(countries, (country) => {
-      return editAddress && country.value === editAddress.country;
-    });
-    const defaultState = find(states, (state) => {
-      return editAddress && state.value === editAddress.state;
-    });
+    // const countries = this.formatSelectorData(basicData.countries);
+    // const states = this.formatSelectorData(basicData.states);
+    // // const defaultCountry = find(countries, (country) => {
+    //   return editAddress && country.value === editAddress.country;
+    // });
+    // const defaultState = find(states, (state) => {
+    //   return editAddress && state.value === editAddress.state;
+    // });
 
     let defaultAddressType = null;
 
@@ -322,6 +326,7 @@ const mapStateToProps = (state) => {
   return {
     addressReducer: state.addressReducer,
     basicReducer: state.basicReducer,
+    languageReducer: state.languageReducer,
   };
 };
 

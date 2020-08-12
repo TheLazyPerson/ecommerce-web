@@ -36,9 +36,12 @@ class ForgotPasswordPage extends Component {
   };
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      userName: emailValidator(values.userName),
+      userName: emailValidator(values.userName, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -49,7 +52,7 @@ class ForgotPasswordPage extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, languageReducer } = this.props;
 
     return (
       <FullWidthContainer>

@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .wishlist_item_container {
   width: 314px;
@@ -71,6 +71,7 @@
     font-size: 12px;
     text-align: center;
     color: $color-gold;
+    cursor: pointer;
   }
 }
 

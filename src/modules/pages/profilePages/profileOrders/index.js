@@ -4,7 +4,6 @@ import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import SideNav from "../components/sideNav";
 import styles from "./profile_orders.module.scss";
-import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { getOrderListAction } from "Core/modules/order/orderActions";
 import isEmpty from "lodash/isEmpty";
@@ -61,9 +60,10 @@ class ProfileOrders extends Component {
                 {map(order.items, (item, index) => (
                   <DivRow
                     className={styles.order_item_container}
-                    style={index == 0 ? { marginTop: 0 } : null}
+                    style={index === 0 ? { marginTop: 0 } : null}
                   >
                     <img
+                      alt={item.product.translations[languageCode].name}
                       className={styles.order_image}
                       src={item.exhibition.base_image}
                     />

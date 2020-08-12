@@ -73,7 +73,7 @@ class SideBarFilter extends Component {
           <div className={styles.filter_text}>
             {translate("filters.filters")}
           </div>
-          <div className={styles.clear_text}>
+          <div className={styles.clear_text} onClick={this.props.onClearFilter}>
             {translate("filters.clear_all")}
           </div>
         </DivRow>

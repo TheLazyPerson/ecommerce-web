@@ -6,25 +6,29 @@ import styles from "./edit_address.module.scss";
 import NavHeader from "../../components/navHeader";
 import navigatorHoc from "Hoc/navigatorHoc";
 import queryString from "query-string";
-
+import DivRow from "CommonComponents/divRow";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
-import { editAddressAction, getAddressListAction } from "Core/modules/address/addressActions";
-import InitialPageLoader from 'CommonContainers/initialPageLoader';
-import AddAddressForm from 'CommonContainers/addAddressForm';
-import isEmpty from 'lodash/isEmpty';
+import {
+  editAddressAction,
+  getAddressListAction,
+} from "Core/modules/address/addressActions";
+import InitialPageLoader from "CommonContainers/initialPageLoader";
+import AddAddressForm from "CommonContainers/addAddressForm";
+import isEmpty from "lodash/isEmpty";
 
 class EditAddress extends Component {
   constructor(props) {
     super(props);
-    this.initialLoaderRef = React.createRef()
+    this.initialLoaderRef = React.createRef();
   }
 
   componentDidMount() {
-    const { addressReducer: {addressList} } = this.props;
-    if (isEmpty(addressList)) 
-      this.initialLoaderRef.current.reload();    
+    const {
+      addressReducer: { addressList },
+    } = this.props;
+    if (isEmpty(addressList)) this.initialLoaderRef.current.reload();
   }
 
   onSubmitComplete = () => {
@@ -42,7 +46,7 @@ class EditAddress extends Component {
 
   render() {
     const { id } = queryString.parse(this.props.location.search);
-    const { getAddressListAction } = this.props;
+    const { getAddressListAction, isRTL } = this.props;
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
@@ -53,11 +57,13 @@ class EditAddress extends Component {
         >
           <DivColumn fillParent className={styles.page_container}>
             <NavHeader title="Edit Address" onBackClick={this.onBackPress} />
-            <AddAddressForm
-              addressId={id}
-              onSubmitComplete={this.onSubmitComplete}
-              onClickCancel={this.onClickCancel}
-            />
+            <DivRow className={` ${isRTL ? styles.rtl : ""}`}>
+              <AddAddressForm
+                addressId={id}
+                onSubmitComplete={this.onSubmitComplete}
+                onClickCancel={this.onClickCancel}
+              />
+            </DivRow>
           </DivColumn>
         </InitialPageLoader>
       </SectionedContainer>
@@ -65,20 +71,21 @@ class EditAddress extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    addressReducer: state.addressReducer
+    addressReducer: state.addressReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch) => {
   return {
     editAddressAction: bindActionCreators(editAddressAction, dispatch),
     getAddressListAction: bindActionCreators(getAddressListAction, dispatch),
     showSuccessFlashMessage: bindActionCreators(
       showSuccessFlashMessage,
       dispatch
-    )
+    ),
   };
 };
 

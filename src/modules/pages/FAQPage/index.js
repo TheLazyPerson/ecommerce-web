@@ -10,17 +10,17 @@ import { faq } from "Constants/faqConstants";
 
 export default class FAQPage extends Component {
   state = {
-    faq
+    faq,
   };
 
-  onClickFaqItem = index => {
+  onClickFaqItem = (index) => {
     const { faq } = this.state;
 
     const updatedFaq = map(faq, (faqItem, itemIndex) => {
       if (itemIndex === index) {
         return {
           ...faqItem,
-          isSelected: !faqItem.isSelected
+          isSelected: !faqItem.isSelected,
         };
       }
 
@@ -52,7 +52,11 @@ export default class FAQPage extends Component {
                     onClick={() => this.onClickFaqItem(index)}
                   >
                     <div className={styles.faq_title}>{faqItem.title}</div>
-                    <img src={closeIcon} className={styles.title_close_icon} />
+                    <img
+                      alt="Close"
+                      src={closeIcon}
+                      className={styles.title_close_icon}
+                    />
                   </DivRow>
                   <div className={styles.faq_description}>
                     {faqItem.description}

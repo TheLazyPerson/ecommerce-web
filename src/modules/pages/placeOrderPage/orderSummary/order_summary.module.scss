@@ -1,5 +1,5 @@
-@import '~Styles/colors.module';
-@import '~Styles/mixins.module';
+@import "~Styles/colors.module";
+@import "~Styles/mixins.module";
 
 .order_summary_container {
   width: 360px;
@@ -94,7 +94,6 @@
   }
 }
 
-
 .coupon_header_text {
   font-size: 12px;
   font-weight: bold;
@@ -139,7 +138,6 @@
   border: 1px solid white;
 }
 
-
 @include medium {
   .order_summary_container {
     width: unset;
@@ -161,7 +159,6 @@
 
 @include small {
   .order_summary_container {
-
     .order_summary_title {
       font-size: 26px;
     }
@@ -172,6 +169,17 @@
     font-size: 14px;
     margin-top: 15px;
     min-width: 250px;
+  }
+}
 
+.rtl {
+  text-align: right;
+
+  .price_details_container {
+    flex-direction: row-reverse;
+    .value {
+      margin-left: unset;
+      margin-right: auto;
+    }
   }
 }

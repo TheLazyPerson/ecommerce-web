@@ -34,7 +34,7 @@ class ResetPassword extends Component {
       password: form.password,
       token: tokenInformation.data["token-information"].token,
     }).then(({ payload }) => {
-      const { data, code } = payload;
+      const { code } = payload;
       if (code === 200 || code === 201) {
         navigateTo("reset-password-sucess");
       } else if (code === 400 || code === 404) {
@@ -44,12 +44,16 @@ class ResetPassword extends Component {
   };
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      password: isEmptyValidator(values.password),
+      password: isEmptyValidator(values.password, languageCode),
       confirmPassword: passwordValidator(
         values.password,
-        values.confirmPassword
+        values.confirmPassword,
+        languageCode
       ),
     };
 
@@ -65,6 +69,7 @@ class ResetPassword extends Component {
       translate,
       verifyPasswordTokenAction,
       resetPasswordReducer: { tokenInformation },
+      languageReducer,
     } = this.props;
     return (
       <FullWidthContainer>
@@ -81,15 +86,15 @@ class ResetPassword extends Component {
             <div className={styles.signin_title_text}>
               {translate("update_password_page.page_title")}
             </div>
-            {tokenInformation.code == 200 && (
+            {tokenInformation.code === 200 && (
               <div>
                 <div className={styles.signin_subtitle_text}>
                   {translate("update_password_page.sub_title")}&nbsp;
                 </div>
               </div>
             )}
-            {tokenInformation.code == 400 ||
-              (tokenInformation.code == 404 && (
+            {tokenInformation.code === 400 ||
+              (tokenInformation.code === 404 && (
                 <div>
                   <div className={styles.signin_subtitle_text}>
                     {translate("update_password_page.sub_title1")}&nbsp;
@@ -97,7 +102,7 @@ class ResetPassword extends Component {
                 </div>
               ))}
 
-            {tokenInformation.code == 200 && (
+            {tokenInformation.code === 200 && (
               <Form
                 onSubmit={this.onSubmit}
                 validate={this.validate}
@@ -161,6 +166,7 @@ class ResetPassword extends Component {
 const mapStateToProps = (state) => {
   return {
     resetPasswordReducer: state.resetPasswordReducer,
+    languageReducer: state.languageReducer,
   };
 };
 

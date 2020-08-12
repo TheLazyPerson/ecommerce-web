@@ -226,7 +226,10 @@
     "gender": "Gender",
     "birthday": "Birthday",
     "cancel": "CANCEL",
-    "save_details": "SAVE DETAILS"
+    "save_details": "SAVE DETAILS",
+    "male": "Male",
+    "female": "Female",
+    "success_message": "Profile Has Been Updated!"
   },
   "change_password": {
     "header_title": "Change Password",
@@ -265,5 +268,15 @@
     "search_title": "Search",
     "explore_exhibition": "Explore",
     "product_item_exhibition": "EXHIBITION"
+  },
+  "payment_success_page": {
+    "title": "Order Confirmed",
+    "description": "Thank you for ordering with us.",
+    "action_text": "Continue Shopping"
+  },
+  "payment_failure_page": {
+    "title": "Payment Failed",
+    "description": "There was problem while accepting your payment.",
+    "action_text": "Retry"
   }
 }

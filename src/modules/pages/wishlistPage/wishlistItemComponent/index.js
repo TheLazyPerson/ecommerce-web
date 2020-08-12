@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import styles from "./wishlist_item_component.module.scss";
 import closeIcon from "Icons/close-icon-black.svg";
@@ -12,6 +11,9 @@ import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
 import navigatorHoc from "Hoc/navigatorHoc";
 import translatorHoc from "Hoc/translatorHoc";
+import { setBagCount } from "Core/modules/bag/bagActions";
+import { CookieService } from "Utils/cookieService";
+
 class WishlistItemComponent extends Component {
   state = {
     isRemoving: false,
@@ -31,7 +33,7 @@ class WishlistItemComponent extends Component {
       exhibition_id: wishlistItem.exhibition.id,
     })
       .then(({ payload }) => {
-        if (payload.code == 200 || payload.code == 201) {
+        if (payload.code === 200 || payload.code === 201) {
           showSuccessFlashMessage(translate("common.removed_from_wishlist"));
         }
         this.setState({ isRemoving: false });
@@ -42,10 +44,18 @@ class WishlistItemComponent extends Component {
   };
 
   handleMoveToBag = (id) => {
-    const { showSuccessFlashMessage, moveToBagAction, translate } = this.props;
+    const {
+      showSuccessFlashMessage,
+      moveToBagAction,
+      translate,
+      setBagCount,
+    } = this.props;
 
     moveToBagAction(id).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
+        const bagCount = parseInt(CookieService.get("BAG_COUNT"));
+        setBagCount(bagCount + 1);
+
         showSuccessFlashMessage(translate("common.added_to_bag"));
       }
     });
@@ -67,13 +77,18 @@ class WishlistItemComponent extends Component {
       >
         <DivColumn className={styles.wishlist_details_container}>
           <img
+            alt="Remove"
             src={closeIcon}
             className={styles.close_icon}
             onClick={!isRemoving ? this.onClickRemove : null}
           />
           <div className={styles.name}>{product.name}</div>
           <div className={styles.description}>{product.short_description}</div>
-          <img src={product.base_image.path} className={styles.image} />
+          <img
+            alt={product.name}
+            src={product.base_image.path}
+            className={styles.image}
+          />
         </DivColumn>
 
         <DivColumn className={styles.additional_details_container}>
@@ -109,6 +124,7 @@ const mapDispathToProps = (dispatch) => {
       showSuccessFlashMessage,
       dispatch
     ),
+    setBagCount: bindActionCreators(setBagCount, dispatch),
   };
 };
 

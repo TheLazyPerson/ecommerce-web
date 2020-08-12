@@ -5,8 +5,6 @@ import DivRow from "CommonComponents/divRow";
 import SideNav from "../components/sideNav";
 import styles from "./profile_settings.module.scss";
 import InputCheckbox from "CommonComponents/InputCheckbox";
-import FullWidthContainer from "CommonContainers/fullwidthContainer";
-import InputTextComponent from "CommonComponents/InputTextComponent";
 import navigatorHoc from "Hoc/navigatorHoc";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -16,25 +14,15 @@ import {
 } from "Core/modules/settings/settingsActions";
 import translatorHoc from "Hoc/translatorHoc";
 import InitialPageLoader from "CommonContainers/initialPageLoader";
-import queryString from "query-string";
+import NavHeader from "../components/navHeader";
 class ProfileSettings extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     isGoing: true,
-  //     numberOfGuests: 2
-  //   };
-
-  //   this.handleInputChange = this.handleInputChange.bind(this);
-  // }
-
   state = {
     isGoing: true,
     numberOfGuests: 2,
   };
 
   updateNotificationStatus = (isInputChecked) => {
-    console.log("isInputChecked", isInputChecked);
+    // console.log("isInputChecked", isInputChecked);
     const { updateSettingsAction } = this.props;
     const formData = {
       wants_updates: isInputChecked ? 1 : 0,
@@ -44,7 +32,7 @@ class ProfileSettings extends Component {
       const { code } = response.payload;
       if (code === 200 || code === 201) {
       } else if (code === 400 || code === 404) {
-        console.log("error");
+        // console.log("error");
       }
     });
   };
@@ -54,32 +42,31 @@ class ProfileSettings extends Component {
       translate,
       getSettingsAction,
       settingsReducer: { settings },
+      isRTL,
     } = this.props;
 
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <DivColumn fillParent>
-          <DivRow className={styles.header}>
-            <div className={styles.header_text}>
-              {translate("setting_page.header_title")}
-            </div>
-          </DivRow>
+          <NavHeader title={translate("setting_page.header_title")}></NavHeader>
           <InitialPageLoader initialPageApi={() => getSettingsAction()}>
-            <DivRow verticalCenter className={styles.settings_item_container}>
-              <DivColumn>
-                <div className={styles.item_title}>
-                  {translate("setting_page.notification")}
-                </div>
-                <div className={styles.item_description}>
-                  {translate("setting_page.subtitile")}
-                </div>
-              </DivColumn>
-              <InputCheckbox
-                name="isGoing"
-                type="checkbox"
-                isChecked={settings.wants_updates}
-                onChange={(event) => this.updateNotificationStatus(event)}
-              />
+            <DivRow className={`${isRTL ? styles.rtl : ""}`}>
+              <DivRow verticalCenter className={styles.settings_item_container}>
+                <DivColumn>
+                  <div className={styles.item_title}>
+                    {translate("setting_page.notification")}
+                  </div>
+                  <div className={styles.item_description}>
+                    {translate("setting_page.subtitile")}
+                  </div>
+                </DivColumn>
+                <InputCheckbox
+                  name="isGoing"
+                  type="checkbox"
+                  isChecked={settings.wants_updates}
+                  onChange={this.updateNotificationStatus}
+                />
+              </DivRow>
             </DivRow>
           </InitialPageLoader>
         </DivColumn>
@@ -91,6 +78,7 @@ class ProfileSettings extends Component {
 const mapStateToProps = (state) => {
   return {
     settingsReducer: state.settingsReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 

@@ -4,13 +4,16 @@ import infiniteLoader from "Icons/circular-loader.gif";
 import DivColumn from "CommonComponents/divColumn";
 import { isTypeSuccess } from "Core/utils/validationHelper";
 import styles from "./initial_page_loader.module.scss";
-import CapsuleButton from 'CommonComponents/capsuleButton';
+import CapsuleButton from "CommonComponents/capsuleButton";
+import { connect } from "react-redux";
+import navigatorHoc from "Hoc/navigatorHoc";
+import translatorHoc from "Hoc/translatorHoc";
 
 class InitialPageLoader extends Component {
   state = {
     loading: false,
     isError: false,
-    isComponentReady: false
+    isComponentReady: false,
   };
 
   componentDidMount() {
@@ -29,13 +32,13 @@ class InitialPageLoader extends Component {
     this.setState({ loading: true, isError: false });
 
     initialPageApi()
-      .then(data => {
-        console.log("initialPageLoader success", data);
+      .then((data) => {
+        // console.log("initialPageLoader success", data);
         if (isTypeSuccess(data.type)) this.setState({ loading: false });
         else this.setState({ loading: false, isError: true });
       })
-      .catch(error => {
-        console.log("initialPageLoader Error:", error);
+      .catch((error) => {
+        // console.log("initialPageLoader Error:", error);
         this.setState({ loading: false, isError: true });
       });
   };
@@ -45,28 +48,34 @@ class InitialPageLoader extends Component {
   loaderScreen = () => {
     return (
       <DivColumn fillParent verticalCenter horizontalCenter>
-        <img
-          src={infiniteLoader}
-          className={styles.loader}
-          alt="Loading ..."
-        />
+        <img src={infiniteLoader} className={styles.loader} alt="Loading ..." />
       </DivColumn>
-    )
-  }
+    );
+  };
 
   emptyScreen = () => {
     const {
-      emptyScreenMessage,
+      // emptyScreenMessage,
       emptyScreenTitle,
+      languageReducer: { languageCode },
     } = this.props;
-
+    console.log(this.props);
     return (
-      <DivColumn fillParent verticalCenter horizontalCenter className={styles.error_container}>
-        <div className={styles.error_title_text}>{emptyScreenTitle}</div>
-        <div className={styles.error_message_text}>{emptyScreenMessage}</div>
+      <DivColumn
+        fillParent
+        verticalCenter
+        horizontalCenter
+        className={styles.error_container}
+      >
+        <div className={styles.error_title_text}>
+          {emptyScreenTitle[languageCode].title}
+        </div>
+        <div className={styles.error_message_text}>
+          {emptyScreenTitle[languageCode].subtitle}
+        </div>
       </DivColumn>
-    )
-  }
+    );
+  };
 
   render() {
     const {
@@ -76,28 +85,46 @@ class InitialPageLoader extends Component {
       customLoader,
       headingErrorMessage,
       customEmptyScreen,
-      isEmpty
+      isEmpty,
+      languageReducer,
     } = this.props;
 
     const { loading, isError, isComponentReady } = this.state;
 
     return (
-      <DivColumn
-        fillParent
-        className={`${className}`}
-      >
+      <DivColumn fillParent className={`${className}`}>
         {isComponentReady &&
           (isError ? (
-            <DivColumn fillParent verticalCenter horizontalCenter className={styles.error_container}>
-              <div className={styles.error_title_text}>{headingErrorMessage}</div>
+            <DivColumn
+              fillParent
+              verticalCenter
+              horizontalCenter
+              className={styles.error_container}
+            >
+              <div className={styles.error_title_text}>
+                {headingErrorMessage}
+              </div>
               <div className={styles.error_message_text}>{errorMessage}</div>
               <br />
-              <CapsuleButton onClick={this.makePageApiCall}>Retry</CapsuleButton>
+              <CapsuleButton onClick={this.makePageApiCall}>
+                Retry
+              </CapsuleButton>
             </DivColumn>
-          ) : loading ? customLoader ? customLoader : this.loaderScreen()
-              : isEmpty ? customEmptyScreen ? customEmptyScreen : this.emptyScreen()
-                : children
-          )}
+          ) : loading ? (
+            customLoader ? (
+              customLoader
+            ) : (
+              this.loaderScreen()
+            )
+          ) : isEmpty ? (
+            customEmptyScreen ? (
+              customEmptyScreen
+            ) : (
+              this.emptyScreen()
+            )
+          ) : (
+            children
+          ))}
       </DivColumn>
     );
   }
@@ -113,8 +140,24 @@ InitialPageLoader.defaultProps = {
   customEmptyScreen: null,
   isEmpty: false,
 
-  emptyScreenTitle: 'No Result',
-  emptyScreenMessage: "Looks like its Empty"
+  emptyScreenTitle: {
+    en: {
+      title: "No Result",
+      subtitle: "Looks like its Empty",
+    },
+    ar: {
+      title: "لا نتيجة",
+      subtitle: "تبدو فارغة",
+    },
+  },
+  // emptyScreenMessage: {
+  //   en: {
+  //     subtitle: "Looks like its Empty",
+  //   },
+  //   ar: {
+  //     subtitle: "تبدو فارغة",
+  //   },
+  // },
 };
 
 InitialPageLoader.propTypes = {
@@ -131,7 +174,17 @@ InitialPageLoader.propTypes = {
   //customErrorScreen: PropTypes.any,
 
   //Style
-  className: PropTypes.any
+  className: PropTypes.any,
 };
 
-export default InitialPageLoader;
+// export default InitialPageLoader;
+const mapStateToProps = (state) => {
+  return {
+    languageReducer: state.languageReducer,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(translatorHoc(navigatorHoc(InitialPageLoader)));

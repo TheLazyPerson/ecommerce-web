@@ -69,7 +69,7 @@ class ProductItemComponent extends Component {
         exhibition_id: product.exhibition.id,
       })
         .then(({ payload }) => {
-          if (payload.code == 200 || payload.code == 201) {
+          if (payload.code === 200 || payload.code === 201) {
             showSuccessFlashMessage(successMessage);
           }
           this.setState({ isWishlistLoading: false });
@@ -100,6 +100,7 @@ class ProductItemComponent extends Component {
             {product.translations[languageCode].short_description}
           </div>
           <img
+            alt={product.translations[languageCode].name}
             src={product.base_image ? product.base_image.path : ""}
             className={styles.product_image}
           />
@@ -115,7 +116,11 @@ class ProductItemComponent extends Component {
               {translate("search_page.product_item_exhibition")}
             </div>
             <DivRow verticalCenter>
-              <img src={exhibitionImage1} className={styles.exhibition_image} />
+              <img
+                alt={product.exhibition.title}
+                src={exhibitionImage1}
+                className={styles.exhibition_image}
+              />
               <div className={styles.exhibition_name}>
                 {product.exhibition.title}
               </div>
@@ -125,6 +130,7 @@ class ProductItemComponent extends Component {
 
         <DivRow className={styles.action_container}>
           <img
+            alt="wishlist"
             src={product.is_wishlisted ? heartFilledIcon : heartEmptyIcon}
             className={`${styles.wishlist_icon} ${
               isWishlistLoading ? styles.disabled : ""

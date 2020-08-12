@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 import SectionedContainer from "CommonContainers/sectionedContainer";
 import DivColumn from "CommonComponents/divColumn";
-import DivRow from "CommonComponents/divRow";
 import SideNav from "../../components/sideNav";
 import styles from "./add_address.module.scss";
 import NavHeader from "../../components/navHeader";
-import { Form, Field } from "react-final-form";
-import CapsuleButton from "CommonComponents/capsuleButton";
-import SecondaryCapsuleButton from "CommonComponents/secondaryCapsuleButton";
-import InputTextComponent from "CommonComponents/InputTextComponent";
-import InputCheckbox from "CommonComponents/InputCheckbox";
+import DivRow from "CommonComponents/divRow";
 import navigatorHoc from "Hoc/navigatorHoc";
-import HorizontalBorder from "CommonComponents/horizontalBorder";
-import {
-  isPhoneNumber,
-  nameValidator,
-  isEmptyValidator,
-} from "Utils/validators";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showSuccessFlashMessage } from "Redux/actions/flashMessageActions";
@@ -38,19 +28,21 @@ class AddAddress extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, isRTL } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
-        <DivColumn fillParent className={styles.page_container}>
-          <NavHeader
-            title={translate("place_order_page.title_add_address")}
-            onBackClick={this.onBackPress}
-          />
-          <AddAddressForm
-            onSubmitComplete={this.onSubmitComplete}
-            onClickCancel={this.onClickCancel}
-          />
-        </DivColumn>
+        <DivRow className={` ${isRTL ? styles.rtl : ""}`}>
+          <DivColumn fillParent className={styles.page_container}>
+            <NavHeader
+              title={translate("place_order_page.title_add_address")}
+              onBackClick={this.onBackPress}
+            />
+            <AddAddressForm
+              onSubmitComplete={this.onSubmitComplete}
+              onClickCancel={this.onClickCancel}
+            />
+          </DivColumn>
+        </DivRow>
       </SectionedContainer>
     );
   }
@@ -59,6 +51,7 @@ class AddAddress extends Component {
 const mapStateToProps = (state) => {
   return {
     addressReducer: state.addressReducer,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 

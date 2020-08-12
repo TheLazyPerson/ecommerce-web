@@ -3,6 +3,8 @@ import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./address_item_component.module.scss";
 import translatorHoc from "Hoc/translatorHoc";
+import { connect } from "react-redux";
+import navigatorHoc from "Hoc/navigatorHoc";
 
 class AddressItemComponent extends Component {
   render() {
@@ -66,4 +68,13 @@ class AddressItemComponent extends Component {
   }
 }
 
-export default translatorHoc(AddressItemComponent);
+const mapStateToProps = (state) => {
+  return {
+    isRTL: state.languageReducer.isRTL,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(navigatorHoc(translatorHoc(AddressItemComponent)));

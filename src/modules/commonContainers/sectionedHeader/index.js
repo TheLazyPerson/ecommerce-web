@@ -2,20 +2,14 @@ import React, { Component } from "react";
 import styles from "./sectioned_header.module.scss";
 import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
-import searchIcon from "Icons/search-icon-black.svg";
-import searchIconWhite from "Icons/search-icon-white.svg";
-import hamburgerMenuIcon from "Icons/hamburger-menu-icon-black.svg";
 import bagIcon from "Icons/cart-bag-icon-black.svg";
 import bagIconWhite from "Icons/cart-bag-icon-white.svg";
 import bookmarkIcon from "Icons/bookmark-icon-black.svg";
 import bookmarkIconWhite from "Icons/bookmark-icon-white.svg";
-import arrowDownIcon from "Icons/arrow-down-icon-black.svg";
 import { logoutAction } from "Core/modules/signin/actions/signinActions";
 import navigatorHoc from "Hoc/navigatorHoc";
 import profileIconBlack from "Icons/profile-icon-black.svg";
 import profileIconWhite from "Icons/profile-icon-white.svg";
-import HorizontalBorder from "CommonComponents/horizontalBorder";
-import { searchTypes } from "Constants/searchConstants";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { CookieService } from "Utils/cookieService";
@@ -69,10 +63,18 @@ class SectionedHeader extends Component {
   };
 
   render() {
-    const { isUserSignedIn, bagCount, whiteColor, translate } = this.props;
+    const {
+      isUserSignedIn,
+      bagCount,
+      whiteColor,
+      translate,
+      isRTL,
+    } = this.props;
 
     return (
-      <DivRow className={styles.header_container}>
+      <DivRow
+        className={`${styles.header_container}  ${isRTL ? styles.rtl : ""}`}
+      >
         <SearchBar
           className={styles.search_bar_container}
           whiteColor={whiteColor}
@@ -95,6 +97,7 @@ class SectionedHeader extends Component {
             onClick={this.onClickBag}
           >
             <img
+              alt="Bag Icon"
               src={whiteColor ? bagIconWhite : bagIcon}
               className={styles.header_icon}
             />
@@ -107,6 +110,7 @@ class SectionedHeader extends Component {
             </DivRow>
           </DivRow>
           <img
+            alt="Wishlist Icon"
             className={`${styles.header_icon} ${styles.header_item_container}`}
             src={whiteColor ? bookmarkIconWhite : bookmarkIcon}
             onClick={this.onClickWishlist}
@@ -117,6 +121,7 @@ class SectionedHeader extends Component {
             className={`${styles.header_icon} ${styles.header_item_container} ${styles.profile_header_item}`}
           >
             <img
+              alt="Profile Pic"
               className={styles.profile_pic}
               src={whiteColor ? profileIconWhite : profileIconBlack}
             />
@@ -200,6 +205,7 @@ const mapStateToProps = (state) => {
   return {
     isUserSignedIn: state.signInReducer.isUserSignedIn,
     bagCount: state.bagReducer.bagCount,
+    isRTL: state.languageReducer.isRTL,
   };
 };
 

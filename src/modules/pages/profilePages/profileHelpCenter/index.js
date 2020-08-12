@@ -48,9 +48,12 @@ class ProfileHelpCenter extends Component {
   };
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      feedback: isEmptyValidator(values.oldPassword),
+      feedback: isEmptyValidator(values.oldPassword, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -176,6 +179,7 @@ const mapStateToProps = (state) => {
   return {
     supportReducer: state.supportReducer,
     isRTL: state.languageReducer.isRTL,
+    languageReducer: state.languageReducer,
   };
 };
 

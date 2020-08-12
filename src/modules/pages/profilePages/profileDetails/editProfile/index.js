@@ -42,6 +42,7 @@ class EditProfile extends Component {
       editProfileDetailsAction,
       navigateTo,
       showSuccessFlashMessage,
+      translate,
     } = this.props;
 
     editProfileDetailsAction({
@@ -54,7 +55,7 @@ class EditProfile extends Component {
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         navigateTo("profile");
-        showSuccessFlashMessage("Profile Updated");
+        showSuccessFlashMessage(translate("profile_details.success_message"));
       }
     });
   };
@@ -69,14 +70,17 @@ class EditProfile extends Component {
   }
 
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      firstName: nameValidator(values.firstName),
-      lastName: nameValidator(values.lastName),
-      gender: isEmptyValidator(values.gender),
-      mobileNumber: isPhoneNumber(values.mobileNumber),
-      email: emailValidator(values.email),
-      birthday: isEmptyValidator(values.birthday),
+      firstName: nameValidator(values.firstName, languageCode),
+      lastName: nameValidator(values.lastName, languageCode),
+      gender: isEmptyValidator(values.gender, languageCode),
+      mobileNumber: isPhoneNumber(values.mobileNumber, languageCode),
+      email: emailValidator(values.email, languageCode),
+      birthday: isEmptyValidator(values.birthday, languageCode),
     };
 
     Object.keys(validators).forEach((key) => {
@@ -94,6 +98,8 @@ class EditProfile extends Component {
     const {
       translate,
       profileDetailsReducer: { userDetails },
+      languageReducer,
+      isRTL,
     } = this.props;
     let startDate = null;
 
@@ -103,9 +109,12 @@ class EditProfile extends Component {
       startDate = new Date(userDetails.birthday);
     }
 
+    const male = translate("profile_details.male");
+    const female = translate("profile_details.female");
+
     const genderOptions = [
-      { value: "male", label: "Male" },
-      { value: "female", label: "Female" },
+      { value: "male", label: male },
+      { value: "female", label: female },
     ];
     let defaultGender = null;
 
@@ -133,121 +142,123 @@ class EditProfile extends Component {
           title={translate("profile_details.header_title")}
           onBackClick={this.onBackPress}
         />
-        <Form
-          onSubmit={this.onSubmit}
-          validate={this.validate}
-          initialValues={{
-            firstName: userDetails.first_name ? userDetails.first_name : "",
-            lastName: userDetails.last_name ? userDetails.last_name : "",
-            gender: userDetails.gender ? userDetails.gender : "",
-            mobileNumber: userDetails.phone ? userDetails.phone : "",
-            email: userDetails.email ? userDetails.email : "",
-            birthday: userDetails.birthday ? userDetails.birthday : "",
-          }}
-          render={({
-            handleSubmit,
-            form: {
-              mutators: { mutateValue },
-            },
-            submitting,
-            pristine,
-            values,
-          }) => (
-            <form className={styles.form_container} onSubmit={handleSubmit}>
-              <Field name="firstName">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder={translate("profile_details.first_name")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="lastName">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder={translate("profile_details.last_name")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-
-              <Field name="gender">
-                {({ input, meta }) => (
-                  <DivColumn className="input_select_container">
-                    <Select
-                      options={genderOptions}
-                      onChange={(value) => {
-                        input.onChange(value.value);
-                      }}
-                      className="react-select-container"
-                      classNamePrefix="react-select"
-                      placeholder={translate("profile_details.gender")}
-                      defaultValue={defaultGender}
+        <DivRow className={` ${isRTL ? styles.rtl : ""}`}>
+          <Form
+            onSubmit={this.onSubmit}
+            validate={this.validate}
+            initialValues={{
+              firstName: userDetails.first_name ? userDetails.first_name : "",
+              lastName: userDetails.last_name ? userDetails.last_name : "",
+              gender: userDetails.gender ? userDetails.gender : "",
+              mobileNumber: userDetails.phone ? userDetails.phone : "",
+              email: userDetails.email ? userDetails.email : "",
+              birthday: userDetails.birthday ? userDetails.birthday : "",
+            }}
+            render={({
+              handleSubmit,
+              form: {
+                mutators: { mutateValue },
+              },
+              submitting,
+              pristine,
+              values,
+            }) => (
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <Field name="firstName">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder={translate("profile_details.first_name")}
+                      className={styles.input_text}
                     />
-                    {meta.error && meta.touched && (
-                      <span className="error_text">{meta.error}</span>
-                    )}
-                  </DivColumn>
-                )}
-              </Field>
+                  )}
+                </Field>
+                <Field name="lastName">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder={translate("profile_details.last_name")}
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
 
-              <Field name="mobileNumber">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder={translate("profile_details.phone_number")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
+                <Field name="gender">
+                  {({ input, meta }) => (
+                    <DivColumn className="input_select_container">
+                      <Select
+                        options={genderOptions}
+                        onChange={(value) => {
+                          input.onChange(value.value);
+                        }}
+                        className="react-select-container"
+                        classNamePrefix="react-select"
+                        placeholder={translate("profile_details.gender")}
+                        defaultValue={defaultGender}
+                      />
+                      {meta.error && meta.touched && (
+                        <span className="error_text">{meta.error}</span>
+                      )}
+                    </DivColumn>
+                  )}
+                </Field>
 
-              <Field name="email">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    placeholder={translate("profile_details.email")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
+                <Field name="mobileNumber">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder={translate("profile_details.phone_number")}
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
 
-              <Field name="birthday">
-                {({ input, meta }) => (
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => {
-                      this.setState({ startDate: date });
-                      input.onChange(date.valueOf());
-                    }}
-                    maxDate={new Date()}
-                    peekNextMonth
-                    showMonthDropdown
-                    showYearDropdown
-                    openToDate={new Date("1993/09/28")}
-                    customInput={
-                      <CustomRenderInput meta={meta} input={input} />
-                    }
-                  />
-                )}
-              </Field>
+                <Field name="email">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      placeholder={translate("profile_details.email")}
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
 
-              <DivRow className={styles.form_button_container}>
-                <SecondaryCapsuleButton onClick={this.onClickCancel}>
-                  {translate("profile_details.cancel")}
-                </SecondaryCapsuleButton>
-                <CapsuleButton type="submit" disabled={submitting}>
-                  {translate("profile_details.save_details")}
-                </CapsuleButton>
-              </DivRow>
-            </form>
-          )}
-        />
+                <Field name="birthday">
+                  {({ input, meta }) => (
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => {
+                        this.setState({ startDate: date });
+                        input.onChange(date.valueOf());
+                      }}
+                      maxDate={new Date()}
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      openToDate={new Date("1993/09/28")}
+                      customInput={
+                        <CustomRenderInput meta={meta} input={input} />
+                      }
+                    />
+                  )}
+                </Field>
+
+                <DivRow className={styles.form_button_container}>
+                  <SecondaryCapsuleButton onClick={this.onClickCancel}>
+                    {translate("profile_details.cancel")}
+                  </SecondaryCapsuleButton>
+                  <CapsuleButton type="submit" disabled={submitting}>
+                    {translate("profile_details.save_details")}
+                  </CapsuleButton>
+                </DivRow>
+              </form>
+            )}
+          />
+        </DivRow>
       </SectionedContainer>
     );
   }
@@ -256,6 +267,8 @@ class EditProfile extends Component {
 const mapStateToProps = (state) => {
   return {
     profileDetailsReducer: state.profileDetailsReducer,
+    isRTL: state.languageReducer.isRTL,
+    languageReducer: state.languageReducer,
   };
 };
 

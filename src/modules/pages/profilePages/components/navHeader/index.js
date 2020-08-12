@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DivColumn from "CommonComponents/divColumn";
 import DivRow from "CommonComponents/divRow";
 import styles from "./nav_header.module.scss";
 import arrowLeftIcon from "Icons/arrow-right-icon-black.svg";
@@ -21,7 +20,11 @@ class NavHeader extends Component {
           className={styles.header_title}
         >
           {onBackClick ? (
-            <img src={arrowLeftIcon} className={styles.back_icon} />
+            <img
+              alt="Arrow Left"
+              src={arrowLeftIcon}
+              className={styles.back_icon}
+            />
           ) : null}
 
           {title}

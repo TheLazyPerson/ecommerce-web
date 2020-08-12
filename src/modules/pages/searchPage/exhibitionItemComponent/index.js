@@ -3,13 +3,11 @@ import DivRow from "CommonComponents/divRow";
 import DivColumn from "CommonComponents/divColumn";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import CapsuleText from "CommonComponents/capsuleText";
-import exhibitionImage1 from "Images/exhibition-item-1.jpg";
 import styles from "./exhibition_item_component.module.scss";
 import navigatorHoc from "Hoc/navigatorHoc";
 import translatorHoc from "Hoc/translatorHoc";
 
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 class ExhibitionItemComponent extends Component {
   onClickViewExhibition = () => {
@@ -29,7 +27,11 @@ class ExhibitionItemComponent extends Component {
           isRTL ? styles.rtl : ""
         }`}
       >
-        <img src={exhibition.base_image} className={styles.exhibition_image} />
+        <img
+          alt={exhibition.title}
+          src={exhibition.base_image}
+          className={styles.exhibition_image}
+        />
 
         <DivColumn className={styles.exhibition_details_container}>
           <div className={styles.exhibition_name}>{exhibition.title}</div>

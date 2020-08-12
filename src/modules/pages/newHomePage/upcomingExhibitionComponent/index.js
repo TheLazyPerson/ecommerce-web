@@ -43,7 +43,11 @@ class UpcomingExhibitionComponent extends Component {
         fillSelfHorizontal
         className={` ${styles.component_container} ${isRTL ? styles.rtl : ""} `}
       >
-        <img className={styles.image} src={`${exhibition.base_image}`} />
+        <img
+          alt={exhibition.translations[languageCode].title}
+          className={styles.image}
+          src={`${exhibition.base_image}`}
+        />
 
         <DivColumn fillSelfHorizontal className={styles.content_container}>
           <DivColumn fillParent className={styles.contents}>
@@ -58,6 +62,7 @@ class UpcomingExhibitionComponent extends Component {
           </DivColumn>
           <DivRow className={styles.arrow_container}>
             <img
+              alt="Arrow Left"
               src={arrowRight}
               className={`${styles.arrow_left} ${
                 !isLeftButtonClickable ? styles.disabled : ""
@@ -65,6 +70,7 @@ class UpcomingExhibitionComponent extends Component {
               onClick={isLeftButtonClickable ? this.onClickLeft : null}
             />
             <img
+              alt="Arrow Right"
               src={arrowRight}
               className={`${styles.arrow_right} ${
                 !isRightButtonClickable ? styles.disabled : ""

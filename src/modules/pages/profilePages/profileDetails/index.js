@@ -5,7 +5,6 @@ import DivRow from "CommonComponents/divRow";
 import SideNav from "../components/sideNav";
 import styles from "./profile_details.module.scss";
 import NavHeader from "../components/navHeader";
-import map from "lodash/map";
 import CapsuleButton from "CommonComponents/capsuleButton";
 import SecondaryCapsuleButton from "CommonComponents/secondaryCapsuleButton";
 import { getProfileDetailsAction } from "Core/modules/profiledetails/profileDetailsActions";

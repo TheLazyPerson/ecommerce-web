@@ -1,7 +1,7 @@
 @import "~Styles/colors.module";
 
 .address_container {
- //  overflow-y: auto;
+  //  overflow-y: auto;
 
   .section_container:first-child {
     .header_container {
@@ -12,4 +12,8 @@
   .section_container {
     margin-top: 32px;
   }
+}
+
+.rtl {
+  direction: rtl;
 }

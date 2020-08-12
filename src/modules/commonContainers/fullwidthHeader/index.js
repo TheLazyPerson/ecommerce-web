@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import SectionedHeader from "CommonContainers/sectionedHeader";
 import DivRow from "CommonComponents/divRow";
-import DivColumn from "CommonComponents/divColumn";
 import styles from "./fullwidth_header.module.scss";
 import LanguageSelect from "CommonComponents/languageSelect";
 import appIcon from "Icons/app-icon-black.svg";
 import appIconWhite from "Icons/app-icon-white.svg";
 import navigatorHoc from "Hoc/navigatorHoc";
 import SearchBar from "CommonContainers/searchBar";
+import { connect } from "react-redux";
 
 class FullwidthHeader extends Component {
   onClickAppIcon = () => {
@@ -16,10 +16,15 @@ class FullwidthHeader extends Component {
   };
 
   render() {
-    const { children, whiteColor, className } = this.props;
+    const { whiteColor, className, isRTL } = this.props;
 
     return (
-      <div fillSelfHorizontal className={`${styles.top_header} ${className}`}>
+      <div
+        fillSelfHorizontal
+        className={`${styles.top_header} ${className}  ${
+          isRTL ? styles.rtl : ""
+        }`}
+      >
         <DivRow className={`${styles.header_container}`}>
           <DivRow className={styles.header_icon_container}>
             <div
@@ -28,6 +33,7 @@ class FullwidthHeader extends Component {
               onClick={this.onClickAppIcon}
             >
               <img
+                alt="Home Expo"
                 src={whiteColor ? appIconWhite : appIcon}
                 className={styles.app_icon}
                 onClick={this.onClickAppIcon}
@@ -47,7 +53,13 @@ class FullwidthHeader extends Component {
 }
 
 FullwidthHeader.defaultProps = {
-  whiteColor: false
+  whiteColor: false,
 };
 
-export default navigatorHoc(FullwidthHeader);
+const mapStateToProps = (state) => {
+  return {
+    isRTL: state.languageReducer.isRTL,
+  };
+};
+
+export default connect(mapStateToProps, null)(navigatorHoc(FullwidthHeader));

@@ -18,13 +18,17 @@ import translatorHoc from "Hoc/translatorHoc";
 
 class ChangePassword extends Component {
   validate = (values) => {
+    const {
+      languageReducer: { languageCode },
+    } = this.props;
     const errors = {};
     const validators = {
-      oldPassword: isEmptyValidator(values.oldPassword),
-      newPassword: isEmptyValidator(values.newPassword),
+      oldPassword: isEmptyValidator(values.oldPassword, languageCode),
+      newPassword: isEmptyValidator(values.newPassword, languageCode),
       confirmPassword: passwordValidator(
         values.newPassword,
-        values.confirmPassword
+        values.confirmPassword,
+        languageCode
       ),
     };
 
@@ -64,63 +68,67 @@ class ChangePassword extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, isRTL } = this.props;
     return (
       <SectionedContainer sideBarContainer={<SideNav />}>
         <NavHeader
           title={translate("change_password.header_title")}
           onBackClick={this.onBackPress}
         />
-        <Form
-          onSubmit={this.onSubmit}
-          validate={this.validate}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
-            <form className={styles.form_container} onSubmit={handleSubmit}>
-              <Field name="oldPassword">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    type="password"
-                    placeholder={translate("change_password.old_password")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="newPassword">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    type="password"
-                    placeholder={translate("change_password.new_password")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
-              <Field name="confirmPassword">
-                {({ input, meta }) => (
-                  <InputTextComponent
-                    meta={meta}
-                    {...input}
-                    type="password"
-                    placeholder={translate("change_password.confirm_passowrd")}
-                    className={styles.input_text}
-                  />
-                )}
-              </Field>
+        <DivRow className={` ${isRTL ? styles.rtl : ""}`}>
+          <Form
+            onSubmit={this.onSubmit}
+            validate={this.validate}
+            render={({ handleSubmit, form, submitting, pristine, values }) => (
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <Field name="oldPassword">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      type="password"
+                      placeholder={translate("change_password.old_password")}
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+                <Field name="newPassword">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      type="password"
+                      placeholder={translate("change_password.new_password")}
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
+                <Field name="confirmPassword">
+                  {({ input, meta }) => (
+                    <InputTextComponent
+                      meta={meta}
+                      {...input}
+                      type="password"
+                      placeholder={translate(
+                        "change_password.confirm_passowrd"
+                      )}
+                      className={styles.input_text}
+                    />
+                  )}
+                </Field>
 
-              <DivRow className={styles.form_button_container}>
-                <SecondaryCapsuleButton onClick={this.onClickCancel}>
-                  {translate("common.cancel")}
-                </SecondaryCapsuleButton>
-                <CapsuleButton type="submit" disabled={submitting}>
-                  {translate("common.confirm")}
-                </CapsuleButton>
-              </DivRow>
-            </form>
-          )}
-        />
+                <DivRow className={styles.form_button_container}>
+                  <SecondaryCapsuleButton onClick={this.onClickCancel}>
+                    {translate("common.cancel")}
+                  </SecondaryCapsuleButton>
+                  <CapsuleButton type="submit" disabled={submitting}>
+                    {translate("common.confirm")}
+                  </CapsuleButton>
+                </DivRow>
+              </form>
+            )}
+          />
+        </DivRow>
       </SectionedContainer>
     );
   }
@@ -128,6 +136,8 @@ class ChangePassword extends Component {
 const mapStateToProps = (state) => {
   return {
     changePasswordReducer: state.changePasswordReducer,
+    isRTL: state.languageReducer.isRTL,
+    languageReducer: state.languageReducer,
   };
 };
 
