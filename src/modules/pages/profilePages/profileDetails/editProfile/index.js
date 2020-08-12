@@ -42,6 +42,7 @@ class EditProfile extends Component {
       editProfileDetailsAction,
       navigateTo,
       showSuccessFlashMessage,
+      translate,
     } = this.props;
 
     editProfileDetailsAction({
@@ -54,7 +55,7 @@ class EditProfile extends Component {
     }).then(({ payload }) => {
       if (payload.code === 200 || payload.code === 201) {
         navigateTo("profile");
-        showSuccessFlashMessage("Profile Updated");
+        showSuccessFlashMessage(translate("profile_details.success_message"));
       }
     });
   };
@@ -108,8 +109,8 @@ class EditProfile extends Component {
       startDate = new Date(userDetails.birthday);
     }
 
-    const male = translate("edit_profile.male");
-    const female = translate("edit_profile.female");
+    const male = translate("profile_details.male");
+    const female = translate("profile_details.female");
 
     const genderOptions = [
       { value: "male", label: male },

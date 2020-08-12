@@ -228,7 +228,8 @@
     "cancel": "CANCEL",
     "save_details": "SAVE DETAILS",
     "male": "Male",
-    "female": "Female"
+    "female": "Female",
+    "success_message": "Profile Has Been Updated!"
   },
   "change_password": {
     "header_title": "Change Password",

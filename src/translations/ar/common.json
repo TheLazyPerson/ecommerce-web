@@ -203,7 +203,8 @@
     "cancel": "إلغاء",
     "save_details": "حفظ التفاصيل",
     "male": "الذكر",
-    "female": "أنثى"
+    "female": "أنثى",
+    "success_message": "تم تحديث ملف التعريف!"
   },
   "change_password": {
     "header_title": "تغيير كلمة المرور",

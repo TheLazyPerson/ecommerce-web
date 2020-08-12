@@ -64,7 +64,7 @@ class ProfileSettings extends Component {
                   name="isGoing"
                   type="checkbox"
                   isChecked={settings.wants_updates}
-                  onChange={(event) => this.updateNotificationStatus(event)}
+                  onChange={this.updateNotificationStatus}
                 />
               </DivRow>
             </DivRow>
