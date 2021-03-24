@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { configureStore, history } from "./redux/store/configureStore.dev";
+import { configureStore, history } from "./redux/store/configureStore.prod";
 import "./index.css";
 import App from "./modules/routes";
 import { I18nextProvider } from "react-i18next";

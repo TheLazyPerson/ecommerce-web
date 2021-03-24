@@ -59,7 +59,6 @@ class InitialPageLoader extends Component {
       emptyScreenTitle,
       languageReducer: { languageCode },
     } = this.props;
-    console.log(this.props);
     return (
       <DivColumn
         fillParent
