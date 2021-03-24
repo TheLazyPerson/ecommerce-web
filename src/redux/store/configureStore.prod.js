@@ -2,7 +2,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
-import rootReducer from '../reducers';
+import rootReducer from '../reducer';
 import {apiMiddleware} from 'redux-api-middleware';
 import apiAuthInjector from '../../ecommerce-core/middleware/authInjector';
 import apiErrorHandler from '../../ecommerce-core/middleware/apiError';
